@@ -1,0 +1,25 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "version": "1.0.0",
+    "type": "object",
+    "additionalProperties": false,
+    "description": "JSON Schema for attachments that were successfully added to an application.",
+    "required": [
+        "data"
+    ],
+    "properties": {
+        "data": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "failure_reason"
+            ],
+            "properties": {
+                "failure_reason": {
+                    "type": "string",
+                    "description": "Reason why the attachment failed validation"
+                }
+            }
+        }
+    }
+}

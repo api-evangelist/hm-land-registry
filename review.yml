@@ -1,0 +1,445 @@
+aid: hm-land-registry
+name: HM Land Registry
+slug: hm-land-registry
+tier: land-registry-govt
+homeMarket: United Kingdom
+review:
+  question: >-
+    Does HM Land Registry expose a real, reachable public developer surface for
+    property data, and where does RESO sit in a market that has no MLS?
+  answer: true
+  date: '2026-07-26'
+  reviewer: API Evangelist
+  scope: bootstrap
+  summary: >-
+    Yes — but only on two of its three tiers, and the three must never be
+    conflated. HM Land Registry runs a genuinely open, anonymous, unauthenticated
+    linked-data platform (SPARQL 1.1 + W3C Linked Data API over Price Paid Data
+    and the UK House Price Index) under the Open Government Licence v3.0; a
+    self-serve keyed REST API over its bulk datasets where the key is free but
+    every dataset behind it needs a signed licence and some cost five figures a
+    year; and a B2B Business Gateway whose OpenAPI contracts are fully public on
+    GitHub Pages but whose production host will not complete a TLS handshake
+    without an HMLR-issued client certificate. RESO does not exist anywhere in
+    this stack, and that is the expected answer for the United Kingdom.
+
+# ---------------------------------------------------------------------------
+# THE BLOCK: RESO posture, access gate, open data, auth, home market
+# ---------------------------------------------------------------------------
+sectorPosture:
+  homeMarket: United Kingdom
+  marketSeam: >-
+    The United Kingdom has no MLS and no cooperative listing standard. Residential
+    listings are controlled by the Rightmove and Zoopla portal duopoly and reach
+    those portals through agency CRM software (Reapit, Alto, Street, Apex27),
+    not through a shared industry data contract. What the UK has instead is open
+    government property data. HM Land Registry and Ordnance Survey are the public
+    counterweight to private portal control, and HMLR is the legal foundation of
+    the value chain: the authoritative record of who owns what, what it sold for,
+    and where the boundaries run. Every conveyancing transaction in England and
+    Wales terminates at its register.
+
+  reso:
+    certified: false
+    posture: >-
+      No RESO reference of any kind. HM Land Registry holds no RESO Web API
+      certification and no RESO Data Dictionary certification, publishes no OData
+      service and no $metadata document, and makes no use of the RESO Universal
+      Property Identifier. RESO is a North American NAR construct with no UK
+      adoption; HMLR's machine-readable contracts are OpenAPI 3.0/3.1, SOAP XSD
+      and W3C linked data (SPARQL + Linked Data API) instead.
+    webApiCertification: none
+    dataDictionaryCertification: none
+    dataDictionaryVersion: null
+    resoDirectoryListing: >-
+      Not listed. HM Land Registry is a UK non-ministerial government department
+      and is not an MLS, board or association, so it is not eligible for and does
+      not appear in the RESO certification directory.
+    universalPropertyIdentifier: >-
+      Absent. The UK equivalent identifiers in this stack are the HM Land Registry
+      title number, the Ordnance Survey / GeoPlace UPRN (Unique Property Reference
+      Number), and the INSPIRE ID on index polygons. The National Polygon Service
+      dataset carries the title-number-to-UPRN lookup, and that lookup is sold
+      under a commercial licence rather than published as an open identifier
+      crosswalk.
+    odataMetadataProbes:
+      - url: https://landregistry.data.gov.uk/$metadata
+        status: 404
+      - url: https://businessgateway.landregistry.gov.uk/bg2/api/$metadata
+        status: 000
+        note: TLS handshake fails without an HMLR-issued client certificate (curl error 60).
+      - url: https://use-land-property-data.service.gov.uk/api/v1/$metadata
+        status: 200
+        note: >-
+          FALSE POSITIVE. The service returns HTTP 200 with a GOV.UK "Unknown
+          Error" HTML page for every unmatched path. Not an OData metadata
+          document. Verified by fetching the body, not the status code.
+    textSearchEvidence:
+      - target: https://landregistry.github.io/bg-dev-pack-redesign/
+        result: zero case-insensitive matches for "reso", "odata" or "universal property identifier".
+      - target: openapi/*.json, openapi/*.yml (all 8 harvested contracts)
+        result: >-
+          Only "resource" (7), "RESOLUTION" (4) and "Resource" (1) — substring
+          false positives. No RESO token, no OData vocabulary, no
+          UniversalPropertyId field.
+
+  accessGate:
+    primary: licence-agreement
+    note: >-
+      HM Land Registry is a three-tier provider and the honest classification
+      depends on the tier. The classification recorded here is the gate a
+      developer hits for the bulk ownership and spatial data that makes HMLR
+      commercially interesting; the open linked-data tier below it is genuinely
+      ungated, and the Business Gateway tier above it is harder still.
+    tiers:
+      - tier: 1
+        name: Open linked data (landregistry.data.gov.uk)
+        gate: none-published
+        openData: true
+        whatYouMustSignOrJoin: >-
+          Nothing. No account, no key, no licence signature, no fee. Attribution
+          under the Open Government Licence v3.0 (Crown copyright statement) is
+          the only obligation.
+        verified:
+          - url: https://landregistry.data.gov.uk/landregistry/query
+            method: GET with urlencoded SPARQL query, Accept application/sparql-results+json
+            status: 200
+            note: Anonymous SPARQL 1.1 query returned bindings on 2026-07-26.
+          - url: https://landregistry.data.gov.uk/data/ppi/transaction-record.json?_pageSize=1
+            status: 200
+            contentType: application/json
+          - url: https://landregistry.data.gov.uk/data/ukhpi/region/england/month/2024-01.json
+            status: 200
+            contentType: application/json
+          - url: https://price-paid-data.publicdata.landregistry.gov.uk/pp-complete.csv
+            status: 200
+            note: Complete Price Paid Data bulk CSV, anonymous.
+      - tier: 2
+        name: Use land and property data service (bulk datasets)
+        gate: licence-agreement
+        openData: false
+        whatYouMustSignOrJoin: >-
+          Create an account on use-land-property-data.service.gov.uk — an API key
+          is issued automatically on account creation, so the KEY is self-serve.
+          The DATA is not. For every dataset you must separately agree to that
+          dataset's licence on the website before the download endpoint will work,
+          and several are chargeable: the Registered Leases commercial licence is
+          £5,000 a year plus VAT and the National Polygon Service is £20,000 a
+          year plus VAT (Registered Leases also offers a free 3-month exploration
+          licence and a free direct-use licence for research or personal use).
+          CCOD and OCOD (UK and overseas company property ownership) are free of
+          charge but still require a signed licence.
+        verified:
+          - url: https://use-land-property-data.service.gov.uk/api/v1/datasets
+            status: 403
+            body: '{"error": "Access denied: You need to provide your API Key to perform this operation", "success": false}'
+          - url: https://use-land-property-data.service.gov.uk/api/v1/datasets/ccod
+            status: 403
+            body: '{"error": "Access denied: You need to provide your API Key to perform this operation", "success": false}'
+          - url: https://use-land-property-data.service.gov.uk/api-information
+            status: 200
+            note: Public, no account needed. Names the base URL and the account-then-licence flow.
+          - url: https://use-land-property-data.service.gov.uk/api-documentation
+            status: 200
+            note: Public HTML narrative reference. Endpoints, auth header, JSON examples.
+          - url: https://use-land-property-data.service.gov.uk/datasets
+            status: 302
+            note: Dataset browse redirects — an account is required to see dataset detail and licence pages.
+      - tier: 3
+        name: Business Gateway (B2B conveyancing channel)
+        gate: partner-only
+        openData: false
+        whatYouMustSignOrJoin: >-
+          Hold an HM Land Registry business e-services account with a variable
+          direct debit, sign the Business Gateway development licence, and be
+          issued an HMLR client digital certificate plus Business Gateway
+          username and password. Software vendors and conveyancers are told to
+          contact channelpartners@landregistry.gov.uk. In practice this is a
+          channel-partner arrangement for conveyancing case management software,
+          not a developer signup.
+        verified:
+          - url: https://businessgateway.landregistry.gov.uk/bg2/api/v1/titles/TEST/registered-proprietor-names
+            status: 000
+            note: >-
+              curl exit 60 — TLS handshake cannot be completed without trusting the
+              HMLR root certificates and presenting an HMLR-issued client
+              certificate. The production host is unreachable to an anonymous caller.
+          - url: https://bgtest.landregistry.gov.uk/bg2test/api
+            status: 000
+            note: Customer test host, same client-certificate TLS gate.
+          - url: https://landregistry.github.io/bgtechdoc/
+            status: 200
+            note: >-
+              The DOCUMENTATION and the CONTRACTS are completely public on GitHub
+              Pages. This is the key split — public contracts, unreachable endpoints.
+
+  openData:
+    exists: true
+    licence: Open Government Licence v3.0 (Crown copyright attribution required)
+    licenceURL: https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/
+    products:
+      - name: Price Paid Data
+        access: SPARQL 1.1 endpoint, W3C Linked Data API, and bulk CSV. No key, no account.
+      - name: UK House Price Index
+        access: W3C Linked Data API (.json/.csv/.ttl). No key, no account.
+      - name: HM Land Registry RDF vocabularies (def/ppi, def/common)
+        access: Dereferenceable, HTTP 200 anonymously.
+      - name: INSPIRE Index Polygons
+        access: Free bulk download under the INSPIRE end-user licence.
+    notOpen:
+      - name: National Polygon Service (title boundary polygons + title-number-to-UPRN lookup)
+        note: £20,000 a year plus VAT commercial licence. The spatial extent of the public record is sold back to the public.
+      - name: Registered Leases
+        note: £5,000 a year plus VAT commercial licence (free exploration and direct-use licences also offered).
+      - name: Restrictive Covenants
+        note: Licence required; fee schedule not visible without an account, so no figure is recorded here.
+      - name: CCOD / OCOD company ownership
+        note: Free of charge but licence signature still required before download.
+
+  authModel:
+    openDataTier: None. Anonymous HTTP. No key, no OAuth, no account.
+    useLandPropertyDataTier: >-
+      API key issued automatically on self-serve account creation, sent as the
+      Authorization header on every request. Not OAuth, not a bearer scheme with
+      scopes — a plain key string. Accept application/json advised.
+    businessGatewayTier: >-
+      Two factors, both mandatory. (1) Mutual TLS with an HMLR-issued client
+      digital certificate, with HMLR root certificates installed as trusted.
+      (2) HTTP Basic authentication with a Business Gateway username and password
+      tied to an active business e-services account. Every harvested OpenAPI
+      declares securitySchemes.basicAuth of type http/basic — except the Official
+      Search of Whole contract, which declares no security block at all (a real
+      gap in that document, since the endpoint is certificate- and Basic-gated in
+      practice).
+    landRegisterApiInternal: >-
+      HTTP bearer token, minted individually per consuming service by the HMLR
+      Digital Register project team. Not obtainable by an external developer.
+    openidConnect:
+      - url: https://landregistry.data.gov.uk/.well-known/openid-configuration
+        status: 404
+      - url: https://use-land-property-data.service.gov.uk/.well-known/openid-configuration
+        status: 302
+        note: Redirects to the service's own sign-in flow; no OIDC discovery document is served.
+
+# ---------------------------------------------------------------------------
+findings:
+  developerPortal:
+    url: https://landregistry.github.io/bgtechdoc/
+    confirmed: true
+    status: 200
+    note: >-
+      The Business Gateway developer pack is a real, live, fully public developer
+      portal on GitHub Pages, backed by the public repo LandRegistry/bgtechdoc
+      (502 files). A redesign is in progress at
+      https://landregistry.github.io/bg-dev-pack-redesign/ (HTTP 200), which
+      catalogues 22 services. The GOV.UK entry points are
+      https://www.gov.uk/guidance/business-gateway-developer-pack and
+      https://www.gov.uk/guidance/hm-land-registry-business-gateway (both 200).
+      This is a portal for a partner channel, not a self-serve signup.
+  contractInventory:
+    openapiHarvested: 8
+    source: https://landregistry.github.io/bgtechdoc/documents/
+    allParsed: true
+    specs:
+      - file: openapi/hm-land-registry-submit-application-to-change-the-register-v1.0-openapi.json
+        sourceURL: https://landregistry.github.io/bgtechdoc/documents/submit-an-application-to-change-the-register/v1.0/openapi.json
+        httpStatus: 200
+        fetched: '2026-07-26'
+        openapi: 3.1.0
+        title: V1.0 'Submit an application to change the Land Register API' Schema
+        version: 1.0.5
+        paths: 10
+        security: basicAuth
+      - file: openapi/hm-land-registry-submit-application-to-change-the-register-v0.3-openapi.json
+        sourceURL: https://landregistry.github.io/bgtechdoc/documents/submit-an-application-to-change-the-register/v0.3/openapi.json
+        httpStatus: 200
+        fetched: '2026-07-26'
+        openapi: 3.0.1
+        title: V0.3 'Submit an application to change the Land Register API' Schema
+        version: '0.3'
+        paths: 6
+        security: basicAuth
+      - file: openapi/hm-land-registry-official-search-of-whole-with-data-openapi.yml
+        sourceURL: https://landregistry.github.io/bgtechdoc/documents/official_search_of_whole_rest/openapi.yaml
+        httpStatus: 200
+        fetched: '2026-07-26'
+        openapi: 3.1.0
+        title: Official Search of Whole with Data
+        version: 1.0.0
+        paths: 1
+        security: none declared
+      - file: openapi/hm-land-registry-official-copy-document-availability-v1-openapi.json
+        sourceURL: https://landregistry.github.io/bgtechdoc/documents/doc_availability/v1/openapi.json
+        httpStatus: 200
+        fetched: '2026-07-26'
+        openapi: 3.0.0
+        title: Official Copy Document Availability Service
+        version: 1.0.0
+        paths: 1
+        security: basicAuth
+      - file: openapi/hm-land-registry-official-copy-document-availability-v2-openapi.json
+        sourceURL: https://landregistry.github.io/bgtechdoc/documents/doc_availability/v2/openapi.json
+        httpStatus: 200
+        fetched: '2026-07-26'
+        openapi: 3.0.0
+        title: Official Copy Document Availability Service
+        version: 1.0.0
+        paths: 1
+        security: basicAuth
+      - file: openapi/hm-land-registry-registered-proprietor-names-openapi.json
+        sourceURL: https://landregistry.github.io/bgtechdoc/documents/registered_proprietor_names/openapi.json
+        httpStatus: 200
+        fetched: '2026-07-26'
+        openapi: 3.0.0
+        title: Registered Proprietor Names Service
+        version: 1.0.0
+        paths: 1
+        security: basicAuth
+      - file: openapi/hm-land-registry-estimate-completion-date-openapi.yml
+        sourceURL: https://landregistry.github.io/bgtechdoc/documents/estimated_completion_date/openapi.yaml
+        httpStatus: 200
+        fetched: '2026-07-26'
+        openapi: 3.0.0
+        title: Estimate Completion Date API
+        version: 1.0.0
+        paths: 1
+        security: basicAuth
+      - file: openapi/hm-land-registry-land-register-api-openapi.yml
+        sourceURL: https://landregistry.github.io/bgtechdoc/documents/openapi.yaml
+        httpStatus: 200
+        fetched: '2026-07-26'
+        openapi: 3.0.1
+        title: Land Register API
+        version: 6.0.0
+        paths: 2
+        security: bearerAuth
+        note: >-
+          INTERNAL. Declares no public production server — only localhost ports
+          and *.stp.hmlr.zone / *.development.stp.hmlr.zone hosts. Access must be
+          requested from the HMLR Digital Register project team, a per-service
+          bearer token is minted, and the consumer must file a Fraud Impact
+          Assessment and must not expose the data externally. Recorded as a real
+          published contract for an internal government API, not a public API.
+    emptyPlaceholder:
+      - path: documents/submit-an-application-to-change-the-register/v1.1/openapi.json
+        sourceURL: https://landregistry.github.io/bgtechdoc/documents/submit-an-application-to-change-the-register/v1.1/openapi.json
+        httpStatus: 200
+        bytes: 0
+        note: >-
+          Both openapi.json and openapi.html in the v1.1 directory are zero-byte
+          files in the gh-pages branch. Nothing was saved. A published-but-empty
+          next version is itself a governance finding.
+    soapContracts:
+      count: 37
+      format: XSD (W3C XML Schema), request and response pairs per service
+      location: https://github.com/LandRegistry/bgtechdoc/tree/gh-pages/documents
+      note: >-
+        Fourteen of the 22 Business Gateway services are SOAP-only and their
+        machine-readable contracts are XSDs, not OpenAPI — Application Enquiry,
+        Discharge Activity, eDRS, Land Charges Full Search, Land Charges
+        Bankruptcy Search, Local Land Charges Search, Official Copy Title Known,
+        Official Search of Whole (with Priority), Official Search of Part, Online
+        Owner Verification, Outstanding Requests, Poll Request, Register Extract,
+        Search by Property Description and Search of the Index Map. Not harvested
+        into openapi/ because they are not OpenAPI documents; the canonical
+        location is recorded here.
+    jsonSchemas:
+      count: 11
+      location: json-schema/
+      note: >-
+        Notification payload schemas for the Submit an Application to Change the
+        Land Register API (application completed, accepted priority pending,
+        accepted priority protected, cancelled, correspondence despatched,
+        validation failed, attachment success/failed, message success/failed,
+        error).
+  noMachineReadableContract:
+    - api: Use Land and Property Data API
+      note: >-
+        Documented only as HTML narrative. Probed /openapi.json (302),
+        /swagger.json (302), /api-docs (200 but a GOV.UK "Unknown Error" page),
+        /api/v1/openapi.json (200 but the same error page). No OpenAPI, no
+        Swagger, no OData metadata is published for this API.
+    - api: Open data linked-data platform
+      note: >-
+        No OpenAPI. The contract is the SPARQL 1.1 protocol plus the published RDF
+        vocabularies at landregistry.data.gov.uk/def/ppi and /def/common and the
+        Linked Data API metadata endpoints under /meta/data/. That is a legitimate
+        machine-readable contract, just not an OpenAPI one.
+  webhooksAndEvents: >-
+    No webhooks anywhere. The Submit an Application to Change the Land Register
+    API is asynchronous but uses a POLL model, not callbacks — GET /v1/notifications
+    to retrieve outcomes and POST /v1/notifications/acknowledge to clear them. The
+    SOAP estate has the same shape (Poll Request Service, Outstanding Requests
+    Service). No AsyncAPI document, no event stream, no subscription endpoint.
+  sdks: >-
+    None published by HM Land Registry. No official client libraries in any
+    language. The github.com/LandRegistry organisation is large and active but its
+    public repos are GOV.UK design system work, prototypes and dev-environment
+    tooling — not API SDKs.
+  postman: >-
+    No official Postman collection or workspace found for any HMLR API.
+  mcpAndAgents: >-
+    No MCP server, no llms.txt, no agent-facing surface of any kind.
+  status:
+    page: null
+    note: No dedicated developer status page found; service availability is announced through GOV.UK notices.
+sources:
+  - url: https://www.gov.uk/government/organisations/land-registry
+    status: 200
+    type: Website
+  - url: https://landregistry.github.io/bgtechdoc/
+    status: 200
+    type: Documentation
+    note: Business Gateway developer pack. Public, no login.
+  - url: https://landregistry.github.io/bgtechdoc/rest/get_started/developer_guide/
+    status: 200
+    type: Authentication
+    note: >-
+      States verbatim that "A valid SSL certificate, issued by Business Gateway,
+      is required" and that "An active Business Gateway user account is required.
+      Access to our API endpoints is granted via successful authorization using
+      Basic authentication". Names the hosts bgtest.landregistry.gov.uk/bg2test
+      (test) and businessgateway.landregistry.gov.uk/bg2 (production).
+  - url: https://landregistry.github.io/bg-dev-pack-redesign/find-a-service-api/
+    status: 200
+    type: APIReference
+    note: Catalogues 22 Business Gateway services — 8 REST, 14 SOAP.
+  - url: https://www.gov.uk/guidance/business-gateway-developer-pack
+    status: 200
+    type: Documentation
+  - url: https://www.gov.uk/guidance/hm-land-registry-business-gateway
+    status: 200
+    type: Onboarding
+  - url: https://use-land-property-data.service.gov.uk/api-information
+    status: 200
+    type: Documentation
+  - url: https://use-land-property-data.service.gov.uk/api-documentation
+    status: 200
+    type: APIReference
+  - url: https://landregistry.data.gov.uk/
+    status: 200
+    type: OpenData
+  - url: http://landregistry.data.gov.uk/qonsole
+    status: 200
+    type: Documentation
+    note: Public SPARQL query console over the open endpoint.
+  - url: https://www.gov.uk/land-registry-public-data
+    status: 200
+    type: OpenData
+  - url: https://www.gov.uk/government/statistical-data-sets/price-paid-data-downloads
+    status: 200
+    type: BulkData
+  - url: https://github.com/LandRegistry/bgtechdoc
+    status: 200
+    type: SourceCode
+    note: 502 files on the gh-pages branch; 9 openapi.* files (one zero-byte) and 37 XSDs.
+actions:
+  apisYmlUpdated: true
+  apisListed: 10
+  openapiHarvested: 8
+  jsonSchemasHarvested: 11
+  githubRepoCreated: false
+  pushed: false
+  note: >-
+    Bootstrap only. Local commit, no remote. Enrichment and the paced remote
+    creation loop run separately.
