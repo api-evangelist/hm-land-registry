@@ -1,0 +1,68 @@
+generated: '2026-07-26'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts; Business Gateway hosts probed manually 2026-07-26
+hosts:
+- host: www.gov.uk
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Dec 28 22:06:14 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+- host: landregistry.data.gov.uk
+  https: true
+  tls_version: TLSv1.2
+  cert_expires: Oct 29 23:59:59 2026 GMT
+  hsts: false
+- host: use-land-property-data.service.gov.uk
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Aug 25 11:14:43 2026 GMT
+  hsts: null
+- host: businessgateway.landregistry.gov.uk
+  https: null
+  tls_version: null
+  hsts: null
+  note: TLS handshake refused without an HMLR-issued client certificate. Mutual TLS is mandatory, which
+    is a stronger transport posture than any HSTS setting — but it also means the host cannot be assessed
+    from outside.
+- host: bgtest.landregistry.gov.uk
+  https: null
+  tls_version: null
+  hsts: null
+  note: Customer test endpoint. TLS handshake refused without an HMLR-issued client certificate.
+- host: landregistry.github.io
+  https: true
+  tls_version: TLSv1.3
+  hsts: null
+  note: GitHub Pages host serving the Business Gateway developer pack. Not HMLR-operated infrastructure.
+domains:
+- domain: www.gov.uk
+  dnssec: true
+  caa:
+  - www-cdn.production.govuk.service.gov.uk.
+  - www-gov-uk.map.fastly.net.
+  spf: false
+  dmarc: false
+- domain: data.gov.uk
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: false
+- domain: landregistry.gov.uk
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: reject
+  dmarc_detail: v=DMARC1; p=reject; fo=1; aspf=s; adkim=s; pct=100; rua to dmarc-rua@dmarc.service.gov.uk
+  spf_detail: v=spf1 ip4:193.110.246.137 include:spf.protection.outlook.com include:spf_a.oracle.com include:spf_c.oracle.com
+    include:spf_c.oraclecloud.com ~all
+  note: The Business Gateway registrable domain. Strong email posture (DMARC p=reject with strict alignment);
+    no DNSSEC and no CAA.
+notes:
+- 'Mutual TLS on the Business Gateway is the defining control in this estate: businessgateway.landregistry.gov.uk
+  and bgtest.landregistry.gov.uk will not complete a handshake without an HMLR-issued client certificate.'
+- No CAA record on any HMLR registrable domain, and DNSSEC is signed on www.gov.uk but not on landregistry.gov.uk
+  or data.gov.uk.
+- landregistry.data.gov.uk negotiates only TLSv1.2 and sets no HSTS header, the weakest transport posture
+  of the reachable hosts — though it serves nothing but open data.

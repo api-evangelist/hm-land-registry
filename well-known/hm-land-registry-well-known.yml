@@ -1,0 +1,94 @@
+generated: '2026-07-26'
+method: searched
+source: live probes of every apis.yml baseURL host and every OpenAPI servers[] host
+probed: '2026-07-26'
+summary: >-
+  Of the five hosts in HM Land Registry's estate, two serve a /.well-known/
+  document and both serve only security.txt. There is no OpenID Connect discovery,
+  no OAuth authorization server metadata, no api-catalog and no ai-plugin
+  anywhere — consistent with an estate that uses HTTP Basic over mutual TLS and
+  simple API keys rather than OAuth. The two Business Gateway hosts cannot be
+  probed at all: they refuse the TLS handshake without an HMLR-issued client
+  certificate, so every request returns a transport-level failure rather than an
+  HTTP status.
+hosts:
+- host: https://use-land-property-data.service.gov.uk
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    file: hm-land-registry-use-land-property-data-security.txt
+    note: >-
+      RFC 9116. Points at a HackerOne embedded submission form. Carries
+      "Expires: 2025-06-03T12:30:00Z", which is in the past — the file is stale
+      per RFC 9116 section 2.5.5.
+  - path: /.well-known/openid-configuration
+    status: 302
+  - path: /.well-known/oauth-authorization-server
+    status: 302
+  - path: /.well-known/api-catalog
+    status: 302
+  - path: /.well-known/ai-plugin.json
+    status: 302
+  note: >-
+    Unknown paths on this host 302-redirect rather than returning 404, so a 302
+    here means "not present".
+- host: https://www.gov.uk
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    file: hm-land-registry-gov-uk-security.txt
+    note: >-
+      RFC 9116, generated from github.com/CO-Cyber-Security/security.txt. Current:
+      Last-Updated 2026-07-20, Expires 2026-10-20. Carries a Policy, two Contacts
+      and an Acknowledgments page. This is the Cabinet Office / GOV.UK file
+      covering the platform HM Land Registry's guidance and vulnerability policy
+      are published on, not an HMLR-specific file.
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+- host: https://landregistry.data.gov.uk
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+- host: https://landregistry.github.io
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  note: GitHub Pages host for the developer pack. All paths return the 404 page.
+- host: https://businessgateway.landregistry.gov.uk
+  documents:
+  - path: /.well-known/security.txt
+    status: null
+    result: TLS handshake refused without an HMLR-issued client certificate
+  - path: /.well-known/openid-configuration
+    status: null
+    result: TLS handshake refused without an HMLR-issued client certificate
+  - path: /.well-known/oauth-authorization-server
+    status: null
+    result: TLS handshake refused without an HMLR-issued client certificate
+- host: https://bgtest.landregistry.gov.uk
+  documents:
+  - path: /.well-known/security.txt
+    status: null
+    result: TLS handshake refused without an HMLR-issued client certificate

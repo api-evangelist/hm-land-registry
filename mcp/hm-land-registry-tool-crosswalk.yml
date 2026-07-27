@@ -1,0 +1,223 @@
+generated: '2026-07-26'
+method: derived
+source: >-
+  mcp/hm-land-registry-mcp.yml candidate tools bound to openapi/ operationIds in
+  this repo
+status: candidate
+note: >-
+  HM Land Registry ships no MCP server, so this crosswalk binds the candidate tool
+  set in mcp/hm-land-registry-mcp.yml to the operations that would back it. Every
+  operationId below was verified present in the named specification. Confidence is
+  high wherever a tool maps one-to-one onto a published operation; it is medium
+  where the tool would front a surface that has no OpenAPI at all (the SPARQL and
+  Linked Data endpoints, which are real and live but described by RDF ontologies
+  rather than by an OpenAPI document).
+surfaces:
+  openapi:
+    files:
+    - openapi/hm-land-registry-submit-application-to-change-the-register-v1.0-openapi.json
+    - openapi/hm-land-registry-submit-application-to-change-the-register-v0.3-openapi.json
+    - openapi/hm-land-registry-official-search-of-whole-with-data-openapi.yml
+    - openapi/hm-land-registry-official-copy-document-availability-v2-openapi.json
+    - openapi/hm-land-registry-official-copy-document-availability-v1-openapi.json
+    - openapi/hm-land-registry-official-copy-document-availability-v2-customer-test-openapi.json
+    - openapi/hm-land-registry-official-copy-document-availability-v1-customer-test-openapi.json
+    - openapi/hm-land-registry-registered-proprietor-names-openapi.json
+    - openapi/hm-land-registry-estimate-completion-date-openapi.yml
+    - openapi/hm-land-registry-land-register-api-openapi.yml
+    - openapi/hm-land-registry-use-land-property-data-openapi.yml
+    gated: >-
+      The Business Gateway contracts are public but the hosts they describe are
+      not reachable without an HMLR-issued client certificate.
+  graphql:
+    endpoint: null
+    detail: HM Land Registry exposes no GraphQL surface.
+  sparql:
+    endpoint: https://landregistry.data.gov.uk/landregistry/query
+    gated: false
+    detail: >-
+      Live SPARQL 1.1 endpoint, anonymous, verified 2026-07-26. Described by the
+      RDF ontologies in vocabulary/ rather than by an OpenAPI document, so its
+      tools have no backing operationId.
+  linked_data:
+    endpoints:
+    - https://landregistry.data.gov.uk/data/ppi
+    - https://landregistry.data.gov.uk/data/ukhpi
+    gated: false
+    detail: W3C Linked Data API, anonymous, verified 2026-07-26. No OpenAPI.
+  mcp:
+    url: null
+    gated: null
+    detail: No HMLR MCP server exists, so tools/list could not be called.
+crosswalk:
+- tool: list_datasets
+  category: bulk-data
+  rest:
+  - listDatasets
+  binding: rest
+  confidence: high
+- tool: get_dataset
+  category: bulk-data
+  rest:
+  - getDataset
+  binding: rest
+  confidence: high
+- tool: get_dataset_history
+  category: bulk-data
+  rest:
+  - getDatasetHistory
+  binding: rest
+  confidence: high
+- tool: get_dataset_download_url
+  category: bulk-data
+  rest:
+  - getDatasetFileDownloadUrl
+  binding: rest
+  confidence: high
+  note: >-
+    The returned URL is valid for 10 seconds; an agent must follow it immediately
+    or re-mint.
+- tool: get_registered_proprietor_names
+  category: title
+  rest:
+  - getRegisteredProprietorNames
+  binding: rest
+  confidence: high
+- tool: get_official_copy_availability
+  category: title
+  rest:
+  - getOfficialCopiesAvailability
+  binding: rest
+  confidence: high
+  note: >-
+    Fans out across four specs sharing one operationId — v1, v2 and their two
+    customer-test variants. A tool should bind to v2 production.
+- tool: get_estimate_completion_date
+  category: applications
+  rest:
+  - getEstimateCompletionDate
+  binding: rest
+  confidence: high
+- tool: get_application_information
+  category: applications
+  rest:
+  - get_application_information_v1
+  binding: rest
+  confidence: high
+- tool: get_notifications
+  category: events
+  rest:
+  - get_notifications_v1
+  binding: rest
+  confidence: high
+- tool: acknowledge_notifications
+  category: events
+  rest:
+  - acknowledge_notifications_v1
+  binding: rest
+  confidence: high
+- tool: create_document_upload_url
+  category: documents
+  rest:
+  - send_a_document_v1
+  binding: rest
+  confidence: high
+  note: >-
+    Two-step. The tool mints the URL; the actual PUT to the pre-signed URL is the
+    unnamed "Upload a document" operation, which requires X-Amz-Checksum-Sha256
+    and Content-Length.
+- tool: download_document
+  category: documents
+  rest:
+  - download_a_document_v1
+  binding: rest
+  confidence: high
+  note: Returns 302 to a short-lived URL, and is the only operation declaring 429.
+- tool: attach_document_to_application
+  category: applications
+  rest:
+  - attach_a_document_v1
+  binding: rest
+  confidence: high
+- tool: attach_message_to_application
+  category: applications
+  rest:
+  - attach_a_message_v1
+  binding: rest
+  confidence: high
+- tool: submit_application_to_change_the_register
+  category: applications
+  rest:
+  - submit_an_application_to_change_the_register_v1
+  binding: rest
+  confidence: high
+  note: >-
+    Requires the Idempotency-Key header. Legally consequential filing; human in
+    the loop required.
+- tool: submit_official_search_of_whole
+  category: search
+  rest:
+  - submitOfficialSearchOfWholeWithPriority
+  binding: rest
+  confidence: high
+mcp_only:
+- tool: search_price_paid_data
+  reason: >-
+    Backed by the live SPARQL 1.1 endpoint, which has no OpenAPI description. Real
+    and anonymous, but not bindable to an operationId.
+- tool: get_price_paid_transactions
+  reason: >-
+    Backed by the W3C Linked Data API at /data/ppi. No OpenAPI; the contract is the
+    ppi ontology in vocabulary/hm-land-registry-ppi.ttl.
+- tool: get_house_price_index
+  reason: >-
+    Backed by the W3C Linked Data API at /data/ukhpi. No OpenAPI; the contract is
+    vocabulary/hm-land-registry-ukhpi.ttl.
+rest_only:
+- capability: Internal register access
+  operations:
+  - getTitle
+  - getDraftTitle
+  reason: >-
+    Land Register API is internal. Access is granted per consuming service by the
+    Digital Register project team, requires a Fraud Impact Assessment, and the
+    consumer must not expose the data externally. Deliberately not exposed as a
+    tool.
+- capability: Superseded v0.3 contract
+  operations:
+  - Submit an application API
+  - Create an upload URL
+  - Application information API
+  - Receive notifications API
+  - Acknowledge notifications API
+  reason: >-
+    The v0.3 contract remains published but is superseded by v1.0, whose
+    operationIds the tools bind to instead.
+- capability: Pre-signed transfer legs
+  operations:
+  - Upload a document
+  - Download a document
+  reason: >-
+    Unnamed operations describing the PUT/GET against the pre-signed URL rather
+    than against an HMLR host. They are steps inside the document tools, not tools
+    of their own.
+- capability: SOAP estate
+  operations: []
+  reason: >-
+    Sixteen Business Gateway services remain SOAP-only (Application Enquiry,
+    Discharge Activity, e-Document Registration Service, Land Charges Full and
+    Bankruptcy Search, Local Land Charges Search, Official Copy Title Known,
+    Official Search of Whole, Official Search of Part, Online Owner Verification,
+    Outstanding Requests, Poll Request Service, Register Extract Service, Search by
+    Property Description, Search of the Index Map). They are described by 37
+    published XSDs, not OpenAPI, so no operationId exists to bind to.
+coverage:
+  tools_named: 19
+  tools_bound_to_rest: 16
+  mcp_only: 3
+  rest_operations_total: 29
+  rest_operations_with_a_tool: 16
+  rest_operations_excluded_by_policy: 2
+  rest_operations_superseded: 5
+  rest_operations_transfer_legs: 4
+  soap_services_with_no_openapi: 16

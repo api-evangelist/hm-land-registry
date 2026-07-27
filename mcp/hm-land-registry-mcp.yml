@@ -1,0 +1,189 @@
+generated: '2026-07-26'
+method: derived
+status: candidate
+source: >-
+  openapi/ operations in this repo; npm and MCP registry search performed
+  2026-07-26
+official_server: none
+official_server_detail: >-
+  HM Land Registry publishes no MCP server, and no MCP server appears in the
+  official MCP registry under any HMLR-controlled namespace. Two community
+  servers exist on npm (uk-land-registry-price-mcp and
+  @pipeworx/mcp-landregistry-uk) and both wrap only the open Price Paid Data
+  surface, not the Business Gateway. The tool set below is a candidate derived
+  from HM Land Registry's own published OpenAPI operations — it is a design, not
+  something HMLR ships.
+community_servers:
+- name: uk-land-registry-price-mcp
+  registry: npm
+  url: https://www.npmjs.com/package/uk-land-registry-price-mcp
+  official: false
+  covers: Price Paid Data (sold house prices), by postcode
+- name: "@pipeworx/mcp-landregistry-uk"
+  registry: npm
+  url: https://www.npmjs.com/package/@pipeworx/mcp-landregistry-uk
+  repository: https://github.com/pipeworx-io/mcp-landregistry-uk
+  official: false
+  covers: Price Paid Data (UK)
+server:
+  name: hm-land-registry
+  transport: stdio
+  url: null
+access_notes: >-
+  Any real MCP server over the Business Gateway tools below inherits Business
+  Gateway's access model: it must present an HMLR-issued client certificate for
+  mutual TLS and HTTP Basic credentials for an active Business Gateway account,
+  and the operator must have signed a development licence. The open-data tools are
+  the only ones an unauthenticated agent could serve.
+tools:
+- name: search_price_paid_data
+  description: >-
+    Run a SPARQL 1.1 query against HM Land Registry Price Paid Data and the UK
+    House Price Index. Anonymous, no key.
+  source_operation: apis.yml#hm-land-registry-open-data-sparql-api
+  surface: open-data
+  auth: none
+  consequence: read
+- name: get_price_paid_transactions
+  description: >-
+    Retrieve Price Paid Data transaction records through the W3C Linked Data API
+    with _page and _pageSize paging.
+  source_operation: apis.yml#hm-land-registry-price-paid-linked-data-api
+  surface: open-data
+  auth: none
+  consequence: read
+- name: get_house_price_index
+  description: >-
+    Retrieve UK House Price Index region and month resources, with average price,
+    index and percentage change by property type, buyer type, funding type and
+    new-build status.
+  source_operation: apis.yml#uk-house-price-index-linked-data-api
+  surface: open-data
+  auth: none
+  consequence: read
+- name: list_datasets
+  description: List the bulk datasets available in the Use land and property data service.
+  source_operation: openapi/hm-land-registry-use-land-property-data-openapi.yml#listDatasets
+  surface: use-land-and-property-data
+  auth: api-key
+  consequence: read
+- name: get_dataset
+  description: Get the metadata and resources of a named bulk dataset.
+  source_operation: openapi/hm-land-registry-use-land-property-data-openapi.yml#getDataset
+  surface: use-land-and-property-data
+  auth: api-key
+  consequence: read
+- name: get_dataset_history
+  description: List the historical files available for a named bulk dataset.
+  source_operation: openapi/hm-land-registry-use-land-property-data-openapi.yml#getDatasetHistory
+  surface: use-land-and-property-data
+  auth: api-key
+  consequence: read
+- name: get_dataset_download_url
+  description: >-
+    Mint a signed S3 download URL, valid for 10 seconds, for a named file in a
+    dataset. Requires the caller to have signed that dataset's licence.
+  source_operation: openapi/hm-land-registry-use-land-property-data-openapi.yml#getDatasetFileDownloadUrl
+  surface: use-land-and-property-data
+  auth: api-key
+  consequence: read
+- name: get_registered_proprietor_names
+  description: >-
+    Return the registered proprietor names recorded against a title number — who
+    owns this.
+  source_operation: openapi/hm-land-registry-registered-proprietor-names-openapi.json#getRegisteredProprietorNames
+  surface: business-gateway
+  auth: basic-over-mtls
+  consequence: read
+- name: get_official_copy_availability
+  description: >-
+    Return OC1 and OC2 official copy document availability for a title number,
+    before ordering.
+  source_operation: openapi/hm-land-registry-official-copy-document-availability-v2-openapi.json#getOfficialCopiesAvailability
+  surface: business-gateway
+  auth: basic-over-mtls
+  consequence: read
+- name: get_estimate_completion_date
+  description: Return HMLR's estimated completion date for a lodged application.
+  source_operation: openapi/hm-land-registry-estimate-completion-date-openapi.yml#getEstimateCompletionDate
+  surface: business-gateway
+  auth: basic-over-mtls
+  consequence: read
+- name: get_application_information
+  description: >-
+    Get the details and validation errors of a lodged application by
+    application_request_id.
+  source_operation: openapi/hm-land-registry-submit-application-to-change-the-register-v1.0-openapi.json#get_application_information_v1
+  surface: business-gateway
+  auth: basic-over-mtls
+  consequence: read
+- name: get_notifications
+  description: >-
+    Poll for notifications about applications submitted by your business unit,
+    filtered by time window, status and notification type.
+  source_operation: openapi/hm-land-registry-submit-application-to-change-the-register-v1.0-openapi.json#get_notifications_v1
+  surface: business-gateway
+  auth: basic-over-mtls
+  consequence: read
+- name: acknowledge_notifications
+  description: Acknowledge processed notifications so they stop being returned.
+  source_operation: openapi/hm-land-registry-submit-application-to-change-the-register-v1.0-openapi.json#acknowledge_notifications_v1
+  surface: business-gateway
+  auth: basic-over-mtls
+  consequence: write
+- name: create_document_upload_url
+  description: Request a pre-signed upload URL for an application attachment.
+  source_operation: openapi/hm-land-registry-submit-application-to-change-the-register-v1.0-openapi.json#send_a_document_v1
+  surface: business-gateway
+  auth: basic-over-mtls
+  consequence: write
+- name: download_document
+  description: >-
+    Obtain a download link for an HMLR document by document_id. Returns a 302
+    redirect to a short-lived URL.
+  source_operation: openapi/hm-land-registry-submit-application-to-change-the-register-v1.0-openapi.json#download_a_document_v1
+  surface: business-gateway
+  auth: basic-over-mtls
+  consequence: read
+- name: attach_document_to_application
+  description: Attach an uploaded document to an existing lodged application.
+  source_operation: openapi/hm-land-registry-submit-application-to-change-the-register-v1.0-openapi.json#attach_a_document_v1
+  surface: business-gateway
+  auth: basic-over-mtls
+  consequence: write
+- name: attach_message_to_application
+  description: Attach a message to an existing lodged application.
+  source_operation: openapi/hm-land-registry-submit-application-to-change-the-register-v1.0-openapi.json#attach_a_message_v1
+  surface: business-gateway
+  auth: basic-over-mtls
+  consequence: write
+- name: submit_application_to_change_the_register
+  description: >-
+    Lodge an application to change the Land Register. Requires an Idempotency-Key
+    header. This is a legally consequential filing against the register of title
+    for England and Wales and should never be executed by an agent without a human
+    in the loop.
+  source_operation: openapi/hm-land-registry-submit-application-to-change-the-register-v1.0-openapi.json#submit_an_application_to_change_the_register_v1
+  surface: business-gateway
+  auth: basic-over-mtls
+  consequence: safety-critical
+  human_in_the_loop: required
+  idempotency: Idempotency-Key (required)
+- name: submit_official_search_of_whole
+  description: >-
+    Lodge an official search of whole with priority against a registered title,
+    protecting the agreement between buyer, seller and lender for the priority
+    period.
+  source_operation: openapi/hm-land-registry-official-search-of-whole-with-data-openapi.yml#submitOfficialSearchOfWholeWithPriority
+  surface: business-gateway
+  auth: basic-over-mtls
+  consequence: safety-critical
+  human_in_the_loop: required
+excluded_operations:
+- operation: openapi/hm-land-registry-land-register-api-openapi.yml#getTitle
+  reason: >-
+    Internal HMLR API. Not a developer product: access is granted per consuming
+    service by the Digital Register project team, requires a Fraud Impact
+    Assessment, and the consumer must not expose the data externally.
+- operation: openapi/hm-land-registry-land-register-api-openapi.yml#getDraftTitle
+  reason: Internal HMLR API, as above.

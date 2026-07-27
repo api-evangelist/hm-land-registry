@@ -1,0 +1,32 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Estimate Completion Date API
+  version: 1.0.0
+extends: openapi/hm-land-registry-estimate-completion-date-openapi.yml
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-slug: hm-land-registry
+      x-apievangelist-enriched: '2026-07-26'
+      x-apievangelist-index: https://raw.githubusercontent.com/api-evangelist/hm-land-registry/refs/heads/main/apis.yml
+      x-apievangelist-artifacts:
+        conventions: conventions/hm-land-registry-conventions.yml
+        errors: errors/hm-land-registry-problem-types.yml
+        authentication: authentication/hm-land-registry-authentication.yml
+        lifecycle: lifecycle/hm-land-registry-lifecycle.yml
+        sandbox: sandbox/hm-land-registry-sandbox.yml
+        conformance: conformance/hm-land-registry-conformance.yml
+        data_model: data-model/hm-land-registry-data-model.yml
+        agentic_access: agentic-access/hm-land-registry-agentic-access.yml
+      x-apievangelist-access:
+        pricing: freemium
+        onboarding: self-serve
+        note: >-
+          Access model differs per estate. Open linked data is anonymous;
+          Use land and property data is a self-serve API key plus a per-dataset
+          licence; Business Gateway requires a signed development licence and an
+          HMLR-issued client certificate for mutual TLS.
+      x-apievangelist-licence:
+        name: Open Government Licence v3.0
+        url: https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/
+        attribution: Contains HM Land Registry data (c) Crown copyright and database right

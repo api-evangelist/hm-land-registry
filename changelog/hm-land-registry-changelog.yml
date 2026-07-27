@@ -1,0 +1,97 @@
+generated: '2026-07-26'
+method: searched
+source: https://landregistry.github.io/bg-dev-pack-redesign/find-a-service-api
+docs:
+- https://landregistry.github.io/bg-dev-pack-redesign/find-a-service-api
+- https://www.gov.uk/guidance/business-gateway-developer-pack
+summary: >-
+  HM Land Registry publishes no dated developer changelog and no release notes feed
+  for its APIs. The only dated change record in the estate is the GOV.UK "Updates
+  to this page" block that every GOV.UK guidance page carries, which tracks the
+  guidance rather than the contracts. Contract change is communicated by version:
+  the developer pack's per-API "Version and Status" selector marks the newest
+  version "(latest)" and keeps older ones listed. What follows is the version
+  ladder that can be established from the published artifacts, plus the dated
+  GOV.UK page history — recorded honestly as a thin surface, not padded out.
+scheme: per-contract document versions, surfaced through a version selector
+feed: null
+rss: null
+current_versions:
+  submit_an_application_to_change_the_land_register: 1.0.5 (OpenAPI 3.1.0, contract labelled v1.0)
+  submit_an_application_to_change_the_land_register_previous: '0.3 (OpenAPI 3.0.1)'
+  official_copy_document_availability: v2 (OpenAPI 3.0.0)
+  official_copy_document_availability_previous: v1 (OpenAPI 3.0.0)
+  registered_proprietor_names: 1.0.0 (OpenAPI 3.0.0)
+  official_search_of_whole_with_data: 1.0.0 (OpenAPI 3.1.0)
+  estimate_completion_date: 1.0.0 (OpenAPI 3.0.0)
+  land_register_api: 6.0.0 (OpenAPI 3.0.1, internal)
+  use_land_and_property_data: v1
+entries:
+- version: '1.1'
+  api: Submit an application to change the Land Register
+  date: null
+  status: placeholder
+  breaking: unknown
+  highlights:
+  - >-
+    A v1.1 directory exists in the developer pack but both openapi.json and
+    openapi.html in it are zero-byte. Re-verified 2026-07-26: HTTP 200, zero-byte
+    body. The version is being staged but nothing has been published.
+- version: '1.0'
+  api: Submit an application to change the Land Register
+  date: null
+  breaking: true
+  additions: true
+  highlights:
+  - Moved from OpenAPI 3.0.1 to OpenAPI 3.1.0.
+  - >-
+    Operations renamed from prose ids ("Submit an application API") to snake_case
+    versioned operationIds (submit_an_application_to_change_the_register_v1) — a
+    breaking change for any generated client.
+  - Paths moved from /v0 to /v1.
+  - >-
+    Four operations added: download_a_document_v1, attach_a_document_v1,
+    attach_a_message_v1, and the pre-signed download leg. v0.3 had six operations,
+    v1.0 has ten.
+  - >-
+    Notifications gained explicit application/problem+json error bodies and, on
+    download_a_document_v1, a 429 Too Many Requests response.
+- version: v2
+  api: Official Copy Document Availability
+  date: null
+  breaking: true
+  highlights:
+  - >-
+    Base path moved from /bg2/api/v1 to /bg2/api/v2. Same single operation,
+    getOfficialCopiesAvailability. v1 remains published.
+  - >-
+    Both versions also ship a dedicated customer-test contract
+    (OpenAPI-CustTest.json) pointing at bgtest.landregistry.gov.uk.
+- version: null
+  api: Business Gateway developer pack
+  date: '2026'
+  breaking: false
+  highlights:
+  - >-
+    The developer pack has been rebuilt. landregistry.github.io/bgtechdoc now
+    redirects to landregistry.github.io/bg-dev-pack-redesign, described by HMLR as
+    a "temporary home for the dev pack redesign as it is in progress". The new
+    pack adds per-API technical guides and per-API test stubs, a version selector,
+    a SOAP-to-REST field migration table, and a searchable API finder covering all
+    21 services.
+- version: null
+  api: Notifications
+  date: null
+  breaking: false
+  highlights:
+  - >-
+    Eleven notification types published with JSON Schemas, at-least-once delivery
+    semantics and an explicit acknowledge endpoint. HMLR states more subjects
+    beyond "application" will be added as the API develops.
+gov_uk_page_history:
+  page: https://www.gov.uk/guidance/business-gateway-developer-pack
+  entries:
+  - date: '2019-04-03'
+    note: A link to the Business Gateway developer pack on GitHub was added.
+  - date: '2014-09-19'
+    note: First published.

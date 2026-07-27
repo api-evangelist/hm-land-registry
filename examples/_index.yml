@@ -1,0 +1,44 @@
+generated: '2026-07-26'
+method: searched
+source: https://landregistry.github.io/bg-dev-pack-redesign/find-a-service-api
+note: >-
+  Request and response bodies published verbatim by HM Land Registry as test stubs
+  in the Business Gateway developer pack, harvested 2026-07-26. Nothing was
+  invented or modified. These are the only worked examples HMLR publishes; the
+  OpenAPI documents themselves carry few in-spec examples, so these files are what
+  an agent or a client generator should reason from.
+files:
+- file: hm-land-registry-submit-an-application-1.0-test-stubs.json
+  api: Submit an application
+  operation: submit_an_application_to_change_the_register_v1
+  documents: 8
+  covers: >-
+    Submit a single charge, submit a single transfer, and submissions producing
+    Level 1 and Level 2 validation errors.
+- file: hm-land-registry-notifications-1.0-test-stubs.json
+  api: Notifications
+  operations:
+  - get_notifications_v1
+  - acknowledge_notifications_v1
+  documents: 11
+- file: hm-land-registry-application-information-1.0-test-stubs.json
+  api: Application information
+  operation: get_application_information_v1
+  documents: 11
+- file: hm-land-registry-send-a-document-1.0-test-stubs.json
+  api: Send a document
+  operation: send_a_document_v1
+  documents: 10
+- file: hm-land-registry-attach-a-document-1.0-test-stubs.json
+  api: Attach a document
+  operation: attach_a_document_v1
+  documents: 1
+- file: hm-land-registry-attach-a-message-1.0-test-stubs.json
+  api: Attach a message
+  operation: attach_a_message_v1
+  documents: 1
+not_harvested:
+- api: Download a document
+  reason: >-
+    The published test-stubs page carries no JSON body — the operation returns a
+    302 redirect and binary content, so HMLR documents it in prose only.

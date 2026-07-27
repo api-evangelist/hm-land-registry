@@ -1,0 +1,166 @@
+generated: '2026-07-26'
+method: searched
+source: https://landregistry.github.io/bg-dev-pack-redesign/a-guide-to-testing
+docs:
+- https://landregistry.github.io/bg-dev-pack-redesign/a-guide-to-testing
+- https://landregistry.github.io/bg-dev-pack-redesign/apis/submit-an-application/1.0/test-stubs
+- https://landregistry.github.io/bgtechdoc/rest/get_started/developer_guide/index.html
+summary: >-
+  HM Land Registry's test story is split and its own documentation contradicts
+  itself, which is recorded here as found. The Business Gateway developer guide
+  states that Business Gateway provides both a test and a production environment,
+  and the customer test host bgtest.landregistry.gov.uk is declared as a server in
+  every published REST contract. The newer developer pack testing guide, covering
+  the Submit an application family, says instead that HMLR "does not currently
+  provide a test environment for integrators using our Business Gateway APIs" and
+  supplies published request/response test stubs as example code, adding that a
+  sandbox test environment is planned with no confirmed release date. Both
+  statements are reproduced below. The test environment, where available, is not
+  self-serve: it is unlocked by signing a development licence and receiving a test
+  SSL certificate from HMLR. There are no anonymously reachable sandbox
+  credentials.
+self_serve: false
+test_live_separation:
+  style: separate host
+  environments:
+  - name: Customer Test
+    host: https://bgtest.landregistry.gov.uk
+    base_paths:
+    - /bg2test/api
+    - /bg2test
+    declared_in:
+    - openapi/hm-land-registry-estimate-completion-date-openapi.yml
+    - openapi/hm-land-registry-official-search-of-whole-with-data-openapi.yml
+    - openapi/hm-land-registry-registered-proprietor-names-openapi.json
+    - openapi/hm-land-registry-submit-application-to-change-the-register-v1.0-openapi.json
+    - openapi/hm-land-registry-submit-application-to-change-the-register-v0.3-openapi.json
+    - openapi/hm-land-registry-official-copy-document-availability-v1-customer-test-openapi.json
+    - openapi/hm-land-registry-official-copy-document-availability-v2-customer-test-openapi.json
+    note: >-
+      Two dedicated customer-test OpenAPI contracts are published in the developer
+      pack alongside the production ones (OpenAPI-CustTest.json for Official Copy
+      Document Availability v1 and v2); both are harvested into openapi/ in this
+      repo.
+  - name: Production
+    host: https://businessgateway.landregistry.gov.uk
+    base_paths:
+    - /bg2/api
+    - /bg2
+  probe:
+    date: '2026-07-26'
+    result: >-
+      Neither businessgateway.landregistry.gov.uk nor bgtest.landregistry.gov.uk
+      completes a TLS handshake anonymously; both require an HMLR-issued client
+      certificate for mutual TLS.
+access:
+  how_to_get_it:
+  - >-
+    Sign the development licence, requested by emailing
+    channelpartners@landregistry.gov.uk. Where IT development is outsourced, the
+    other party signs the licence.
+  - >-
+    HMLR sends a test SSL certificate to the named technical contact, which gives
+    connectivity and access to the test environment.
+  - >-
+    The integration support team then provides technical and onboarding support
+    through the build.
+  - >-
+    Going live requires contacting HMLR and holding a business e-services account
+    in place first.
+  docs: https://landregistry.github.io/bg-dev-pack-redesign/how-to-access-business-gateway
+  contact: channelpartners@landregistry.gov.uk
+test_stubs:
+  published: true
+  base_url: https://bgtest.landregistry.gov.uk/bg2test/api
+  auth_note: >-
+    Against the stubs, Authorization accepts any value and Idempotency-Key accepts
+    any value; HMLR notes explicitly that idempotency-key uniqueness "is not
+    enforced by the stubs".
+  scenarios:
+  - name: 'Scenario 1: Submit a single charge'
+    method: POST
+    endpoint: /v1/applications
+    response_status: 202
+    docs: https://landregistry.github.io/bg-dev-pack-redesign/apis/submit-an-application/1.0/test-stubs
+  - name: 'Scenario 2: Submit a single transfer'
+    method: POST
+    endpoint: /v1/applications
+    response_status: 202
+    docs: https://landregistry.github.io/bg-dev-pack-redesign/apis/submit-an-application/1.0/test-stubs
+  - name: 'Scenario 3: Submit an application with Level 1 validation errors'
+    method: POST
+    endpoint: /v1/applications
+    docs: https://landregistry.github.io/bg-dev-pack-redesign/apis/submit-an-application/1.0/test-stubs
+  - name: 'Scenario 4: Submit an application with Level 2 validation errors'
+    method: POST
+    endpoint: /v1/applications
+    docs: https://landregistry.github.io/bg-dev-pack-redesign/apis/submit-an-application/1.0/test-stubs
+  also_published_for:
+  - apis/notifications/1.0/test-stubs
+  - apis/application-information/1.0/test-stubs
+  - apis/attach-a-document/1.0/test-stubs
+  - apis/attach-a-message/1.0/test-stubs
+  - apis/download-a-document/1.0/test-stubs
+  - apis/send-a-document/1.0/test-stubs
+  index: https://landregistry.github.io/bg-dev-pack-redesign/find-a-service-api
+published_test_values:
+  note: >-
+    Values taken verbatim from HM Land Registry's published test stubs. Nothing
+    here was invented.
+  title_numbers:
+  - MS305610
+  document_ids:
+  - a40d6fe0-bd45-4c49-b72a-0d80cf43db83
+  application_request_ids:
+  - b3ac19be-2b6d-4b8a-971c-e758b0e8e790
+  notification_ids:
+  - 7788bfb3-02f2-4c9b-be58-94e9df010ac8
+  - 3fa85f64-5717-4562-b3fc-2c963f66afa6
+  - 13fd86a1-ca5d-48c5-9a3a-201f98b80a70
+  application_subject_ids:
+  - 3d4b51cf-76ab-40ad-9b09-099323034adf
+  mortgage_deed_references:
+  - MD006A
+  hmlr_references:
+  - A123ABR
+  lodger_email:
+  - valid.email@landregistry.gov.uk
+  addresses:
+  - uprn: 100040203976
+    full_address: Apartment 11, 113 Newton Street, MANCHESTER, M1 1AE
+  organisations:
+  - Albion Home Loans Limited (company_number 12345)
+  parties:
+  - Tony Bonito
+  - Toni Bonito
+  - John Smith
+  fees_in_pence:
+  - 3000
+time_simulation:
+  supported: false
+  detail: No test clock, time-travel or event-trigger tooling is published.
+fixture_tooling:
+  supported: false
+  detail: >-
+    No CLI, no fixture generator and no event-trigger tool. HMLR ships static
+    example request and response bodies in the developer pack instead.
+open_data_alternative:
+  detail: >-
+    The one HMLR surface that needs no sandbox at all is the open linked-data
+    estate. The SPARQL 1.1 endpoint at
+    https://landregistry.data.gov.uk/landregistry/query and the Price Paid and UK
+    House Price Index Linked Data APIs under
+    https://landregistry.data.gov.uk/data/ are anonymous and unmetered under the
+    Open Government Licence v3.0, and the Qonsole query console at
+    http://landregistry.data.gov.uk/qonsole is a live in-browser playground. For
+    anyone prototyping against HMLR data rather than against the conveyancing
+    transaction rails, that is the effective sandbox.
+  console: http://landregistry.data.gov.uk/qonsole
+  verified: '2026-07-26'
+use_land_and_property_data:
+  sandbox: false
+  detail: >-
+    No test mode and no test key. The service does publish free sample datasets
+    (nps_sample, the National Polygon Service Sample, and per-dataset
+    public_resources "Example Data" files) which serve as the shape-check before
+    signing a chargeable licence.

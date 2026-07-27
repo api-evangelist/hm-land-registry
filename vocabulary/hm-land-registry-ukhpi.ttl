@@ -1,0 +1,94 @@
+PREFIX api:     <http://purl.org/linked-data/api/vocab#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX owl:     <http://www.w3.org/2002/07/owl#>
+PREFIX qb:      <http://purl.org/linked-data/cube#>
+PREFIX qudt:    <http://qudt.org/schema/qudt#>
+PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs:    <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
+
+<http://landregistry.data.gov.uk/def/ukhpi/averagePriceDetached>
+        rdf:type      qb:MeasureProperty , owl:DatatypeProperty;
+        rdfs:comment  "Average price for a detached property at Country, Regional, County/Unitary/District Authority and London Borough level, for the given reference period."@en;
+        rdfs:label    "Average price for a detached property"@en;
+        rdfs:range    xsd:integer;
+        qudt:unit     <http://dbpedia.org/resource/Pound_sterling> .
+
+<http://landregistry.data.gov.uk/def/ukhpi/averagePriceFlatMaisonette>
+        rdf:type      qb:MeasureProperty , owl:DatatypeProperty;
+        rdfs:comment  "Average price for a flat or maisonette at Country, Regional, County/Unitary/District Authority and London Borough level, for the given reference period."@en;
+        rdfs:label    "Average price for a flat or maisonette property"@en;
+        rdfs:range    xsd:integer;
+        qudt:unit     <http://dbpedia.org/resource/Pound_sterling> .
+
+<http://landregistry.data.gov.uk/def/ukhpi/averagePriceCash>
+        rdf:type      qb:MeasureProperty , owl:DatatypeProperty;
+        rdfs:comment  "Average price for a property bought wholly as a Cash Sale at Country, Regional, County/Unitary/District Authority and London Borough level, for the given reference period."@en;
+        rdfs:label    "Average price for a cash sale property"@en;
+        rdfs:range    xsd:integer;
+        qudt:unit     <http://dbpedia.org/resource/Pound_sterling> .
+
+<http://landregistry.data.gov.uk/def/ukhpi/averagePriceExistingProperty>
+        rdf:type      qb:MeasureProperty , owl:DatatypeProperty;
+        rdfs:comment  "Average price for an existing property bought at Country, Regional, County/Unitary/District Authority and London Borough level, for the given reference period."@en;
+        rdfs:label    "Average price for an existing property"@en;
+        rdfs:range    xsd:integer;
+        qudt:unit     <http://dbpedia.org/resource/Pound_sterling> .
+
+<http://landregistry.data.gov.uk/def/ukhpi/averagePriceFormerOwnerOccupier>
+        rdf:type      qb:MeasureProperty , owl:DatatypeProperty;
+        rdfs:comment  "Average price for a property bought by a Former Owner Occupier Buyer at Country, Regional, County/Unitary/District Authority and London Borough level, for the given reference period."@en;
+        rdfs:label    "Average price for a former owner occupier buyer sale"@en;
+        rdfs:range    xsd:integer;
+        qudt:unit     <http://dbpedia.org/resource/Pound_sterling> .
+
+<http://landregistry.data.gov.uk/def/ukhpi/averagePrice>
+        rdf:type      qb:MeasureProperty , owl:DatatypeProperty;
+        rdfs:comment  "Average price at Country, Regional, County/Unitary/District Authority and London Borough level, for the given reference period.  For further information see: http://www.ons.gov.uk/economy/inflationandpriceindices/methodologies/developmentofasingleofficialhousepriceindex "@en;
+        rdfs:label    "Average price"@en;
+        rdfs:range    xsd:integer;
+        qudt:unit     <http://dbpedia.org/resource/Pound_sterling> .
+
+<http://landregistry.data.gov.uk/def/ukhpi/averagePriceMortgage>
+        rdf:type      qb:MeasureProperty , owl:DatatypeProperty;
+        rdfs:comment  "Average price for a property bought as a Mortgaged Sale at Country, Regional, County/Unitary/District Authority and London Borough level, for the given reference period."@en;
+        rdfs:label    "Average price for a mortgaged sale property"@en;
+        rdfs:range    xsd:integer;
+        qudt:unit     <http://dbpedia.org/resource/Pound_sterling> .
+
+<http://landregistry.data.gov.uk/def/ukhpi/averagePriceNewBuild>
+        rdf:type      qb:MeasureProperty , owl:DatatypeProperty;
+        rdfs:comment  "Average price for a New Build property bought at Country, Regional, County/Unitary/District Authority and London Borough level, for the given reference period."@en;
+        rdfs:label    "Average price for a new build property"@en;
+        rdfs:range    xsd:integer;
+        qudt:unit     <http://dbpedia.org/resource/Pound_sterling> .
+
+<http://landregistry.data.gov.uk/def/ukhpi/averagePriceFirstTimeBuyer>
+        rdf:type      qb:MeasureProperty , owl:DatatypeProperty;
+        rdfs:comment  "Average price for a property bought by a First Time Buyer at Country, Regional, County/Unitary/District Authority and London Borough level, for the given reference period."@en;
+        rdfs:label    "Average price for a first time buyer sale"@en;
+        rdfs:range    xsd:integer;
+        qudt:unit     <http://dbpedia.org/resource/Pound_sterling> .
+
+<http://landregistry.data.gov.uk/def/ukhpi/MonthlyIndicesByRegion>
+        rdf:type         rdfs:Class , owl:Class;
+        rdfs:comment     "A distinguished subclass of qb:Observation containing raw and cleansed aggregated data used to calculate the Land Registry England and Wales, Registers of Scotland and Registers of Northern Ireland monthly House Price Indices"@en;
+        rdfs:label       "UK house price indices"@en;
+        rdfs:subClassOf  qb:Observation .
+
+<https://landregistry.data.gov.uk/def/ukhpi.ttl>
+        rdf:type                     api:Page , api:ListEndpoint;
+        <http://a9.com/-/spec/opensearch/1.1/itemsPerPage>
+                "10"^^xsd:long;
+        <http://a9.com/-/spec/opensearch/1.1/startIndex>
+                "1"^^xsd:long;
+        dcterms:hasPart              <https://landregistry.data.gov.uk/def/ukhpi.ttl>;
+        dcterms:isPartOf             <https://landregistry.data.gov.uk/def/ukhpi.ttl>;
+        api:definition               <https://landregistry.data.gov.uk/meta/def/_scheme.ttl>;
+        api:extendedMetadataVersion  <https://landregistry.data.gov.uk/def/ukhpi.ttl?_metadata=all>;
+        api:items                    ( <http://landregistry.data.gov.uk/def/ukhpi/MonthlyIndicesByRegion> <http://landregistry.data.gov.uk/def/ukhpi/averagePrice> <http://landregistry.data.gov.uk/def/ukhpi/averagePriceCash> <http://landregistry.data.gov.uk/def/ukhpi/averagePriceDetached> <http://landregistry.data.gov.uk/def/ukhpi/averagePriceExistingProperty> <http://landregistry.data.gov.uk/def/ukhpi/averagePriceFirstTimeBuyer> <http://landregistry.data.gov.uk/def/ukhpi/averagePriceFlatMaisonette> <http://landregistry.data.gov.uk/def/ukhpi/averagePriceFormerOwnerOccupier> <http://landregistry.data.gov.uk/def/ukhpi/averagePriceMortgage> <http://landregistry.data.gov.uk/def/ukhpi/averagePriceNewBuild> );
+        api:page                     "0"^^xsd:long;
+        <http://www.w3.org/1999/xhtml/vocab#first>
+                <https://landregistry.data.gov.uk/def/ukhpi.ttl?_page=0>;
+        <http://www.w3.org/1999/xhtml/vocab#next>
+                <https://landregistry.data.gov.uk/def/ukhpi.ttl?_page=1> .

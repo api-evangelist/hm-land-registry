@@ -1,0 +1,113 @@
+generated: '2026-07-26'
+method: searched
+source: >-
+  npm registry search, PyPI, and the LandRegistry GitHub organisation (probed
+  2026-07-26)
+summary: >-
+  HM Land Registry publishes no first-party API client library in any language.
+  The @hmlr npm scope is real and first-party — the packages are authored from
+  landregistry.gov.uk addresses and built from repositories in the LandRegistry
+  GitHub organisation — but every one of them is a front-end / design-system
+  package, not an API SDK. There is no HMLR client for the Business Gateway REST
+  or SOAP services, none for the Use land and property data service, and none for
+  the SPARQL or Linked Data endpoints. Integration is either hand-rolled against
+  the published contracts or bought in through a third-party case management
+  system. Because no official client library exists, this artifact deliberately
+  does NOT carry an SDKs pointer in apis.yml.
+official_api_clients: none
+packages:
+- language: javascript
+  registry: npm
+  name: "@hmlr/frontend"
+  version: 2.1.0-rc.2
+  url: https://www.npmjs.com/package/@hmlr/frontend
+  install: npm install @hmlr/frontend
+  repository: https://github.com/LandRegistry/hmlr-frontend
+  official: true
+  kind: frontend
+  api_client: false
+  description: HM Land Registry frontend styles.
+  maintainer_evidence: author andrew.hosgood@landregistry.gov.uk
+- language: javascript
+  registry: npm
+  name: "@hmlr/govuk-react-components-library"
+  version: 1.2.2
+  url: https://www.npmjs.com/package/@hmlr/govuk-react-components-library
+  install: npm install @hmlr/govuk-react-components-library
+  repository: https://github.com/LandRegistry/govuk-react-components-library
+  official: true
+  kind: ui-components
+  api_client: false
+  description: >-
+    Common React components based on the GOV.UK Design System and govuk-frontend.
+- language: javascript
+  registry: npm
+  name: "@hmlr/eslint-config"
+  version: 1.2.0-rc.2
+  url: https://www.npmjs.com/package/@hmlr/eslint-config
+  install: npm install --save-dev @hmlr/eslint-config
+  repository: https://github.com/LandRegistry/eslint-config
+  official: true
+  kind: tooling
+  api_client: false
+  description: HMLR shareable ESLint config.
+  maintainer_evidence: author andrew.hosgood@landregistry.gov.uk
+third_party:
+  note: >-
+    Recorded for completeness. None of these is published, endorsed or maintained
+    by HM Land Registry, and each targets only the open Price Paid Data surface —
+    not the Business Gateway.
+  packages:
+  - language: javascript
+    registry: npm
+    name: uk-land-registry-price-mcp
+    version: 0.1.0
+    url: https://www.npmjs.com/package/uk-land-registry-price-mcp
+    official: false
+    kind: mcp-server
+    description: >-
+      Community MCP server over UK HM Land Registry sold house prices (Price Paid
+      Data).
+  - language: javascript
+    registry: npm
+    name: "@pipeworx/mcp-landregistry-uk"
+    version: 0.1.0
+    url: https://www.npmjs.com/package/@pipeworx/mcp-landregistry-uk
+    repository: https://github.com/pipeworx-io/mcp-landregistry-uk
+    official: false
+    kind: mcp-server
+    description: HM Land Registry Price Paid Data (UK) MCP server.
+  - language: javascript
+    registry: npm
+    name: "@n8n-dev/n8n-nodes-landregistry-gov-deed"
+    url: https://www.npmjs.com/package/@n8n-dev/n8n-nodes-landregistry-gov-deed
+    official: false
+    kind: workflow-node
+    description: n8n community node for a Land Registry deed API.
+  - language: javascript
+    registry: npm
+    name: inspirepolygonsdownloader
+    url: https://www.npmjs.com/package/inspirepolygonsdownloader
+    official: false
+    kind: data-tool
+    description: Downloads and munges HM Land Registry INSPIRE polygons.
+registries_checked:
+- registry: npm
+  result: 3 official @hmlr packages, all front-end/tooling; no API client
+- registry: pypi
+  result: >-
+    no HM Land Registry package. The name "hmlr" on PyPI is an unrelated
+    third-party AI memory system (HMLR-Agentic-AI-Memory-System), and
+    landregistry, land-registry and hm-land-registry are all 404.
+- registry: maven-central
+  result: none
+- registry: nuget
+  result: none
+- registry: pkg.go.dev
+  result: none
+- registry: rubygems
+  result: none
+- registry: packagist
+  result: none
+- registry: crates.io
+  result: none

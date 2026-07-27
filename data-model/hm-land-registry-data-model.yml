@@ -1,0 +1,303 @@
+generated: '2026-07-26'
+method: derived
+source: >-
+  openapi/hm-land-registry-submit-application-to-change-the-register-v1.0-openapi.json
+  ($ref graph and reference-typed fields), enriched from the published notification
+  JSON Schemas in json-schema/ and the Price Paid ontology in vocabulary/
+summary: >-
+  HM Land Registry's model has two disconnected halves, which is the single most
+  important thing to know before integrating. The transactional half — the
+  Business Gateway application model — is a deep, richly typed graph rooted on an
+  Application, and it is unusual in that its inner objects are addressed by
+  client-supplied reference keys rather than server ids: the caller names its own
+  parties, documents and addresses ("Borrower1", "Deed", "transferee_address") and
+  the transactions reference those names. The only server-minted identifiers are
+  application_request_id, document_id, notification_id and, after acceptance, the
+  hmlr_reference. The open half — Price Paid Data and the House Price Index — is
+  not an object model at all but an RDF graph, keyed on transaction URIs and
+  addresses, and is joined to the transactional half only conceptually, through the
+  property itself. There is no shared property key across the two: the title number
+  is the key on the register side, and the National Polygon Service title-number to
+  UPRN lookup that would bridge them costs £20,000 a year plus VAT.
+identifiers:
+- name: application_request_id
+  format: uuid
+  minted_by: HMLR
+  returned_by: submit_an_application_to_change_the_register_v1
+  used_by:
+  - get_application_information_v1
+  - attach_a_document_v1
+  - attach_a_message_v1
+  note: Appears as "subject" on every notification about that application.
+- name: hmlr_reference
+  format: string
+  minted_by: HMLR
+  example: A123ABR
+  note: Assigned when the application is accepted onto the daylist.
+- name: document_id
+  format: uuid
+  minted_by: HMLR
+  returned_by: send_a_document_v1
+- name: download_id
+  format: string
+  minted_by: HMLR
+  note: Carried on correspondence documents in notifications and application information.
+- name: notification_id
+  format: uuid
+  minted_by: HMLR
+  note: >-
+    Not stable per event — at-least-once delivery means one event can yield several
+    notification_ids.
+- name: title_number
+  format: string
+  minted_by: HMLR
+  example: MS305610
+  note: >-
+    The register-side property key. Used by getRegisteredProprietorNames,
+    getOfficialCopiesAvailability, getTitle and inside application titleDetails.
+- name: uprn
+  format: integer
+  minted_by: Ordnance Survey / GeoPlace
+  note: >-
+    The address-side property key. Mapping it to a title number requires the
+    chargeable National Polygon Service.
+- name: PartyReference / DocumentReference / AddressReference
+  format: string
+  minted_by: client
+  note: >-
+    Client-chosen keys naming entries in the parties, documents and addresses maps
+    of one application. Scoped to that single request, not global identifiers.
+entities:
+- name: SubstantiveApplication
+  root: true
+  description: An application to change the Land Register.
+  key: application_request_id
+  domain: business-gateway
+- name: Transaction
+  description: >-
+    One legal act inside an application — a charge, transfer, discharge — carrying
+    its own priority, fee_in_pence and party roles.
+  domain: business-gateway
+- name: TitleDetails
+  key: title_number
+  domain: business-gateway
+- name: Party
+  description: >-
+    A person or organisation in the application. Polymorphic on PartyDetails.type.
+  domain: business-gateway
+- name: PartyDetails
+  polymorphic: true
+  variants:
+  - PrivateIndividual
+  - UKCompany
+  - OverseasCompany
+  - OtherOrganisation
+  - UnknownParty
+  domain: business-gateway
+- name: Address
+  polymorphic: true
+  variants:
+  - UkAddress
+  - OverseasAddress
+  - DxAddress
+  - PoBoxAddress
+  - BfpoAddress
+  - EmailAddress
+  domain: business-gateway
+- name: DocumentDetails
+  key: document_id
+  domain: business-gateway
+- name: ApplicationInformationResponse
+  description: >-
+    The read model of a lodged application — status, priority_timestamp,
+    hmlr_reference, errors, warnings and correspondences.
+  domain: business-gateway
+- name: CorrespondenceRecordInApplicationInformation
+  key: record_id
+  domain: business-gateway
+- name: NotificationResponse
+  key: notification_id
+  domain: business-gateway
+- name: Dataset
+  key: name
+  domain: use-land-and-property-data
+- name: Resource
+  key: file_name
+  domain: use-land-and-property-data
+- name: ppi:Transaction
+  key: transaction URI
+  domain: open-linked-data
+  source: vocabulary/hm-land-registry-ppi.ttl
+- name: ppi:TransactionRecord
+  domain: open-linked-data
+  source: vocabulary/hm-land-registry-ppi.ttl
+relationships:
+- from: SubstantiveApplication
+  to: SubstantiveApplicationData
+  kind: has_one
+  via: data
+- from: SubstantiveApplicationData
+  to: Transaction
+  kind: has_many
+  via: transactions
+  keyed_by: client-supplied reference
+- from: SubstantiveApplicationData
+  to: TitleDetails
+  kind: has_many
+  via: titles
+  keyed_by: title_number
+- from: SubstantiveApplicationData
+  to: Party
+  kind: has_many
+  via: parties
+  keyed_by: client-supplied PartyReference
+- from: SubstantiveApplicationData
+  to: DocumentDetails
+  kind: has_many
+  via: documents
+  keyed_by: client-supplied DocumentReference
+- from: SubstantiveApplicationData
+  to: Address
+  kind: has_many
+  via: addresses
+  keyed_by: client-supplied AddressReference
+- from: SubstantiveApplicationData
+  to: ApplicationLodger
+  kind: has_one
+  via: application_lodger
+- from: SubstantiveApplicationData
+  to: PartyReference
+  kind: has_many
+  via: applicants
+- from: SubstantiveApplicationData
+  to: ValidationDisagreement
+  kind: has_many
+  via: disagree_with_validation_results
+- from: Transaction
+  to: TransactionDetails
+  kind: has_one
+  via: details
+  polymorphic:
+  - Charge
+  - Transfer
+  - Discharge
+- from: Transaction
+  to: PartyRole
+  kind: has_many
+  via: party_roles
+- from: Transaction
+  to: TitleDetails
+  kind: has_many
+  via: title_references
+  reference: true
+- from: Transaction
+  to: DocumentDetails
+  kind: has_many
+  via: documents
+  reference: true
+- from: Transaction
+  to: ValueBand
+  kind: has_one
+  via: details.value
+- from: PartyRole
+  to: Party
+  kind: belongs_to
+  via: party_reference
+  reference: true
+- from: Party
+  to: PartyDetails
+  kind: has_one
+  via: details
+- from: Party
+  to: Address
+  kind: has_many
+  via: addresses
+  reference: true
+- from: Party
+  to: OtherConveyancer
+  kind: has_one
+  via: other_conveyancer
+- from: OtherConveyancer
+  to: Address
+  kind: belongs_to
+  via: address_reference
+  reference: true
+- from: TitleDetails
+  to: TitleScopeDetails
+  kind: has_one
+  via: scope_details
+- from: DocumentDetails
+  to: DocumentMetadata
+  kind: has_one
+  via: document_metadata
+- from: DocumentUploadUrlResponse
+  to: DocumentDetails
+  kind: has_one
+  via: document_id
+  reference: true
+- from: ApplicationInformationResponse
+  to: SubstantiveApplication
+  kind: belongs_to
+  via: application_request_id
+  reference: true
+- from: ApplicationInformationResponse
+  to: CorrespondenceRecordInApplicationInformation
+  kind: has_many
+  via: correspondences
+- from: ApplicationInformationResponse
+  to: ErrorDescription
+  kind: has_many
+  via: errors
+- from: CorrespondenceRecordInApplicationInformation
+  to: CorrespondenceRecordDocumentItemWithDownloadId
+  kind: has_many
+  via: documents
+- from: CorrespondenceRecordDocumentItemWithDownloadId
+  to: CorrespondenceDocumentType
+  kind: has_one
+  via: type
+- from: NotificationResponse
+  to: SubstantiveApplication
+  kind: belongs_to
+  via: subject
+  reference: true
+  note: subject holds the application_request_id when subject_type is APPLICATION.
+- from: NotificationResponse
+  to: json-schema/
+  kind: has_one
+  via: payload_schema
+  note: >-
+    The envelope names the URL of the JSON Schema describing its own payload —
+    a self-describing event. All eleven schemas are harvested in json-schema/.
+- from: BulkAcknowledgeResult
+  to: NotificationResponse
+  kind: has_many
+  via: acknowledged
+  reference: true
+- from: Dataset
+  to: Resource
+  kind: has_many
+  via: resources
+- from: Dataset
+  to: Resource
+  kind: has_many
+  via: public_resources
+- from: ppi:Transaction
+  to: ppi:TransactionRecord
+  kind: has_many
+  via: ppi ontology transactionRecord
+  source: vocabulary/hm-land-registry-ppi.ttl
+polymorphism:
+  discriminator_field: type
+  note: >-
+    PartyDetails, AddressDetails and TransactionDetails are all discriminated on a
+    "type" string, and the concrete variants (PrivateIndividual, UKCompany,
+    OverseasCompany, OtherOrganisation, UnknownParty; UkAddress, OverseasAddress,
+    DxAddress, PoBoxAddress, BfpoAddress, EmailAddress; Charge, Transfer,
+    Discharge) declare no properties of their own in the spec — they are allOf
+    compositions. An agent cannot infer the variant fields from the schema block
+    alone and must read the technical guide.
+schema_reuse:
+  components_schemas: 55
+  spec: openapi/hm-land-registry-submit-application-to-change-the-register-v1.0-openapi.json
+render: null

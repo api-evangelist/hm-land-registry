@@ -1,0 +1,331 @@
+asyncapi: 3.0.0
+info:
+  title: HM Land Registry Business Gateway Notifications
+  version: '1.0'
+  description: >-
+    Event surface of the HM Land Registry Business Gateway. As an application to
+    change the Land Register moves through HMLR processing, HMLR raises
+    notifications about it. Business units retrieve their notifications by polling
+    GET /v1/notifications and then acknowledge each one they have processed by
+    POSTing its notification_id to /v1/notifications/acknowledge. Delivery is "at
+    least once": a single event at a single time may produce more than one
+    notification, each with a different notification_id but with the same
+    event_datetime and notification_type, which is how duplicates are detected.
+    Notifications keep being returned until acknowledged, so each duplicate must
+    be acknowledged separately. All notifications are deleted after a month
+    whether acknowledged or not. A maximum of 100 matching notifications is
+    returned per call, oldest first.
+
+    This is a pull/poll event feed, not a push webhook: HM Land Registry does not
+    call back into consumer systems, and there is no callback registration.
+  license:
+    name: Open Government Licence v3.0
+    url: https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/
+  externalDocs:
+    description: Notifications API technical guide
+    url: https://landregistry.github.io/bg-dev-pack-redesign/apis/notifications/1.0/technical-guide
+  x-apievangelist-method: generated
+  x-apievangelist-generated: '2026-07-26'
+  x-evidence:
+    documentation: https://landregistry.github.io/bg-dev-pack-redesign/apis/notifications/1.0/technical-guide
+    openapi: openapi/hm-land-registry-submit-application-to-change-the-register-v1.0-openapi.json
+    schemas: https://landregistry.github.io/bgtechdoc/schemas/v1/application/
+    note: >-
+      HM Land Registry publishes no AsyncAPI document. This description is
+      generated faithfully from the published Notifications API technical guide
+      (which enumerates all eleven notification types, the envelope fields and the
+      delivery semantics), the eleven published JSON Schemas at
+      landregistry.github.io/bgtechdoc/schemas/v1/application/ (harvested verbatim
+      into json-schema/ in this repo), and the two notification operations in the
+      published v1.0 OpenAPI. No event type, field or semantic was invented.
+servers:
+  production:
+    host: businessgateway.landregistry.gov.uk
+    pathname: /bg2/api
+    protocol: https
+    description: >-
+      Production Business Gateway. Requires an HMLR-issued client certificate for
+      mutual TLS plus HTTP Basic credentials for an active Business Gateway
+      account; the host will not complete a TLS handshake without the client
+      certificate.
+    security:
+      - $ref: '#/components/securitySchemes/basicAuth'
+  customerTest:
+    host: bgtest.landregistry.gov.uk
+    pathname: /bg2test/api
+    protocol: https
+    description: Customer test endpoint.
+    security:
+      - $ref: '#/components/securitySchemes/basicAuth'
+channels:
+  notifications:
+    address: /v1/notifications
+    title: Application notifications
+    description: >-
+      Poll channel returning up to 100 unacknowledged notifications for the
+      calling business unit, oldest first. Filterable by created_after,
+      created_before, occurred_after, occurred_before, status (NEW or
+      ACKNOWLEDGED, NEW is the default), notification_type, subject,
+      additional_provider_filter and limit.
+    servers:
+      - $ref: '#/servers/production'
+      - $ref: '#/servers/customerTest'
+    messages:
+      applicationAcceptedPriorityProtected:
+        $ref: '#/components/messages/applicationAcceptedPriorityProtected'
+      applicationAcceptedPriorityPending:
+        $ref: '#/components/messages/applicationAcceptedPriorityPending'
+      applicationValidationFailed:
+        $ref: '#/components/messages/applicationValidationFailed'
+      applicationError:
+        $ref: '#/components/messages/applicationError'
+      applicationCorrespondenceDespatched:
+        $ref: '#/components/messages/applicationCorrespondenceDespatched'
+      applicationAttachmentSuccess:
+        $ref: '#/components/messages/applicationAttachmentSuccess'
+      applicationAttachmentFailed:
+        $ref: '#/components/messages/applicationAttachmentFailed'
+      applicationMessageSuccess:
+        $ref: '#/components/messages/applicationMessageSuccess'
+      applicationMessageFailed:
+        $ref: '#/components/messages/applicationMessageFailed'
+      applicationCancelled:
+        $ref: '#/components/messages/applicationCancelled'
+      applicationCompleted:
+        $ref: '#/components/messages/applicationCompleted'
+  notificationAcknowledgement:
+    address: /v1/notifications/acknowledge
+    title: Notification acknowledgement
+    description: >-
+      Send a list of notification_ids that your system has processed. Their status
+      changes to ACKNOWLEDGED and subsequent GET calls exclude them by default.
+    servers:
+      - $ref: '#/servers/production'
+      - $ref: '#/servers/customerTest'
+    messages:
+      acknowledgeRequest:
+        $ref: '#/components/messages/acknowledgeRequest'
+operations:
+  receiveNotifications:
+    action: receive
+    title: Receive application notifications
+    summary: Poll for notifications about applications submitted by your business unit.
+    channel:
+      $ref: '#/channels/notifications'
+    externalDocs:
+      url: https://landregistry.github.io/bg-dev-pack-redesign/apis/notifications/1.0/technical-guide
+    bindings:
+      http:
+        method: GET
+    messages:
+      - $ref: '#/channels/notifications/messages/applicationAcceptedPriorityProtected'
+      - $ref: '#/channels/notifications/messages/applicationAcceptedPriorityPending'
+      - $ref: '#/channels/notifications/messages/applicationValidationFailed'
+      - $ref: '#/channels/notifications/messages/applicationError'
+      - $ref: '#/channels/notifications/messages/applicationCorrespondenceDespatched'
+      - $ref: '#/channels/notifications/messages/applicationAttachmentSuccess'
+      - $ref: '#/channels/notifications/messages/applicationAttachmentFailed'
+      - $ref: '#/channels/notifications/messages/applicationMessageSuccess'
+      - $ref: '#/channels/notifications/messages/applicationMessageFailed'
+      - $ref: '#/channels/notifications/messages/applicationCancelled'
+      - $ref: '#/channels/notifications/messages/applicationCompleted'
+  acknowledgeNotifications:
+    action: send
+    title: Acknowledge notifications
+    summary: Mark processed notifications as ACKNOWLEDGED so they stop being returned.
+    channel:
+      $ref: '#/channels/notificationAcknowledgement'
+    bindings:
+      http:
+        method: POST
+    messages:
+      - $ref: '#/channels/notificationAcknowledgement/messages/acknowledgeRequest'
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: >-
+        HTTP Basic credentials for an active Business Gateway user account, sent
+        over a mutual-TLS connection established with an HMLR-issued client
+        certificate.
+  schemas:
+    NotificationEnvelope:
+      type: object
+      description: >-
+        Common envelope every notification is delivered in. The type-specific body
+        is carried in payload, and payload_schema is the URL of the published JSON
+        Schema describing it.
+      properties:
+        notification_id:
+          type: string
+          format: uuid
+          description: >-
+            Unique id of this notification. Duplicates of the same event carry
+            different notification_ids.
+        created_datetime:
+          type: string
+          format: date-time
+          description: When HMLR created the notification record.
+        event_datetime:
+          type: string
+          format: date-time
+          description: >-
+            When the underlying event occurred. Together with notification_type
+            this is how duplicate deliveries are identified.
+        payload_schema:
+          type: string
+          format: uri
+          description: URL of the published JSON Schema for this notification's payload.
+        notification_type:
+          type: string
+          description: The event type, for example application.completed.
+        subject_type:
+          type: string
+          description: The kind of thing the notification is about, for example APPLICATION.
+        subject:
+          type: string
+          description: >-
+            Identifier of the subject, for an application this is the
+            application_request_id.
+        additional_provider_filter:
+          type: string
+          description: Optional provider-supplied routing filter set at submission time.
+        status:
+          type: string
+          enum:
+            - NEW
+            - ACKNOWLEDGED
+          description: NEW until acknowledged.
+        payload:
+          type: object
+          description: Type-specific body, described by payload_schema.
+  messages:
+    applicationAcceptedPriorityProtected:
+      name: application.accepted-priority-protected
+      title: Application accepted, priority protected
+      summary: Application accepted and added to the daylist.
+      description: >-
+        Carries the updated application status, the priority of the application
+        and the HMLR reference for the accepted application.
+      contentType: application/json
+      payload:
+        $ref: '../json-schema/hm-land-registry-application-accepted-priority-protected.json'
+      externalDocs:
+        url: https://landregistry.github.io/bgtechdoc/schemas/v1/application/accepted-priority-protected.json
+    applicationAcceptedPriorityPending:
+      name: application.accepted-priority-pending
+      title: Application accepted, priority pending
+      summary: Application accepted and queuing for the daylist.
+      description: Carries the updated application status only.
+      contentType: application/json
+      payload:
+        $ref: '../json-schema/hm-land-registry-application-accepted-priority-pending.json'
+      externalDocs:
+        url: https://landregistry.github.io/bgtechdoc/schemas/v1/application/accepted-awaiting-priority.json
+    applicationValidationFailed:
+      name: application.validation-failed
+      title: Application validation failed
+      summary: Application failed validation.
+      description: >-
+        Use the Application information API (get_application_information_v1) to
+        retrieve the list of validation errors.
+      contentType: application/json
+      payload:
+        $ref: '../json-schema/hm-land-registry-application-validation-failed.json'
+      externalDocs:
+        url: https://landregistry.github.io/bgtechdoc/schemas/v1/application/validation-error.json
+    applicationError:
+      name: application.error
+      title: Application error
+      summary: Application not added to the daylist due to a system error.
+      description: Carries the updated application status only.
+      contentType: application/json
+      payload:
+        $ref: '../json-schema/hm-land-registry-application-error.json'
+      externalDocs:
+        url: https://landregistry.github.io/bgtechdoc/schemas/v1/application/application-error.json
+    applicationCorrespondenceDespatched:
+      name: application.correspondence-despatched
+      title: Correspondence despatched
+      summary: A correspondence was raised on the application.
+      description: >-
+        Carries a list of correspondence documents that can be downloaded with the
+        Download a document API (download_a_document_v1).
+      contentType: application/json
+      payload:
+        $ref: '../json-schema/hm-land-registry-application-correspondence-despatched.json'
+      externalDocs:
+        url: https://landregistry.github.io/bgtechdoc/schemas/v1/application/correspondence-despatched.json
+    applicationAttachmentSuccess:
+      name: application.attachment-success
+      title: Attachment succeeded
+      summary: Document successfully attached to application.
+      contentType: application/json
+      payload:
+        $ref: '../json-schema/hm-land-registry-application-attachment-success.json'
+      externalDocs:
+        url: https://landregistry.github.io/bgtechdoc/schemas/v1/attachment/success.json
+    applicationAttachmentFailed:
+      name: application.attachment-failed
+      title: Attachment failed
+      summary: Document failed to attach to application.
+      contentType: application/json
+      payload:
+        $ref: '../json-schema/hm-land-registry-application-attachment-failed.json'
+      externalDocs:
+        url: https://landregistry.github.io/bgtechdoc/schemas/v1/attachment/failed.json
+    applicationMessageSuccess:
+      name: application.message-success
+      title: Message attached
+      summary: Message successfully attached to application.
+      contentType: application/json
+      payload:
+        $ref: '../json-schema/hm-land-registry-application-message-success.json'
+      externalDocs:
+        url: https://landregistry.github.io/bgtechdoc/schemas/v1/message/success.json
+    applicationMessageFailed:
+      name: application.message-failed
+      title: Message attach failed
+      summary: Message failed to attach to application.
+      contentType: application/json
+      payload:
+        $ref: '../json-schema/hm-land-registry-application-message-failed.json'
+      externalDocs:
+        url: https://landregistry.github.io/bgtechdoc/schemas/v1/message/failed.json
+    applicationCancelled:
+      name: application.cancelled
+      title: Application cancelled
+      summary: Application cancelled.
+      description: Carries a list of correspondence documents that can be downloaded.
+      contentType: application/json
+      payload:
+        $ref: '../json-schema/hm-land-registry-application-cancelled.json'
+      externalDocs:
+        url: https://landregistry.github.io/bgtechdoc/schemas/v1/application/cancelled.json
+    applicationCompleted:
+      name: application.completed
+      title: Application completed
+      summary: Application completed.
+      description: >-
+        Carries the HMLR reference, whether the application was subject to early
+        completion, and a list of correspondence documents that can be downloaded.
+      contentType: application/json
+      payload:
+        $ref: '../json-schema/hm-land-registry-application-completed.json'
+      externalDocs:
+        url: https://landregistry.github.io/bgtechdoc/schemas/v1/application/completed.json
+    acknowledgeRequest:
+      name: acknowledgeNotifications
+      title: Acknowledge notifications request
+      summary: A list of notification_ids to mark ACKNOWLEDGED.
+      contentType: application/json
+      payload:
+        type: object
+        properties:
+          data:
+            type: array
+            description: The notification_ids to acknowledge.
+            items:
+              type: string
+              format: uuid

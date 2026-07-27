@@ -1,0 +1,157 @@
+generated: '2026-07-26'
+method: derived
+source: >-
+  openapi/ securitySchemes, response media types and servers; vocabulary/ RDF
+  ontologies; the Business Gateway developer pack and Use land and property data
+  technical documentation
+docs:
+- https://landregistry.github.io/bg-dev-pack-redesign/
+- https://use-land-property-data.service.gov.uk/api-documentation
+- https://www.gov.uk/guidance/report-a-vulnerability-on-an-hm-land-registry-service-or-system
+standards:
+- id: openapi-3.0
+  conforms: true
+  evidence: >-
+    Seven harvested contracts declare openapi 3.0.0 or 3.0.1 (Estimate Completion
+    Date, Land Register API, Official Copy Document Availability v1 and v2 plus
+    both customer-test variants, Registered Proprietor Names, Submit an
+    application v0.3).
+- id: openapi-3.1
+  conforms: true
+  evidence: >-
+    Two harvested contracts declare openapi 3.1.0 (Submit an application v1.0 and
+    Official Search of Whole with Data).
+- id: json-schema-draft-07
+  conforms: true
+  evidence: >-
+    All eleven published notification payload schemas declare
+    $schema http://json-schema.org/draft-07/schema#.
+- id: rfc9457-problem-details
+  conforms: partial
+  evidence: >-
+    get_notifications_v1 and acknowledge_notifications_v1 declare
+    application/problem+json for every 4xx and 5xx; download_a_document_v1 offers
+    it alongside application/json. The rest of the estate uses a bespoke
+    application/json "errors" envelope, and the Use land and property data service
+    uses {"error", "success"}.
+- id: rfc7617-http-basic
+  conforms: true
+  evidence: >-
+    securitySchemes basicAuth (type http, scheme basic) declared and applied in
+    six Business Gateway contracts.
+- id: mutual-tls
+  conforms: true
+  evidence: >-
+    The developer guide requires an HMLR-issued client digital certificate
+    installed in the client key store and HMLR certificates trusted as root.
+    Probed 2026-07-26: businessgateway.landregistry.gov.uk and
+    bgtest.landregistry.gov.uk refuse a TLS handshake without a client
+    certificate. Not modelled as an OpenAPI mutualTLS securityScheme.
+- id: rfc6750-bearer-token
+  conforms: partial
+  evidence: >-
+    The internal Land Register API declares bearerAuth (type http, scheme bearer,
+    bearerFormat UUID) with a token minted per consuming service. Not a public
+    developer product.
+- id: idempotency-key
+  conforms: true
+  evidence: >-
+    A required Idempotency-Key request header on
+    submit_an_application_to_change_the_register_v1, with published replay
+    semantics (duplicate retry returns the original application_request_id) and a
+    published retryable-status list. Follows the widely adopted convention rather
+    than the IETF draft's Idempotency-Key header registry.
+- id: oauth2
+  conforms: false
+  evidence: >-
+    No oauth2 or openIdConnect security scheme anywhere in the estate; no
+    /.well-known/oauth-authorization-server or /.well-known/openid-configuration
+    on any host (probed 2026-07-26).
+- id: rfc9116-security-txt
+  conforms: true
+  evidence: >-
+    /.well-known/security.txt returns 200 on
+    use-land-property-data.service.gov.uk and on www.gov.uk, both pointing at
+    HackerOne intake. Note the Use land and property data file carries an Expires
+    of 2025-06-03, which is in the past.
+- id: rfc8594-sunset-header
+  conforms: false
+  evidence: No Sunset or Deprecation headers and no deprecation policy published.
+- id: sparql-1.1
+  conforms: true
+  evidence: >-
+    Live SPARQL 1.1 query endpoint at
+    https://landregistry.data.gov.uk/landregistry/query returning
+    application/sparql-results+json, with the Qonsole console at
+    http://landregistry.data.gov.uk/qonsole.
+- id: w3c-linked-data-api
+  conforms: true
+  evidence: >-
+    Price Paid Data and UK House Price Index resolve under /data/ppi and
+    /data/ukhpi with api: vocabulary terms from
+    http://purl.org/linked-data/api/vocab# and _page / _pageSize paging.
+- id: rdf-owl-skos
+  conforms: true
+  evidence: >-
+    The published ontologies at /def/ppi, /def/common and /def/ukhpi (harvested to
+    vocabulary/) are Turtle documents using owl:Class, rdfs:label, rdfs:comment
+    and skos:Concept.
+- id: dcat
+  conforms: false
+  evidence: >-
+    No DCAT catalogue document and no /.well-known/api-catalog on any host
+    (probed 2026-07-26, 404).
+- id: open-government-licence-v3
+  conforms: true
+  evidence: >-
+    Open data and the developer pack are published under OGL v3.0 with a required
+    Crown copyright attribution statement.
+- id: inspire
+  conforms: true
+  evidence: >-
+    HM Land Registry publishes INSPIRE index polygons, the EU INSPIRE Directive
+    spatial dataset obligation as implemented in the UK.
+- id: gds-service-standard
+  conforms: true
+  evidence: >-
+    Services are built on the GOV.UK Design System and HMLR publishes GDS-derived
+    component libraries (@hmlr/frontend, @hmlr/govuk-react-components-library) and
+    per-service accessibility statements.
+- id: wcag-2.1
+  conforms: partial
+  evidence: >-
+    Accessibility statements are published for both the developer pack
+    (https://landregistry.github.io/bgtechdoc/accessibility/index.html) and the
+    Use land and property data service
+    (https://use-land-property-data.service.gov.uk/accessibility-statement).
+- id: reso-web-api
+  conforms: false
+  evidence: >-
+    No RESO Web API certification, no RESO Data Dictionary and no OData $metadata
+    document anywhere in the estate. RESO is a North American NAR construct with
+    no UK adoption; HMLR's machine-readable contracts are OpenAPI, XSD and W3C
+    linked data.
+- id: odata
+  conforms: false
+  evidence: No $metadata document and no OData conventions in any contract.
+- id: asyncapi
+  conforms: false
+  evidence: >-
+    HMLR publishes no AsyncAPI document. A real event surface exists (the
+    Notifications API, eleven typed events with published JSON Schemas); this repo
+    carries a generated AsyncAPI 3.0.0 description of it at
+    asyncapi/hm-land-registry-business-gateway-notifications-asyncapi.yml.
+- id: soap-wsdl-xsd
+  conforms: true
+  evidence: >-
+    Sixteen SOAP services remain live with 37 published XSD request/response
+    schemas in the developer pack.
+certifications:
+  published: false
+  detail: >-
+    No SOC 2, ISO 27001, PCI DSS, HIPAA, FedRAMP or CSA STAR certification is
+    published for any HM Land Registry API surface, and no trust centre exists.
+    HMLR's published assurance posture is a GOV.UK vulnerability disclosure policy
+    and per-service accessibility statements, which is the normal shape for a UK
+    non-ministerial government department rather than a commercial vendor.
+  probed: '2026-07-26'

@@ -1,0 +1,143 @@
+PREFIX api:     <http://purl.org/linked-data/api/vocab#>
+PREFIX common:  <http://landregistry.data.gov.uk/def/common/>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX owl:     <http://www.w3.org/2002/07/owl#>
+PREFIX ppi:     <http://landregistry.data.gov.uk/def/ppi/>
+PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs:    <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos:    <http://www.w3.org/2004/02/skos/core#>
+PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
+
+ppi:RecordStatusConcept
+        rdf:type         owl:Class;
+        rdfs:comment     "RecordStatusConcept Class in which specific instances are defined using a skos structure."@en;
+        rdfs:label       "Record status concept"@en;
+        rdfs:subClassOf  skos:Concept .
+
+ppi:Transaction  rdf:type  owl:Class;
+        rdfs:comment     "Transaction Class which may have multiple TransactionRecords datatype"@en;
+        rdfs:label       "Transaction"@en;
+        rdfs:subClassOf  owl:Thing;
+        rdfs:subClassOf  [ rdf:type            owl:Restriction;
+                           owl:minCardinality  1;
+                           owl:onProperty      ppi:hasTransactionRecord
+                         ];
+        rdfs:subClassOf  [ rdf:type         owl:Restriction;
+                           owl:cardinality  1;
+                           owl:onProperty   ppi:transactionId
+                         ] .
+
+ppi:TransactionCategory
+        rdf:type         owl:Class;
+        rdfs:comment     "The class of Price Paid Transaction Categories"@en;
+        rdfs:label       "Transaction category"@en;
+        rdfs:subClassOf  skos:Concept .
+
+ppi:recordStatusConceptScheme
+        rdf:type            skos:ConceptScheme;
+        rdfs:comment        "Skos Concept Scheme for Record Status"@en;
+        rdfs:label          "Record status concept scheme"@en;
+        skos:hasTopConcept  ppi:delete , ppi:change , ppi:add;
+        skos:prefLabel      "record status concept scheme"@en .
+
+common:  rdf:type        owl:Ontology;
+        rdfs:comment     "Common definitions for Land Registry Linked Data that forms part of the 'Day1' dataset published each month that contains information on property transactions for full value."@en;
+        rdfs:label       "Common definitions for Land Registry Linked Data"@en;
+        owl:imports      <http://www.w3.org/2004/02/skos/core>;
+        owl:versionInfo  "Land Registry Property Market Trend Data - COMMON Model version 1.0"@en .
+
+ppi:    rdf:type         owl:Ontology;
+        rdfs:comment     "Land Registry generated Price Paid Data. This data forms part of the Land Registry 'Day1' dataset published each month that contains information on property transactions for full value. Please see the Land Registry website for details of transactions that are excluded from these figures. The data within this store is the same as that published in a CSV file on the 20th working day of each month."@en;
+        rdfs:label       "Monthly Land Registry Price Paid Data"@en;
+        owl:imports      <http://www.w3.org/2004/02/skos/core> , common:;
+        owl:versionInfo  "Land Registry Property Market Trend Data - PPI Model version 1.0"@en .
+
+ppi:TransactionIdDatatype
+        rdf:type      rdfs:Datatype;
+        rdfs:comment  "Transaction id datatype"@en;
+        rdfs:label    "TransactionId datatype"@en .
+
+ppi:RecordStatusNotationDatatype
+        rdf:type      rdfs:Datatype;
+        rdfs:comment  "Record status notation data type"@en;
+        rdfs:label    "Record status notation datatype"@en .
+
+ppi:TransactionRecord
+        rdf:type         owl:Class;
+        rdfs:comment     "TransactionRecord Class which is a single record belonging to a Transaction."@en;
+        rdfs:label       "TransactionRecord"@en;
+        rdfs:subClassOf  owl:Thing;
+        rdfs:subClassOf  [ rdf:type         owl:Restriction;
+                           owl:cardinality  1;
+                           owl:onProperty   ppi:pricePaid
+                         ];
+        rdfs:subClassOf  [ rdf:type         owl:Restriction;
+                           owl:cardinality  1;
+                           owl:onProperty   ppi:propertyType
+                         ];
+        rdfs:subClassOf  [ rdf:type         owl:Restriction;
+                           owl:cardinality  1;
+                           owl:onProperty   ppi:transactionId
+                         ];
+        rdfs:subClassOf  [ rdf:type         owl:Restriction;
+                           owl:cardinality  1;
+                           owl:onProperty   ppi:transactionCategory
+                         ];
+        rdfs:subClassOf  [ rdf:type         owl:Restriction;
+                           owl:cardinality  1;
+                           owl:onProperty   ppi:propertyAddress
+                         ];
+        rdfs:subClassOf  [ rdf:type         owl:Restriction;
+                           owl:cardinality  1;
+                           owl:onProperty   ppi:estateType
+                         ];
+        rdfs:subClassOf  [ rdf:type         owl:Restriction;
+                           owl:cardinality  1;
+                           owl:onProperty   ppi:transactionDate
+                         ];
+        rdfs:subClassOf  [ rdf:type         owl:Restriction;
+                           owl:cardinality  1;
+                           owl:onProperty   ppi:recordStatus
+                         ];
+        rdfs:subClassOf  [ rdf:type         owl:Restriction;
+                           owl:cardinality  1;
+                           owl:onProperty   ppi:newBuild
+                         ] .
+
+ppi:change  rdf:type              ppi:RecordStatusConcept;
+        rdfs:label                "Change"@en;
+        ppi:recordStatusNotation  "C"^^ppi:RecordStatusNotationDatatype;
+        skos:definition           "C - Changed records: those changed in the price paid dataset in the monthly refresh. These should be replaced/updated in any stored data using the unique identifier to identify them."@en;
+        skos:notation             "C"^^ppi:RecordStatusNotationDatatype , "C";
+        skos:prefLabel            "Change"@en;
+        skos:topConceptOf         ppi:recordStatusConceptScheme .
+
+ppi:TransactionCategoryNotationDatatype
+        rdf:type      rdfs:Datatype;
+        rdfs:comment  "Transaction Category notation data type"@en;
+        rdfs:label    "Transaction Category notation datatype"@en .
+
+ppi:add  rdf:type                 ppi:RecordStatusConcept;
+        rdfs:label                "Add"@en;
+        ppi:recordStatusNotation  "A"^^ppi:RecordStatusNotationDatatype;
+        skos:definition           "A - Added records: those added into the price paid dataset in the monthly refresh due to new sales transactions."@en;
+        skos:notation             "A" , "A"^^ppi:RecordStatusNotationDatatype;
+        skos:prefLabel            "Add"@en;
+        skos:topConceptOf         ppi:recordStatusConceptScheme .
+
+<https://landregistry.data.gov.uk/def/ppi.ttl>
+        rdf:type                     api:ListEndpoint , api:Page;
+        <http://a9.com/-/spec/opensearch/1.1/itemsPerPage>
+                "10"^^xsd:long;
+        <http://a9.com/-/spec/opensearch/1.1/startIndex>
+                "1"^^xsd:long;
+        dcterms:hasPart              <https://landregistry.data.gov.uk/def/ppi.ttl>;
+        dcterms:isPartOf             <https://landregistry.data.gov.uk/def/ppi.ttl>;
+        api:definition               <https://landregistry.data.gov.uk/meta/def/_scheme.ttl>;
+        api:extendedMetadataVersion  <https://landregistry.data.gov.uk/def/ppi.ttl?_metadata=all>;
+        api:items                    ( ppi: ppi:RecordStatusConcept ppi:RecordStatusNotationDatatype ppi:Transaction ppi:TransactionCategory ppi:TransactionCategoryNotationDatatype ppi:TransactionIdDatatype ppi:TransactionRecord ppi:add ppi:change );
+        api:page                     "0"^^xsd:long;
+        <http://www.w3.org/1999/xhtml/vocab#first>
+                <https://landregistry.data.gov.uk/def/ppi.ttl?_page=0>;
+        <http://www.w3.org/1999/xhtml/vocab#next>
+                <https://landregistry.data.gov.uk/def/ppi.ttl?_page=1> .

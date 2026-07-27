@@ -1,0 +1,101 @@
+generated: '2026-07-26'
+method: searched
+source: https://landregistry.github.io/bg-dev-pack-redesign/find-a-service-api
+docs:
+- https://landregistry.github.io/bg-dev-pack-redesign/
+- https://www.gov.uk/guidance/business-gateway-developer-pack
+- https://use-land-property-data.service.gov.uk/api-information
+versioning:
+  scheme: uri-path
+  detail: >-
+    Business Gateway REST resources carry the major version in the path (/v0, /v1,
+    /v2) and whole contracts are versioned as separate documents in the developer
+    pack. The developer pack exposes a per-API version selector labelled "Version
+    and Status" with the newest marked "(latest)". The Use land and property data
+    service is on /api/v1. The open linked-data estate is unversioned; datasets
+    carry their own version field instead.
+  current:
+    submit_an_application_to_change_the_land_register: '1.0'
+    submit_an_application_spec_version: 1.0.5
+    official_copy_document_availability: v2
+    registered_proprietor_names: v1
+    official_search_of_whole_with_data: v1
+    estimate_completion_date: v1
+    land_register_api: 6.0.0
+    use_land_and_property_data: v1
+  docs: https://landregistry.github.io/bg-dev-pack-redesign/find-a-service-api
+deprecation:
+  policy_url: null
+  policy_published: false
+  sunset_header: false
+  deprecation_header: false
+  detail: >-
+    HM Land Registry publishes no deprecation policy, no sunset dates and no RFC
+    8594 Sunset or Deprecation headers. Supersession is signalled only by the
+    developer pack's version selector, which marks the newest version "(latest)"
+    and keeps the older one listed and downloadable. Nothing in the estate is
+    marked deprecated: true in any OpenAPI document.
+  superseded_versions:
+  - api: Submit an application to change the Land Register
+    superseded: '0.3'
+    current: '1.0'
+    older_still_published: true
+  - api: Official Copy Document Availability
+    superseded: v1
+    current: v2
+    older_still_published: true
+  in_flight:
+  - api: Submit an application to change the Land Register
+    version: '1.1'
+    status: >-
+      A v1.1 directory exists in the developer pack but both openapi.json and
+      openapi.html in it are zero-byte placeholders. Re-verified 2026-07-26:
+      https://landregistry.github.io/bgtechdoc/documents/submit-an-application-to-change-the-register/v1.1/openapi.json
+      returns HTTP 200 with a zero-byte body. Nothing was saved for it.
+  migration_guidance:
+  - kind: SOAP to REST field mapping
+    detail: >-
+      The Submit an application technical guide publishes a full SOAP-to-REST
+      field migration table (for example MessageID becomes the Idempotency-Key
+      header, Reference becomes customer_reference, CompanyName becomes
+      organisation_name). Sixteen SOAP services remain live alongside the REST
+      ones; the REST estate is additive, not yet a replacement.
+    url: https://landregistry.github.io/bg-dev-pack-redesign/apis/submit-an-application/1.0/technical-guide
+deprecated_operations: []
+status_page:
+  published: false
+  detail: >-
+    No status page, uptime dashboard or incident feed was found for any HM Land
+    Registry API surface. Probed 2026-07-26: status.landregistry.gov.uk does not
+    resolve, and GOV.UK carries no HMLR service-availability page. Operational
+    incidents are handled through the Information Systems Service Desk on
+    0300 006 0400.
+sla:
+  published: false
+  uptime_target: null
+  detail: >-
+    No published uptime target or service level agreement for any of the three
+    estates. Business Gateway support is a phone service desk, not a status
+    contract.
+support:
+  service_desk: HM Land Registry Information Systems Service Desk, telephone 0300 006 0400
+  channel_partners: channelpartners@landregistry.gov.uk
+  developer_pack_contact: https://landregistry.github.io/bg-dev-pack-redesign/contact-us
+  community: https://www.gov.uk/guidance/join-the-business-gateway-community
+  feedback_form: https://forms.office.com/e/UjzW2nG3z3
+roadmap:
+  published: false
+  signals:
+  - >-
+    A sandbox test environment for developers is planned; HMLR states the exact
+    release date is to be confirmed.
+  - >-
+    The developer pack itself is mid-redesign, served from the
+    bg-dev-pack-redesign repository described by HMLR as a "temporary home for the
+    dev pack redesign as it is in progress"; the legacy bgtechdoc site now
+    redirects to it.
+  - >-
+    The Notifications API states more subjects beyond "application" will be
+    available as the API is developed further.
+  - >-
+    Information about testing SOAP and REST APIs "will be added at a later date".

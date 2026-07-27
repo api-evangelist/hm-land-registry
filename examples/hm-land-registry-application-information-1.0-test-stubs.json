@@ -1,0 +1,264 @@
+{
+  "_source": "https://landregistry.github.io/bg-dev-pack-redesign/apis/application-information/1.0/test-stubs",
+  "_harvested": "2026-07-26",
+  "_method": "searched",
+  "_note": "Request and response bodies published verbatim by HM Land Registry as test stubs. Nothing here was invented or modified.",
+  "examples": [
+    {
+      "data": {
+        "application_request_id": "abababab-abab-abab-abab-ababababavng",
+        "hmlr_reference": null,
+        "priority_timestamp": null,
+        "status": "VALIDATING",
+        "correspondences": null,
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "data": {
+        "application_request_id": "abababab-abab-abab-abab-ababababavlf",
+        "hmlr_reference": null,
+        "priority_timestamp": null,
+        "status": "VALIDATION_FAILED",
+        "correspondences": null,
+        "errors": [
+          {
+            "type": "mdref-on-record",
+            "detail": "MD Ref MD123A does not exist on record"
+          },
+          {
+            "type": "lender-name-matches-records",
+            "detail": "MD Ref MD123A not found on record"
+          },
+          {
+            "type": "all-mandatory-documents-provided",
+            "detail": "Mandatory documents missing for transactions of type [T]"
+          },
+          {
+            "type": "transferee-has-representation-type",
+            "detail": "Transferee must have a representation type"
+          }
+        ],
+        "warnings": [
+          "Please ensure any relevant evidence is attached."
+        ]
+      }
+    },
+    {
+      "data": {
+        "application_request_id": "abababab-abab-abab-abab-ababababasye",
+        "hmlr_reference": null,
+        "priority_timestamp": null,
+        "status": "SYSTEM_ERROR",
+        "correspondences": null,
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "data": {
+        "application_request_id": "abababab-abab-abab-abab-ababababaaap",
+        "hmlr_reference": "BABAAAP",
+        "priority_timestamp": null,
+        "status": "ACCEPTED_AWAITING_PRIORITY",
+        "correspondences": [],
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "data": {
+        "application_request_id": "abababab-abab-abab-abab-ababababaapp",
+        "hmlr_reference": "BABAAPP",
+        "priority_timestamp": "2025-08-27T14:40:35.23071Z",
+        "status": "ACCEPTED_PRIORITY_PROTECTED",
+        "correspondences": [
+          {
+            "record_id": "2025-09-05T08:15:01.259Z",
+            "documents": [
+              {
+                "created_at": "2025-09-05T08:15:01.281Z",
+                "download_id": "ltr_6a1756a68fbe29c58fe75e9c7a261dd416692f8a0d916ac63aead8111549",
+                "type": {
+                  "code": "LTR",
+                  "name": "LETTER"
+                }
+              }
+            ]
+          }
+        ],
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "data": {
+        "application_request_id": "abababab-abab-abab-abab-ababababacan",
+        "hmlr_reference": "BABACAN",
+        "priority_timestamp": "2025-08-27T14:40:35.23071Z",
+        "status": "CANCELLED",
+        "correspondences": [
+          {
+            "record_id": "2025-09-05T08:20:03.996Z",
+            "documents": [
+              {
+                "created_at": "2025-09-05T08:20:04.050Z",
+                "download_id": "can_62523897b09f9a3f380eefd878e7205aac78781cc68383ba79c3b7d42385",
+                "type": {
+                  "code": "CAN",
+                  "name": "CANCELLATION LETTER"
+                }
+              }
+            ]
+          }
+        ],
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "data": {
+        "application_request_id": "abababab-abab-abab-abab-ababababacmp",
+        "hmlr_reference": "BABACMP",
+        "priority_timestamp": "2025-08-27T14:40:35.23071Z",
+        "status": "COMPLETED",
+        "correspondences": [
+          {
+            "record_id": "2025-09-05T08:15:01.259Z",
+            "documents": [
+              {
+                "created_at": "2025-09-05T08:15:01.281Z",
+                "download_id": "ltr_6a1756a68fbe29c58fe75e9c7a261dd416692f8a0d916ac63aead8111549",
+                "type": {
+                  "code": "LTR",
+                  "name": "LETTER"
+                }
+              },
+              {
+                "created_at": "2025-09-05T08:15:01.319Z",
+                "download_id": "rcs_efc428e900f2d1501c156e9ec664f2a740749b6689afe61b6bf95440a31a",
+                "type": {
+                  "code": "RCS",
+                  "name": "REGISTRATION COMPLETION SHEET"
+                }
+              },
+              {
+                "created_at": "2025-09-05T08:15:01.343Z",
+                "download_id": "reg_7ea12372179f1ae9d80fefec38cb7ff6b42672c49a0c292827434c848038",
+                "type": {
+                  "code": "REG",
+                  "name": "COPY OF UPDATED REGISTER"
+                }
+              }
+            ]
+          }
+        ],
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "data": {
+        "application_request_id": "abababab-abab-abab-abab-ababababaaap",
+        "hmlr_reference": "BABAAAP",
+        "priority_timestamp": null,
+        "status": "ACCEPTED_AWAITING_PRIORITY",
+        "correspondences": [],
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "data": {
+        "application_request_id": "abababab-abab-abab-abab-ababababaapp",
+        "hmlr_reference": "BABAAPP",
+        "priority_timestamp": "2025-08-27T14:40:35.23071Z",
+        "status": "ACCEPTED_PRIORITY_PROTECTED",
+        "correspondences": [
+          {
+            "record_id": "2025-09-05T08:15:01.259Z",
+            "documents": [
+              {
+                "created_at": "2025-09-05T08:15:01.281Z",
+                "download_id": "ltr_6a1756a68fbe29c58fe75e9c7a261dd416692f8a0d916ac63aead8111549",
+                "type": {
+                  "code": "LTR",
+                  "name": "LETTER"
+                }
+              }
+            ]
+          }
+        ],
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "data": {
+        "application_request_id": "abababab-abab-abab-abab-ababababacan",
+        "hmlr_reference": "BABACAN",
+        "priority_timestamp": "2025-08-27T14:40:35.23071Z",
+        "status": "CANCELLED",
+        "correspondences": [
+          {
+            "record_id": "2025-09-05T08:20:03.996Z",
+            "documents": [
+              {
+                "created_at": "2025-09-05T08:20:04.050Z",
+                "download_id": "can_62523897b09f9a3f380eefd878e7205aac78781cc68383ba79c3b7d42385",
+                "type": {
+                  "code": "CAN",
+                  "name": "CANCELLATION LETTER"
+                }
+              }
+            ]
+          }
+        ],
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "data": {
+        "application_request_id": "abababab-abab-abab-abab-ababababacmp",
+        "hmlr_reference": "BABACMP",
+        "priority_timestamp": "2025-08-27T14:40:35.23071Z",
+        "status": "COMPLETED",
+        "correspondences": [
+          {
+            "record_id": "2025-09-05T08:15:01.259Z",
+            "documents": [
+              {
+                "created_at": "2025-09-05T08:15:01.281Z",
+                "download_id": "ltr_6a1756a68fbe29c58fe75e9c7a261dd416692f8a0d916ac63aead8111549",
+                "type": {
+                  "code": "LTR",
+                  "name": "LETTER"
+                }
+              },
+              {
+                "created_at": "2025-09-05T08:15:01.319Z",
+                "download_id": "rcs_efc428e900f2d1501c156e9ec664f2a740749b6689afe61b6bf95440a31a",
+                "type": {
+                  "code": "RCS",
+                  "name": "REGISTRATION COMPLETION SHEET"
+                }
+              },
+              {
+                "created_at": "2025-09-05T08:15:01.343Z",
+                "download_id": "reg_7ea12372179f1ae9d80fefec38cb7ff6b42672c49a0c292827434c848038",
+                "type": {
+                  "code": "REG",
+                  "name": "COPY OF UPDATED REGISTER"
+                }
+              }
+            ]
+          }
+        ],
+        "errors": [],
+        "warnings": []
+      }
+    }
+  ]
+}

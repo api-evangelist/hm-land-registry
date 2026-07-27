@@ -1,0 +1,92 @@
+generated: '2026-07-26'
+method: searched
+source: >-
+  npm registry and the LandRegistry GitHub organisation (probed 2026-07-26)
+summary: >-
+  HM Land Registry ships no embeddable API widget — there is no hosted checkout,
+  no drop-in title search box and no embedded dashboard for consumers of its APIs.
+  What it does publish, and publishes properly, is a government design system: a
+  front-end style library, a React component library built on the GOV.UK Design
+  System, Jinja and WTForms macro packages for Python services, and a prototype
+  kit. These are the components HMLR's own service teams (and, since they are
+  public on npm and GitHub, anyone building an HMLR-adjacent service) assemble
+  user interfaces from. They are recorded here because they are genuine
+  first-party client-side component libraries, and kept distinct from the SDK
+  question: none of them talks to an HMLR API.
+embeddable_api_widgets: none
+families:
+- family: Design system
+  description: >-
+    The canonical place HMLR service teams find styles, components and patterns.
+  components:
+  - name: HMLR Design System
+    repository: https://github.com/LandRegistry/hmlr-design-system
+    kind: design-system
+  - name: HMLR Prototype Kit
+    repository: https://github.com/LandRegistry/hmlr-prototype-kit
+    kind: prototype-kit
+  - name: HMLR Design History
+    repository: https://github.com/LandRegistry/hmlr-design-history
+    kind: documentation
+- family: Web component libraries
+  description: Loadable style and component packages published to npm.
+  loaders:
+  - npm install @hmlr/frontend
+  - npm install @hmlr/govuk-react-components-library
+  components:
+  - name: "@hmlr/frontend"
+    registry: npm
+    url: https://www.npmjs.com/package/@hmlr/frontend
+    repository: https://github.com/LandRegistry/hmlr-frontend
+    version: 2.1.0-rc.2
+    kind: css-and-js
+    official: true
+  - name: "@hmlr/govuk-react-components-library"
+    registry: npm
+    url: https://www.npmjs.com/package/@hmlr/govuk-react-components-library
+    repository: https://github.com/LandRegistry/govuk-react-components-library
+    version: 1.2.2
+    kind: react
+    official: true
+  - name: HMLR Header
+    repository: https://github.com/LandRegistry/hmlr-header
+    kind: component
+    description: HMLR header design and documentation built on the GOV.UK generic header.
+- family: Server-rendered template macros
+  description: >-
+    Macro packages that render GOV.UK Design System components from Python
+    services, which is how most HMLR services are built.
+  components:
+  - name: govuk-frontend-jinja
+    repository: https://github.com/LandRegistry/govuk-frontend-jinja
+    kind: jinja-macros
+    official: true
+  - name: hmlr-frontend-jinja
+    repository: https://github.com/LandRegistry/hmlr-frontend-jinja
+    kind: jinja-macros
+    official: true
+  - name: govuk-frontend-wtf
+    repository: https://github.com/LandRegistry/govuk-frontend-wtf
+    kind: wtforms-widgets
+    official: true
+  - name: govuk-frontend-flask
+    repository: https://github.com/LandRegistry/govuk-frontend-flask
+    kind: application-template
+    official: true
+- family: Mapping
+  description: >-
+    Spatial components, the visual counterpart to HMLR's INSPIRE polygons and
+    National Polygon Service.
+  components:
+  - name: hmlr-map
+    registry: npm
+    url: https://www.npmjs.com/package/hmlr-map
+    kind: map-component
+    description: >-
+      An OpenLayers-based mapping component for the GOV.UK Prototype Kit.
+      Published to npm but not under the @hmlr scope; treat first-party status as
+      probable rather than confirmed.
+    official: unconfirmed
+  - name: hmlr-map-notes
+    repository: https://github.com/LandRegistry/hmlr-map-notes
+    kind: documentation

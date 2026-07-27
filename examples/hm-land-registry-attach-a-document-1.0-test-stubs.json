@@ -1,0 +1,14 @@
+{
+  "_source": "https://landregistry.github.io/bg-dev-pack-redesign/apis/attach-a-document/1.0/test-stubs",
+  "_harvested": "2026-07-26",
+  "_method": "searched",
+  "_note": "Request and response bodies published verbatim by HM Land Registry as test stubs. Nothing here was invented or modified.",
+  "examples": [
+    {
+      "data": {
+        "document_id": "fa8c395b-ce64-4cb4-a188-d7f91f4c3139",
+        "certification_statement_type": "CERTIFIED"
+      }
+    }
+  ]
+}

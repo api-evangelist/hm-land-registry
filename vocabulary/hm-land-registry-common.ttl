@@ -1,0 +1,128 @@
+PREFIX api:     <http://purl.org/linked-data/api/vocab#>
+PREFIX common:  <http://landregistry.data.gov.uk/def/common/>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX owl:     <http://www.w3.org/2002/07/owl#>
+PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs:    <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos:    <http://www.w3.org/2004/02/skos/core#>
+PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
+
+common:EstateTypeConcept
+        rdf:type         owl:Class;
+        rdfs:comment     "EstateTypeConcept Class in which specific instances are defined using a skos structure"@en;
+        rdfs:label       "Estate type concept"@en;
+        rdfs:subClassOf  skos:Concept .
+
+common:BS7666Address  rdf:type  owl:Class;
+        rdfs:comment     "BS7666Address structure containing paon, saon, street, town, locality, district, county and postcode."@en;
+        rdfs:label       "BS7666 address"@en;
+        rdfs:subClassOf  common:Address;
+        rdfs:subClassOf  [ rdf:type            owl:Restriction;
+                           owl:maxCardinality  1;
+                           owl:onProperty      common:town
+                         ];
+        rdfs:subClassOf  [ rdf:type            owl:Restriction;
+                           owl:maxCardinality  1;
+                           owl:onProperty      common:district
+                         ];
+        rdfs:subClassOf  [ rdf:type            owl:Restriction;
+                           owl:maxCardinality  1;
+                           owl:onProperty      common:postcode
+                         ];
+        rdfs:subClassOf  [ rdf:type            owl:Restriction;
+                           owl:maxCardinality  1;
+                           owl:onProperty      common:locality
+                         ];
+        rdfs:subClassOf  [ rdf:type            owl:Restriction;
+                           owl:maxCardinality  1;
+                           owl:onProperty      common:paon
+                         ];
+        rdfs:subClassOf  [ rdf:type            owl:Restriction;
+                           owl:maxCardinality  1;
+                           owl:onProperty      common:street
+                         ];
+        rdfs:subClassOf  [ rdf:type            owl:Restriction;
+                           owl:maxCardinality  1;
+                           owl:onProperty      common:saon
+                         ];
+        rdfs:subClassOf  [ rdf:type            owl:Restriction;
+                           owl:maxCardinality  1;
+                           owl:onProperty      common:county
+                         ] .
+
+common:leasehold  rdf:type         common:EstateTypeConcept;
+        rdfs:label                 "Leasehold"@en;
+        common:estateTypeNotation  "L"^^common:EstateTypeNotationDatatype;
+        skos:notation              "L" , "L"^^common:EstateTypeNotationDatatype;
+        skos:prefLabel             "Leasehold"@en;
+        skos:topConceptOf          common:estateTypeConceptScheme .
+
+common:EstateTypeNotationDatatype
+        rdf:type      rdfs:Datatype;
+        rdfs:comment  "Estate type notation data type"@en;
+        rdfs:label    "Estate type notation data type"@en .
+
+common:Address  rdf:type  owl:Class;
+        rdfs:comment     "Super Class for Address implementations"@en;
+        rdfs:label       "Address"@en;
+        rdfs:subClassOf  owl:Thing .
+
+common:  rdf:type        owl:Ontology;
+        rdfs:comment     "Common definitions for Land Registry Linked Data that forms part of the 'Day1' dataset published each month that contains information on property transactions for full value."@en;
+        rdfs:label       "Common definitions for Land Registry Linked Data"@en;
+        owl:imports      <http://www.w3.org/2004/02/skos/core>;
+        owl:versionInfo  "Land Registry Property Market Trend Data - COMMON Model version 1.0"@en .
+
+common:PropertyTypeNotationDatatype
+        rdf:type      rdfs:Datatype;
+        rdfs:comment  "Property type notation data type"@en;
+        rdfs:label    "Property type notation data type"@en .
+
+common:estateTypeConceptScheme
+        rdf:type            skos:ConceptScheme;
+        rdfs:comment        "Skos Concept Scheme for Estate Type"@en;
+        rdfs:label          "Estate type concept scheme"@en;
+        skos:hasTopConcept  common:freehold , common:leasehold .
+
+common:freehold  rdf:type          common:EstateTypeConcept;
+        rdfs:label                 "Freehold"@en;
+        common:estateTypeNotation  "F"^^common:EstateTypeNotationDatatype;
+        skos:notation              "F"^^common:EstateTypeNotationDatatype , "F";
+        skos:prefLabel             "Freehold"@en;
+        skos:topConceptOf          common:estateTypeConceptScheme .
+
+common:district  rdf:type  owl:DatatypeProperty;
+        rdfs:comment  "Name of an administrative district in England and Wales. An administrative district also covers the London boroughs, unitary authorities and for the purposes of Land Registry the Isles of Scilly parishes."@en;
+        rdfs:domain   common:BS7666Address;
+        rdfs:label    "District"@en;
+        rdfs:range    xsd:string .
+
+common:county  rdf:type  owl:DatatypeProperty;
+        rdfs:comment  "Name of a geographic area which comprises either a current of former county in England of Wales or a Unitary Authority."@en;
+        rdfs:domain   common:BS7666Address;
+        rdfs:label    "County"@en;
+        rdfs:range    xsd:string .
+
+common:PropertyTypeConcept
+        rdf:type         owl:Class;
+        rdfs:comment     "PropertyTypeConcept Class in which specific instances are defined using a skos structure"@en;
+        rdfs:label       "Property type concept"@en;
+        rdfs:subClassOf  skos:Concept;
+        skos:prefLabel   "Property type concept"@en .
+
+<https://landregistry.data.gov.uk/def/common.ttl>
+        rdf:type                     api:Page , api:ListEndpoint;
+        <http://a9.com/-/spec/opensearch/1.1/itemsPerPage>
+                "10"^^xsd:long;
+        <http://a9.com/-/spec/opensearch/1.1/startIndex>
+                "1"^^xsd:long;
+        dcterms:hasPart              <https://landregistry.data.gov.uk/def/common.ttl>;
+        dcterms:isPartOf             <https://landregistry.data.gov.uk/def/common.ttl>;
+        api:definition               <https://landregistry.data.gov.uk/meta/def/_scheme.ttl>;
+        api:extendedMetadataVersion  <https://landregistry.data.gov.uk/def/common.ttl?_metadata=all>;
+        api:items                    ( common: common:Address common:BS7666Address common:EstateTypeConcept common:EstateTypeNotationDatatype common:PropertyTypeConcept common:PropertyTypeNotationDatatype common:county common:district common:estateTypeConceptScheme );
+        api:page                     "0"^^xsd:long;
+        <http://www.w3.org/1999/xhtml/vocab#first>
+                <https://landregistry.data.gov.uk/def/common.ttl?_page=0>;
+        <http://www.w3.org/1999/xhtml/vocab#next>
+                <https://landregistry.data.gov.uk/def/common.ttl?_page=1> .

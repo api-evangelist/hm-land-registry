@@ -1,0 +1,386 @@
+generated: '2026-07-26'
+method: generated
+source: openapi/hm-land-registry-estimate-completion-date-openapi.yml, openapi/hm-land-registry-land-register-api-openapi.yml,
+  openapi/hm-land-registry-official-copy-document-availability-v1-customer-test-openapi.json,
+  openapi/hm-land-registry-official-copy-document-availability-v1-openapi.json, openapi/hm-land-registry-official-copy-document-availability-v2-customer-test-openapi.json,
+  openapi/hm-land-registry-official-copy-document-availability-v2-openapi.json, openapi/hm-land-registry-official-search-of-whole-with-data-openapi.yml,
+  openapi/hm-land-registry-registered-proprietor-names-openapi.json, openapi/hm-land-registry-submit-application-to-change-the-register-v0.3-openapi.json,
+  openapi/hm-land-registry-submit-application-to-change-the-register-v1.0-openapi.json, openapi/hm-land-registry-use-land-property-data-openapi.yml
+description: Recommended x-agentic-access execution contracts, classified heuristically from
+  the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
+  audience per deployment. See research/curity/agentic-governance/.
+summary:
+  operations: 29
+  by_action_class:
+    connected: 18
+    acting: 11
+  by_consequence:
+    read: 18
+    write: 7
+    physical: 4
+  human_in_the_loop_required: 0
+operations:
+- path: /v1/applications/{application_reference}/estimate-completion-date
+  method: get
+  operationId: getEstimateCompletionDate
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /title/{titleNumber}
+  method: get
+  operationId: getTitle
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /draft-titles/{titleNumber}
+  method: get
+  operationId: getDraftTitle
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /titles/{title_number}/official-copies/availability
+  method: get
+  operationId: getOfficialCopiesAvailability
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /titles/{title_number}/official-copies/availability
+  method: get
+  operationId: getOfficialCopiesAvailability
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /titles/{title_number}/official-copies/availability
+  method: get
+  operationId: getOfficialCopiesAvailability
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /titles/{title_number}/official-copies/availability
+  method: get
+  operationId: getOfficialCopiesAvailability
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/official-searches-of-whole
+  method: post
+  operationId: submitOfficialSearchOfWholeWithPriority
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /titles/{title_number}/registered-proprietor-names
+  method: get
+  operationId: getRegisteredProprietorNames
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v0/applications
+  method: post
+  operationId: Submit an application API
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v0/documents/url
+  method: post
+  operationId: Create an upload URL
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: Upload a document
+  method: put
+  operationId: Upload a document
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v0/applications/{application_request_id}/information
+  method: get
+  operationId: Application information API
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v0/notifications
+  method: get
+  operationId: Receive notifications API
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v0/notifications/acknowledge
+  method: post
+  operationId: Acknowledge notifications API
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/applications
+  method: post
+  operationId: submit_an_application_to_change_the_register_v1
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/documents/{document_id}
+  method: get
+  operationId: download_a_document_v1
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: Download a document
+  method: get
+  operationId: Download a document
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/documents/url
+  method: post
+  operationId: send_a_document_v1
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: Upload a document
+  method: put
+  operationId: Upload a document
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/applications/{application_request_id}/information
+  method: get
+  operationId: get_application_information_v1
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/applications/{application_request_id}/attachments
+  method: post
+  operationId: attach_a_document_v1
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/applications/{application_request_id}/messages
+  method: post
+  operationId: attach_a_message_v1
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/notifications
+  method: get
+  operationId: get_notifications_v1
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/notifications/acknowledge
+  method: post
+  operationId: acknowledge_notifications_v1
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /datasets
+  method: get
+  operationId: listDatasets
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /datasets/{dataset_name}
+  method: get
+  operationId: getDataset
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /datasets/{dataset_name}/{file_name}
+  method: get
+  operationId: getDatasetFileDownloadUrl
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /datasets/history/{dataset_name}
+  method: get
+  operationId: getDatasetHistory
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none

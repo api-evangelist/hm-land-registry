@@ -1,0 +1,102 @@
+{
+  "_source": "https://landregistry.github.io/bg-dev-pack-redesign/apis/send-a-document/1.0/test-stubs",
+  "_harvested": "2026-07-26",
+  "_method": "searched",
+  "_note": "Request and response bodies published verbatim by HM Land Registry as test stubs. Nothing here was invented or modified.",
+  "examples": [
+    {
+      "data": {
+        "document_type": "CHARGE",
+        "additional_provider_filter": "string",
+        "file_length": 123123,
+        "file_sha256": "This is a 44 character string. blah blah bla"
+      }
+    },
+    {
+      "data": {
+        "upload_url": "https://www.your-upload-url-would-be-here.com",
+        "document_id": "12345678-1234-1234-1234-1234-123456789abc"
+      }
+    },
+    {
+      "data": {
+        "document_type": "INVALID",
+        "additional_provider_filter": "string",
+        "file_length": 123123,
+        "file_sha256": "This is a 44 character string. blah blah bla"
+      }
+    },
+    {
+      "type": "https://landregistry.github.io/bgtechdoc/problems/global#bad-request",
+      "title": "Bad Request",
+      "detail": "The request is invalid or malformed.",
+      "status": "400",
+      "errors": [
+        {
+          "type": "L1A_JSON_PARSE_ERROR",
+          "detail": "Invalid document_type: 'INVALID'"
+        }
+      ]
+    },
+    {
+      "data": {
+        "document_type": "CHARGE",
+        "additional_provider_filter": "string",
+        "file_length": 0,
+        "file_sha256": "This is a 44 character string. blah blah bla"
+      }
+    },
+    {
+      "type": "https://landregistry.github.io/bgtechdoc/problems/global#bad-request",
+      "title": "Bad Request",
+      "detail": "The request is invalid or malformed.",
+      "status": "400",
+      "errors": [
+        {
+          "type": "L1A_SCHEMA_VALIDATION_ERROR",
+          "detail": "There are problems with the JSON provided [must be greater than or equal to 1]"
+        }
+      ]
+    },
+    {
+      "data": {
+        "document_type": "CHARGE",
+        "additional_provider_filter": "string",
+        "file_length": 419430401,
+        "file_sha256": "This is a 44 character string. blah blah bla"
+      }
+    },
+    {
+      "type": "https://landregistry.github.io/bgtechdoc/problems/global#bad-request",
+      "title": "Bad Request",
+      "detail": "The request is invalid or malformed.",
+      "status": "400",
+      "errors": [
+        {
+          "type": "L1A_SCHEMA_VALIDATION_ERROR",
+          "detail": "There are problems with the JSON provided [must be less than or equal to 41943040]"
+        }
+      ]
+    },
+    {
+      "data": {
+        "document_type": "CHARGE",
+        "additional_provider_filter": "string",
+        "file_length": 123123,
+        "file_sha256": "This is less than 44 characters."
+      }
+    },
+    {
+      "type": "https://landregistry.github.io/bgtechdoc/problems/global#bad-request",
+      "title": "Bad Request",
+      "detail": "The request is invalid or malformed.",
+      "status": "400",
+      "errors": [
+        {
+          "type": "L1A_SCHEMA_VALIDATION_ERROR",
+          "detail": "There are problems with the JSON provided [size must be between 44 and 44]"
+        }
+      ]
+    }
+  ]
+}

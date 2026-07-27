@@ -1,0 +1,228 @@
+generated: '2026-07-26'
+method: derived
+source: >-
+  openapi/ 4xx and 5xx responses across all eleven harvested specs, enriched from
+  the Business Gateway technical guides
+docs:
+- https://landregistry.github.io/bg-dev-pack-redesign/apis/submit-an-application/1.0/technical-guide
+- https://landregistry.github.io/bg-dev-pack-redesign/apis/notifications/1.0/technical-guide
+- https://use-land-property-data.service.gov.uk/api-documentation
+format: mixed
+format_detail: >-
+  HM Land Registry does not use one error format across its estate. The two
+  Business Gateway notification operations are the only ones that declare RFC
+  9457 application/problem+json, and download_a_document_v1 offers it alongside
+  application/json. Everything else on the Business Gateway returns a bespoke
+  application/json envelope with a top-level "errors" array. The Use land and
+  property data service returns its own {"error": string, "success": false}
+  envelope. There is no published error-code registry: HMLR publishes HTTP status
+  semantics and, separately, an asynchronous validation-failure notification, but
+  no enumerated application error codes.
+formats:
+- id: rfc9457
+  media_type: application/problem+json
+  scope: >-
+    get_notifications_v1, acknowledge_notifications_v1 (all statuses) and
+    download_a_document_v1 (alongside application/json)
+  source: openapi/hm-land-registry-submit-application-to-change-the-register-v1.0-openapi.json
+- id: business-gateway-errors-envelope
+  media_type: application/json
+  field: errors
+  scope: the remaining Business Gateway REST operations
+- id: use-land-property-data-envelope
+  media_type: application/json
+  fields:
+  - error
+  - success
+  scope: the four Use land and property data operations
+  verified: '2026-07-26'
+asynchronous_errors:
+  detail: >-
+    Only schema violations are rejected synchronously as HTTP 400. Every other
+    validation failure on an application to change the register is reported
+    asynchronously as an application.validation-failed notification; the detail is
+    then retrieved with get_application_information_v1. application.error reports
+    that the application was not added to the daylist because of an HMLR system
+    error. application.attachment-failed and application.message-failed carry a
+    failure_reason string.
+  events:
+  - application.validation-failed
+  - application.error
+  - application.attachment-failed
+  - application.message-failed
+  artifact: asyncapi/hm-land-registry-business-gateway-notifications-asyncapi.yml
+retry_guidance:
+  retryable:
+  - 408
+  - 429
+  - 500-599
+  - network timeouts
+  not_retryable:
+  - 401
+  - 403
+  detail: >-
+    Retries of the submit operation must reuse the same Idempotency-Key only when
+    the request data is unchanged. See conventions/hm-land-registry-conventions.yml.
+  source: https://landregistry.github.io/bg-dev-pack-redesign/apis/submit-an-application/1.0/technical-guide
+problems:
+- status: 400
+  title: Bad Request due to payload not meeting the required schema
+  format: business-gateway-errors-envelope
+  remediation: >-
+    Correct the request body against the published schema. Changing the payload
+    makes this a new request, so mint a new Idempotency-Key before retrying.
+  source_operations:
+  - openapi/hm-land-registry-submit-application-to-change-the-register-v1.0-openapi.json#submit_an_application_to_change_the_register_v1
+  - openapi/hm-land-registry-submit-application-to-change-the-register-v0.3-openapi.json#Submit an application API
+- status: 400
+  title: Bad Request
+  format: rfc9457
+  media_type: application/problem+json
+  remediation: Check the notification query parameters or the acknowledge payload.
+  source_operations:
+  - openapi/hm-land-registry-submit-application-to-change-the-register-v1.0-openapi.json#get_notifications_v1
+  - openapi/hm-land-registry-submit-application-to-change-the-register-v1.0-openapi.json#acknowledge_notifications_v1
+  - openapi/hm-land-registry-submit-application-to-change-the-register-v1.0-openapi.json#download_a_document_v1
+- status: 400
+  title: Invalid request
+  format: business-gateway-errors-envelope
+  remediation: Check the supplied title number format.
+  source_operations:
+  - openapi/hm-land-registry-official-copy-document-availability-v2-openapi.json#getOfficialCopiesAvailability
+  - openapi/hm-land-registry-official-copy-document-availability-v1-openapi.json#getOfficialCopiesAvailability
+  - openapi/hm-land-registry-registered-proprietor-names-openapi.json#getRegisteredProprietorNames
+- status: 400
+  title: An invalid title number was supplied
+  format: business-gateway-errors-envelope
+  source_operations:
+  - openapi/hm-land-registry-land-register-api-openapi.yml#getTitle
+  - openapi/hm-land-registry-land-register-api-openapi.yml#getDraftTitle
+- status: 401
+  title: Unauthorised - an access token is required
+  format: business-gateway-errors-envelope
+  remediation: >-
+    Not retryable. Your HTTP Basic credentials are wrong or the Business Gateway
+    account is inactive. Confirm the client certificate is installed and the
+    account is live.
+  source_operations:
+  - openapi/hm-land-registry-submit-application-to-change-the-register-v1.0-openapi.json#submit_an_application_to_change_the_register_v1
+  - openapi/hm-land-registry-submit-application-to-change-the-register-v1.0-openapi.json#send_a_document_v1
+  - openapi/hm-land-registry-submit-application-to-change-the-register-v1.0-openapi.json#get_application_information_v1
+  - openapi/hm-land-registry-submit-application-to-change-the-register-v1.0-openapi.json#attach_a_document_v1
+  - openapi/hm-land-registry-submit-application-to-change-the-register-v1.0-openapi.json#attach_a_message_v1
+- status: 401
+  title: A valid access token was not provided
+  format: business-gateway-errors-envelope
+  note: >-
+    Land Register API only; that internal API uses a bearer token minted per
+    consuming service rather than HTTP Basic.
+  source_operations:
+  - openapi/hm-land-registry-land-register-api-openapi.yml#getTitle
+  - openapi/hm-land-registry-land-register-api-openapi.yml#getDraftTitle
+- status: 403
+  title: Forbidden
+  format: rfc9457
+  remediation: >-
+    Not retryable. Your permissions are incorrect for the requested notification
+    set or document.
+  source_operations:
+  - openapi/hm-land-registry-submit-application-to-change-the-register-v1.0-openapi.json#get_notifications_v1
+  - openapi/hm-land-registry-submit-application-to-change-the-register-v1.0-openapi.json#acknowledge_notifications_v1
+  - openapi/hm-land-registry-submit-application-to-change-the-register-v1.0-openapi.json#download_a_document_v1
+- status: 403
+  title: >-
+    Forbidden. Ensure the content length and SHA-256 headers have been provided,
+    and match both the file length and hash
+  format: none
+  remediation: >-
+    On the pre-signed upload PUT, supply X-Amz-Checksum-Sha256 and Content-Length
+    that match the file exactly.
+  source_operations:
+  - openapi/hm-land-registry-submit-application-to-change-the-register-v1.0-openapi.json#Upload a document
+- status: 403
+  title: 'Access denied: You need to provide your API Key to perform this operation'
+  format: use-land-property-data-envelope
+  remediation: >-
+    Send the API key in the Authorization header. If a key is present, you have
+    not signed the licence for that dataset, or the dataset is chargeable and
+    unpaid.
+  verified: '2026-07-26'
+  source_operations:
+  - openapi/hm-land-registry-use-land-property-data-openapi.yml#listDatasets
+  - openapi/hm-land-registry-use-land-property-data-openapi.yml#getDataset
+  - openapi/hm-land-registry-use-land-property-data-openapi.yml#getDatasetFileDownloadUrl
+  - openapi/hm-land-registry-use-land-property-data-openapi.yml#getDatasetHistory
+- status: 404
+  title: Application creation request not found in the system
+  format: business-gateway-errors-envelope
+  remediation: >-
+    Check the application_request_id returned by the submit operation. The
+    application may not yet be visible if the submit response has not been
+    processed.
+  source_operations:
+  - openapi/hm-land-registry-submit-application-to-change-the-register-v1.0-openapi.json#get_application_information_v1
+  - openapi/hm-land-registry-submit-application-to-change-the-register-v1.0-openapi.json#attach_a_document_v1
+  - openapi/hm-land-registry-submit-application-to-change-the-register-v1.0-openapi.json#attach_a_message_v1
+- status: 404
+  title: Title not found
+  format: business-gateway-errors-envelope
+  remediation: The supplied title number is not registered, or is not visible to you.
+  source_operations:
+  - openapi/hm-land-registry-official-copy-document-availability-v2-openapi.json#getOfficialCopiesAvailability
+  - openapi/hm-land-registry-official-copy-document-availability-v1-openapi.json#getOfficialCopiesAvailability
+  - openapi/hm-land-registry-registered-proprietor-names-openapi.json#getRegisteredProprietorNames
+- status: 404
+  title: No title with the given title number could be found
+  format: business-gateway-errors-envelope
+  source_operations:
+  - openapi/hm-land-registry-land-register-api-openapi.yml#getTitle
+  - openapi/hm-land-registry-land-register-api-openapi.yml#getDraftTitle
+- status: 404
+  title: Not Found
+  format: rfc9457
+  source_operations:
+  - openapi/hm-land-registry-submit-application-to-change-the-register-v1.0-openapi.json#get_notifications_v1
+  - openapi/hm-land-registry-submit-application-to-change-the-register-v1.0-openapi.json#download_a_document_v1
+- status: 429
+  title: Too Many Requests
+  format: rfc9457
+  remediation: >-
+    Retryable. Back off and retry. No RateLimit headers, limit values or window
+    are published; this is the only operation in the estate that declares 429.
+  source_operations:
+  - openapi/hm-land-registry-submit-application-to-change-the-register-v1.0-openapi.json#download_a_document_v1
+- status: 500
+  title: Internal Server Error
+  format: business-gateway-errors-envelope
+  remediation: >-
+    Retryable. Retry with the same Idempotency-Key and unchanged request data on
+    the submit path.
+  source_operations:
+  - openapi/hm-land-registry-submit-application-to-change-the-register-v1.0-openapi.json#submit_an_application_to_change_the_register_v1
+  - openapi/hm-land-registry-submit-application-to-change-the-register-v1.0-openapi.json#send_a_document_v1
+  - openapi/hm-land-registry-submit-application-to-change-the-register-v1.0-openapi.json#get_application_information_v1
+  - openapi/hm-land-registry-submit-application-to-change-the-register-v1.0-openapi.json#attach_a_document_v1
+  - openapi/hm-land-registry-submit-application-to-change-the-register-v1.0-openapi.json#attach_a_message_v1
+- status: 500
+  title: Server Error
+  format: rfc9457
+  source_operations:
+  - openapi/hm-land-registry-submit-application-to-change-the-register-v1.0-openapi.json#get_notifications_v1
+  - openapi/hm-land-registry-submit-application-to-change-the-register-v1.0-openapi.json#acknowledge_notifications_v1
+  - openapi/hm-land-registry-submit-application-to-change-the-register-v1.0-openapi.json#download_a_document_v1
+- status: 4XX
+  title: client errors
+  format: business-gateway-errors-envelope
+  note: >-
+    The Estimate Completion Date and Official Search of Whole with Data contracts
+    collapse all client errors into a single 4XX range response rather than
+    enumerating statuses.
+  source_operations:
+  - openapi/hm-land-registry-estimate-completion-date-openapi.yml#getEstimateCompletionDate
+  - openapi/hm-land-registry-official-search-of-whole-with-data-openapi.yml#submitOfficialSearchOfWholeWithPriority
+- status: 5XX
+  title: server errors
+  format: none
+  source_operations:
+  - openapi/hm-land-registry-estimate-completion-date-openapi.yml#getEstimateCompletionDate
+  - openapi/hm-land-registry-official-search-of-whole-with-data-openapi.yml#submitOfficialSearchOfWholeWithPriority
