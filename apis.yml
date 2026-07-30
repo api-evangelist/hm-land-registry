@@ -70,12 +70,12 @@ apis:
 - aid: hm-land-registry:hm-land-registry-open-data-sparql-api
   name: HM Land Registry Open Data SPARQL API
   description: >-
-    Live SPARQL 1.1 query endpoint over HM Land Registry's open linked data — Price Paid Data
-    transaction records for every property sale in England and Wales lodged for registration,
-    and the UK House Price Index. Callable anonymously with no API key, no account and no
-    licence signature; verified returning HTTP 200 with application/sparql-results+json on
-    2026-07-26. Results are available as table, plain text, JSON and XML. Published under
-    the Open Government Licence v3.0 with a required Crown copyright attribution statement.
+    Live SPARQL 1.1 query endpoint over HM Land Registry's open linked data — Price Paid Data transaction
+    records for every property sale in England and Wales lodged for registration, and the UK House Price
+    Index. Callable anonymously with no API key, no account and no licence signature; verified returning
+    HTTP 200 with application/sparql-results+json on 2026-07-26. Results are available as table, plain
+    text, JSON and XML. Published under the Open Government Licence v3.0 with a required Crown copyright
+    attribution statement.
   humanURL: http://landregistry.data.gov.uk/qonsole
   baseURL: https://landregistry.data.gov.uk/landregistry/query
   tags:
@@ -103,13 +103,12 @@ apis:
 - aid: hm-land-registry:hm-land-registry-price-paid-linked-data-api
   name: HM Land Registry Price Paid Data Linked Data API
   description: >-
-    W3C Linked Data API over the Price Paid Data dataset, exposing every property sale in
-    England and Wales sold for value and lodged for registration since 1995. Resources resolve
-    at /data/ppi/ with content negotiation by file extension (.json, .csv, .ttl, .rdf) and
-    standard Linked Data API paging parameters such as _pageSize and _page. No authentication
-    of any kind is required; verified HTTP 200 anonymously on 2026-07-26. Bulk yearly and
-    complete CSV files are also published on the price-paid-data.publicdata host. Open Government
-    Licence v3.0.
+    W3C Linked Data API over the Price Paid Data dataset, exposing every property sale in England and
+    Wales sold for value and lodged for registration since 1995. Resources resolve at /data/ppi/ with
+    content negotiation by file extension (.json, .csv, .ttl, .rdf) and standard Linked Data API paging
+    parameters such as _pageSize and _page. No authentication of any kind is required; verified HTTP 200
+    anonymously on 2026-07-26. Bulk yearly and complete CSV files are also published on the price-paid-data.publicdata
+    host. Open Government Licence v3.0.
   humanURL: http://landregistry.data.gov.uk/app/ppd/
   baseURL: https://landregistry.data.gov.uk/data/ppi
   tags:
@@ -138,13 +137,12 @@ apis:
 - aid: hm-land-registry:uk-house-price-index-linked-data-api
   name: UK House Price Index Linked Data API
   description: >-
-    W3C Linked Data API over the UK House Price Index, the official house price statistic
-    calculated by the Office for National Statistics from HM Land Registry, Registers of Scotland
-    and Land and Property Services Northern Ireland sales data. Region and month resources
-    resolve at /data/ukhpi/ with .json, .csv and .ttl representations carrying average price,
-    index and percentage change broken out by property type, buyer type, funding type and
-    new-build status. Anonymous, no key; verified HTTP 200 on 2026-07-26. Open Government
-    Licence v3.0.
+    W3C Linked Data API over the UK House Price Index, the official house price statistic calculated by
+    the Office for National Statistics from HM Land Registry, Registers of Scotland and Land and Property
+    Services Northern Ireland sales data. Region and month resources resolve at /data/ukhpi/ with .json,
+    .csv and .ttl representations carrying average price, index and percentage change broken out by property
+    type, buyer type, funding type and new-build status. Anonymous, no key; verified HTTP 200 on 2026-07-26.
+    Open Government Licence v3.0.
   humanURL: http://landregistry.data.gov.uk/app/ukhpi/
   baseURL: https://landregistry.data.gov.uk/data/ukhpi
   tags:
@@ -164,240 +162,18 @@ apis:
     url: https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/
   - type: Vocabulary
     url: vocabulary/hm-land-registry-ukhpi.ttl
-- aid: hm-land-registry:use-land-and-property-data-api
-  name: Use Land and Property Data API
-  description: >-
-    RESTful JSON API for the Use land and property data service, used to list the HM Land
-    Registry bulk datasets available in the service, read dataset metadata and resources,
-    and mint a signed S3 download URL valid for 10 seconds for a named file or historical
-    file. Datasets reachable through it include UK companies that own property in England
-    and Wales (CCOD), Overseas companies that own property in England and Wales (OCOD), the
-    National Polygon Service, Restrictive Covenants and Registered Leases. Authentication
-    is an API key sent in the Authorization header, issued automatically on self-serve account
-    creation — but every download endpoint additionally requires that you have signed the
-    licence for that specific dataset and, where the dataset is chargeable, paid for it. Called
-    anonymously on 2026-07-26 it returns HTTP 403 with "Access denied: You need to provide
-    your API Key to perform this operation".
-  humanURL: https://use-land-property-data.service.gov.uk/api-information
-  baseURL: https://use-land-property-data.service.gov.uk/api/v1
-  tags:
-  - Open Data
-  - Bulk Data
-  - Property Records
-  - Ownership
-  - United Kingdom
-  properties:
-  - type: Documentation
-    url: https://use-land-property-data.service.gov.uk/api-information
-  - type: APIReference
-    url: https://use-land-property-data.service.gov.uk/api-documentation
-  - type: SignUp
-    url: https://use-land-property-data.service.gov.uk/registration
-  - type: TermsOfService
-    url: https://use-land-property-data.service.gov.uk/service-terms-of-use
-  - type: Support
-    url: https://use-land-property-data.service.gov.uk/contact
-  - type: OpenAPI
-    url: openapi/hm-land-registry-use-land-property-data-openapi.yml
-    name: Generated by API Evangelist from published docs; all paths probed live
-  - type: Overlay
-    url: overlays/hm-land-registry-use-land-property-data-overlay.yaml
-  - type: AgentSkill
-    url: skills/hm-land-registry-download-bulk-property-datasets.md
-  - type: SecurityTxt
-    url: well-known/hm-land-registry-use-land-property-data-security.txt
-- aid: hm-land-registry:business-gateway-submit-an-application-to-change-the-register-api
-  name: Business Gateway Submit an Application to Change the Land Register API
-  description: >-
-    The Business Gateway REST API through which conveyancers and their case management systems
-    lodge applications to change the land register, upload and download supporting documents,
-    add attachments and messages to a lodged application, and poll and acknowledge asynchronous
-    outcome notifications. Two OpenAPI contracts are published and harvested here — v0.3 (OpenAPI
-    3.0.1, six operations on /v0) and v1.0 (OpenAPI 3.1.0, spec version 1.0.5, ten operations
-    on /v1). A v1.1 directory exists in the developer pack but both openapi.json and openapi.html
-    in it are zero-byte placeholders, so nothing was saved for it. Security is HTTP Basic
-    over mutual TLS with an HMLR-issued client certificate.
-  humanURL: https://landregistry.github.io/bgtechdoc/rest/get_started/developer_guide/index.html
-  baseURL: https://businessgateway.landregistry.gov.uk/bg2/api
-  tags:
-  - Conveyancing
-  - Title
-  - Land Registry
-  - Applications
-  - United Kingdom
-  properties:
-  - type: OpenAPI
-    url: openapi/hm-land-registry-submit-application-to-change-the-register-v1.0-openapi.json
-  - type: OpenAPI
-    url: openapi/hm-land-registry-submit-application-to-change-the-register-v0.3-openapi.json
-  - type: JSONSchema
-    url: json-schema/hm-land-registry-application-completed.json
-  - type: JSONSchema
-    url: json-schema/hm-land-registry-application-accepted-priority-pending.json
-  - type: JSONSchema
-    url: json-schema/hm-land-registry-application-accepted-priority-protected.json
-  - type: JSONSchema
-    url: json-schema/hm-land-registry-application-cancelled.json
-  - type: JSONSchema
-    url: json-schema/hm-land-registry-application-correspondence-despatched.json
-  - type: JSONSchema
-    url: json-schema/hm-land-registry-application-validation-failed.json
-  - type: JSONSchema
-    url: json-schema/hm-land-registry-application-attachment-success.json
-  - type: JSONSchema
-    url: json-schema/hm-land-registry-application-attachment-failed.json
-  - type: JSONSchema
-    url: json-schema/hm-land-registry-application-message-success.json
-  - type: JSONSchema
-    url: json-schema/hm-land-registry-application-message-failed.json
-  - type: JSONSchema
-    url: json-schema/hm-land-registry-application-error.json
-  - type: Documentation
-    url: https://landregistry.github.io/bgtechdoc/
-  - type: Authentication
-    url: https://landregistry.github.io/bgtechdoc/rest/get_started/developer_guide/index.html
-  - type: AsyncAPI
-    url: asyncapi/hm-land-registry-business-gateway-notifications-asyncapi.yml
-  - type: Overlay
-    url: overlays/hm-land-registry-submit-application-to-change-the-register-v1.0-overlay.yaml
-  - type: Overlay
-    url: overlays/hm-land-registry-submit-application-to-change-the-register-v0.3-overlay.yaml
-  - type: Idempotency
-    url: conventions/hm-land-registry-conventions.yml
-  - type: Examples
-    url: examples/hm-land-registry-submit-an-application-1.0-test-stubs.json
-  - type: Examples
-    url: examples/hm-land-registry-notifications-1.0-test-stubs.json
-  - type: Examples
-    url: examples/hm-land-registry-application-information-1.0-test-stubs.json
-  - type: Examples
-    url: examples/hm-land-registry-send-a-document-1.0-test-stubs.json
-  - type: AgentSkill
-    url: skills/hm-land-registry-lodge-an-application-to-change-the-register.md
-  - type: Documentation
-    url: >-
-      https://landregistry.github.io/bg-dev-pack-redesign/apis/submit-an-application/1.0/technical-guide
-  - type: Documentation
-    url: https://landregistry.github.io/bg-dev-pack-redesign/apis/notifications/1.0/technical-guide
-  - type: Sandbox
-    url: >-
-      https://landregistry.github.io/bg-dev-pack-redesign/apis/submit-an-application/1.0/test-stubs
-- aid: hm-land-registry:business-gateway-official-search-of-whole-with-data-api
-  name: Business Gateway Official Search of Whole (with Priority) with Data API
-  description: >-
-    RESTful expansion of the long-standing Official Search of Whole SOAP service. An official
-    search with priority by a purchaser against the whole of a registered title or a pending
-    first registration application, protecting the agreement between buyer, seller and lender
-    for the priority period. Single POST operation on /v1/official-searches-of-whole, described
-    by an OpenAPI 3.1.0 document that declares both the test host bgtest.landregistry.gov.uk
-    and the production host businessgateway.landregistry.gov.uk.
-  humanURL: https://landregistry.github.io/bgtechdoc/services/official_search_of_whole_rest/
-  baseURL: https://businessgateway.landregistry.gov.uk/bg2/api
-  tags:
-  - Conveyancing
-  - Title
-  - Search
-  - United Kingdom
-  properties:
-  - type: OpenAPI
-    url: openapi/hm-land-registry-official-search-of-whole-with-data-openapi.yml
-  - type: Documentation
-    url: https://landregistry.github.io/bgtechdoc/services/official_search_of_whole_rest/
-  - type: Documentation
-    url: https://landregistry.github.io/bgtechdoc/rest/get_started/developer_guide/index.html
-  - type: Overlay
-    url: overlays/hm-land-registry-official-search-of-whole-with-data-overlay.yaml
-- aid: hm-land-registry:business-gateway-official-copy-document-availability-api
-  name: Business Gateway Official Copy Document Availability Service
-  description: >-
-    Returns OC1 document availability (title register and title plan) and a collection of
-    OC2 document availability (documents referred to in the register) for a given title number,
-    so a case management system can tell a conveyancer what official copies can actually be
-    ordered before ordering them. Two OpenAPI 3.0.0 contracts are published and harvested
-    — v1 on /bg2/api/v1 and v2 on /bg2/api/v2 — both securing the single GET operation with
-    HTTP Basic.
-  humanURL: https://landregistry.github.io/bgtechdoc/services/official_copy_document_availability_v2/
-  baseURL: https://businessgateway.landregistry.gov.uk/bg2/api/v2
-  tags:
-  - Conveyancing
-  - Title
-  - Documents
-  - United Kingdom
-  properties:
-  - type: OpenAPI
-    url: openapi/hm-land-registry-official-copy-document-availability-v2-openapi.json
-  - type: OpenAPI
-    url: openapi/hm-land-registry-official-copy-document-availability-v1-openapi.json
-  - type: Documentation
-    url: https://landregistry.github.io/bgtechdoc/services/official_copy_document_availability_v2/
-  - type: Documentation
-    url: https://landregistry.github.io/bgtechdoc/services/official_copy_document_availability_v1/
-  - type: OpenAPI
-    url: openapi/hm-land-registry-official-copy-document-availability-v2-customer-test-openapi.json
-    name: Customer test contract (v2)
-  - type: OpenAPI
-    url: openapi/hm-land-registry-official-copy-document-availability-v1-customer-test-openapi.json
-    name: Customer test contract (v1)
-  - type: Overlay
-    url: overlays/hm-land-registry-official-copy-document-availability-v2-overlay.yaml
-  - type: AgentSkill
-    url: skills/hm-land-registry-check-a-title-before-you-order.md
-- aid: hm-land-registry:business-gateway-registered-proprietor-names-api
-  name: Business Gateway Registered Proprietor Names Service
-  description: >-
-    Returns the registered proprietor names recorded against a supplied title number — the
-    authoritative answer to "who owns this". Single GET operation on /titles/{title_number}/registered-proprietor-names
-    described by an OpenAPI 3.0.0 document declaring both the production and bgtest hosts
-    and securing the operation with HTTP Basic over mutual TLS.
-  humanURL: https://landregistry.github.io/bgtechdoc/services/registered_proprietor_names/
-  baseURL: https://businessgateway.landregistry.gov.uk/bg2/api/v1
-  tags:
-  - Title
-  - Ownership
-  - Property Records
-  - United Kingdom
-  properties:
-  - type: OpenAPI
-    url: openapi/hm-land-registry-registered-proprietor-names-openapi.json
-  - type: Documentation
-    url: https://landregistry.github.io/bgtechdoc/services/registered_proprietor_names/
-  - type: Overlay
-    url: overlays/hm-land-registry-registered-proprietor-names-overlay.yaml
-- aid: hm-land-registry:business-gateway-estimate-completion-date-api
-  name: Business Gateway Estimate Completion Date API
-  description: >-
-    Returns HM Land Registry's estimated completion date for a lodged application, given its
-    application reference, so a conveyancer's system can set client expectations on how long
-    a registration will take. Single GET operation on /v1/applications/{application_reference}/estimate-completion-date,
-    OpenAPI 3.0.0, HTTP Basic, with both the production and bgtest hosts declared.
-  humanURL: https://landregistry.github.io/bgtechdoc/services/estimated_completion_date/
-  baseURL: https://businessgateway.landregistry.gov.uk/bg2/api
-  tags:
-  - Conveyancing
-  - Applications
-  - United Kingdom
-  properties:
-  - type: OpenAPI
-    url: openapi/hm-land-registry-estimate-completion-date-openapi.yml
-  - type: Documentation
-    url: https://landregistry.github.io/bgtechdoc/services/estimated_completion_date/
-  - type: Overlay
-    url: overlays/hm-land-registry-estimate-completion-date-overlay.yaml
-  - type: Documentation
-    url: https://landregistry.github.io/bg-dev-pack-redesign/apis/estimate-completion-date
 - aid: hm-land-registry:land-register-api
   name: Land Register API
   description: >-
-    An OpenAPI 3.0.1 contract, version 6.0.0, titled "Land Register API" and published in
-    the public Business Gateway developer pack. It describes two GET operations — /title/{titleNumber}
-    and /draft-titles/{titleNumber} — and states that it "aims to be the primary method of
-    accessing register data for HM Land Registry". No baseURL is recorded here because the
-    specification declares no public production server: its servers list contains only localhost
-    ports and internal HMLR hosts under development, test and *.stp.hmlr.zone. Access is not
-    a developer product at all — it must be requested through the Digital Register project
-    team, an individual bearer token is minted per consuming service, and the consumer must
-    file a Fraud Impact Assessment and must not expose the data externally. Recorded as a
-    real published contract for an internal government API, not as a callable public API.
+    An OpenAPI 3.0.1 contract, version 6.0.0, titled "Land Register API" and published in the public Business
+    Gateway developer pack. It describes two GET operations — /title/{titleNumber} and /draft-titles/{titleNumber}
+    — and states that it "aims to be the primary method of accessing register data for HM Land Registry".
+    No baseURL is recorded here because the specification declares no public production server: its servers
+    list contains only localhost ports and internal HMLR hosts under development, test and *.stp.hmlr.zone.
+    Access is not a developer product at all — it must be requested through the Digital Register project
+    team, an individual bearer token is minted per consuming service, and the consumer must file a Fraud
+    Impact Assessment and must not expose the data externally. Recorded as a real published contract for
+    an internal government API, not as a callable public API.
   humanURL: https://landregistry.github.io/bgtechdoc/
   tags:
   - Title
@@ -414,6 +190,114 @@ apis:
     url: https://landregistry.github.io/bgtechdoc/
   - type: Overlay
     url: overlays/hm-land-registry-land-register-api-overlay.yaml
+- aid: hm-land-registry:hm-land-registry-estimate-completion-date-openapi
+  name: HM Land Registry Estimate Completion Date API
+  description: >-
+    HM Land Registry Estimate Completion Date API from HM Land Registry — 1 path(s) described in OpenAPI.
+  humanURL: http://landregistry.data.gov.uk/qonsole
+  baseURL: https://landregistry.data.gov.uk/landregistry/query
+  properties:
+  - type: OpenAPI
+    url: openapi/hm-land-registry-estimate-completion-date-openapi.yml
+- aid: >-
+    hm-land-registry:hm-land-registry-official-copy-document-availability-v1-customer-test-openapi
+  name: >-
+    HM Land Registry HMLR Business Gateway (Hm Land Registry Official Copy Document Availability V1 Customer
+    Test)
+  description: >-
+    HM Land Registry HMLR Business Gateway from HM Land Registry — 1 path(s) described in OpenAPI.
+  humanURL: http://landregistry.data.gov.uk/qonsole
+  baseURL: https://landregistry.data.gov.uk/landregistry/query
+  properties:
+  - type: OpenAPI
+    url: >-
+      openapi/hm-land-registry-official-copy-document-availability-v1-customer-test-openapi.json
+- aid: hm-land-registry:hm-land-registry-official-copy-document-availability-v1-openapi
+  name: >-
+    HM Land Registry Official Copy Document Availability Service (Hm Land Registry Official Copy Document
+    Availability V1)
+  description: >-
+    HM Land Registry Official Copy Document Availability Service from HM Land Registry — 1 path(s) described
+    in OpenAPI.
+  humanURL: http://landregistry.data.gov.uk/qonsole
+  baseURL: https://landregistry.data.gov.uk/landregistry/query
+  properties:
+  - type: OpenAPI
+    url: openapi/hm-land-registry-official-copy-document-availability-v1-openapi.json
+- aid: >-
+    hm-land-registry:hm-land-registry-official-copy-document-availability-v2-customer-test-openapi
+  name: >-
+    HM Land Registry HMLR Business Gateway (Hm Land Registry Official Copy Document Availability V2 Customer
+    Test)
+  description: >-
+    HM Land Registry HMLR Business Gateway from HM Land Registry — 1 path(s) described in OpenAPI.
+  humanURL: http://landregistry.data.gov.uk/qonsole
+  baseURL: https://landregistry.data.gov.uk/landregistry/query
+  properties:
+  - type: OpenAPI
+    url: >-
+      openapi/hm-land-registry-official-copy-document-availability-v2-customer-test-openapi.json
+- aid: hm-land-registry:hm-land-registry-official-copy-document-availability-v2-openapi
+  name: >-
+    HM Land Registry Official Copy Document Availability Service (Hm Land Registry Official Copy Document
+    Availability V2)
+  description: >-
+    HM Land Registry Official Copy Document Availability Service from HM Land Registry — 1 path(s) described
+    in OpenAPI.
+  humanURL: http://landregistry.data.gov.uk/qonsole
+  baseURL: https://landregistry.data.gov.uk/landregistry/query
+  properties:
+  - type: OpenAPI
+    url: openapi/hm-land-registry-official-copy-document-availability-v2-openapi.json
+- aid: hm-land-registry:hm-land-registry-official-search-of-whole-with-data-openapi
+  name: HM Land Registry Official Search of Whole with Data
+  description: >-
+    HM Land Registry Official Search of Whole with Data from HM Land Registry — 1 path(s) described in
+    OpenAPI.
+  humanURL: http://landregistry.data.gov.uk/qonsole
+  baseURL: https://landregistry.data.gov.uk/landregistry/query
+  properties:
+  - type: OpenAPI
+    url: openapi/hm-land-registry-official-search-of-whole-with-data-openapi.yml
+- aid: hm-land-registry:hm-land-registry-registered-proprietor-names-openapi
+  name: HM Land Registry Registered Proprietor Names Service
+  description: >-
+    HM Land Registry Registered Proprietor Names Service from HM Land Registry — 1 path(s) described in
+    OpenAPI.
+  humanURL: http://landregistry.data.gov.uk/qonsole
+  baseURL: https://landregistry.data.gov.uk/landregistry/query
+  properties:
+  - type: OpenAPI
+    url: openapi/hm-land-registry-registered-proprietor-names-openapi.json
+- aid: hm-land-registry:hm-land-registry-submit-application-to-change-the-register-v0-3-openapi
+  name: HM Land Registry V0.3 'Submit an application to change the Land Register API' Schema
+  description: >-
+    HM Land Registry V0.3 'Submit an application to change the Land Register API' Schema from HM Land
+    Registry — 6 path(s) described in OpenAPI.
+  humanURL: http://landregistry.data.gov.uk/qonsole
+  baseURL: https://landregistry.data.gov.uk/landregistry/query
+  properties:
+  - type: OpenAPI
+    url: openapi/hm-land-registry-submit-application-to-change-the-register-v0.3-openapi.json
+- aid: hm-land-registry:hm-land-registry-submit-application-to-change-the-register-v1-0-openapi
+  name: HM Land Registry V1.0 'Submit an application to change the Land Register API' Schema
+  description: >-
+    HM Land Registry V1.0 'Submit an application to change the Land Register API' Schema from HM Land
+    Registry — 10 path(s) described in OpenAPI.
+  humanURL: http://landregistry.data.gov.uk/qonsole
+  baseURL: https://landregistry.data.gov.uk/landregistry/query
+  properties:
+  - type: OpenAPI
+    url: openapi/hm-land-registry-submit-application-to-change-the-register-v1.0-openapi.json
+- aid: hm-land-registry:hm-land-registry-use-land-property-data-openapi
+  name: HM Land Registry Use Land and Property Data API
+  description: >-
+    HM Land Registry Use Land and Property Data API from HM Land Registry — 4 path(s) described in OpenAPI.
+  humanURL: http://landregistry.data.gov.uk/qonsole
+  baseURL: https://landregistry.data.gov.uk/landregistry/query
+  properties:
+  - type: OpenAPI
+    url: openapi/hm-land-registry-use-land-property-data-openapi.yml
 common:
 - type: AgenticAccess
   url: agentic-access/hm-land-registry-agentic-access.yml
