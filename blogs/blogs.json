@@ -1,0 +1,14 @@
+{
+  "repo": "hm-land-registry",
+  "feeds": [
+    {
+      "source": "https://landregistry.github.io/bgtechdoc/rest/get_started/developer_guide/index.html",
+      "feed_url": "https://landregistry.github.io/bgtechdoc/rest/get_started/developer_guide/index.html",
+      "title": "",
+      "saved": 0,
+      "method": "none"
+    }
+  ],
+  "post_count": 0,
+  "fetched": "2026-08-01T15:49:00Z"
+}
