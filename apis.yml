@@ -299,6 +299,8 @@ apis:
   - type: OpenAPI
     url: openapi/hm-land-registry-use-land-property-data-openapi.yml
 common:
+- type: IssueTracker
+  url: https://github.com/LandRegistry/bgtechdoc/issues
 - type: AgenticAccess
   url: agentic-access/hm-land-registry-agentic-access.yml
 - type: VulnerabilityDisclosure
