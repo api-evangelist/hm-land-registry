@@ -1,0 +1,307 @@
+{
+  "item": [
+    {
+      "id": "9c73dc7c-448b-4215-85f7-6e7b826a0480",
+      "name": "Official Copies",
+      "description": {
+        "content": "Document information related to a title.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9a514bbc-fafa-42ee-b6da-162edd9be5fb",
+          "name": "Get document availability associated with a title number.",
+          "request": {
+            "name": "Get document availability associated with a title number.",
+            "description": {
+              "content": "Returns the OC1 document availability (title register and title plan) and a collection of OC2 document availability (referred to in the register) for the provided title number.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "titles",
+                ":title_number",
+                "official-copies",
+                "availability"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "title_number",
+                  "description": "(Required) The title number of the property. Characters must be uppercase."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1f2c3530-d414-4163-8f80-1f6fe3990d21",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "titles",
+                    ":title_number",
+                    "official-copies",
+                    "availability"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "title_number",
+                      "description": "(Required) The title number of the property. Characters must be uppercase."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"title_status\": \"Title number is valid.\",\n    \"title_status_code\": \"VALID\",\n    \"title_number\": \"AB000000\",\n    \"applications_pending\": false,\n    \"referred_to_documents\": [],\n    \"register\": {\n      \"type\": \"Register\",\n      \"type_code\": \"REGISTER\",\n      \"availability\": \"available for immediate download\",\n      \"availability_code\": \"IMMEDIATE\",\n      \"backdated\": false\n    },\n    \"title_plan\": {\n      \"type\": \"Title Plan\",\n      \"type_code\": \"TITLEPLAN\",\n      \"availability\": \"not available\",\n      \"availability_code\": \"UNAVAILABLE\",\n      \"backdated\": false\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "43655766-3bb5-4700-a79e-b7a2e8a96315",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "titles",
+                    ":title_number",
+                    "official-copies",
+                    "availability"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "title_number",
+                      "description": "(Required) The title number of the property. Characters must be uppercase."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"error_code\": \"BG40001\",\n      \"error_message\": \"Malformed invalid schema. Title is invalid.\",\n      \"http_status\": \"400\",\n      \"timestamp\": \"2019-03-21T05:10:21+00:00\",\n      \"trace_id\": \"66d62778-cab6-47d7-b067-ceb2a5efb013\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "77e12470-fb51-4961-9346-eb9dd0f15d46",
+              "name": "Title not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "titles",
+                    ":title_number",
+                    "official-copies",
+                    "availability"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "title_number",
+                      "description": "(Required) The title number of the property. Characters must be uppercase."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"error_code\": \"BG40002\",\n      \"error_message\": \"Title is not found\",\n      \"http_status\": \"404\",\n      \"timestamp\": \"2018-11-13T20:20:39+00:00\",\n      \"trace_id\": \"eeb2e6aa-8856-4762-8d2f-f9ee6c0667bd\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a81bb1bf-c9b9-4cab-8cc9-081d8a4d50a5",
+              "name": "An error has occurred.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "titles",
+                    ":title_number",
+                    "official-copies",
+                    "availability"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "title_number",
+                      "description": "(Required) The title number of the property. Characters must be uppercase."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"error_code\": \"BG50004\",\n      \"error_message\": \"Internal service timeout\",\n      \"http_status\": \"504\",\n      \"timestamp\": \"2020-11-13T20:20:58+00:00\",\n      \"trace_id\": \"9abcfbe7-c222-490a-a6f1-838276f1a7f7\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://businessgateway.landregistry.gov.uk/bg2/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "aeecb7f7-6705-429c-ae9f-6444f97eea86",
+    "name": "Official Copy Document Availability Service",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "A specification for the HMLR Business Gateway official copies document availability service.",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Land Register API",
+    "version": "6.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "title",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Gets summary information for the title with the specified title number.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/api/v1/title/:titleNumber",
+            "params": [
+              {
+                "name": "titleNumber",
+                "value": "AGL117262",
+                "type": "path",
+                "description": "The unique reference number of the desired title.\n\n---\n\nThe following constraints apply to this parameter:\n| Constraint                                                           | Error message                                           |\n|----------------------------------------------------------------------|---------------------------------------------------------|\n| The parameter must have a length less than or equal to 9 characters. | *The title number must be no longer than 9 characters.* |"
+              }
+            ]
+          },
+          "docs": "## Error responses\nCalls to this endpoint may return the following error codes:\n| Error code   | Message                                                                           | Cause                                                                                                                  |\n|--------------|-----------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "draft-titles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Gets summary information for the draft title with the specified title number.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/api/v1/draft-titles/:titleNumber",
+            "params": [
+              {
+                "name": "titleNumber",
+                "value": "AGL117262",
+                "type": "path",
+                "description": "The unique reference number of the desired title.\n\n---\n\nThe following constraints apply to this parameter:\n| Constraint                                                           | Error message                                           |\n|----------------------------------------------------------------------|---------------------------------------------------------|\n| The parameter must have a length less than or equal to 9 characters. | *The title number must be no longer than 9 characters.* |"
+              }
+            ]
+          },
+          "docs": "## Error responses\nCalls to this endpoint may return the following error codes:\n| Error code   | Message                                                                           | Cause     c                                                                                                            |\n|--------------|-----------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

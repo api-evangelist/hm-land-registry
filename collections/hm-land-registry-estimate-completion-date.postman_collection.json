@@ -1,0 +1,253 @@
+{
+  "item": [
+    {
+      "id": "ae49ccfb-e127-475f-be14-c4c0ba290e77",
+      "name": "ECD",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1880eea3-b66f-4c39-8875-12ff6e79b39b",
+          "name": "Get estimate completion date of associated application reference",
+          "request": {
+            "name": "Get estimate completion date of associated application reference",
+            "description": {
+              "content": "Get estimated completion date for register create/update applications associated to application reference.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "applications",
+                ":application_reference",
+                "estimate-completion-date"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "application_reference",
+                  "description": "(Required) HMLR generated unique set of characters that identifies applications."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0c1d284a-8581-456d-a379-b5c526770252",
+              "name": "Successfully retrieved the application estimate completion date",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "applications",
+                    ":application_reference",
+                    "estimate-completion-date"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application_reference",
+                      "description": "(Required) HMLR generated unique set of characters that identifies applications."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"application_reference\": \"X000XXX\",\n    \"application_status\": \"RECEIVED\",\n    \"application_priority_date\": \"20/08/2021\",\n    \"estimated_completion_date_status\": \"AVAILABLE\",\n    \"estimated_completion_dates\": [\n      {\n        \"date\": \"17/03/2023\",\n        \"probability\": 0.9\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1524505f-1306-42f8-8a6f-33f048dc97c3",
+              "name": "client errors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "applications",
+                    ":application_reference",
+                    "estimate-completion-date"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application_reference",
+                      "description": "(Required) HMLR generated unique set of characters that identifies applications."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"BG40001\",\n      \"detail\": \"Malformed invalid schema. Application Reference is invalid.\",\n      \"status\": \"400\",\n      \"trace_id\": \"c62e9b3f-e523-4f04-a941-c6cf0d60c080\",\n      \"title\": \"Invalid application reference.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6699116e-cd19-45d1-9fb8-e34b7d4de73e",
+              "name": "An error has occurred.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "applications",
+                    ":application_reference",
+                    "estimate-completion-date"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application_reference",
+                      "description": "(Required) HMLR generated unique set of characters that identifies applications."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"BG50004\",\n      \"detail\": \"The gateway has timed out.\",\n      \"status\": \"504\",\n      \"trace_id\": \"c62e9b3f-e523-4f04-a941-c6cf0d60c080\",\n      \"title\": \"An error has occurred\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://businessgateway.landregistry.gov.uk/bg2/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "71299a7a-1538-4ba9-9611-93f269b3424e",
+    "name": "Estimate Completion Date API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "A specification for the HMLR Business Gateway estimate completion date service.",
+      "type": "text/plain"
+    }
+  }
+}

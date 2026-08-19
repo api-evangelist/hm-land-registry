@@ -1,0 +1,641 @@
+{
+  "item": [
+    {
+      "id": "be218489-f06b-4295-9a16-e09601f05a6e",
+      "name": "Datasets",
+      "description": {
+        "content": "Dataset discovery, metadata and download URL minting.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "49238e00-3ae7-4831-ad3c-d358f3ba2a11",
+          "name": "List available datasets",
+          "request": {
+            "name": "List available datasets",
+            "description": {
+              "content": "Returns a JSON list of the dataset names and titles that are available in the service.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "datasets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "55656667-d488-4525-9928-5b0abc0801b3",
+              "name": "The list of available datasets.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "datasets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": [\n    {\n      \"name\": \"ccod\",\n      \"title\": \"UK companies that own property in England and Wales\"\n    },\n    {\n      \"name\": \"ocod\",\n      \"title\": \"Overseas companies that own property in England and Wales\"\n    },\n    {\n      \"name\": \"nps\",\n      \"title\": \"National Polygon Service\"\n    },\n    {\n      \"name\": \"nps_sample\",\n      \"title\": \"National Polygon Service Sample\"\n    }\n  ],\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "29c98acf-8236-43c7-a625-4df945f90204",
+              "name": "Access denied. Returned when no API key is supplied, or when the caller has not signed the licence for the requested dataset.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "datasets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Access denied: You need to provide your API Key to perform this operation\",\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b0a26f53-b24e-49bf-88a3-cf88cdc160e2",
+          "name": "Get dataset metadata and resources",
+          "request": {
+            "name": "Get dataset metadata and resources",
+            "description": {
+              "content": "Returns the metadata of a dataset and its resources.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "datasets",
+                ":dataset_name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "dataset_name",
+                  "description": "(Required) The dataset name, for example ccod, ocod, nps or nps_sample. CCOD and OCOD remain the machine names for the renamed UK companies and Overseas companies datasets."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d1b73b12-6b47-45b6-b79f-e46b25e441c1",
+              "name": "Dataset metadata.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "datasets",
+                    ":dataset_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "dataset_name",
+                      "description": "(Required) The dataset name, for example ccod, ocod, nps or nps_sample. CCOD and OCOD remain the machine names for the renamed UK companies and Overseas companies datasets."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": {\n    \"description\": \"Download data about UK companies that own land or property in England and Wales.\",\n    \"external\": false,\n    \"fee\": \"Free of charge\",\n    \"file_count\": 1,\n    \"file_size\": \"1.23 MB\",\n    \"format\": \"CSV\",\n    \"last_updated\": \"7 August 2019\",\n    \"licence_id\": \"ccod\",\n    \"name\": \"ccod\",\n    \"private\": false,\n    \"state\": \"active\",\n    \"title\": \"UK companies that own property in England and Wales\",\n    \"type\": \"free\",\n    \"update_frequency\": \"Monthly\",\n    \"version\": \"v1\"\n  },\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "22fc8bb1-9b52-46ef-966a-3651b1a47035",
+              "name": "Access denied. Returned when no API key is supplied, or when the caller has not signed the licence for the requested dataset.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "datasets",
+                    ":dataset_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "dataset_name",
+                      "description": "(Required) The dataset name, for example ccod, ocod, nps or nps_sample. CCOD and OCOD remain the machine names for the renamed UK companies and Overseas companies datasets."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Access denied: You need to provide your API Key to perform this operation\",\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ff8217a0-b9c6-463b-9515-d20dcca56093",
+          "name": "Get a signed download URL for a dataset file",
+          "request": {
+            "name": "Get a signed download URL for a dataset file",
+            "description": {
+              "content": "Returns a download URL valid for 10 seconds for a specific file in a dataset. This endpoint will only work if you have agreed to the dataset licence and have the correct access, which is arranged on the Use land and property data service.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "datasets",
+                ":dataset_name",
+                ":file_name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "dataset_name",
+                  "description": "(Required) The dataset name, for example ccod, ocod, nps or nps_sample. CCOD and OCOD remain the machine names for the renamed UK companies and Overseas companies datasets."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "file_name",
+                  "description": "(Required) The file name of the resource within the dataset."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2a9fcc0c-0db6-42d1-b2b6-9be2a19b58e6",
+              "name": "A short-lived signed download URL.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "datasets",
+                    ":dataset_name",
+                    ":file_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "dataset_name",
+                      "description": "(Required) The dataset name, for example ccod, ocod, nps or nps_sample. CCOD and OCOD remain the machine names for the renamed UK companies and Overseas companies datasets."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "file_name",
+                      "description": "(Required) The file name of the resource within the dataset."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": {\n    \"download_url\": \"http://jYYIpQ.koMAesJ9tKcRssee9kMbGdtrDj69IycLqL40wgQjee6LqWiPp.DafSrIIq9BZUe0wsi7HhgJc0RmmNGWWxZTAm4vhf\",\n    \"resource\": \"string\",\n    \"valid_for_seconds\": 10\n  },\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "96e0dc03-b02f-4d9a-9f85-60efac1ce19f",
+              "name": "Access denied. Returned when no API key is supplied, or when the caller has not signed the licence for the requested dataset.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "datasets",
+                    ":dataset_name",
+                    ":file_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "dataset_name",
+                      "description": "(Required) The dataset name, for example ccod, ocod, nps or nps_sample. CCOD and OCOD remain the machine names for the renamed UK companies and Overseas companies datasets."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "file_name",
+                      "description": "(Required) The file name of the resource within the dataset."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Access denied: You need to provide your API Key to perform this operation\",\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0001504d-6e15-4b91-aef2-8853238434fe",
+          "name": "List historical resources for a dataset",
+          "request": {
+            "name": "List historical resources for a dataset",
+            "description": {
+              "content": "Returns a list of available historical resources for a dataset.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "datasets",
+                "history",
+                ":dataset_name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "dataset_name",
+                  "description": "(Required) The dataset name, for example ccod, ocod, nps or nps_sample. CCOD and OCOD remain the machine names for the renamed UK companies and Overseas companies datasets."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "96cad43b-8f2d-4e13-b071-933ff7681e55",
+              "name": "The dataset history.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "datasets",
+                    "history",
+                    ":dataset_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "dataset_name",
+                      "description": "(Required) The dataset name, for example ccod, ocod, nps or nps_sample. CCOD and OCOD remain the machine names for the renamed UK companies and Overseas companies datasets."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"dataset\": \"ccod\",\n  \"dataset_history\": [\n    {\n      \"file_size\": \"1.3 MB\",\n      \"filename\": \"CCOD_COU_2019_08.zip\",\n      \"last_updated\": \"August 2019\",\n      \"unsorted_date\": \"07-08-2019\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "81090d19-91bf-4474-8e16-4a398296bd07",
+              "name": "Access denied. Returned when no API key is supplied, or when the caller has not signed the licence for the requested dataset.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "datasets",
+                    "history",
+                    ":dataset_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "dataset_name",
+                      "description": "(Required) The dataset name, for example ccod, ocod, nps or nps_sample. CCOD and OCOD remain the machine names for the renamed UK companies and Overseas companies datasets."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Access denied: You need to provide your API Key to perform this operation\",\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://use-land-property-data.service.gov.uk/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "924a3265-6f5c-4be3-b0aa-0fa69c348769",
+    "name": "Use Land and Property Data API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "RESTful JSON API for the HM Land Registry \"Use land and property data\" service. Lists the bulk datasets available in the service, returns dataset metadata and its resources, returns the history of available files for a dataset, and mints a signed S3 download URL valid for 10 seconds for a named file. Datasets reachable through it include UK companies that own property in England and Wales (CCOD), Overseas companies that own property in England and Wales (OCOD), the National Polygon Service (NPS) and its sample, Restrictive Covenants and Registered Leases. An API key is issued automatically on self-serve account creation and is sent in the Authorization header. Download endpoints additionally require that the caller has signed the licence for that specific dataset and, where the dataset is chargeable, paid for it.\n\nContact Support:\n Name: Use land and property data support",
+      "type": "text/plain"
+    }
+  }
+}

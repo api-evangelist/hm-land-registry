@@ -1,0 +1,44 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Official Copy Document Availability Service",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Official Copies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get document availability associated with a title number.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://businessgateway.landregistry.gov.uk/bg2/api/v2/titles/:title_number/official-copies/availability",
+            "params": [
+              {
+                "name": "title_number",
+                "value": "",
+                "type": "path",
+                "description": "The title number of the property. Characters must be uppercase."
+              }
+            ]
+          },
+          "docs": "Returns the OC1 document availability (title register and title plan) and a collection of OC2 document availability (referred to in the register) for the provided title number."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

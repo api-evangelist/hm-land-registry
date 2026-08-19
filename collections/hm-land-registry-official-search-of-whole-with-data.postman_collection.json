@@ -1,0 +1,256 @@
+{
+  "item": [
+    {
+      "id": "01dde399-0736-401f-a53e-46d1ad6c4afb",
+      "name": "Official Search of Whole with Data",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b12df9a5-a42e-4188-a85f-9f5f14fb0332",
+          "name": "Submit an OS1 Official Search of Whole with Priority application",
+          "request": {
+            "name": "Submit an OS1 Official Search of Whole with Priority application",
+            "description": {
+              "content": "Official search with priority by a purchaser against the whole of a registered title or pending first registration application",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "official-searches-of-whole"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"message_id\": \"<string>\",\n  \"title_number\": \"<string>\",\n  \"external_reference\": {\n    \"reference\": \"<string>\",\n    \"allocated_by\": \"<string>\",\n    \"description\": \"<string>\"\n  },\n  \"customer_reference\": {\n    \"reference\": \"<string>\",\n    \"allocated_by\": \"<string>\",\n    \"description\": \"<string>\"\n  },\n  \"contact\": [\n    {\n      \"name\": \"<string>\",\n      \"telephone_number\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"telephone_number\": \"<string>\"\n    }\n  ],\n  \"official_search_of_whole_with_priority\": {\n    \"priority_type\": \"<string>\",\n    \"property_description\": \"<string>\",\n    \"registered_proprietors_details_or_applicants_for_first_registration\": \"<string>\",\n    \"continue_application_if\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"applicant_party\": \"<string>\",\n    \"search_from_date\": \"<date>\"\n  },\n  \"expected_price\": {\n    \"gross_price_amount\": \"<number>\",\n    \"net_price_amount\": \"<number>\",\n    \"vat_amount\": \"<number>\",\n    \"currency_id\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d937e371-409e-44cd-8f57-4c9dd48313fd",
+              "name": "Official Search of Whole with Priority completed. Search result enclosed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "official-searches-of-whole"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message_id\": \"dfcacc5e-456e-4fd1-88e5-8070e43d6714\",\n  \"title_number\": \"PMD100\",\n  \"official_search_of_whole_with_priority\": {\n    \"priority_type\": \"Purchase\",\n    \"property_description\": \"28a Richmond Avenue, Basingstoke, RG38 8DJ\",\n    \"search_from_date\": \"2022-02-12\",\n    \"continue_application_if\": [\n      \"NAME_MISMATCH_ON_REGISTER\",\n      \"DEVELOPER_TITLE\"\n    ],\n    \"registered_proprietors_details_or_applicants_for_first_registration\": \"Smith\",\n    \"applicant_party\": \"Joe Bloggs and Jane Bloggs\"\n  },\n  \"external_reference\": {\n    \"reference\": \"GB000123Z\",\n    \"allocated_by\": \"AAA Conveyancers\",\n    \"description\": \"Reference description\"\n  },\n  \"customer_reference\": {\n    \"reference\": \"GB000123Z\",\n    \"allocated_by\": \"AAA Conveyancers\",\n    \"description\": \"Reference description\"\n  },\n  \"expected_price\": {\n    \"gross_price_amount\": 3,\n    \"net_price_amount\": 3,\n    \"vat_amount\": 0.75,\n    \"currency_id\": \"GBP\"\n  },\n  \"contact\": [\n    {\n      \"name\": \"John Smith\",\n      \"telephone_number\": \"stringstr\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"001\",\n    \"hmlr_reference\": \"0000000\",\n    \"external_reference\": {\n      \"reference\": \"AA0\",\n      \"allocated_by\": \"AA0\",\n      \"description\": \"AA0\"\n    },\n    \"actual_price\": {\n      \"gross_price_amount\": 3,\n      \"currency_id\": \"GBP\"\n    },\n    \"certificate\": {\n      \"type\": \"ATTACHMENT\",\n      \"attachment\": \"omitted\"\n    },\n    \"official_search_data\": {\n      \"search_from_date\": \"2022-04-12\",\n      \"has_register_changed\": false,\n      \"has_advisory_entries\": false,\n      \"official_search_number\": \"300-A1-AA\",\n      \"certificate_timestamp\": \"2022-11-25T10:03:21\",\n      \"priority_period_expiry_date\": \"2023-01-10\",\n      \"title_number\": \"PMD100\",\n      \"applicants\": \"Joe Bloggs and Jane Bloggs\",\n      \"result_entries\": {\n        \"register_status_entry\": {\n          \"entry_text\": \"Since 8 April 2022 no adverse entries have been made.\"\n        }\n      },\n      \"key_number\": 12345678\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "38188763-fcef-4367-aafd-035222a26ee3",
+              "name": "Official Search of Whole with Priority accepted however not completed because manual processing is required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "official-searches-of-whole"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message_id\": \"dfcacc5e-456e-4fd1-88e5-8070e43d6714\",\n  \"title_number\": \"PMD100\",\n  \"official_search_of_whole_with_priority\": {\n    \"priority_type\": \"Purchase\",\n    \"property_description\": \"28a Richmond Avenue, Basingstoke, RG38 8DJ\",\n    \"search_from_date\": \"2022-02-12\",\n    \"continue_application_if\": [\n      \"NAME_MISMATCH_ON_REGISTER\",\n      \"DEVELOPER_TITLE\"\n    ],\n    \"registered_proprietors_details_or_applicants_for_first_registration\": \"Smith\",\n    \"applicant_party\": \"Joe Bloggs and Jane Bloggs\"\n  },\n  \"external_reference\": {\n    \"reference\": \"GB000123Z\",\n    \"allocated_by\": \"AAA Conveyancers\",\n    \"description\": \"Reference description\"\n  },\n  \"customer_reference\": {\n    \"reference\": \"GB000123Z\",\n    \"allocated_by\": \"AAA Conveyancers\",\n    \"description\": \"Reference description\"\n  },\n  \"expected_price\": {\n    \"gross_price_amount\": 3,\n    \"net_price_amount\": 3,\n    \"vat_amount\": 0.75,\n    \"currency_id\": \"GBP\"\n  },\n  \"contact\": [\n    {\n      \"name\": \"John Smith\",\n      \"telephone_number\": \"stringstr\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"dfcacc5e-456e-4fd1-88e5-8070e43d6714\",\n    \"acknowledgement_message\": \"We have accepted your application for an official search with priority. Priority begins now and expires on 24 May 2022.\",\n    \"hmlr_reference\": \"J111AAA\",\n    \"acknowledgement_code\": \"BG20001\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0c355d07-9c74-4672-9019-8d0b1cecb82b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "official-searches-of-whole"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message_id\": \"dfcacc5e-456e-4fd1-88e5-8070e43d6714\",\n  \"title_number\": \"PMD100\",\n  \"official_search_of_whole_with_priority\": {\n    \"priority_type\": \"Purchase\",\n    \"property_description\": \"28a Richmond Avenue, Basingstoke, RG38 8DJ\",\n    \"search_from_date\": \"2022-02-12\",\n    \"continue_application_if\": [\n      \"NAME_MISMATCH_ON_REGISTER\",\n      \"DEVELOPER_TITLE\"\n    ],\n    \"registered_proprietors_details_or_applicants_for_first_registration\": \"Smith\",\n    \"applicant_party\": \"Joe Bloggs and Jane Bloggs\"\n  },\n  \"external_reference\": {\n    \"reference\": \"GB000123Z\",\n    \"allocated_by\": \"AAA Conveyancers\",\n    \"description\": \"Reference description\"\n  },\n  \"customer_reference\": {\n    \"reference\": \"GB000123Z\",\n    \"allocated_by\": \"AAA Conveyancers\",\n    \"description\": \"Reference description\"\n  },\n  \"expected_price\": {\n    \"gross_price_amount\": 3,\n    \"net_price_amount\": 3,\n    \"vat_amount\": 0.75,\n    \"currency_id\": \"GBP\"\n  },\n  \"contact\": [\n    {\n      \"name\": \"John Smith\",\n      \"telephone_number\": \"stringstr\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"BG40011\",\n      \"detail\": \"Message ID has already been submitted\",\n      \"status\": 409,\n      \"trace_id\": \"c62e9b3f-e523-4f04-a941-c6cf0d60c080\",\n      \"title\": \"Existing message id\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "856213ac-ed6d-4c27-9f93-45a1c790d6f3",
+              "name": "An error has occurred.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "official-searches-of-whole"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message_id\": \"dfcacc5e-456e-4fd1-88e5-8070e43d6714\",\n  \"title_number\": \"PMD100\",\n  \"official_search_of_whole_with_priority\": {\n    \"priority_type\": \"Purchase\",\n    \"property_description\": \"28a Richmond Avenue, Basingstoke, RG38 8DJ\",\n    \"search_from_date\": \"2022-02-12\",\n    \"continue_application_if\": [\n      \"NAME_MISMATCH_ON_REGISTER\",\n      \"DEVELOPER_TITLE\"\n    ],\n    \"registered_proprietors_details_or_applicants_for_first_registration\": \"Smith\",\n    \"applicant_party\": \"Joe Bloggs and Jane Bloggs\"\n  },\n  \"external_reference\": {\n    \"reference\": \"GB000123Z\",\n    \"allocated_by\": \"AAA Conveyancers\",\n    \"description\": \"Reference description\"\n  },\n  \"customer_reference\": {\n    \"reference\": \"GB000123Z\",\n    \"allocated_by\": \"AAA Conveyancers\",\n    \"description\": \"Reference description\"\n  },\n  \"expected_price\": {\n    \"gross_price_amount\": 3,\n    \"net_price_amount\": 3,\n    \"vat_amount\": 0.75,\n    \"currency_id\": \"GBP\"\n  },\n  \"contact\": [\n    {\n      \"name\": \"John Smith\",\n      \"telephone_number\": \"stringstr\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"BG50004\",\n      \"detail\": \"The gateway has timed out.\",\n      \"status\": \"504\",\n      \"trace_id\": \"c62e9b3f-e523-4f04-a941-c6cf0d60c080\",\n      \"title\": \"An error has occurred\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://bgtest.landregistry.gov.uk/bg2test/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "8cee91d4-35fb-46de-a9a7-452ca84bfe38",
+    "name": "Official Search of Whole with Data",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "An Official Search of Whole with Data protects agreements between buyers, sellers and lenders. The Official Search of Whole with Data RESTful API expands on the existing Official Search of Whole SOAP API.",
+      "type": "text/plain"
+    }
+  }
+}

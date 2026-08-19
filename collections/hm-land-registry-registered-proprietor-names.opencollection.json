@@ -1,0 +1,44 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Registered Proprietor Names Service",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Registered Proprietor Names",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get proprietor names associated with a title number.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://businessgateway.landregistry.gov.uk/bg2/api/v1/titles/:title_number/registered-proprietor-names",
+            "params": [
+              {
+                "name": "title_number",
+                "value": "",
+                "type": "path",
+                "description": "The title number of the property. Characters must be uppercase."
+              }
+            ]
+          },
+          "docs": "Returns the registered proprietor names for the provided title number."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

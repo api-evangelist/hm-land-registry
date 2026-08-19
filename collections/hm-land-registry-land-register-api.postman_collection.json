@@ -1,0 +1,586 @@
+{
+  "item": [
+    {
+      "id": "f2231390-214c-4356-83ab-ccae80cac135",
+      "name": "interest",
+      "description": {
+        "content": "Operations relating to legal interests that relate parties and places.",
+        "type": "text/plain"
+      },
+      "item": [],
+      "event": []
+    },
+    {
+      "id": "2ca37400-55b9-4869-9c8d-4334d344eb6a",
+      "name": "party",
+      "description": {
+        "content": "Operations relating to persons or organisations.",
+        "type": "text/plain"
+      },
+      "item": [],
+      "event": []
+    },
+    {
+      "id": "ae2c397b-cc8b-4228-8c2d-5e67e11898d8",
+      "name": "place",
+      "description": {
+        "content": "Operations relating to land or property.",
+        "type": "text/plain"
+      },
+      "item": [],
+      "event": []
+    },
+    {
+      "id": "7c698f0f-055c-437f-bbff-aa31b1d4437d",
+      "name": "title",
+      "description": {
+        "content": "Operations relating to titles for land or property.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "714b3898-9019-4594-a0d1-e507e2c70703",
+          "name": "Gets summary information for the title with the specified title number.",
+          "request": {
+            "name": "Gets summary information for the title with the specified title number.",
+            "description": {
+              "content": "## Error responses\nCalls to this endpoint may return the following error codes:\n| Error code   | Message                                                                           | Cause                                                                                                                  |\n|--------------|-----------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------|\n| `LRAPI00401` | The request could not be completed because a valid access token was not provided. | A valid access token must be provided to be able to access this data. Try the request again with a valid access token. |\n| `LRAPI00404` | A title number must be provided.                                                  | The path parameter __{titleNumber}__ cannot be empty. Try the request again with a non-empty value.                    |\n| `LRAPI01001` | The request failed to validate.                                                   | An invalid title number was provided. Check the value to ensure it does not violate the parameter constraints.         |\n| `LRAPI02000` | Title number '__{titleNumber}__' does not exist.                                  | No title with the given title number could be found in the Land Register. Check that the title number is correct.      |\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "title",
+                ":titleNumber"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "titleNumber",
+                  "description": "(Required) The unique reference number of the desired title.\n\n---\n\nThe following constraints apply to this parameter:\n| Constraint                                                           | Error message                                           |\n|----------------------------------------------------------------------|---------------------------------------------------------|\n| The parameter must have a length less than or equal to 9 characters. | *The title number must be no longer than 9 characters.* |"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a8a39203-e90e-4c92-876a-52efca7724fb",
+              "name": "Summary information for the title.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "title",
+                    ":titleNumber"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "titleNumber",
+                      "description": "(Required) The unique reference number of the desired title.\n\n---\n\nThe following constraints apply to this parameter:\n| Constraint                                                           | Error message                                           |\n|----------------------------------------------------------------------|---------------------------------------------------------|\n| The parameter must have a length less than or equal to 9 characters. | *The title number must be no longer than 9 characters.* |"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"application_reference\": \"BADD31A\",\n  \"caution_against_first_registration\": true,\n  \"entries\": [\n    {\n      \"legacy_entry_id\": \"2017-06-04T04:34:52.817+00:00\",\n      \"entry_text\": \"No disposition by a sole proprietor of the registered estate (except a trust corporation) under which capital money arises is to be registered unless authorised by an order of the court.\",\n      \"language_code\": \"eng\",\n      \"schedule\": {\n        \"code\": \"L\",\n        \"sequence\": 1,\n        \"header\": {\n          \"eng\": \"Schedule of rentcharges\",\n          \"cym\": \"Atodlen rhent-daliadau cofrestredig\"\n        }\n      },\n      \"draft_entry_code\": \"BX900\",\n      \"sub_register_sequence\": 1,\n      \"role_code\": \"OJPR\",\n      \"draft_entry_version\": 1,\n      \"entry_sequence\": 1,\n      \"entry_date\": \"1968-09-27\",\n      \"sub_register_code\": \"A\"\n    },\n    {\n      \"legacy_entry_id\": \"2017-06-04T04:34:52.817+00:00\",\n      \"entry_text\": \"No disposition by a sole proprietor of the registered estate (except a trust corporation) under which capital money arises is to be registered unless authorised by an order of the court.\",\n      \"language_code\": \"eng\",\n      \"schedule\": {\n        \"code\": \"L\",\n        \"sequence\": 1,\n        \"header\": {\n          \"eng\": \"Schedule of rentcharges\",\n          \"cym\": \"Atodlen rhent-daliadau cofrestredig\"\n        }\n      },\n      \"draft_entry_code\": \"BX900\",\n      \"sub_register_sequence\": 1,\n      \"role_code\": \"OJPR\",\n      \"draft_entry_version\": 1,\n      \"entry_sequence\": 1,\n      \"entry_date\": \"1956-08-06\",\n      \"sub_register_code\": \"A\"\n    }\n  ],\n  \"prices_paid\": [\n    {\n      \"date\": {\n        \"description\": \"6 March 2020\",\n        \"value\": \"1993-09-29\"\n      },\n      \"price_paid_type\": \"price\",\n      \"sequence\": 1,\n      \"amount\": {\n        \"amount_type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"description\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"legacy_entry_id\": \"2019-11-18-12.52.12.555232\",\n      \"additional_properties\": \"titles AV583888 and DN394853\"\n    },\n    {\n      \"date\": {\n        \"description\": \"6 March 2020\",\n        \"value\": \"1963-07-10\"\n      },\n      \"price_paid_type\": \"price\",\n      \"sequence\": 1,\n      \"amount\": {\n        \"amount_type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"description\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"legacy_entry_id\": \"2019-11-18-12.52.12.555232\",\n      \"additional_properties\": \"titles AV583888 and DN394853\"\n    }\n  ],\n  \"properties\": [\n    {\n      \"address\": {\n        \"description\": \"123 fake street, Armada Way, Plymouth, Devon (PL1 2AB)\",\n        \"legacy_addr_id\": \"2017-06-04T04:34:52.817+00:00\"\n      },\n      \"sequence\": 1\n    },\n    {\n      \"address\": {\n        \"description\": \"123 fake street, Armada Way, Plymouth, Devon (PL1 2AB)\",\n        \"legacy_addr_id\": \"2017-06-04T04:34:52.817+00:00\"\n      },\n      \"sequence\": 1\n    }\n  ],\n  \"proprietors\": [\n    {\n      \"name\": \"Mrs Sarah Louise Smith OBE\",\n      \"proprietor_type\": \"private individual\",\n      \"aliases\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"sequence\": 1,\n      \"addresses\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"legacy_name_id\": \"2015-03-31-15.25.12.037850\",\n      \"decor\": \"OBE\",\n      \"surname\": \"Smith\",\n      \"title\": \"Mrs\",\n      \"forenames\": \"Sarah Louise\"\n    },\n    {\n      \"name\": \"Mrs Sarah Louise Smith OBE\",\n      \"proprietor_type\": \"private individual\",\n      \"aliases\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"sequence\": 1,\n      \"addresses\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"legacy_name_id\": \"2015-03-31-15.25.12.037850\",\n      \"decor\": \"OBE\",\n      \"surname\": \"Smith\",\n      \"title\": \"Mrs\",\n      \"forenames\": \"Sarah Louise\"\n    }\n  ],\n  \"status\": {\n    \"value\": \"open\",\n    \"date\": \"2001-11-10\"\n  },\n  \"title_number\": \"AGL117262\",\n  \"data_issues\": [\n    {\n      \"code\": \"data_quality_no_entry_text\",\n      \"message\": \"The entry text is currently unavailable.\",\n      \"property_name\": \"response.body.entries[0].entry_text\",\n      \"reference\": \"71e3dee4-f315-c0e6-c60e-59de199b549a\"\n    },\n    {\n      \"code\": \"data_quality_no_entry_text\",\n      \"message\": \"The entry text is currently unavailable.\",\n      \"property_name\": \"response.body.entries[0].entry_text\",\n      \"reference\": \"126a220b-3c7e-9db5-fc7c-89cbfd5c8888\"\n    }\n  ],\n  \"previous_title_number\": \"AGL117262\",\n  \"scheme_status\": \"pre-allocated scheme title, no applications pending\",\n  \"continuation_title_number\": \"AGL117262\",\n  \"application_timestamp\": \"2011-02-11T13:44:02Z\",\n  \"timeshare_lease_issued\": true,\n  \"district_name\": \"STRATFORD-ON-AVON\",\n  \"pre_act_caution\": true,\n  \"edition_date\": \"2017-09-12\",\n  \"estate_interest\": \"estate in land\",\n  \"class_of_title\": \"absolute\",\n  \"tenure\": \"freehold\",\n  \"commonhold_type\": \"part\",\n  \"developer_status\": \"currently a developing title\",\n  \"interests\": {\n    \"notices\": [\n      {\n        \"legacy_entry_ids\": [\n          \"string\"\n        ],\n        \"protected_interests\": [\n          \"string\"\n        ],\n        \"additional_considerations\": [\n          \"Check practice guidance for the latest applicable charities act\",\n          \"Check practice guidance for the latest applicable charities act\"\n        ],\n        \"notes\": [\n          \"copy filed\",\n          \"copy filed\"\n        ],\n        \"sources\": [\n          {\n            \"date\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parties\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"date\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parties\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"expiry_condition\": \"and exercisable within a period of 20 years from 2 January 2004\",\n        \"subject\": \"registered estate\",\n        \"parish_church\": \"The Church of the Holy Mary\",\n        \"notice_type\": \"home rights notice\",\n        \"notice_date\": \"2020/01/31\",\n        \"lease_term\": \"5 years from 2020-01-20\",\n        \"served_by\": \"John Smith\",\n        \"entry_dates\": [\n          \"1960-12-21\",\n          \"1969-04-20\"\n        ],\n        \"beneficiaries\": [\n          \"string\",\n          \"string\"\n        ],\n        \"statute\": \"Section 42 of the Leasehold Reform, Housing and Urban Development Act 1993\",\n        \"object\": \"whole\"\n      },\n      {\n        \"legacy_entry_ids\": [\n          \"string\"\n        ],\n        \"protected_interests\": [\n          \"string\"\n        ],\n        \"additional_considerations\": [\n          \"Check practice guidance for the latest applicable charities act\",\n          \"Check practice guidance for the latest applicable charities act\"\n        ],\n        \"notes\": [\n          \"copy filed\",\n          \"copy filed\"\n        ],\n        \"sources\": [\n          {\n            \"date\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parties\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"date\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parties\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"expiry_condition\": \"and exercisable within a period of 20 years from 2 January 2004\",\n        \"subject\": \"registered estate\",\n        \"parish_church\": \"The Church of the Holy Mary\",\n        \"notice_type\": \"agreed notice\",\n        \"notice_date\": \"2020/01/31\",\n        \"lease_term\": \"5 years from 2020-01-20\",\n        \"served_by\": \"John Smith\",\n        \"entry_dates\": [\n          \"1965-02-08\",\n          \"2000-05-11\"\n        ],\n        \"beneficiaries\": [\n          \"string\",\n          \"string\"\n        ],\n        \"statute\": \"Section 42 of the Leasehold Reform, Housing and Urban Development Act 1993\",\n        \"object\": \"whole\"\n      }\n    ],\n    \"covenants\": {\n      \"implied_covenants\": [\n        {\n          \"legacy_entry_id\": \"2019-11-18-12.52.12.555232\",\n          \"subject\": \"registered estate\",\n          \"notes\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"covenant_type\": \"implied covenant\",\n          \"statute\": \"Part I of the Law of Property (Miscellaneous Provisions) Act 1994\",\n          \"entry_date\": \"1948-09-19\",\n          \"object\": \"whole\"\n        },\n        {\n          \"legacy_entry_id\": \"2019-11-18-12.52.12.555232\",\n          \"subject\": \"registered estate\",\n          \"notes\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"covenant_type\": \"implied covenant\",\n          \"statute\": \"Part I of the Law of Property (Miscellaneous Provisions) Act 1994\",\n          \"entry_date\": \"2014-02-14\",\n          \"object\": \"whole\"\n        }\n      ],\n      \"personal_covenants\": [\n        {\n          \"legacy_entry_id\": \"2019-11-18-12.52.12.555232\",\n          \"subject\": \"registered estate\",\n          \"notes\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"sources\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"covenantor\": \"purchaser\",\n          \"covenant_type\": \"indemnity covenant\",\n          \"entry_date\": \"1996-12-19\",\n          \"object\": \"of the land in this title\"\n        },\n        {\n          \"legacy_entry_id\": \"2019-11-18-12.52.12.555232\",\n          \"subject\": \"registered estate\",\n          \"notes\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"sources\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"covenantor\": \"purchaser\",\n          \"covenant_type\": \"indemnity covenant\",\n          \"entry_date\": \"2015-03-27\",\n          \"object\": \"of the land in this title\"\n        }\n      ]\n    },\n    \"charges\": [\n      {\n        \"charge_type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"additional_considerations\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"notes\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"sources\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"legacy_postponement_entry_ids\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"subject\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"legacy_charge_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"charge_date\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"statute\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"object\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"discount_charge\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"legacy_charge_entry_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"entry_date\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"chargees\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"legacy_chargee_entry_id\": \"2019-11-18-12.52.12.555231\",\n        \"legacy_charge_restriction_entry_ids\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"legacy_obligation_entry_ids\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"expiry_date\": \"1963-05-20\"\n      },\n      {\n        \"charge_type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"additional_considerations\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"notes\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"sources\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"legacy_postponement_entry_ids\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"subject\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"legacy_charge_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"charge_date\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"statute\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"object\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"discount_charge\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"legacy_charge_entry_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"entry_date\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"chargees\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"legacy_chargee_entry_id\": \"2019-11-18-12.52.12.555231\",\n        \"legacy_charge_restriction_entry_ids\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"legacy_obligation_entry_ids\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"expiry_date\": \"1965-02-13\"\n      }\n    ],\n    \"restrictions\": [\n      {\n        \"actions\": [\n          \"disposition\",\n          \"disposition\"\n        ],\n        \"legacy_entry_id\": \"2019-11-18 12.52.12.555232\",\n        \"restriction_type\": \"restriction\",\n        \"additional_considerations\": [\n          \"Check practice guidance for the latest applicable charities act\",\n          \"Check practice guidance for the latest applicable charities act\"\n        ],\n        \"notes\": [\n          \"copy filed\",\n          \"copy filed\"\n        ],\n        \"restricted_parties\": [\n          \"sole proprietor\",\n          \"sole proprietor\"\n        ],\n        \"expiry_condition\": \"the death of the survivor of Joe Bloggs and Filiph Bloggs\",\n        \"subject\": \"registered estate\",\n        \"expiry_date\": \"1967-03-09\",\n        \"impacted_action_condition\": \"the transfer or lease must be dated before the date specified in this restriction\",\n        \"legacy_charge_id\": \"2018-05-04-05.14.02.623118\",\n        \"entry_date\": \"4293-39-02\",\n        \"compliances\": [\n          {\n            \"additional_authorities\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"alternative_authorities\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"authority_title_number\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"form_of_compliance\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"authority\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"compliance_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"additional_authorities\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"alternative_authorities\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"authority_title_number\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"form_of_compliance\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"authority\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"compliance_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"impacted_action_condition_date\": \"9336-51-51\",\n        \"restriction_form\": \"B\",\n        \"housing_association_impact\": \"burdened or imposed\",\n        \"exemptions\": [\n          {\n            \"context\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"exemption\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"context\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"exemption\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"restricted_charge_date\": \"2020-10-06T00:00:00.000+00:00\",\n        \"restriction_form_description\": \"Disposition by registered proprietor of a registered estate or proprietor of charge – certificate required\",\n        \"object\": \"whole\"\n      },\n      {\n        \"actions\": [\n          \"disposition\",\n          \"disposition\"\n        ],\n        \"legacy_entry_id\": \"2019-11-18 12.52.12.555232\",\n        \"restriction_type\": \"restriction\",\n        \"additional_considerations\": [\n          \"Check practice guidance for the latest applicable charities act\",\n          \"Check practice guidance for the latest applicable charities act\"\n        ],\n        \"notes\": [\n          \"copy filed\",\n          \"copy filed\"\n        ],\n        \"restricted_parties\": [\n          \"sole proprietor\",\n          \"sole proprietor\"\n        ],\n        \"expiry_condition\": \"the death of the survivor of Joe Bloggs and Filiph Bloggs\",\n        \"subject\": \"registered estate\",\n        \"expiry_date\": \"1978-07-14\",\n        \"impacted_action_condition\": \"the transfer or lease must be dated before the date specified in this restriction\",\n        \"legacy_charge_id\": \"2018-05-04-05.14.02.623118\",\n        \"entry_date\": \"3939-74-28\",\n        \"compliances\": [\n          {\n            \"additional_authorities\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"alternative_authorities\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"authority_title_number\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"form_of_compliance\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"authority\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"compliance_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"additional_authorities\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"alternative_authorities\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"authority_title_number\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"form_of_compliance\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"authority\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"compliance_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"impacted_action_condition_date\": \"5999-89-10\",\n        \"restriction_form\": \"B\",\n        \"housing_association_impact\": \"burdened or imposed\",\n        \"exemptions\": [\n          {\n            \"context\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"exemption\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"context\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"exemption\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"restricted_charge_date\": \"2020-10-06T00:00:00.000+00:00\",\n        \"restriction_form_description\": \"Disposition by registered proprietor of a registered estate or proprietor of charge – certificate required\",\n        \"object\": \"whole\"\n      }\n    ]\n  },\n  \"concerns\": {\n    \"postponements\": [\n      {\n        \"legacy_entry_id\": \"2020-09-10-12.52.12.385746\",\n        \"additional_considerations\": [\n          \"Check practice guidance for the latest applicable charities act\",\n          \"Check practice guidance for the latest applicable charities act\"\n        ],\n        \"postponement_charges\": [\n          \"2019-11-18-12.52.12.555456\",\n          \"2019-11-18-12.52.12.555456\"\n        ],\n        \"entry_date\": \"2003-06-01\"\n      },\n      {\n        \"legacy_entry_id\": \"2020-09-10-12.52.12.385746\",\n        \"additional_considerations\": [\n          \"Check practice guidance for the latest applicable charities act\",\n          \"Check practice guidance for the latest applicable charities act\"\n        ],\n        \"postponement_charges\": [\n          \"2019-11-18-12.52.12.555456\",\n          \"2019-11-18-12.52.12.555456\"\n        ],\n        \"entry_date\": \"1956-03-27\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "366bca9c-8813-4b6c-86b9-8e16e248a434",
+              "name": "An invalid title number was supplied.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "title",
+                    ":titleNumber"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "titleNumber",
+                      "description": "(Required) The unique reference number of the desired title.\n\n---\n\nThe following constraints apply to this parameter:\n| Constraint                                                           | Error message                                           |\n|----------------------------------------------------------------------|---------------------------------------------------------|\n| The parameter must have a length less than or equal to 9 characters. | *The title number must be no longer than 9 characters.* |"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_message\": \"string\",\n  \"reference\": \"641107d2-32ae-f4ef-64a8-e0d3a483ef22\",\n  \"status\": 460,\n  \"validation_issues\": [\n    {\n      \"message\": \"The ID cannot be null.\",\n      \"property_name\": \"response.body.entries[0].entry_text\",\n      \"type\": \"validation_issue_incorrect_spelling_of_disposition\"\n    },\n    {\n      \"message\": \"The ID cannot be null.\",\n      \"property_name\": \"response.body.entries[0].entry_text\",\n      \"type\": \"validation_issue_incorrect_spelling_of_disposition\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "60192cd8-85d4-408a-97ef-c0343645697a",
+              "name": "A valid access token was not provided.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "title",
+                    ":titleNumber"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "titleNumber",
+                      "description": "(Required) The unique reference number of the desired title.\n\n---\n\nThe following constraints apply to this parameter:\n| Constraint                                                           | Error message                                           |\n|----------------------------------------------------------------------|---------------------------------------------------------|\n| The parameter must have a length less than or equal to 9 characters. | *The title number must be no longer than 9 characters.* |"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_message\": \"string\",\n  \"reference\": \"6bcfd416-70f1-dc4d-1bb3-efbe9f7d2efd\",\n  \"status\": 583\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c1e5983f-c5fd-48f1-8f87-ab7682b7d97d",
+              "name": "No title with the given title number could be found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "title",
+                    ":titleNumber"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "titleNumber",
+                      "description": "(Required) The unique reference number of the desired title.\n\n---\n\nThe following constraints apply to this parameter:\n| Constraint                                                           | Error message                                           |\n|----------------------------------------------------------------------|---------------------------------------------------------|\n| The parameter must have a length less than or equal to 9 characters. | *The title number must be no longer than 9 characters.* |"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_message\": \"string\",\n  \"reference\": \"6bcfd416-70f1-dc4d-1bb3-efbe9f7d2efd\",\n  \"status\": 583\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "3c1df87b-6e95-4db6-8455-863595f19055",
+      "name": "draft-titles",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "71c9571f-7b37-428b-9040-f39029ec2664",
+          "name": "Gets summary information for the draft title with the specified title number.",
+          "request": {
+            "name": "Gets summary information for the draft title with the specified title number.",
+            "description": {
+              "content": "## Error responses\nCalls to this endpoint may return the following error codes:\n| Error code   | Message                                                                           | Cause     c                                                                                                            |\n|--------------|-----------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------|\n| `LRAPI00401` | The request could not be completed because a valid access token was not provided. | A valid access token must be provided to be able to access this data. Try the request again with a valid access token. |\n| `LRAPI00404` | A draft title number must be provided.                                            | The path parameter __{titleNumber}__ cannot be empty. Try the request again with a non-empty value.                    |\n| `LRAPI01001` | The request failed to validate.                                                   | An invalid title number was provided. Check the value to ensure it does not violate the parameter constraints.         |\n| `LRAPI90101` | No draft for title number '__{titleNumber}__' exists.                             | The given title number does not have a current draft associated with it. Check that the title number is correct.       |\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "draft-titles",
+                ":titleNumber"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "titleNumber",
+                  "description": "(Required) The unique reference number of the desired title.\n\n---\n\nThe following constraints apply to this parameter:\n| Constraint                                                           | Error message                                           |\n|----------------------------------------------------------------------|---------------------------------------------------------|\n| The parameter must have a length less than or equal to 9 characters. | *The title number must be no longer than 9 characters.* |"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8c6f697d-12c5-4970-aac3-1f37040cdc27",
+              "name": "Summary information for the title.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "draft-titles",
+                    ":titleNumber"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "titleNumber",
+                      "description": "(Required) The unique reference number of the desired title.\n\n---\n\nThe following constraints apply to this parameter:\n| Constraint                                                           | Error message                                           |\n|----------------------------------------------------------------------|---------------------------------------------------------|\n| The parameter must have a length less than or equal to 9 characters. | *The title number must be no longer than 9 characters.* |"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"application_reference\": \"BADD31A\",\n  \"caution_against_first_registration\": true,\n  \"entries\": [\n    {\n      \"legacy_entry_id\": \"2017-06-04T04:34:52.817+00:00\",\n      \"entry_text\": \"No disposition by a sole proprietor of the registered estate (except a trust corporation) under which capital money arises is to be registered unless authorised by an order of the court.\",\n      \"language_code\": \"eng\",\n      \"schedule\": {\n        \"code\": \"L\",\n        \"sequence\": 1,\n        \"header\": {\n          \"eng\": \"Schedule of rentcharges\",\n          \"cym\": \"Atodlen rhent-daliadau cofrestredig\"\n        }\n      },\n      \"draft_entry_code\": \"BX900\",\n      \"sub_register_sequence\": 1,\n      \"role_code\": \"OJPR\",\n      \"draft_entry_version\": 1,\n      \"entry_sequence\": 1,\n      \"entry_date\": \"1971-01-28\",\n      \"sub_register_code\": \"A\"\n    },\n    {\n      \"legacy_entry_id\": \"2017-06-04T04:34:52.817+00:00\",\n      \"entry_text\": \"No disposition by a sole proprietor of the registered estate (except a trust corporation) under which capital money arises is to be registered unless authorised by an order of the court.\",\n      \"language_code\": \"eng\",\n      \"schedule\": {\n        \"code\": \"L\",\n        \"sequence\": 1,\n        \"header\": {\n          \"eng\": \"Schedule of rentcharges\",\n          \"cym\": \"Atodlen rhent-daliadau cofrestredig\"\n        }\n      },\n      \"draft_entry_code\": \"BX900\",\n      \"sub_register_sequence\": 1,\n      \"role_code\": \"OJPR\",\n      \"draft_entry_version\": 1,\n      \"entry_sequence\": 1,\n      \"entry_date\": \"2012-10-19\",\n      \"sub_register_code\": \"A\"\n    }\n  ],\n  \"prices_paid\": [\n    {\n      \"date\": {\n        \"description\": \"6 March 2020\",\n        \"value\": \"1952-02-22\"\n      },\n      \"price_paid_type\": \"price\",\n      \"sequence\": 1,\n      \"amount\": {\n        \"amount_type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"description\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"legacy_entry_id\": \"2019-11-18-12.52.12.555232\",\n      \"additional_properties\": \"titles AV583888 and DN394853\"\n    },\n    {\n      \"date\": {\n        \"description\": \"6 March 2020\",\n        \"value\": \"1965-01-02\"\n      },\n      \"price_paid_type\": \"price\",\n      \"sequence\": 1,\n      \"amount\": {\n        \"amount_type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"description\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"legacy_entry_id\": \"2019-11-18-12.52.12.555232\",\n      \"additional_properties\": \"titles AV583888 and DN394853\"\n    }\n  ],\n  \"properties\": [\n    {\n      \"address\": {\n        \"description\": \"123 fake street, Armada Way, Plymouth, Devon (PL1 2AB)\",\n        \"legacy_addr_id\": \"2017-06-04T04:34:52.817+00:00\"\n      },\n      \"sequence\": 1\n    },\n    {\n      \"address\": {\n        \"description\": \"123 fake street, Armada Way, Plymouth, Devon (PL1 2AB)\",\n        \"legacy_addr_id\": \"2017-06-04T04:34:52.817+00:00\"\n      },\n      \"sequence\": 1\n    }\n  ],\n  \"proprietors\": [\n    {\n      \"name\": \"Mrs Sarah Louise Smith OBE\",\n      \"proprietor_type\": \"private individual\",\n      \"aliases\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"sequence\": 1,\n      \"addresses\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"legacy_name_id\": \"2015-03-31-15.25.12.037850\",\n      \"decor\": \"OBE\",\n      \"surname\": \"Smith\",\n      \"title\": \"Mrs\",\n      \"forenames\": \"Sarah Louise\"\n    },\n    {\n      \"name\": \"Mrs Sarah Louise Smith OBE\",\n      \"proprietor_type\": \"private individual\",\n      \"aliases\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"sequence\": 1,\n      \"addresses\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"legacy_name_id\": \"2015-03-31-15.25.12.037850\",\n      \"decor\": \"OBE\",\n      \"surname\": \"Smith\",\n      \"title\": \"Mrs\",\n      \"forenames\": \"Sarah Louise\"\n    }\n  ],\n  \"status\": {\n    \"value\": \"open\",\n    \"date\": \"1981-08-11\"\n  },\n  \"title_number\": \"AGL117262\",\n  \"data_issues\": [\n    {\n      \"code\": \"data_quality_no_entry_text\",\n      \"message\": \"The entry text is currently unavailable.\",\n      \"property_name\": \"response.body.entries[0].entry_text\",\n      \"reference\": \"56394261-38af-3630-599c-38c1ba34953d\"\n    },\n    {\n      \"code\": \"data_quality_no_entry_text\",\n      \"message\": \"The entry text is currently unavailable.\",\n      \"property_name\": \"response.body.entries[0].entry_text\",\n      \"reference\": \"acc5e538-c167-41d9-e076-758a0d325d7d\"\n    }\n  ],\n  \"previous_title_number\": \"AGL117262\",\n  \"scheme_status\": \"pre-allocated scheme title, no applications pending\",\n  \"continuation_title_number\": \"AGL117262\",\n  \"application_timestamp\": \"2011-02-11T13:44:02Z\",\n  \"timeshare_lease_issued\": true,\n  \"district_name\": \"STRATFORD-ON-AVON\",\n  \"pre_act_caution\": true,\n  \"edition_date\": \"1981-08-20\",\n  \"estate_interest\": \"estate in land\",\n  \"class_of_title\": \"absolute\",\n  \"tenure\": \"freehold\",\n  \"commonhold_type\": \"part\",\n  \"developer_status\": \"currently a developing title\",\n  \"interests\": {\n    \"notices\": [\n      {\n        \"legacy_entry_ids\": [\n          \"string\"\n        ],\n        \"protected_interests\": [\n          \"string\"\n        ],\n        \"additional_considerations\": [\n          \"Check practice guidance for the latest applicable charities act\",\n          \"Check practice guidance for the latest applicable charities act\"\n        ],\n        \"notes\": [\n          \"copy filed\",\n          \"copy filed\"\n        ],\n        \"sources\": [\n          {\n            \"date\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parties\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"date\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parties\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"expiry_condition\": \"and exercisable within a period of 20 years from 2 January 2004\",\n        \"subject\": \"registered estate\",\n        \"parish_church\": \"The Church of the Holy Mary\",\n        \"notice_type\": \"unilateral notice\",\n        \"notice_date\": \"2020/01/31\",\n        \"lease_term\": \"5 years from 2020-01-20\",\n        \"served_by\": \"John Smith\",\n        \"entry_dates\": [\n          \"1967-08-30\",\n          \"1974-08-12\"\n        ],\n        \"beneficiaries\": [\n          \"string\",\n          \"string\"\n        ],\n        \"statute\": \"Section 42 of the Leasehold Reform, Housing and Urban Development Act 1993\",\n        \"object\": \"whole\"\n      },\n      {\n        \"legacy_entry_ids\": [\n          \"string\"\n        ],\n        \"protected_interests\": [\n          \"string\"\n        ],\n        \"additional_considerations\": [\n          \"Check practice guidance for the latest applicable charities act\",\n          \"Check practice guidance for the latest applicable charities act\"\n        ],\n        \"notes\": [\n          \"copy filed\",\n          \"copy filed\"\n        ],\n        \"sources\": [\n          {\n            \"date\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parties\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"date\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parties\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"expiry_condition\": \"and exercisable within a period of 20 years from 2 January 2004\",\n        \"subject\": \"registered estate\",\n        \"parish_church\": \"The Church of the Holy Mary\",\n        \"notice_type\": \"home rights notice\",\n        \"notice_date\": \"2020/01/31\",\n        \"lease_term\": \"5 years from 2020-01-20\",\n        \"served_by\": \"John Smith\",\n        \"entry_dates\": [\n          \"1965-09-01\",\n          \"1953-12-05\"\n        ],\n        \"beneficiaries\": [\n          \"string\",\n          \"string\"\n        ],\n        \"statute\": \"Section 42 of the Leasehold Reform, Housing and Urban Development Act 1993\",\n        \"object\": \"whole\"\n      }\n    ],\n    \"covenants\": {\n      \"implied_covenants\": [\n        {\n          \"legacy_entry_id\": \"2019-11-18-12.52.12.555232\",\n          \"subject\": \"registered estate\",\n          \"notes\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"covenant_type\": \"implied covenant\",\n          \"statute\": \"Part I of the Law of Property (Miscellaneous Provisions) Act 1994\",\n          \"entry_date\": \"1979-05-16\",\n          \"object\": \"whole\"\n        },\n        {\n          \"legacy_entry_id\": \"2019-11-18-12.52.12.555232\",\n          \"subject\": \"registered estate\",\n          \"notes\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"covenant_type\": \"implied covenant\",\n          \"statute\": \"Part I of the Law of Property (Miscellaneous Provisions) Act 1994\",\n          \"entry_date\": \"1950-10-30\",\n          \"object\": \"whole\"\n        }\n      ],\n      \"personal_covenants\": [\n        {\n          \"legacy_entry_id\": \"2019-11-18-12.52.12.555232\",\n          \"subject\": \"registered estate\",\n          \"notes\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"sources\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"covenantor\": \"purchaser\",\n          \"covenant_type\": \"indemnity covenant\",\n          \"entry_date\": \"1953-03-14\",\n          \"object\": \"of the land in this title\"\n        },\n        {\n          \"legacy_entry_id\": \"2019-11-18-12.52.12.555232\",\n          \"subject\": \"registered estate\",\n          \"notes\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"sources\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"covenantor\": \"purchaser\",\n          \"covenant_type\": \"indemnity covenant\",\n          \"entry_date\": \"1957-11-04\",\n          \"object\": \"of the land in this title\"\n        }\n      ]\n    },\n    \"charges\": [\n      {\n        \"charge_type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"additional_considerations\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"notes\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"sources\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"legacy_postponement_entry_ids\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"subject\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"legacy_charge_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"charge_date\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"statute\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"object\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"discount_charge\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"legacy_charge_entry_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"entry_date\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"chargees\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"legacy_chargee_entry_id\": \"2019-11-18-12.52.12.555231\",\n        \"legacy_charge_restriction_entry_ids\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"legacy_obligation_entry_ids\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"expiry_date\": \"2010-01-30\"\n      },\n      {\n        \"charge_type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"additional_considerations\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"notes\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"sources\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"legacy_postponement_entry_ids\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"subject\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"legacy_charge_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"charge_date\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"statute\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"object\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"discount_charge\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"legacy_charge_entry_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"entry_date\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"chargees\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"legacy_chargee_entry_id\": \"2019-11-18-12.52.12.555231\",\n        \"legacy_charge_restriction_entry_ids\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"legacy_obligation_entry_ids\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"expiry_date\": \"1999-12-22\"\n      }\n    ],\n    \"restrictions\": [\n      {\n        \"actions\": [\n          \"disposition\",\n          \"disposition\"\n        ],\n        \"legacy_entry_id\": \"2019-11-18 12.52.12.555232\",\n        \"restriction_type\": \"restriction\",\n        \"additional_considerations\": [\n          \"Check practice guidance for the latest applicable charities act\",\n          \"Check practice guidance for the latest applicable charities act\"\n        ],\n        \"notes\": [\n          \"copy filed\",\n          \"copy filed\"\n        ],\n        \"restricted_parties\": [\n          \"sole proprietor\",\n          \"sole proprietor\"\n        ],\n        \"expiry_condition\": \"the death of the survivor of Joe Bloggs and Filiph Bloggs\",\n        \"subject\": \"registered estate\",\n        \"expiry_date\": \"1989-09-11\",\n        \"impacted_action_condition\": \"the transfer or lease must be dated before the date specified in this restriction\",\n        \"legacy_charge_id\": \"2018-05-04-05.14.02.623118\",\n        \"entry_date\": \"5674-24-09\",\n        \"compliances\": [\n          {\n            \"additional_authorities\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"alternative_authorities\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"authority_title_number\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"form_of_compliance\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"authority\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"compliance_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"additional_authorities\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"alternative_authorities\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"authority_title_number\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"form_of_compliance\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"authority\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"compliance_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"impacted_action_condition_date\": \"3059-50-95\",\n        \"restriction_form\": \"B\",\n        \"housing_association_impact\": \"burdened or imposed\",\n        \"exemptions\": [\n          {\n            \"context\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"exemption\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"context\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"exemption\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"restricted_charge_date\": \"2020-10-06T00:00:00.000+00:00\",\n        \"restriction_form_description\": \"Disposition by registered proprietor of a registered estate or proprietor of charge – certificate required\",\n        \"object\": \"whole\"\n      },\n      {\n        \"actions\": [\n          \"disposition\",\n          \"disposition\"\n        ],\n        \"legacy_entry_id\": \"2019-11-18 12.52.12.555232\",\n        \"restriction_type\": \"restriction\",\n        \"additional_considerations\": [\n          \"Check practice guidance for the latest applicable charities act\",\n          \"Check practice guidance for the latest applicable charities act\"\n        ],\n        \"notes\": [\n          \"copy filed\",\n          \"copy filed\"\n        ],\n        \"restricted_parties\": [\n          \"sole proprietor\",\n          \"sole proprietor\"\n        ],\n        \"expiry_condition\": \"the death of the survivor of Joe Bloggs and Filiph Bloggs\",\n        \"subject\": \"registered estate\",\n        \"expiry_date\": \"1951-02-07\",\n        \"impacted_action_condition\": \"the transfer or lease must be dated before the date specified in this restriction\",\n        \"legacy_charge_id\": \"2018-05-04-05.14.02.623118\",\n        \"entry_date\": \"4659-96-10\",\n        \"compliances\": [\n          {\n            \"additional_authorities\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"alternative_authorities\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"authority_title_number\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"form_of_compliance\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"authority\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"compliance_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"additional_authorities\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"alternative_authorities\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"authority_title_number\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"form_of_compliance\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"authority\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"compliance_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"impacted_action_condition_date\": \"5437-14-25\",\n        \"restriction_form\": \"B\",\n        \"housing_association_impact\": \"burdened or imposed\",\n        \"exemptions\": [\n          {\n            \"context\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"exemption\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"context\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"exemption\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"restricted_charge_date\": \"2020-10-06T00:00:00.000+00:00\",\n        \"restriction_form_description\": \"Disposition by registered proprietor of a registered estate or proprietor of charge – certificate required\",\n        \"object\": \"whole\"\n      }\n    ]\n  },\n  \"concerns\": {\n    \"postponements\": [\n      {\n        \"legacy_entry_id\": \"2020-09-10-12.52.12.385746\",\n        \"additional_considerations\": [\n          \"Check practice guidance for the latest applicable charities act\",\n          \"Check practice guidance for the latest applicable charities act\"\n        ],\n        \"postponement_charges\": [\n          \"2019-11-18-12.52.12.555456\",\n          \"2019-11-18-12.52.12.555456\"\n        ],\n        \"entry_date\": \"1955-09-28\"\n      },\n      {\n        \"legacy_entry_id\": \"2020-09-10-12.52.12.385746\",\n        \"additional_considerations\": [\n          \"Check practice guidance for the latest applicable charities act\",\n          \"Check practice guidance for the latest applicable charities act\"\n        ],\n        \"postponement_charges\": [\n          \"2019-11-18-12.52.12.555456\",\n          \"2019-11-18-12.52.12.555456\"\n        ],\n        \"entry_date\": \"1951-04-19\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "564fdbab-8971-46f6-b163-0a9c65d3d341",
+              "name": "An invalid title number was supplied.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "draft-titles",
+                    ":titleNumber"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "titleNumber",
+                      "description": "(Required) The unique reference number of the desired title.\n\n---\n\nThe following constraints apply to this parameter:\n| Constraint                                                           | Error message                                           |\n|----------------------------------------------------------------------|---------------------------------------------------------|\n| The parameter must have a length less than or equal to 9 characters. | *The title number must be no longer than 9 characters.* |"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_message\": \"string\",\n  \"reference\": \"66fe940f-d13c-bbb4-6f60-6b322a30b169\",\n  \"status\": 516,\n  \"validation_issues\": [\n    {\n      \"message\": \"The ID cannot be null.\",\n      \"property_name\": \"response.body.entries[0].entry_text\",\n      \"type\": \"validation_issue_incorrect_spelling_of_disposition\"\n    },\n    {\n      \"message\": \"The ID cannot be null.\",\n      \"property_name\": \"response.body.entries[0].entry_text\",\n      \"type\": \"validation_issue_incorrect_spelling_of_disposition\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1bcfdbfa-6d02-4066-804f-e04c5197cce8",
+              "name": "A valid access token was not provided.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "draft-titles",
+                    ":titleNumber"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "titleNumber",
+                      "description": "(Required) The unique reference number of the desired title.\n\n---\n\nThe following constraints apply to this parameter:\n| Constraint                                                           | Error message                                           |\n|----------------------------------------------------------------------|---------------------------------------------------------|\n| The parameter must have a length less than or equal to 9 characters. | *The title number must be no longer than 9 characters.* |"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_message\": \"string\",\n  \"reference\": \"6bcfd416-70f1-dc4d-1bb3-efbe9f7d2efd\",\n  \"status\": 583\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a2087f36-3610-4b66-a309-c6cef9a1bde7",
+              "name": "No title with the given title number could be found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "draft-titles",
+                    ":titleNumber"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "titleNumber",
+                      "description": "(Required) The unique reference number of the desired title.\n\n---\n\nThe following constraints apply to this parameter:\n| Constraint                                                           | Error message                                           |\n|----------------------------------------------------------------------|---------------------------------------------------------|\n| The parameter must have a length less than or equal to 9 characters. | *The title number must be no longer than 9 characters.* |"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_message\": \"string\",\n  \"reference\": \"6bcfd416-70f1-dc4d-1bb3-efbe9f7d2efd\",\n  \"status\": 583\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:8080/api/v1/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a5609c20-d889-413a-9ae1-3f273eddfde4",
+    "name": "Land Register API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Land Register API aims to be the primary method of accessing register data for HM Land Registry.\n\nThe Land Register API provides data and services around the core data set.\nAccess to the API must be requested through the Digital Register project team.\nIf you would like to integrate systems with the Land Register API then please follow these steps:\n-  Contact the project team about your needs to ensure that the API can serve them.\n-  Create your own client for accessing the API, only returning the data you are using.\n-  Request access to the API through a senior member of the project team (coordination of access in pre-production and production will be handled by WebOps). An individual access token will be created for each consuming service.\n-  Send your access token in the 'Authorization' header of each call to the API. e.g. replace 'abc123' in:\n  `curl --header 'Authorization: Bearer abc123' --url ...`\n-  Add to your Fraud Impact Assessment form that you will be accessing the Land Register API, the reasons why it is\n  needed and the specific data that is required.\n-  Ensure that the data that is requested by your systems from the API is limited to only the data that you need.\n-  Do NOT directly expose the data to external sources.\n-  Application_timestamp will be returned as a UTC timezone, as such will NOT match exactly how it is stored within legacy databases.\n\nThe Digital Register project team and Counter Fraud team are available to support you through this process.\n\n\nContact Support:\n Name: Digital Register Team\n Email: DigitalRegister@landregistry.gov.uk",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Use Land and Property Data API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Datasets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List available datasets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://use-land-property-data.service.gov.uk/api/v1/datasets"
+          },
+          "docs": "Returns a JSON list of the dataset names and titles that are available in the service."
+        },
+        {
+          "info": {
+            "name": "Get dataset metadata and resources",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://use-land-property-data.service.gov.uk/api/v1/datasets/:dataset_name",
+            "params": [
+              {
+                "name": "dataset_name",
+                "value": "ccod",
+                "type": "path",
+                "description": "The dataset name, for example ccod, ocod, nps or nps_sample. CCOD and OCOD remain the machine names for the renamed UK companies and Overseas companies datasets."
+              }
+            ]
+          },
+          "docs": "Returns the metadata of a dataset and its resources."
+        },
+        {
+          "info": {
+            "name": "Get a signed download URL for a dataset file",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://use-land-property-data.service.gov.uk/api/v1/datasets/:dataset_name/:file_name",
+            "params": [
+              {
+                "name": "dataset_name",
+                "value": "ccod",
+                "type": "path",
+                "description": "The dataset name, for example ccod, ocod, nps or nps_sample. CCOD and OCOD remain the machine names for the renamed UK companies and Overseas companies datasets."
+              },
+              {
+                "name": "file_name",
+                "value": "CCOD_COU_2019_09.zip",
+                "type": "path",
+                "description": "The file name of the resource within the dataset."
+              }
+            ]
+          },
+          "docs": "Returns a download URL valid for 10 seconds for a specific file in a dataset. This endpoint will only work if you have agreed to the dataset licence and have the correct access, which is arranged on the Use land and property data service."
+        },
+        {
+          "info": {
+            "name": "List historical resources for a dataset",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://use-land-property-data.service.gov.uk/api/v1/datasets/history/:dataset_name",
+            "params": [
+              {
+                "name": "dataset_name",
+                "value": "ccod",
+                "type": "path",
+                "description": "The dataset name, for example ccod, ocod, nps or nps_sample. CCOD and OCOD remain the machine names for the renamed UK companies and Overseas companies datasets."
+              }
+            ]
+          },
+          "docs": "Returns a list of available historical resources for a dataset."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

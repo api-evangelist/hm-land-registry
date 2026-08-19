@@ -1,0 +1,307 @@
+{
+  "item": [
+    {
+      "id": "48a8def1-106e-4b03-a96c-16482575db9d",
+      "name": "Titles",
+      "description": {
+        "content": "Operations regarding titles",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b11d5ed1-7e28-4297-b054-9247476bb6a9",
+          "name": "Get document availability associated with a title number.",
+          "request": {
+            "name": "Get document availability associated with a title number.",
+            "description": {
+              "content": "Returns the OC1 document availability (title register and title plan) and a collection of OC2 document availability (referred to in the register) for the provided title number.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "titles",
+                ":title_number",
+                "official-copies",
+                "availability"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "title_number",
+                  "description": "(Required) The title number of the property. Characters must be uppercase."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5a6ef909-0137-40b5-a7a2-b058ca102f39",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "titles",
+                    ":title_number",
+                    "official-copies",
+                    "availability"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "title_number",
+                      "description": "(Required) The title number of the property. Characters must be uppercase."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"title_status\": \"string\",\n    \"title_status_code\": \"PENDING_APPLICATIONS\",\n    \"title_number\": \"<string>\",\n    \"applications_pending\": true,\n    \"referred_to_documents\": [\n      {\n        \"type_code\": \"string\",\n        \"type\": \"string\",\n        \"entry_numbers\": [\n          \"A1\",\n          \"C3\",\n          \"C4\"\n        ],\n        \"filed_under\": \"Q\",\n        \"availability\": \"string\",\n        \"availability_code\": \"MANUAL\",\n        \"plan_only\": true,\n        \"date\": \"1973-07-19\"\n      },\n      {\n        \"type_code\": \"string\",\n        \"type\": \"string\",\n        \"entry_numbers\": [\n          \"A1\",\n          \"C3\",\n          \"C4\"\n        ],\n        \"filed_under\": \"PLU\",\n        \"availability\": \"string\",\n        \"availability_code\": \"UNAVAILABLE\",\n        \"plan_only\": false,\n        \"date\": \"1948-11-29\"\n      }\n    ],\n    \"register\": {\n      \"type_code\": \"REGISTER\",\n      \"type\": \"string\",\n      \"availability\": \"string\",\n      \"availability_code\": \"UNAVAILABLE\",\n      \"backdated\": false\n    },\n    \"title_plan\": {\n      \"type_code\": \"TITLEPLAN\",\n      \"type\": \"string\",\n      \"availability\": \"string\",\n      \"availability_code\": \"IMMEDIATE\",\n      \"backdated\": true\n    },\n    \"continued_under_title_number\": \"FL99999\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ac7c8b34-61b6-4ddc-a55d-f9498350a727",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "titles",
+                    ":title_number",
+                    "official-copies",
+                    "availability"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "title_number",
+                      "description": "(Required) The title number of the property. Characters must be uppercase."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"detail\": \"string\",\n      \"status\": \"503\",\n      \"trace_id\": \"c62e9b3f-e523-4f04-a941-c6cf0d60c080\",\n      \"title\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\",\n        \"header\": \"string\"\n      }\n    },\n    {\n      \"code\": \"string\",\n      \"detail\": \"string\",\n      \"status\": \"503\",\n      \"trace_id\": \"c62e9b3f-e523-4f04-a941-c6cf0d60c080\",\n      \"title\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\",\n        \"header\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "da21f774-4a2e-4388-a824-4bc7f35254ca",
+              "name": "Title not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "titles",
+                    ":title_number",
+                    "official-copies",
+                    "availability"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "title_number",
+                      "description": "(Required) The title number of the property. Characters must be uppercase."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"detail\": \"string\",\n      \"status\": \"503\",\n      \"trace_id\": \"c62e9b3f-e523-4f04-a941-c6cf0d60c080\",\n      \"title\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\",\n        \"header\": \"string\"\n      }\n    },\n    {\n      \"code\": \"string\",\n      \"detail\": \"string\",\n      \"status\": \"503\",\n      \"trace_id\": \"c62e9b3f-e523-4f04-a941-c6cf0d60c080\",\n      \"title\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\",\n        \"header\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b53e7242-0701-4459-b754-424bce685db9",
+              "name": "An error has occurred.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "titles",
+                    ":title_number",
+                    "official-copies",
+                    "availability"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "title_number",
+                      "description": "(Required) The title number of the property. Characters must be uppercase."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"timestamp\": \"2018-11-13T20:20:39+00:00\",\n      \"http_status\": \"504\",\n      \"error_code\": \"BG50004\",\n      \"error_message\": \"Internal service timeout\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://bgtest.landregistry.gov.uk/bg2test/api/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "deda13e8-c56d-45fe-b8f2-ec5d84cd1a26",
+    "name": "HMLR Business Gateway",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "A specification for the Business Gateway API.",
+      "type": "text/plain"
+    }
+  }
+}

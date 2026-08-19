@@ -1,0 +1,298 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "V1.0 'Submit an application to change the Land Register API' Schema",
+    "version": "1.0.5"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Submit an application API",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Submit an application",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://businessgateway.landregistry.gov.uk/bg2/api/v1/applications",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit an application API - Submit application creation requests for processing"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Download a document API",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Obtain download link for an HMLR document",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://businessgateway.landregistry.gov.uk/bg2/api/v1/documents/:document_id",
+            "params": [
+              {
+                "name": "document_id",
+                "value": "",
+                "type": "path",
+                "description": "May also be referred to as the `download_id` by some services"
+              }
+            ]
+          },
+          "docs": "Request the download link for a document. Currently only supports the download of documents HMLR despatches, i.e correspondence, cancellation and completion documents."
+        },
+        {
+          "info": {
+            "name": "Download a document",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://businessgateway.landregistry.gov.uk/bg2/apiDownload a document"
+          },
+          "docs": "Download the document contents. <br/><br/>**Note**: This URL, including hostname and path parameters is returned from the GET `/documents/{document_id}` URL endpoint via the `location` header and **should be used unmodified**."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Send a document API",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Request upload URL for your application attachments",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://businessgateway.landregistry.gov.uk/bg2/api/v1/documents/url",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an upload URL - Retrieve a generated document upload URL"
+        },
+        {
+          "info": {
+            "name": "Upload a document",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://businessgateway.landregistry.gov.uk/bg2/apiUpload a document",
+            "headers": [
+              {
+                "name": "X-Amz-Checksum-Sha256",
+                "value": ""
+              },
+              {
+                "name": "Content-Length",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Upload a document - Upload the document contents. **Note**: This URL, including hostname and path parameters is returned from the create URL endpoint and **should be used unmodified**. The path and hostname given in the API specification here are examples only."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Application information API",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get application details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://businessgateway.landregistry.gov.uk/bg2/api/v1/applications/:application_request_id/information",
+            "params": [
+              {
+                "name": "application_request_id",
+                "value": "12345678-1234-1234-1234-123546789abc",
+                "type": "path",
+                "description": "The ID returned by Application Creation to track submission requests"
+              }
+            ]
+          },
+          "docs": "Can return status, fees and correspondence documents for an application"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Attach a document",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Attach a document to an existing application",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://businessgateway.landregistry.gov.uk/bg2/api/v1/applications/:application_request_id/attachments",
+            "params": [
+              {
+                "name": "application_request_id",
+                "value": "12345678-1234-1234-1234-123546789abc",
+                "type": "path",
+                "description": "The ID returned by Application Creation to track submission requests"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Attach a document from Send a Document to an existing application"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Attach a message",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Attach a message to an existing application",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://businessgateway.landregistry.gov.uk/bg2/api/v1/applications/:application_request_id/messages",
+            "params": [
+              {
+                "name": "application_request_id",
+                "value": "12345678-1234-1234-1234-123546789abc",
+                "type": "path",
+                "description": "The ID returned by Application Creation to track submission requests"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Application information API - Get the information about an application"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Notifications API",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "get_notifications_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://businessgateway.landregistry.gov.uk/bg2/api/v1/notifications",
+            "params": [
+              {
+                "name": "created_before",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "created_after",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "occurred_before",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "occurred_after",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "notification_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "subject",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "additional_provider_filter",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Receive notifications API - Get any unacknowledged notifications"
+        },
+        {
+          "info": {
+            "name": "acknowledge_notifications_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://businessgateway.landregistry.gov.uk/bg2/api/v1/notifications/acknowledge",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Acknowledge notifications API - Acknowledge notifications that have been processed, so they are no longer returned when fetching"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

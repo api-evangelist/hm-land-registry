@@ -1,0 +1,2038 @@
+{
+  "item": [
+    {
+      "id": "c32362b9-2ded-4ce8-80e4-8670302d93f1",
+      "name": "Submit an application API",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "317f204a-c8b5-47d9-a3aa-6a9b0b4754d5",
+          "name": "Submit an application API",
+          "request": {
+            "name": "Submit an application API",
+            "description": {
+              "content": "Submit an application API - Submit application creation requests for processing",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v0",
+                "applications"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "Idempotency-Key",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"applicants\": [\n      \"<string>\"\n    ],\n    \"customer_reference\": \"<string>\",\n    \"application_lodger\": {\n      \"email\": \"<string>\",\n      \"type\": \"<string>\",\n      \"telephone\": \"<string>\"\n    },\n    \"submission_warning_understood\": \"<boolean>\",\n    \"titles\": {\n      \"key_0\": {\n        \"scope_details\": {\n          \"scope\": \"<string>\",\n          \"part_description\": \"<string>\"\n        },\n        \"title_number\": \"<string>\",\n        \"title_type\": \"<string>\",\n        \"disclosable_overriding_interests\": \"<boolean>\"\n      }\n    },\n    \"transactions\": {\n      \"key_0\": {\n        \"fee_in_pence\": \"<integer>\",\n        \"type\": \"<string>\",\n        \"priority\": \"<integer>\",\n        \"details\": \"<object>\",\n        \"documents\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"relates_to_new_title\": false,\n        \"party_roles\": [\n          {\n            \"role\": \"<string>\",\n            \"party_reference\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"capacity\": \"<string>\"\n          },\n          {\n            \"role\": \"<string>\",\n            \"party_reference\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"capacity\": \"<string>\"\n          }\n        ],\n        \"title_references\": [\n          \"<string>\"\n        ]\n      }\n    },\n    \"type\": \"<string>\",\n    \"addresses\": {\n      \"key_0\": {\n        \"details\": \"<object>\"\n      },\n      \"key_1\": {\n        \"details\": \"<object>\"\n      }\n    },\n    \"bypass_validation\": [\n      {\n        \"comment\": \"<string>\",\n        \"reason\": \"<string>\",\n        \"validation_pointer\": \"<string>\",\n        \"validation_type\": \"<string>\"\n      },\n      {\n        \"comment\": \"<string>\",\n        \"reason\": \"<string>\",\n        \"validation_pointer\": \"<string>\",\n        \"validation_type\": \"<string>\"\n      }\n    ],\n    \"documents\": {\n      \"key_0\": {\n        \"document_id\": \"<string>\",\n        \"document_metadata\": {\n          \"certification_statement_type\": \"<string>\",\n          \"document_filename\": \"<string>\"\n        },\n        \"type\": \"<string>\",\n        \"companies_house_certification\": \"<boolean>\"\n      }\n    },\n    \"jp1_reference\": \"<string>\",\n    \"parties\": {\n      \"key_0\": {\n        \"details\": \"<object>\",\n        \"address_for_service_option\": \"<string>\",\n        \"representation_type\": \"<string>\",\n        \"addresses\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"identity_evidence_type\": \"<string>\",\n        \"other_conveyancer\": {\n          \"full_name\": \"<string>\",\n          \"registered_address\": \"<string>\",\n          \"conveyancer_reference\": \"<string>\"\n        },\n        \"register_action\": \"<string>\"\n      },\n      \"key_1\": {\n        \"details\": \"<object>\",\n        \"address_for_service_option\": \"<string>\",\n        \"representation_type\": \"<string>\",\n        \"addresses\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"identity_evidence_type\": \"<string>\",\n        \"other_conveyancer\": {\n          \"full_name\": \"<string>\",\n          \"registered_address\": \"<string>\",\n          \"conveyancer_reference\": \"<string>\"\n        },\n        \"register_action\": \"<string>\"\n      }\n    },\n    \"additional_provider_filter\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "be6bc5d4-de48-4e3b-9bcd-d8b803efb77b",
+              "name": "Application creation request accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "applications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"applicants\": [\n      \"customer\"\n    ],\n    \"customer_reference\": \"anything_you_like_or_need\",\n    \"application_lodger\": {\n      \"email\": \"me@site.co.uk\",\n      \"type\": \"<string>\",\n      \"telephone\": \"+440000000000\"\n    },\n    \"submission_warning_understood\": \"<boolean>\",\n    \"titles\": {\n      \"key_0\": {\n        \"scope_details\": {\n          \"scope\": \"<string>\",\n          \"part_description\": \"red outlined area\"\n        },\n        \"title_number\": \"<string>\",\n        \"title_type\": \"<string>\",\n        \"disclosable_overriding_interests\": \"<boolean>\"\n      },\n      \"key_1\": {\n        \"scope_details\": {\n          \"scope\": \"<string>\",\n          \"part_description\": \"red outlined area\"\n        },\n        \"title_number\": \"<string>\",\n        \"title_type\": \"<string>\",\n        \"disclosable_overriding_interests\": \"<boolean>\"\n      },\n      \"key_2\": {\n        \"scope_details\": {\n          \"scope\": \"<string>\",\n          \"part_description\": \"red outlined area\"\n        },\n        \"title_number\": \"<string>\",\n        \"title_type\": \"<string>\",\n        \"disclosable_overriding_interests\": \"<boolean>\"\n      }\n    },\n    \"transactions\": {\n      \"key_0\": {\n        \"fee_in_pence\": \"<integer>\",\n        \"type\": \"<string>\",\n        \"priority\": \"<integer>\",\n        \"details\": {\n          \"value\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"value_band\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"full_value_of_property_band\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"full_value_of_property\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"outstanding_charge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"documents\": [\n          \"signed_charge\",\n          \"signed_charge\"\n        ],\n        \"relates_to_new_title\": false,\n        \"party_roles\": [\n          {\n            \"role\": \"<string>\",\n            \"party_reference\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"capacity\": \"<string>\"\n          },\n          {\n            \"role\": \"<string>\",\n            \"party_reference\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"capacity\": \"<string>\"\n          }\n        ],\n        \"title_references\": [\n          \"<string>\"\n        ]\n      },\n      \"key_1\": {\n        \"fee_in_pence\": \"<integer>\",\n        \"type\": \"<string>\",\n        \"priority\": \"<integer>\",\n        \"details\": {\n          \"value\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"value_band\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"full_value_of_property_band\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"full_value_of_property\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"outstanding_charge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"documents\": [\n          \"signed_charge\",\n          \"signed_charge\"\n        ],\n        \"relates_to_new_title\": false,\n        \"party_roles\": [\n          {\n            \"role\": \"<string>\",\n            \"party_reference\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"capacity\": \"<string>\"\n          },\n          {\n            \"role\": \"<string>\",\n            \"party_reference\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"capacity\": \"<string>\"\n          }\n        ],\n        \"title_references\": [\n          \"<string>\"\n        ]\n      },\n      \"key_2\": {\n        \"fee_in_pence\": \"<integer>\",\n        \"type\": \"<string>\",\n        \"priority\": \"<integer>\",\n        \"details\": {\n          \"value\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"value_band\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"full_value_of_property_band\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"full_value_of_property\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"outstanding_charge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"documents\": [\n          \"signed_charge\",\n          \"signed_charge\"\n        ],\n        \"relates_to_new_title\": false,\n        \"party_roles\": [\n          {\n            \"role\": \"<string>\",\n            \"party_reference\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"capacity\": \"<string>\"\n          },\n          {\n            \"role\": \"<string>\",\n            \"party_reference\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"capacity\": \"<string>\"\n          }\n        ],\n        \"title_references\": [\n          \"<string>\"\n        ]\n      }\n    },\n    \"type\": \"<string>\",\n    \"addresses\": {\n      \"key_0\": {\n        \"details\": {\n          \"number\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"service_number_rank\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"unit_regiment\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"care_of_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      }\n    },\n    \"bypass_validation\": [\n      {\n        \"comment\": \"<string>\",\n        \"reason\": \"<string>\",\n        \"validation_pointer\": \"/data/customer_reference\",\n        \"validation_type\": \"<string>\"\n      },\n      {\n        \"comment\": \"<string>\",\n        \"reason\": \"<string>\",\n        \"validation_pointer\": \"/data/customer_reference\",\n        \"validation_type\": \"<string>\"\n      }\n    ],\n    \"documents\": {\n      \"key_0\": {\n        \"document_id\": \"12345678-1234-1234-1234-123456789abc\",\n        \"document_metadata\": {\n          \"certification_statement_type\": \"<string>\",\n          \"document_filename\": \"thedeed.pdf\"\n        },\n        \"type\": \"<string>\",\n        \"companies_house_certification\": \"<boolean>\"\n      },\n      \"key_1\": {\n        \"document_id\": \"12345678-1234-1234-1234-123456789abc\",\n        \"document_metadata\": {\n          \"certification_statement_type\": \"<string>\",\n          \"document_filename\": \"thedeed.pdf\"\n        },\n        \"type\": \"<string>\",\n        \"companies_house_certification\": \"<boolean>\"\n      },\n      \"key_2\": {\n        \"document_id\": \"12345678-1234-1234-1234-123456789abc\",\n        \"document_metadata\": {\n          \"certification_statement_type\": \"<string>\",\n          \"document_filename\": \"thedeed.pdf\"\n        },\n        \"type\": \"<string>\",\n        \"companies_house_certification\": \"<boolean>\"\n      },\n      \"key_3\": {\n        \"document_id\": \"12345678-1234-1234-1234-123456789abc\",\n        \"document_metadata\": {\n          \"certification_statement_type\": \"<string>\",\n          \"document_filename\": \"thedeed.pdf\"\n        },\n        \"type\": \"<string>\",\n        \"companies_house_certification\": \"<boolean>\"\n      }\n    },\n    \"jp1_reference\": \"<string>\",\n    \"parties\": {\n      \"key_0\": {\n        \"details\": {\n          \"organisation_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"address_for_service_option\": \"<string>\",\n        \"representation_type\": \"<string>\",\n        \"addresses\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"identity_evidence_type\": \"<string>\",\n        \"other_conveyancer\": {\n          \"full_name\": \"John Doe\",\n          \"registered_address\": \"123 Green St., Made Up, MU1 2AB, UK\",\n          \"conveyancer_reference\": \"party_1\"\n        },\n        \"register_action\": \"<string>\"\n      },\n      \"key_1\": {\n        \"details\": {\n          \"organisation_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"address_for_service_option\": \"<string>\",\n        \"representation_type\": \"<string>\",\n        \"addresses\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"identity_evidence_type\": \"<string>\",\n        \"other_conveyancer\": {\n          \"full_name\": \"John Doe\",\n          \"registered_address\": \"123 Green St., Made Up, MU1 2AB, UK\",\n          \"conveyancer_reference\": \"party_1\"\n        },\n        \"register_action\": \"<string>\"\n      }\n    },\n    \"additional_provider_filter\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Get application creation status URI for checking status",
+                  "key": "Location",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"application_request_id\": \"12345678-1234-1234-1234-123546789abc\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "630c79f1-1ccd-48dd-b361-9d8f59d76f4c",
+              "name": "Bad Request due to payload not meeting the required schema",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "applications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"applicants\": [\n      \"customer\"\n    ],\n    \"customer_reference\": \"anything_you_like_or_need\",\n    \"application_lodger\": {\n      \"email\": \"me@site.co.uk\",\n      \"type\": \"<string>\",\n      \"telephone\": \"+440000000000\"\n    },\n    \"submission_warning_understood\": \"<boolean>\",\n    \"titles\": {\n      \"key_0\": {\n        \"scope_details\": {\n          \"scope\": \"<string>\",\n          \"part_description\": \"red outlined area\"\n        },\n        \"title_number\": \"<string>\",\n        \"title_type\": \"<string>\",\n        \"disclosable_overriding_interests\": \"<boolean>\"\n      },\n      \"key_1\": {\n        \"scope_details\": {\n          \"scope\": \"<string>\",\n          \"part_description\": \"red outlined area\"\n        },\n        \"title_number\": \"<string>\",\n        \"title_type\": \"<string>\",\n        \"disclosable_overriding_interests\": \"<boolean>\"\n      },\n      \"key_2\": {\n        \"scope_details\": {\n          \"scope\": \"<string>\",\n          \"part_description\": \"red outlined area\"\n        },\n        \"title_number\": \"<string>\",\n        \"title_type\": \"<string>\",\n        \"disclosable_overriding_interests\": \"<boolean>\"\n      }\n    },\n    \"transactions\": {\n      \"key_0\": {\n        \"fee_in_pence\": \"<integer>\",\n        \"type\": \"<string>\",\n        \"priority\": \"<integer>\",\n        \"details\": {\n          \"value\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"value_band\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"full_value_of_property_band\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"full_value_of_property\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"outstanding_charge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"documents\": [\n          \"signed_charge\",\n          \"signed_charge\"\n        ],\n        \"relates_to_new_title\": false,\n        \"party_roles\": [\n          {\n            \"role\": \"<string>\",\n            \"party_reference\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"capacity\": \"<string>\"\n          },\n          {\n            \"role\": \"<string>\",\n            \"party_reference\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"capacity\": \"<string>\"\n          }\n        ],\n        \"title_references\": [\n          \"<string>\"\n        ]\n      },\n      \"key_1\": {\n        \"fee_in_pence\": \"<integer>\",\n        \"type\": \"<string>\",\n        \"priority\": \"<integer>\",\n        \"details\": {\n          \"value\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"value_band\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"full_value_of_property_band\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"full_value_of_property\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"outstanding_charge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"documents\": [\n          \"signed_charge\",\n          \"signed_charge\"\n        ],\n        \"relates_to_new_title\": false,\n        \"party_roles\": [\n          {\n            \"role\": \"<string>\",\n            \"party_reference\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"capacity\": \"<string>\"\n          },\n          {\n            \"role\": \"<string>\",\n            \"party_reference\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"capacity\": \"<string>\"\n          }\n        ],\n        \"title_references\": [\n          \"<string>\"\n        ]\n      },\n      \"key_2\": {\n        \"fee_in_pence\": \"<integer>\",\n        \"type\": \"<string>\",\n        \"priority\": \"<integer>\",\n        \"details\": {\n          \"value\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"value_band\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"full_value_of_property_band\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"full_value_of_property\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"outstanding_charge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"documents\": [\n          \"signed_charge\",\n          \"signed_charge\"\n        ],\n        \"relates_to_new_title\": false,\n        \"party_roles\": [\n          {\n            \"role\": \"<string>\",\n            \"party_reference\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"capacity\": \"<string>\"\n          },\n          {\n            \"role\": \"<string>\",\n            \"party_reference\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"capacity\": \"<string>\"\n          }\n        ],\n        \"title_references\": [\n          \"<string>\"\n        ]\n      }\n    },\n    \"type\": \"<string>\",\n    \"addresses\": {\n      \"key_0\": {\n        \"details\": {\n          \"number\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"service_number_rank\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"unit_regiment\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"care_of_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      }\n    },\n    \"bypass_validation\": [\n      {\n        \"comment\": \"<string>\",\n        \"reason\": \"<string>\",\n        \"validation_pointer\": \"/data/customer_reference\",\n        \"validation_type\": \"<string>\"\n      },\n      {\n        \"comment\": \"<string>\",\n        \"reason\": \"<string>\",\n        \"validation_pointer\": \"/data/customer_reference\",\n        \"validation_type\": \"<string>\"\n      }\n    ],\n    \"documents\": {\n      \"key_0\": {\n        \"document_id\": \"12345678-1234-1234-1234-123456789abc\",\n        \"document_metadata\": {\n          \"certification_statement_type\": \"<string>\",\n          \"document_filename\": \"thedeed.pdf\"\n        },\n        \"type\": \"<string>\",\n        \"companies_house_certification\": \"<boolean>\"\n      },\n      \"key_1\": {\n        \"document_id\": \"12345678-1234-1234-1234-123456789abc\",\n        \"document_metadata\": {\n          \"certification_statement_type\": \"<string>\",\n          \"document_filename\": \"thedeed.pdf\"\n        },\n        \"type\": \"<string>\",\n        \"companies_house_certification\": \"<boolean>\"\n      },\n      \"key_2\": {\n        \"document_id\": \"12345678-1234-1234-1234-123456789abc\",\n        \"document_metadata\": {\n          \"certification_statement_type\": \"<string>\",\n          \"document_filename\": \"thedeed.pdf\"\n        },\n        \"type\": \"<string>\",\n        \"companies_house_certification\": \"<boolean>\"\n      },\n      \"key_3\": {\n        \"document_id\": \"12345678-1234-1234-1234-123456789abc\",\n        \"document_metadata\": {\n          \"certification_statement_type\": \"<string>\",\n          \"document_filename\": \"thedeed.pdf\"\n        },\n        \"type\": \"<string>\",\n        \"companies_house_certification\": \"<boolean>\"\n      }\n    },\n    \"jp1_reference\": \"<string>\",\n    \"parties\": {\n      \"key_0\": {\n        \"details\": {\n          \"organisation_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"address_for_service_option\": \"<string>\",\n        \"representation_type\": \"<string>\",\n        \"addresses\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"identity_evidence_type\": \"<string>\",\n        \"other_conveyancer\": {\n          \"full_name\": \"John Doe\",\n          \"registered_address\": \"123 Green St., Made Up, MU1 2AB, UK\",\n          \"conveyancer_reference\": \"party_1\"\n        },\n        \"register_action\": \"<string>\"\n      },\n      \"key_1\": {\n        \"details\": {\n          \"organisation_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"address_for_service_option\": \"<string>\",\n        \"representation_type\": \"<string>\",\n        \"addresses\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"identity_evidence_type\": \"<string>\",\n        \"other_conveyancer\": {\n          \"full_name\": \"John Doe\",\n          \"registered_address\": \"123 Green St., Made Up, MU1 2AB, UK\",\n          \"conveyancer_reference\": \"party_1\"\n        },\n        \"register_action\": \"<string>\"\n      }\n    },\n    \"additional_provider_filter\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://landregistry.github.io/bgtechdoc/problems/global#bad-request\",\n  \"title\": \"Bad Request\",\n  \"status\": 400,\n  \"detail\": \"The request is invalid or malformed.\",\n  \"instance\": \"https://eDdZzLJnyOQfzpBubFJzBmdCkWP.uanWxN.6uBM39vpyjljhGozXaNE0oaD5kjixipn4fdf1OgTny,zpxifLL.aGNP6b\",\n  \"code\": \"ignore me\",\n  \"errors\": [\n    {\n      \"detail\": \"The MDref included in the request does not exist\",\n      \"type\": \"L2_MDREF_ERROR\",\n      \"pointer\": \"string\"\n    },\n    {\n      \"detail\": \"The MDref included in the request does not exist\",\n      \"type\": \"L2_MDREF_ERROR\",\n      \"pointer\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "92a2f079-54c7-4038-8102-9b5734666b13",
+              "name": "Unauthorised - an access token is required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "applications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"applicants\": [\n      \"customer\"\n    ],\n    \"customer_reference\": \"anything_you_like_or_need\",\n    \"application_lodger\": {\n      \"email\": \"me@site.co.uk\",\n      \"type\": \"<string>\",\n      \"telephone\": \"+440000000000\"\n    },\n    \"submission_warning_understood\": \"<boolean>\",\n    \"titles\": {\n      \"key_0\": {\n        \"scope_details\": {\n          \"scope\": \"<string>\",\n          \"part_description\": \"red outlined area\"\n        },\n        \"title_number\": \"<string>\",\n        \"title_type\": \"<string>\",\n        \"disclosable_overriding_interests\": \"<boolean>\"\n      },\n      \"key_1\": {\n        \"scope_details\": {\n          \"scope\": \"<string>\",\n          \"part_description\": \"red outlined area\"\n        },\n        \"title_number\": \"<string>\",\n        \"title_type\": \"<string>\",\n        \"disclosable_overriding_interests\": \"<boolean>\"\n      },\n      \"key_2\": {\n        \"scope_details\": {\n          \"scope\": \"<string>\",\n          \"part_description\": \"red outlined area\"\n        },\n        \"title_number\": \"<string>\",\n        \"title_type\": \"<string>\",\n        \"disclosable_overriding_interests\": \"<boolean>\"\n      }\n    },\n    \"transactions\": {\n      \"key_0\": {\n        \"fee_in_pence\": \"<integer>\",\n        \"type\": \"<string>\",\n        \"priority\": \"<integer>\",\n        \"details\": {\n          \"value\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"value_band\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"full_value_of_property_band\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"full_value_of_property\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"outstanding_charge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"documents\": [\n          \"signed_charge\",\n          \"signed_charge\"\n        ],\n        \"relates_to_new_title\": false,\n        \"party_roles\": [\n          {\n            \"role\": \"<string>\",\n            \"party_reference\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"capacity\": \"<string>\"\n          },\n          {\n            \"role\": \"<string>\",\n            \"party_reference\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"capacity\": \"<string>\"\n          }\n        ],\n        \"title_references\": [\n          \"<string>\"\n        ]\n      },\n      \"key_1\": {\n        \"fee_in_pence\": \"<integer>\",\n        \"type\": \"<string>\",\n        \"priority\": \"<integer>\",\n        \"details\": {\n          \"value\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"value_band\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"full_value_of_property_band\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"full_value_of_property\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"outstanding_charge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"documents\": [\n          \"signed_charge\",\n          \"signed_charge\"\n        ],\n        \"relates_to_new_title\": false,\n        \"party_roles\": [\n          {\n            \"role\": \"<string>\",\n            \"party_reference\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"capacity\": \"<string>\"\n          },\n          {\n            \"role\": \"<string>\",\n            \"party_reference\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"capacity\": \"<string>\"\n          }\n        ],\n        \"title_references\": [\n          \"<string>\"\n        ]\n      },\n      \"key_2\": {\n        \"fee_in_pence\": \"<integer>\",\n        \"type\": \"<string>\",\n        \"priority\": \"<integer>\",\n        \"details\": {\n          \"value\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"value_band\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"full_value_of_property_band\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"full_value_of_property\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"outstanding_charge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"documents\": [\n          \"signed_charge\",\n          \"signed_charge\"\n        ],\n        \"relates_to_new_title\": false,\n        \"party_roles\": [\n          {\n            \"role\": \"<string>\",\n            \"party_reference\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"capacity\": \"<string>\"\n          },\n          {\n            \"role\": \"<string>\",\n            \"party_reference\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"capacity\": \"<string>\"\n          }\n        ],\n        \"title_references\": [\n          \"<string>\"\n        ]\n      }\n    },\n    \"type\": \"<string>\",\n    \"addresses\": {\n      \"key_0\": {\n        \"details\": {\n          \"number\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"service_number_rank\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"unit_regiment\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"care_of_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      }\n    },\n    \"bypass_validation\": [\n      {\n        \"comment\": \"<string>\",\n        \"reason\": \"<string>\",\n        \"validation_pointer\": \"/data/customer_reference\",\n        \"validation_type\": \"<string>\"\n      },\n      {\n        \"comment\": \"<string>\",\n        \"reason\": \"<string>\",\n        \"validation_pointer\": \"/data/customer_reference\",\n        \"validation_type\": \"<string>\"\n      }\n    ],\n    \"documents\": {\n      \"key_0\": {\n        \"document_id\": \"12345678-1234-1234-1234-123456789abc\",\n        \"document_metadata\": {\n          \"certification_statement_type\": \"<string>\",\n          \"document_filename\": \"thedeed.pdf\"\n        },\n        \"type\": \"<string>\",\n        \"companies_house_certification\": \"<boolean>\"\n      },\n      \"key_1\": {\n        \"document_id\": \"12345678-1234-1234-1234-123456789abc\",\n        \"document_metadata\": {\n          \"certification_statement_type\": \"<string>\",\n          \"document_filename\": \"thedeed.pdf\"\n        },\n        \"type\": \"<string>\",\n        \"companies_house_certification\": \"<boolean>\"\n      },\n      \"key_2\": {\n        \"document_id\": \"12345678-1234-1234-1234-123456789abc\",\n        \"document_metadata\": {\n          \"certification_statement_type\": \"<string>\",\n          \"document_filename\": \"thedeed.pdf\"\n        },\n        \"type\": \"<string>\",\n        \"companies_house_certification\": \"<boolean>\"\n      },\n      \"key_3\": {\n        \"document_id\": \"12345678-1234-1234-1234-123456789abc\",\n        \"document_metadata\": {\n          \"certification_statement_type\": \"<string>\",\n          \"document_filename\": \"thedeed.pdf\"\n        },\n        \"type\": \"<string>\",\n        \"companies_house_certification\": \"<boolean>\"\n      }\n    },\n    \"jp1_reference\": \"<string>\",\n    \"parties\": {\n      \"key_0\": {\n        \"details\": {\n          \"organisation_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"address_for_service_option\": \"<string>\",\n        \"representation_type\": \"<string>\",\n        \"addresses\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"identity_evidence_type\": \"<string>\",\n        \"other_conveyancer\": {\n          \"full_name\": \"John Doe\",\n          \"registered_address\": \"123 Green St., Made Up, MU1 2AB, UK\",\n          \"conveyancer_reference\": \"party_1\"\n        },\n        \"register_action\": \"<string>\"\n      },\n      \"key_1\": {\n        \"details\": {\n          \"organisation_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"address_for_service_option\": \"<string>\",\n        \"representation_type\": \"<string>\",\n        \"addresses\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"identity_evidence_type\": \"<string>\",\n        \"other_conveyancer\": {\n          \"full_name\": \"John Doe\",\n          \"registered_address\": \"123 Green St., Made Up, MU1 2AB, UK\",\n          \"conveyancer_reference\": \"party_1\"\n        },\n        \"register_action\": \"<string>\"\n      }\n    },\n    \"additional_provider_filter\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://landregistry.github.io/bgtechdoc/problems/global#bad-request\",\n  \"title\": \"Bad Request\",\n  \"status\": 400,\n  \"detail\": \"The request is invalid or malformed.\",\n  \"instance\": \"https://eDdZzLJnyOQfzpBubFJzBmdCkWP.uanWxN.6uBM39vpyjljhGozXaNE0oaD5kjixipn4fdf1OgTny,zpxifLL.aGNP6b\",\n  \"code\": \"ignore me\",\n  \"errors\": [\n    {\n      \"detail\": \"The MDref included in the request does not exist\",\n      \"type\": \"L2_MDREF_ERROR\",\n      \"pointer\": \"string\"\n    },\n    {\n      \"detail\": \"The MDref included in the request does not exist\",\n      \"type\": \"L2_MDREF_ERROR\",\n      \"pointer\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eef565a8-4a35-4eb8-9495-86b8ea15c79e",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "applications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"applicants\": [\n      \"customer\"\n    ],\n    \"customer_reference\": \"anything_you_like_or_need\",\n    \"application_lodger\": {\n      \"email\": \"me@site.co.uk\",\n      \"type\": \"<string>\",\n      \"telephone\": \"+440000000000\"\n    },\n    \"submission_warning_understood\": \"<boolean>\",\n    \"titles\": {\n      \"key_0\": {\n        \"scope_details\": {\n          \"scope\": \"<string>\",\n          \"part_description\": \"red outlined area\"\n        },\n        \"title_number\": \"<string>\",\n        \"title_type\": \"<string>\",\n        \"disclosable_overriding_interests\": \"<boolean>\"\n      },\n      \"key_1\": {\n        \"scope_details\": {\n          \"scope\": \"<string>\",\n          \"part_description\": \"red outlined area\"\n        },\n        \"title_number\": \"<string>\",\n        \"title_type\": \"<string>\",\n        \"disclosable_overriding_interests\": \"<boolean>\"\n      },\n      \"key_2\": {\n        \"scope_details\": {\n          \"scope\": \"<string>\",\n          \"part_description\": \"red outlined area\"\n        },\n        \"title_number\": \"<string>\",\n        \"title_type\": \"<string>\",\n        \"disclosable_overriding_interests\": \"<boolean>\"\n      }\n    },\n    \"transactions\": {\n      \"key_0\": {\n        \"fee_in_pence\": \"<integer>\",\n        \"type\": \"<string>\",\n        \"priority\": \"<integer>\",\n        \"details\": {\n          \"value\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"value_band\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"full_value_of_property_band\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"full_value_of_property\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"outstanding_charge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"documents\": [\n          \"signed_charge\",\n          \"signed_charge\"\n        ],\n        \"relates_to_new_title\": false,\n        \"party_roles\": [\n          {\n            \"role\": \"<string>\",\n            \"party_reference\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"capacity\": \"<string>\"\n          },\n          {\n            \"role\": \"<string>\",\n            \"party_reference\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"capacity\": \"<string>\"\n          }\n        ],\n        \"title_references\": [\n          \"<string>\"\n        ]\n      },\n      \"key_1\": {\n        \"fee_in_pence\": \"<integer>\",\n        \"type\": \"<string>\",\n        \"priority\": \"<integer>\",\n        \"details\": {\n          \"value\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"value_band\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"full_value_of_property_band\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"full_value_of_property\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"outstanding_charge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"documents\": [\n          \"signed_charge\",\n          \"signed_charge\"\n        ],\n        \"relates_to_new_title\": false,\n        \"party_roles\": [\n          {\n            \"role\": \"<string>\",\n            \"party_reference\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"capacity\": \"<string>\"\n          },\n          {\n            \"role\": \"<string>\",\n            \"party_reference\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"capacity\": \"<string>\"\n          }\n        ],\n        \"title_references\": [\n          \"<string>\"\n        ]\n      },\n      \"key_2\": {\n        \"fee_in_pence\": \"<integer>\",\n        \"type\": \"<string>\",\n        \"priority\": \"<integer>\",\n        \"details\": {\n          \"value\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"value_band\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"full_value_of_property_band\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"full_value_of_property\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"outstanding_charge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"documents\": [\n          \"signed_charge\",\n          \"signed_charge\"\n        ],\n        \"relates_to_new_title\": false,\n        \"party_roles\": [\n          {\n            \"role\": \"<string>\",\n            \"party_reference\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"capacity\": \"<string>\"\n          },\n          {\n            \"role\": \"<string>\",\n            \"party_reference\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"capacity\": \"<string>\"\n          }\n        ],\n        \"title_references\": [\n          \"<string>\"\n        ]\n      }\n    },\n    \"type\": \"<string>\",\n    \"addresses\": {\n      \"key_0\": {\n        \"details\": {\n          \"number\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"service_number_rank\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"unit_regiment\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"care_of_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      }\n    },\n    \"bypass_validation\": [\n      {\n        \"comment\": \"<string>\",\n        \"reason\": \"<string>\",\n        \"validation_pointer\": \"/data/customer_reference\",\n        \"validation_type\": \"<string>\"\n      },\n      {\n        \"comment\": \"<string>\",\n        \"reason\": \"<string>\",\n        \"validation_pointer\": \"/data/customer_reference\",\n        \"validation_type\": \"<string>\"\n      }\n    ],\n    \"documents\": {\n      \"key_0\": {\n        \"document_id\": \"12345678-1234-1234-1234-123456789abc\",\n        \"document_metadata\": {\n          \"certification_statement_type\": \"<string>\",\n          \"document_filename\": \"thedeed.pdf\"\n        },\n        \"type\": \"<string>\",\n        \"companies_house_certification\": \"<boolean>\"\n      },\n      \"key_1\": {\n        \"document_id\": \"12345678-1234-1234-1234-123456789abc\",\n        \"document_metadata\": {\n          \"certification_statement_type\": \"<string>\",\n          \"document_filename\": \"thedeed.pdf\"\n        },\n        \"type\": \"<string>\",\n        \"companies_house_certification\": \"<boolean>\"\n      },\n      \"key_2\": {\n        \"document_id\": \"12345678-1234-1234-1234-123456789abc\",\n        \"document_metadata\": {\n          \"certification_statement_type\": \"<string>\",\n          \"document_filename\": \"thedeed.pdf\"\n        },\n        \"type\": \"<string>\",\n        \"companies_house_certification\": \"<boolean>\"\n      },\n      \"key_3\": {\n        \"document_id\": \"12345678-1234-1234-1234-123456789abc\",\n        \"document_metadata\": {\n          \"certification_statement_type\": \"<string>\",\n          \"document_filename\": \"thedeed.pdf\"\n        },\n        \"type\": \"<string>\",\n        \"companies_house_certification\": \"<boolean>\"\n      }\n    },\n    \"jp1_reference\": \"<string>\",\n    \"parties\": {\n      \"key_0\": {\n        \"details\": {\n          \"organisation_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"address_for_service_option\": \"<string>\",\n        \"representation_type\": \"<string>\",\n        \"addresses\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"identity_evidence_type\": \"<string>\",\n        \"other_conveyancer\": {\n          \"full_name\": \"John Doe\",\n          \"registered_address\": \"123 Green St., Made Up, MU1 2AB, UK\",\n          \"conveyancer_reference\": \"party_1\"\n        },\n        \"register_action\": \"<string>\"\n      },\n      \"key_1\": {\n        \"details\": {\n          \"organisation_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"address_for_service_option\": \"<string>\",\n        \"representation_type\": \"<string>\",\n        \"addresses\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"identity_evidence_type\": \"<string>\",\n        \"other_conveyancer\": {\n          \"full_name\": \"John Doe\",\n          \"registered_address\": \"123 Green St., Made Up, MU1 2AB, UK\",\n          \"conveyancer_reference\": \"party_1\"\n        },\n        \"register_action\": \"<string>\"\n      }\n    },\n    \"additional_provider_filter\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "5a243015-f522-4b83-b109-9e5ecd11cdfd",
+      "name": "Send a document API",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "52d09bd0-8401-4393-8587-e7eede4ea72c",
+          "name": "Create an upload URL",
+          "request": {
+            "name": "Create an upload URL",
+            "description": {
+              "content": "Create an upload URL - Retrieve a generated document upload URL",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v0",
+                "documents",
+                "url"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"file_length\": \"<long>\",\n    \"file_sha256\": \"<string>\",\n    \"document_type\": \"<string>\",\n    \"additional_provider_filter\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e3048414-5153-4731-97ee-11779d08a063",
+              "name": "Request was successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "documents",
+                    "url"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"file_length\": \"<long>\",\n    \"file_sha256\": \"<string>\",\n    \"document_type\": \"<string>\",\n    \"additional_provider_filter\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"upload_url\": \"about:blank\",\n    \"document_id\": \"12345678-1234-1234-1234-1234-123456789abc\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0d1f545b-6136-4765-afa0-9f98b9d9fd8f",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "documents",
+                    "url"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"file_length\": \"<long>\",\n    \"file_sha256\": \"<string>\",\n    \"document_type\": \"<string>\",\n    \"additional_provider_filter\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://landregistry.github.io/bgtechdoc/problems/global#bad-request\",\n  \"title\": \"Bad Request\",\n  \"status\": 400,\n  \"detail\": \"The request is invalid or malformed.\",\n  \"instance\": \"https://eDdZzLJnyOQfzpBubFJzBmdCkWP.uanWxN.6uBM39vpyjljhGozXaNE0oaD5kjixipn4fdf1OgTny,zpxifLL.aGNP6b\",\n  \"code\": \"ignore me\",\n  \"errors\": [\n    {\n      \"detail\": \"The MDref included in the request does not exist\",\n      \"type\": \"L2_MDREF_ERROR\",\n      \"pointer\": \"string\"\n    },\n    {\n      \"detail\": \"The MDref included in the request does not exist\",\n      \"type\": \"L2_MDREF_ERROR\",\n      \"pointer\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9ae40912-eec9-4b43-8a19-b121387f8634",
+              "name": "Unauthorised - an access token is required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "documents",
+                    "url"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"file_length\": \"<long>\",\n    \"file_sha256\": \"<string>\",\n    \"document_type\": \"<string>\",\n    \"additional_provider_filter\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://landregistry.github.io/bgtechdoc/problems/global#bad-request\",\n  \"title\": \"Bad Request\",\n  \"status\": 400,\n  \"detail\": \"The request is invalid or malformed.\",\n  \"instance\": \"https://eDdZzLJnyOQfzpBubFJzBmdCkWP.uanWxN.6uBM39vpyjljhGozXaNE0oaD5kjixipn4fdf1OgTny,zpxifLL.aGNP6b\",\n  \"code\": \"ignore me\",\n  \"errors\": [\n    {\n      \"detail\": \"The MDref included in the request does not exist\",\n      \"type\": \"L2_MDREF_ERROR\",\n      \"pointer\": \"string\"\n    },\n    {\n      \"detail\": \"The MDref included in the request does not exist\",\n      \"type\": \"L2_MDREF_ERROR\",\n      \"pointer\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c7ad61e7-4b55-43e7-a6bf-15dcede5729f",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "documents",
+                    "url"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"file_length\": \"<long>\",\n    \"file_sha256\": \"<string>\",\n    \"document_type\": \"<string>\",\n    \"additional_provider_filter\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://landregistry.github.io/bgtechdoc/problems/global#bad-request\",\n  \"title\": \"Bad Request\",\n  \"status\": 400,\n  \"detail\": \"The request is invalid or malformed.\",\n  \"instance\": \"https://eDdZzLJnyOQfzpBubFJzBmdCkWP.uanWxN.6uBM39vpyjljhGozXaNE0oaD5kjixipn4fdf1OgTny,zpxifLL.aGNP6b\",\n  \"code\": \"ignore me\",\n  \"errors\": [\n    {\n      \"detail\": \"The MDref included in the request does not exist\",\n      \"type\": \"L2_MDREF_ERROR\",\n      \"pointer\": \"string\"\n    },\n    {\n      \"detail\": \"The MDref included in the request does not exist\",\n      \"type\": \"L2_MDREF_ERROR\",\n      \"pointer\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7e3c4395-ddd8-482d-bb12-df53d6a245eb",
+          "name": "Upload a document",
+          "request": {
+            "name": "Upload a document",
+            "description": {
+              "content": "Upload a document - Upload the document contents. **Note**: This URL, including hostname and path parameters is returned from the create URL endpoint and **should be used unmodified**. The path and hostname given in the API specification here are examples only.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Upload a document"
+              ],
+              "host": [
+                "{{Upload a document-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The base64 encoded SHA-256 hash of the file contents. Must match both the document being uploaded and the value provided to the create URL endpoint.",
+                "key": "X-Amz-Checksum-Sha256",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "The length of the file in bytes. Must match both the document being uploaded and the value provided to the create URL endpoint.",
+                "key": "Content-Length",
+                "value": "<integer>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/octet-stream"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "file"
+            }
+          },
+          "response": [
+            {
+              "id": "ac9a7299-6121-4cb6-bb1c-e3120c6f00a3",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Upload a document"
+                  ],
+                  "host": [
+                    "{{Upload a document-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The base64 encoded SHA-256 hash of the file contents. Must match both the document being uploaded and the value provided to the create URL endpoint.",
+                    "key": "X-Amz-Checksum-Sha256",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The length of the file in bytes. Must match both the document being uploaded and the value provided to the create URL endpoint.",
+                    "key": "Content-Length",
+                    "value": "<integer>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "file"
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1ada6513-2d4e-4500-8779-97f1e7912228",
+              "name": "Forbidden. Ensure the content length and SHA-256 headers have been provided, and match both the file length and sha256 hash, and were the same values supplied to the create URL endpoint",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Upload a document"
+                  ],
+                  "host": [
+                    "{{Upload a document-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The base64 encoded SHA-256 hash of the file contents. Must match both the document being uploaded and the value provided to the create URL endpoint.",
+                    "key": "X-Amz-Checksum-Sha256",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The length of the file in bytes. Must match both the document being uploaded and the value provided to the create URL endpoint.",
+                    "key": "Content-Length",
+                    "value": "<integer>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "file"
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "6d5b6903-eb57-4e4d-9350-8736ac6c5f7b",
+      "name": "Application information API",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8faa68c3-bfc0-45ac-bafe-11c792cc8024",
+          "name": "Application information API",
+          "request": {
+            "name": "Application information API",
+            "description": {
+              "content": "Application information API - Get the information about an application",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v0",
+                "applications",
+                ":application_request_id",
+                "information"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "application_request_id",
+                  "description": "(Required) The ID returned by Application Creation to track submission requests"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5b1d9556-c8f8-4daa-bfeb-8c3d19f1c9f1",
+              "name": "Request status received",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "applications",
+                    ":application_request_id",
+                    "information"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application_request_id",
+                      "description": "(Required) The ID returned by Application Creation to track submission requests"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"errors\": [\n      {\n        \"detail\": \"The MDref included in the request does not exist\",\n        \"type\": \"L2_MDREF_ERROR\",\n        \"pointer\": \"string\"\n      },\n      {\n        \"detail\": \"The MDref included in the request does not exist\",\n        \"type\": \"L2_MDREF_ERROR\",\n        \"pointer\": \"string\"\n      }\n    ],\n    \"hmlr_reference\": \"A123BCD\",\n    \"priority_timestamp\": \"2000-09-02T05:38:08.008Z\",\n    \"application_request_id\": \"12345678-1234-1234-1234-123546789abc\",\n    \"status\": \"ACCEPTED_PRIORITY_PROTECTED\",\n    \"calculated_fees\": {\n      \"total_fee\": 6964,\n      \"per_transaction\": [\n        {\n          \"transaction_reference\": \"QRR2NSn\",\n          \"fee\": 4822\n        },\n        {\n          \"transaction_reference\": \"hF8eGy1S\",\n          \"fee\": 9425\n        }\n      ]\n    },\n    \"warnings\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a5a4c10c-8422-4b25-9382-481c22da7da2",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "applications",
+                    ":application_request_id",
+                    "information"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application_request_id",
+                      "description": "(Required) The ID returned by Application Creation to track submission requests"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://landregistry.github.io/bgtechdoc/problems/global#bad-request\",\n  \"title\": \"Bad Request\",\n  \"status\": 400,\n  \"detail\": \"The request is invalid or malformed.\",\n  \"instance\": \"https://KRWRlPBXdQ.rgpxKYEMBhonUHvMFRO7YTmBStUl7CNTCHjKa2-SgzoOszatirGb1ITbBH4vD4Rx5oz9f\",\n  \"code\": \"ignore me\",\n  \"errors\": [\n    {\n      \"detail\": \"The MDref included in the request does not exist\",\n      \"type\": \"L2_MDREF_ERROR\",\n      \"pointer\": \"string\"\n    },\n    {\n      \"detail\": \"The MDref included in the request does not exist\",\n      \"type\": \"L2_MDREF_ERROR\",\n      \"pointer\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "be5bfaa5-2dd4-44b5-8e4f-f8fea5292118",
+              "name": "Unauthorised - an access token is required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "applications",
+                    ":application_request_id",
+                    "information"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application_request_id",
+                      "description": "(Required) The ID returned by Application Creation to track submission requests"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://landregistry.github.io/bgtechdoc/problems/global#bad-request\",\n  \"title\": \"Bad Request\",\n  \"status\": 400,\n  \"detail\": \"The request is invalid or malformed.\",\n  \"instance\": \"https://eDdZzLJnyOQfzpBubFJzBmdCkWP.uanWxN.6uBM39vpyjljhGozXaNE0oaD5kjixipn4fdf1OgTny,zpxifLL.aGNP6b\",\n  \"code\": \"ignore me\",\n  \"errors\": [\n    {\n      \"detail\": \"The MDref included in the request does not exist\",\n      \"type\": \"L2_MDREF_ERROR\",\n      \"pointer\": \"string\"\n    },\n    {\n      \"detail\": \"The MDref included in the request does not exist\",\n      \"type\": \"L2_MDREF_ERROR\",\n      \"pointer\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "93e6ee2d-a567-410b-922e-a11385f8baaf",
+              "name": "Application creation request not found in the system",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "applications",
+                    ":application_request_id",
+                    "information"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application_request_id",
+                      "description": "(Required) The ID returned by Application Creation to track submission requests"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://landregistry.github.io/bgtechdoc/problems/global#bad-request\",\n  \"title\": \"Bad Request\",\n  \"status\": 400,\n  \"detail\": \"The request is invalid or malformed.\",\n  \"instance\": \"https://eDdZzLJnyOQfzpBubFJzBmdCkWP.uanWxN.6uBM39vpyjljhGozXaNE0oaD5kjixipn4fdf1OgTny,zpxifLL.aGNP6b\",\n  \"code\": \"ignore me\",\n  \"errors\": [\n    {\n      \"detail\": \"The MDref included in the request does not exist\",\n      \"type\": \"L2_MDREF_ERROR\",\n      \"pointer\": \"string\"\n    },\n    {\n      \"detail\": \"The MDref included in the request does not exist\",\n      \"type\": \"L2_MDREF_ERROR\",\n      \"pointer\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "314bd44a-33d5-4cda-b1a4-527e861e2003",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "applications",
+                    ":application_request_id",
+                    "information"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application_request_id",
+                      "description": "(Required) The ID returned by Application Creation to track submission requests"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "3e716c84-1ed2-49b6-be63-9c8023d2b3e2",
+      "name": "Notifications API",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "34b401bd-c6e8-40ad-aa35-cc017af83bc3",
+          "name": "Receive notifications API",
+          "request": {
+            "name": "Receive notifications API",
+            "description": {
+              "content": "Receive notifications API - Get any unacknowledged notifications",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v0",
+                "notifications"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "created_before",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "created_after",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "occurred_before",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "occurred_after",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "notification_type",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "subject",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "additional_provider_filter",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "619bf4a3-f222-4de5-bdab-4ffd10143605",
+              "name": "List of notifications",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "notifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "created_before",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "created_after",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "occurred_before",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "occurred_after",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "notification_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "subject",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "additional_provider_filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"notification_id\": \"920a3452-a487-7b68-55c0-2d943a90e66f\",\n      \"created_datetime\": \"2025-01-01T00:00:00Z\",\n      \"event_datetime\": \"2025-01-01T00:00:00Z\",\n      \"payload_schema\": \"https://example.com/\",\n      \"notification_type\": \"TYPE_1\",\n      \"subject_type\": \"subject_type\",\n      \"subject\": \"subject\",\n      \"additional_provider_filter\": \"string\",\n      \"status\": \"NEW\",\n      \"payload\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      }\n    },\n    {\n      \"notification_id\": \"527ff82f-5ec1-76f8-4c05-0bc894e57b35\",\n      \"created_datetime\": \"2025-01-01T00:00:00Z\",\n      \"event_datetime\": \"2025-01-01T00:00:00Z\",\n      \"payload_schema\": \"https://example.com/\",\n      \"notification_type\": \"TYPE_1\",\n      \"subject_type\": \"subject_type\",\n      \"subject\": \"subject\",\n      \"additional_provider_filter\": \"string\",\n      \"status\": \"ACKNOWLEDGED\",\n      \"payload\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6059ea62-5e73-49ca-bfe5-8db723f19bc9",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "notifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "created_before",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "created_after",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "occurred_before",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "occurred_after",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "notification_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "subject",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "additional_provider_filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"about:blank\",\n  \"title\": \"Server Error\",\n  \"detail\": \"There was a problem with your request, try again soon.\",\n  \"instance\": \"http://ClkWBROUNaLsJtiVUgGP.kxypJFyMqy8K\",\n  \"status\": 500,\n  \"errors\": [\n    {\n      \"detail\": \"Date must be in the past\",\n      \"pointer\": \"#/data/name\",\n      \"header\": \"Idempotency-Key\",\n      \"parameter\": \"occurred_before\"\n    },\n    {\n      \"detail\": \"Date must be in the past\",\n      \"pointer\": \"#/data/name\",\n      \"header\": \"Idempotency-Key\",\n      \"parameter\": \"occurred_before\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5cc92c6c-05fb-43bb-bd0d-c8d33759d0e2",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "notifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "created_before",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "created_after",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "occurred_before",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "occurred_after",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "notification_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "subject",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "additional_provider_filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"about:blank\",\n  \"title\": \"Server Error\",\n  \"detail\": \"There was a problem with your request, try again soon.\",\n  \"instance\": \"http://GsfrHtahmIegnlCBBoKLFsK.nlRhvjfs8yZiOTwkKuK60egMWX9YZj6q0M\",\n  \"status\": 500,\n  \"errors\": [\n    {\n      \"detail\": \"Date must be in the past\",\n      \"pointer\": \"#/data/name\",\n      \"header\": \"Idempotency-Key\",\n      \"parameter\": \"occurred_before\"\n    },\n    {\n      \"detail\": \"Date must be in the past\",\n      \"pointer\": \"#/data/name\",\n      \"header\": \"Idempotency-Key\",\n      \"parameter\": \"occurred_before\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4b15b9f0-39e9-4cf2-b7b9-d4d6860aeb76",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "notifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "created_before",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "created_after",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "occurred_before",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "occurred_after",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "notification_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "subject",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "additional_provider_filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"about:blank\",\n  \"title\": \"Server Error\",\n  \"detail\": \"There was a problem with your request, try again soon.\",\n  \"instance\": \"http://GsfrHtahmIegnlCBBoKLFsK.nlRhvjfs8yZiOTwkKuK60egMWX9YZj6q0M\",\n  \"status\": 500,\n  \"errors\": [\n    {\n      \"detail\": \"Date must be in the past\",\n      \"pointer\": \"#/data/name\",\n      \"header\": \"Idempotency-Key\",\n      \"parameter\": \"occurred_before\"\n    },\n    {\n      \"detail\": \"Date must be in the past\",\n      \"pointer\": \"#/data/name\",\n      \"header\": \"Idempotency-Key\",\n      \"parameter\": \"occurred_before\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e6c11435-4a30-4034-bb2e-d4e8b386d4af",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "notifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "created_before",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "created_after",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "occurred_before",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "occurred_after",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "notification_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "subject",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "additional_provider_filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"about:blank\",\n  \"title\": \"Server Error\",\n  \"detail\": \"There was a problem with your request, try again soon.\",\n  \"instance\": \"http://GsfrHtahmIegnlCBBoKLFsK.nlRhvjfs8yZiOTwkKuK60egMWX9YZj6q0M\",\n  \"status\": 500,\n  \"errors\": [\n    {\n      \"detail\": \"Date must be in the past\",\n      \"pointer\": \"#/data/name\",\n      \"header\": \"Idempotency-Key\",\n      \"parameter\": \"occurred_before\"\n    },\n    {\n      \"detail\": \"Date must be in the past\",\n      \"pointer\": \"#/data/name\",\n      \"header\": \"Idempotency-Key\",\n      \"parameter\": \"occurred_before\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5c9d212d-9426-45f7-9bfc-c52ec7435d84",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "notifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "created_before",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "created_after",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "occurred_before",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "occurred_after",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "notification_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "subject",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "additional_provider_filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"about:blank\",\n  \"title\": \"Server Error\",\n  \"detail\": \"There was a problem with your request, try again soon.\",\n  \"instance\": \"http://GsfrHtahmIegnlCBBoKLFsK.nlRhvjfs8yZiOTwkKuK60egMWX9YZj6q0M\",\n  \"status\": 500,\n  \"errors\": [\n    {\n      \"detail\": \"Date must be in the past\",\n      \"pointer\": \"#/data/name\",\n      \"header\": \"Idempotency-Key\",\n      \"parameter\": \"occurred_before\"\n    },\n    {\n      \"detail\": \"Date must be in the past\",\n      \"pointer\": \"#/data/name\",\n      \"header\": \"Idempotency-Key\",\n      \"parameter\": \"occurred_before\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3c60302a-8a92-4985-8e9d-c77e82131030",
+          "name": "Acknowledge notifications API",
+          "request": {
+            "name": "Acknowledge notifications API",
+            "description": {
+              "content": "Acknowledge notifications API - Acknowledge notifications that have been processed, so they are no longer returned when fetching",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v0",
+                "notifications",
+                "acknowledge"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "08934de5-8642-4966-95ff-70fae6cba104",
+              "name": "Notifications acknowledged successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "notifications",
+                    "acknowledge"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"acknowledged\": [\n      \"3d771525-5d50-f7a1-8d65-dd3f08195fbd\",\n      \"1f255bc9-35ef-5781-cba3-fcebc014f62c\"\n    ],\n    \"not_found\": [\n      \"eb0dea28-94d4-c128-6632-2c1a2b595936\",\n      \"42a24b1b-4213-9f76-6cc7-f854893ce543\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "27b53913-1a2d-4550-a86b-07f90e7e4654",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "notifications",
+                    "acknowledge"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"about:blank\",\n  \"title\": \"Server Error\",\n  \"detail\": \"There was a problem with your request, try again soon.\",\n  \"instance\": \"http://GsfrHtahmIegnlCBBoKLFsK.nlRhvjfs8yZiOTwkKuK60egMWX9YZj6q0M\",\n  \"status\": 500,\n  \"errors\": [\n    {\n      \"detail\": \"Date must be in the past\",\n      \"pointer\": \"#/data/name\",\n      \"header\": \"Idempotency-Key\",\n      \"parameter\": \"occurred_before\"\n    },\n    {\n      \"detail\": \"Date must be in the past\",\n      \"pointer\": \"#/data/name\",\n      \"header\": \"Idempotency-Key\",\n      \"parameter\": \"occurred_before\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9a145c8b-7685-4a56-8a77-77fc833e6ef3",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "notifications",
+                    "acknowledge"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"about:blank\",\n  \"title\": \"Server Error\",\n  \"detail\": \"There was a problem with your request, try again soon.\",\n  \"instance\": \"http://GsfrHtahmIegnlCBBoKLFsK.nlRhvjfs8yZiOTwkKuK60egMWX9YZj6q0M\",\n  \"status\": 500,\n  \"errors\": [\n    {\n      \"detail\": \"Date must be in the past\",\n      \"pointer\": \"#/data/name\",\n      \"header\": \"Idempotency-Key\",\n      \"parameter\": \"occurred_before\"\n    },\n    {\n      \"detail\": \"Date must be in the past\",\n      \"pointer\": \"#/data/name\",\n      \"header\": \"Idempotency-Key\",\n      \"parameter\": \"occurred_before\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7ade3f55-6189-47c6-aef9-82bfbc58bdd1",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "notifications",
+                    "acknowledge"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"about:blank\",\n  \"title\": \"Server Error\",\n  \"detail\": \"There was a problem with your request, try again soon.\",\n  \"instance\": \"http://GsfrHtahmIegnlCBBoKLFsK.nlRhvjfs8yZiOTwkKuK60egMWX9YZj6q0M\",\n  \"status\": 500,\n  \"errors\": [\n    {\n      \"detail\": \"Date must be in the past\",\n      \"pointer\": \"#/data/name\",\n      \"header\": \"Idempotency-Key\",\n      \"parameter\": \"occurred_before\"\n    },\n    {\n      \"detail\": \"Date must be in the past\",\n      \"pointer\": \"#/data/name\",\n      \"header\": \"Idempotency-Key\",\n      \"parameter\": \"occurred_before\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3f6fbfe4-3ba6-42d2-8fe8-67a963d90526",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "notifications",
+                    "acknowledge"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"about:blank\",\n  \"title\": \"Server Error\",\n  \"detail\": \"There was a problem with your request, try again soon.\",\n  \"instance\": \"http://GsfrHtahmIegnlCBBoKLFsK.nlRhvjfs8yZiOTwkKuK60egMWX9YZj6q0M\",\n  \"status\": 500,\n  \"errors\": [\n    {\n      \"detail\": \"Date must be in the past\",\n      \"pointer\": \"#/data/name\",\n      \"header\": \"Idempotency-Key\",\n      \"parameter\": \"occurred_before\"\n    },\n    {\n      \"detail\": \"Date must be in the past\",\n      \"pointer\": \"#/data/name\",\n      \"header\": \"Idempotency-Key\",\n      \"parameter\": \"occurred_before\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8721fcde-d7bf-40cc-b1a0-0e7a982f37da",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "notifications",
+                    "acknowledge"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"about:blank\",\n  \"title\": \"Server Error\",\n  \"detail\": \"There was a problem with your request, try again soon.\",\n  \"instance\": \"http://GsfrHtahmIegnlCBBoKLFsK.nlRhvjfs8yZiOTwkKuK60egMWX9YZj6q0M\",\n  \"status\": 500,\n  \"errors\": [\n    {\n      \"detail\": \"Date must be in the past\",\n      \"pointer\": \"#/data/name\",\n      \"header\": \"Idempotency-Key\",\n      \"parameter\": \"occurred_before\"\n    },\n    {\n      \"detail\": \"Date must be in the past\",\n      \"pointer\": \"#/data/name\",\n      \"header\": \"Idempotency-Key\",\n      \"parameter\": \"occurred_before\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://businessgateway.landregistry.gov.uk/bg2/api",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "documentcapture.landregistry.gov.uk",
+      "key": "Upload a document-Url"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "405170eb-01bb-4fce-8acb-e0c997c09fe1",
+    "name": "V0.3 'Submit an application to change the Land Register API' Schema",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "V0.3 of the set of APIs for the new 'Submit an application to change the Land Register API' Schema",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Official Search of Whole with Data",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Official Search of Whole with Data",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Submit an OS1 Official Search of Whole with Priority application",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://bgtest.landregistry.gov.uk/bg2test/api/v1/official-searches-of-whole",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Official search with priority by a purchaser against the whole of a registered title or pending first registration application"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
