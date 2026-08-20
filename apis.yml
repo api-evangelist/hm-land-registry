@@ -51,6 +51,19 @@ accessModel:
   method: manual
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/groq.png
 tags:
+- Real-Estate
+- United Kingdom
+- Land Registry
+- Open Data
+- Title
+- Conveyancing
+- Property Records
+- Price Paid Data
+- Linked Data
+- Geospatial
+- Government
+- PropTech
+tags_raw:
 - Real Estate
 - United Kingdom
 - Land Registry
@@ -112,6 +125,12 @@ apis:
   humanURL: http://landregistry.data.gov.uk/app/ppd/
   baseURL: https://landregistry.data.gov.uk/data/ppi
   tags:
+  - Open Data
+  - Linked Data
+  - Price Paid Data
+  - Transaction
+  - United Kingdom
+  tags_raw:
   - Open Data
   - Linked Data
   - Price Paid Data
