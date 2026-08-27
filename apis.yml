@@ -187,143 +187,197 @@ apis:
     url: https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/
   - type: Vocabulary
     url: vocabulary/hm-land-registry-ukhpi.ttl
-- aid: hm-land-registry:land-register-api
-  name: Land Register API
+- aid: hm-land-registry:hm-land-registry-application-information-api-api
+  name: HM Land Registry Application information API
   description: >-
-    An OpenAPI 3.0.1 contract, version 6.0.0, titled "Land Register API" and published in the public Business
-    Gateway developer pack. It describes two GET operations — /title/{titleNumber} and /draft-titles/{titleNumber}
-    — and states that it "aims to be the primary method of accessing register data for HM Land Registry".
-    No baseURL is recorded here because the specification declares no public production server: its servers
-    list contains only localhost ports and internal HMLR hosts under development, test and *.stp.hmlr.zone.
-    Access is not a developer product at all — it must be requested through the Digital Register project
-    team, an individual bearer token is minted per consuming service, and the consumer must file a Fraud
-    Impact Assessment and must not expose the data externally. Recorded as a real published contract for
-    an internal government API, not as a callable public API.
-  humanURL: https://landregistry.github.io/bgtechdoc/
+    The Application information API API from HM Land Registry — 2 operation(s) for application information
+    api.
+  humanURL: http://landregistry.data.gov.uk/qonsole
+  baseURL: https://landregistry.data.gov.uk/landregistry/query
   tags:
-  - Title
-  - Property Records
-  - Land Registry
-  - Internal
-  - United Kingdom
+  - Application information API
   properties:
   - type: OpenAPI
-    url: openapi/hm-land-registry-land-register-api-openapi.yml
-  - type: OpenAPI
-    url: https://landregistry.github.io/bgtechdoc/documents/openapi.yaml
+    url: openapi/hm-land-registry-application-information-api-api-openapi.yml
   - type: Documentation
     url: https://landregistry.github.io/bgtechdoc/
-  - type: Overlay
-    url: overlays/hm-land-registry-land-register-api-overlay.yaml
-- aid: hm-land-registry:hm-land-registry-estimate-completion-date-openapi
-  name: HM Land Registry Estimate Completion Date API
-  description: >-
-    HM Land Registry Estimate Completion Date API from HM Land Registry — 1 path(s) described in OpenAPI.
+- aid: hm-land-registry:hm-land-registry-attach-a-document-api
+  name: HM Land Registry Attach a document API
+  description: The Attach a document API from HM Land Registry — 1 operation(s) for attach a document.
   humanURL: http://landregistry.data.gov.uk/qonsole
   baseURL: https://landregistry.data.gov.uk/landregistry/query
+  tags:
+  - Attach a document
   properties:
   - type: OpenAPI
-    url: openapi/hm-land-registry-estimate-completion-date-openapi.yml
-- aid: >-
-    hm-land-registry:hm-land-registry-official-copy-document-availability-v1-customer-test-openapi
-  name: >-
-    HM Land Registry HMLR Business Gateway (Hm Land Registry Official Copy Document Availability V1 Customer
-    Test)
-  description: >-
-    HM Land Registry HMLR Business Gateway from HM Land Registry — 1 path(s) described in OpenAPI.
+    url: openapi/hm-land-registry-attach-a-document-api-openapi.yml
+  - type: Documentation
+    url: https://landregistry.github.io/bgtechdoc/
+- aid: hm-land-registry:hm-land-registry-attach-a-message-api
+  name: HM Land Registry Attach a message API
+  description: The Attach a message API from HM Land Registry — 1 operation(s) for attach a message.
   humanURL: http://landregistry.data.gov.uk/qonsole
   baseURL: https://landregistry.data.gov.uk/landregistry/query
+  tags:
+  - Attach a message
   properties:
   - type: OpenAPI
-    url: >-
-      openapi/hm-land-registry-official-copy-document-availability-v1-customer-test-openapi.json
-- aid: hm-land-registry:hm-land-registry-official-copy-document-availability-v1-openapi
-  name: >-
-    HM Land Registry Official Copy Document Availability Service (Hm Land Registry Official Copy Document
-    Availability V1)
-  description: >-
-    HM Land Registry Official Copy Document Availability Service from HM Land Registry — 1 path(s) described
-    in OpenAPI.
+    url: openapi/hm-land-registry-attach-a-message-api-openapi.yml
+  - type: Documentation
+    url: https://landregistry.github.io/bgtechdoc/
+- aid: hm-land-registry:hm-land-registry-datasets-api
+  name: HM Land Registry Datasets API
+  description: Dataset discovery, metadata and download URL minting.
   humanURL: http://landregistry.data.gov.uk/qonsole
   baseURL: https://landregistry.data.gov.uk/landregistry/query
+  tags:
+  - Datasets
   properties:
   - type: OpenAPI
-    url: openapi/hm-land-registry-official-copy-document-availability-v1-openapi.json
-- aid: >-
-    hm-land-registry:hm-land-registry-official-copy-document-availability-v2-customer-test-openapi
-  name: >-
-    HM Land Registry HMLR Business Gateway (Hm Land Registry Official Copy Document Availability V2 Customer
-    Test)
+    url: openapi/hm-land-registry-datasets-api-openapi.yml
+  - type: Documentation
+    url: https://landregistry.github.io/bgtechdoc/
+- aid: hm-land-registry:hm-land-registry-download-a-document-api-api
+  name: HM Land Registry Download a document API
   description: >-
-    HM Land Registry HMLR Business Gateway from HM Land Registry — 1 path(s) described in OpenAPI.
+    The Download a document API API from HM Land Registry — 2 operation(s) for download a document api.
   humanURL: http://landregistry.data.gov.uk/qonsole
   baseURL: https://landregistry.data.gov.uk/landregistry/query
+  tags:
+  - Download a document API
   properties:
   - type: OpenAPI
-    url: >-
-      openapi/hm-land-registry-official-copy-document-availability-v2-customer-test-openapi.json
-- aid: hm-land-registry:hm-land-registry-official-copy-document-availability-v2-openapi
-  name: >-
-    HM Land Registry Official Copy Document Availability Service (Hm Land Registry Official Copy Document
-    Availability V2)
-  description: >-
-    HM Land Registry Official Copy Document Availability Service from HM Land Registry — 1 path(s) described
-    in OpenAPI.
+    url: openapi/hm-land-registry-download-a-document-api-api-openapi.yml
+  - type: Documentation
+    url: https://landregistry.github.io/bgtechdoc/
+- aid: hm-land-registry:hm-land-registry-draft-titles-api
+  name: HM Land Registry Draft Titles API
+  description: The draft-titles API from HM Land Registry — 1 operation(s) for draft-titles.
   humanURL: http://landregistry.data.gov.uk/qonsole
   baseURL: https://landregistry.data.gov.uk/landregistry/query
+  tags:
+  - draft-titles
   properties:
   - type: OpenAPI
-    url: openapi/hm-land-registry-official-copy-document-availability-v2-openapi.json
-- aid: hm-land-registry:hm-land-registry-official-search-of-whole-with-data-openapi
-  name: HM Land Registry Official Search of Whole with Data
-  description: >-
-    HM Land Registry Official Search of Whole with Data from HM Land Registry — 1 path(s) described in
-    OpenAPI.
+    url: openapi/hm-land-registry-draft-titles-api-openapi.yml
+  - type: Documentation
+    url: https://landregistry.github.io/bgtechdoc/
+- aid: hm-land-registry:hm-land-registry-ecd-api
+  name: HM Land Registry ECD API
+  description: The ECD API from HM Land Registry — 1 operation(s) for ecd.
   humanURL: http://landregistry.data.gov.uk/qonsole
   baseURL: https://landregistry.data.gov.uk/landregistry/query
+  tags:
+  - ECD
   properties:
   - type: OpenAPI
-    url: openapi/hm-land-registry-official-search-of-whole-with-data-openapi.yml
-- aid: hm-land-registry:hm-land-registry-registered-proprietor-names-openapi
-  name: HM Land Registry Registered Proprietor Names Service
-  description: >-
-    HM Land Registry Registered Proprietor Names Service from HM Land Registry — 1 path(s) described in
-    OpenAPI.
+    url: openapi/hm-land-registry-ecd-api-openapi.yml
+  - type: Documentation
+    url: https://landregistry.github.io/bgtechdoc/
+- aid: hm-land-registry:hm-land-registry-notifications-api-api
+  name: HM Land Registry Notifications API
+  description: The Notifications API API from HM Land Registry — 4 operation(s) for notifications api.
   humanURL: http://landregistry.data.gov.uk/qonsole
   baseURL: https://landregistry.data.gov.uk/landregistry/query
+  tags:
+  - Notifications API
   properties:
   - type: OpenAPI
-    url: openapi/hm-land-registry-registered-proprietor-names-openapi.json
-- aid: hm-land-registry:hm-land-registry-submit-application-to-change-the-register-v0-3-openapi
-  name: HM Land Registry V0.3 'Submit an application to change the Land Register API' Schema
-  description: >-
-    HM Land Registry V0.3 'Submit an application to change the Land Register API' Schema from HM Land
-    Registry — 6 path(s) described in OpenAPI.
+    url: openapi/hm-land-registry-notifications-api-api-openapi.yml
+  - type: Documentation
+    url: https://landregistry.github.io/bgtechdoc/
+- aid: hm-land-registry:hm-land-registry-official-copies-api
+  name: HM Land Registry Official Copies API
+  description: Document information related to a title.
   humanURL: http://landregistry.data.gov.uk/qonsole
   baseURL: https://landregistry.data.gov.uk/landregistry/query
+  tags:
+  - Official Copies
   properties:
   - type: OpenAPI
-    url: openapi/hm-land-registry-submit-application-to-change-the-register-v0.3-openapi.json
-- aid: hm-land-registry:hm-land-registry-submit-application-to-change-the-register-v1-0-openapi
-  name: HM Land Registry V1.0 'Submit an application to change the Land Register API' Schema
+    url: openapi/hm-land-registry-official-copies-api-openapi.yml
+  - type: Documentation
+    url: https://landregistry.github.io/bgtechdoc/
+- aid: hm-land-registry:hm-land-registry-official-search-of-whole-with-data-api
+  name: HM Land Registry Official Search of Whole with Data API
   description: >-
-    HM Land Registry V1.0 'Submit an application to change the Land Register API' Schema from HM Land
-    Registry — 10 path(s) described in OpenAPI.
+    The Official Search of Whole with Data API from HM Land Registry — 1 operation(s) for official search
+    of whole with data.
   humanURL: http://landregistry.data.gov.uk/qonsole
   baseURL: https://landregistry.data.gov.uk/landregistry/query
+  tags:
+  - Official Search of Whole with Data
   properties:
   - type: OpenAPI
-    url: openapi/hm-land-registry-submit-application-to-change-the-register-v1.0-openapi.json
-- aid: hm-land-registry:hm-land-registry-use-land-property-data-openapi
-  name: HM Land Registry Use Land and Property Data API
-  description: >-
-    HM Land Registry Use Land and Property Data API from HM Land Registry — 4 path(s) described in OpenAPI.
+    url: openapi/hm-land-registry-official-search-of-whole-with-data-api-openapi.yml
+  - type: Documentation
+    url: https://landregistry.github.io/bgtechdoc/
+- aid: hm-land-registry:hm-land-registry-registered-proprietor-names-api
+  name: HM Land Registry Registered Proprietor Names API
+  description: Proprietor information related to a title.
   humanURL: http://landregistry.data.gov.uk/qonsole
   baseURL: https://landregistry.data.gov.uk/landregistry/query
+  tags:
+  - Registered Proprietor Names
   properties:
   - type: OpenAPI
-    url: openapi/hm-land-registry-use-land-property-data-openapi.yml
+    url: openapi/hm-land-registry-registered-proprietor-names-api-openapi.yml
+  - type: Documentation
+    url: https://landregistry.github.io/bgtechdoc/
+- aid: hm-land-registry:hm-land-registry-send-a-document-api-api
+  name: HM Land Registry Send a document API
+  description: >-
+    The Send a document API API from HM Land Registry — 3 operation(s) for send a document api.
+  humanURL: http://landregistry.data.gov.uk/qonsole
+  baseURL: https://landregistry.data.gov.uk/landregistry/query
+  tags:
+  - Send a document API
+  properties:
+  - type: OpenAPI
+    url: openapi/hm-land-registry-send-a-document-api-api-openapi.yml
+  - type: Documentation
+    url: https://landregistry.github.io/bgtechdoc/
+- aid: hm-land-registry:hm-land-registry-submit-an-application-api-api
+  name: HM Land Registry Submit an application API
+  description: >-
+    The Submit an application API API from HM Land Registry — 2 operation(s) for submit an application
+    api.
+  humanURL: http://landregistry.data.gov.uk/qonsole
+  baseURL: https://landregistry.data.gov.uk/landregistry/query
+  tags:
+  - Submit an application API
+  properties:
+  - type: OpenAPI
+    url: openapi/hm-land-registry-submit-an-application-api-api-openapi.yml
+  - type: Documentation
+    url: https://landregistry.github.io/bgtechdoc/
+- aid: hm-land-registry:hm-land-registry-title-api
+  name: HM Land Registry Title API
+  description: Operations relating to titles for land or property.
+  humanURL: http://landregistry.data.gov.uk/qonsole
+  baseURL: https://landregistry.data.gov.uk/landregistry/query
+  tags:
+  - title
+  properties:
+  - type: OpenAPI
+    url: openapi/hm-land-registry-title-api-openapi.yml
+  - type: Documentation
+    url: https://landregistry.github.io/bgtechdoc/
+- aid: hm-land-registry:hm-land-registry-titles-api
+  name: HM Land Registry Titles API
+  description: Operations regarding titles
+  humanURL: http://landregistry.data.gov.uk/qonsole
+  baseURL: https://landregistry.data.gov.uk/landregistry/query
+  tags:
+  - Titles
+  properties:
+  - type: OpenAPI
+    url: openapi/hm-land-registry-titles-api-openapi.yml
+  - type: Documentation
+    url: https://landregistry.github.io/bgtechdoc/
 common:
+- type: Overlay
+  url: overlays/hm-land-registry-land-register-api-overlay.yaml
 - type: IssueTracker
   url: https://github.com/LandRegistry/bgtechdoc/issues
 - type: AgenticAccess
