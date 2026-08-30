@@ -370,6 +370,8 @@ apis:
   humanURL: http://landregistry.data.gov.uk/qonsole
   baseURL: https://landregistry.data.gov.uk/landregistry/query
   tags:
+  - Title
+  tags_raw:
   - title
   properties:
   - type: OpenAPI
