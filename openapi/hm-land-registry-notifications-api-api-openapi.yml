@@ -1,0 +1,561 @@
+openapi: 3.2.0
+info:
+  title: Hm Land Registry Notifications API
+  version: '1.0'
+  description: 'Operations tagged Notifications API across 2 of this provider''s published API definitions: hm-land-registry-submit-application-to-change-the-register-v0.3-openapi.json, hm-land-registry-submit-application-to-change-the-register-v1.0-openapi.json. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://businessgateway.landregistry.gov.uk/bg2/api
+  description: Production
+- url: https://bgtest.landregistry.gov.uk/bg2test/api
+  description: Stub
+security:
+- basicAuth: []
+tags:
+- name: Notifications API
+paths:
+  /v0/notifications:
+    get:
+      description: Receive notifications API - Get any unacknowledged notifications
+      operationId: Receive notifications API
+      parameters:
+      - in: query
+        name: created_before
+        required: false
+        schema:
+          type: string
+          format: date-time
+      - in: query
+        name: created_after
+        required: false
+        schema:
+          type: string
+          format: date-time
+      - in: query
+        name: status
+        required: false
+        schema:
+          type: string
+          enum:
+          - NEW
+          - ACKNOWLEDGED
+      - in: query
+        name: occurred_before
+        required: false
+        schema:
+          type: string
+          format: date-time
+      - in: query
+        name: occurred_after
+        required: false
+        schema:
+          type: string
+          format: date-time
+      - in: query
+        name: notification_type
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: subject
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: additional_provider_filter
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: List of notifications
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/NotificationResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetail'
+        '401':
+          description: Unauthorized
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetail'
+        '403':
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetail'
+        '404':
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetail'
+        '500':
+          description: Server Error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetail'
+      tags:
+      - Notifications API
+    servers:
+    - url: https://businessgateway.landregistry.gov.uk/bg2/api
+      description: Production
+    - url: https://bgtest.landregistry.gov.uk/bg2test/api
+      description: Stub
+  /v0/notifications/acknowledge:
+    post:
+      description: Acknowledge notifications API - Acknowledge notifications that have been processed, so they are no longer returned when fetching
+      operationId: Acknowledge notifications API
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '200':
+          description: Notifications acknowledged successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/BulkAcknowledgeResult'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetail'
+        '401':
+          description: Unauthorized
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetail'
+        '403':
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetail'
+        '404':
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetail'
+        '500':
+          description: Server Error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetail'
+      tags:
+      - Notifications API
+    servers:
+    - url: https://businessgateway.landregistry.gov.uk/bg2/api
+      description: Production
+    - url: https://bgtest.landregistry.gov.uk/bg2test/api
+      description: Stub
+  /v1/notifications:
+    get:
+      description: Receive notifications API - Get any unacknowledged notifications
+      operationId: get_notifications_v1
+      parameters:
+      - in: query
+        name: created_before
+        required: false
+        schema:
+          type: string
+          format: date-time
+      - in: query
+        name: created_after
+        required: false
+        schema:
+          type: string
+          format: date-time
+      - in: query
+        name: status
+        required: false
+        schema:
+          type: string
+          enum:
+          - NEW
+          - ACKNOWLEDGED
+      - in: query
+        name: occurred_before
+        required: false
+        schema:
+          type: string
+          format: date-time
+      - in: query
+        name: occurred_after
+        required: false
+        schema:
+          type: string
+          format: date-time
+      - in: query
+        name: notification_type
+        required: false
+        schema:
+          type: string
+          maxLength: 255
+          minLength: 0
+          pattern: ^[A-Za-z0-9._@-]*$
+      - in: query
+        name: subject
+        required: false
+        schema:
+          type: string
+          maxLength: 64
+          minLength: 0
+          pattern: ^[A-Za-z0-9._@-]*$
+      - in: query
+        name: additional_provider_filter
+        required: false
+        schema:
+          type: string
+          maxLength: 50
+          minLength: 1
+      - in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: List of notifications
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/NotificationResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetail_2'
+        '401':
+          description: Unauthorized
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetail_2'
+        '403':
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetail_2'
+        '404':
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetail_2'
+        '500':
+          description: Server Error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetail_2'
+      tags:
+      - Notifications API
+    servers:
+    - url: https://businessgateway.landregistry.gov.uk/bg2/api
+      description: Production
+    - url: https://bgtest.landregistry.gov.uk/bg2test/api
+      description: Stub
+  /v1/notifications/acknowledge:
+    post:
+      description: Acknowledge notifications API - Acknowledge notifications that have been processed, so they are no longer returned when fetching
+      operationId: acknowledge_notifications_v1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '200':
+          description: Notifications acknowledged successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/BulkAcknowledgeResult'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetail_2'
+        '401':
+          description: Unauthorized
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetail_2'
+        '403':
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetail_2'
+        '404':
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetail_2'
+        '500':
+          description: Server Error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetail_2'
+      tags:
+      - Notifications API
+    servers:
+    - url: https://businessgateway.landregistry.gov.uk/bg2/api
+      description: Production
+    - url: https://bgtest.landregistry.gov.uk/bg2test/api
+      description: Stub
+components:
+  schemas:
+    ErrorDescription:
+      type: object
+      required:
+      - detail
+      properties:
+        detail:
+          description: A human readable explanation of the error
+          type: string
+          example: Date must be in the past
+        pointer:
+          description: A JSON pointer to where in the body this error occurred
+          type:
+          - string
+          - 'null'
+          example: '#/data/name'
+        header:
+          description: The header where this error occurred
+          type:
+          - string
+          - 'null'
+          example: Idempotency-Key
+        parameter:
+          description: The path or query parameter where this error occurred
+          type:
+          - string
+          - 'null'
+          example: occurred_before
+    NotificationResponse:
+      type: object
+      properties:
+        notification_id:
+          type: string
+          format: uuid
+          description: The unique identifier of the notification
+        created_datetime:
+          type: string
+          format: date-time
+          example: '2025-01-01T00:00:00Z'
+          description: Date and time the notification was created
+        event_datetime:
+          type: string
+          format: date-time
+          example: '2025-01-01T00:00:00Z'
+          description: Date and time the event occurred
+        payload_schema:
+          type: string
+          description: A link to a resource that describes the schema of the payload, this could be a JSON schema or documentation for example
+          format: uri
+          example: https://example.com/
+        notification_type:
+          type: string
+          description: The type of notification, required to distiguish notification types that share a schema
+          example: TYPE_1
+        subject_type:
+          description: An indicator for the type of the subject
+          type: string
+          example: subject_type
+        subject:
+          type: string
+          description: Unique reference to the subject of the notification
+          example: subject
+        additional_provider_filter:
+          type: string
+          description: Provides additional filtering for larger integrators
+        status:
+          type: string
+          enum:
+          - NEW
+          - ACKNOWLEDGED
+        payload:
+          type: object
+          description: The payload of the notification
+          additionalProperties: true
+    BulkAcknowledgeResult:
+      type: object
+      properties:
+        acknowledged:
+          type: array
+          items:
+            type: string
+            format: uuid
+        not_found:
+          type: array
+          items:
+            type: string
+            format: uuid
+    ProblemDetail:
+      type: object
+      required:
+      - type
+      properties:
+        type:
+          type: string
+          format: uri
+          example: about:blank
+          description: A uri referencing documentation for this problem
+        title:
+          type:
+          - string
+          - 'null'
+          example: Server Error
+          description: A brief summary of the problem
+        detail:
+          type:
+          - string
+          - 'null'
+          example: There was a problem with your request, try again soon.
+          description: A human readable explanation of the problem
+        instance:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: /path/you/called
+          description: A reference that identifies the specific occurrence of the problem
+        status:
+          type:
+          - integer
+          - 'null'
+          minimum: 100
+          maximum: 599
+          description: HTTP status code of the original response
+          example: 500
+        errors:
+          type:
+          - array
+          - 'null'
+          description: An extension to the RFC that describes errors that occurred in the request
+          items:
+            $ref: '#/components/schemas/ErrorDescription'
+    ErrorDescription_2:
+      type: object
+      required:
+      - detail
+      properties:
+        detail:
+          description: A human readable explanation of the error
+          type: string
+          example: Date must be in the past
+        pointer:
+          description: A JSON pointer to where in the body this error occurred
+          nullable: true
+          type: string
+          example: '#/data/name'
+        header:
+          description: The header where this error occurred
+          nullable: true
+          type: string
+          example: Idempotency-Key
+        parameter:
+          description: The path or query parameter where this error occurred
+          nullable: true
+          type: string
+          example: occurred_before
+    ProblemDetail_2:
+      type: object
+      required:
+      - type
+      properties:
+        type:
+          type: string
+          format: uri
+          example: about:blank
+          description: A uri referencing documentation for this problem
+        title:
+          type: string
+          nullable: true
+          example: Server Error
+          description: A brief summary of the problem
+        detail:
+          type: string
+          nullable: true
+          example: There was a problem with your request, try again soon.
+          description: A human readable explanation of the problem
+        instance:
+          type: string
+          format: uri
+          nullable: true
+          example: /path/you/called
+          description: A reference that identifies the specific occurrence of the problem
+        status:
+          type: integer
+          minimum: 100
+          maximum: 599
+          nullable: true
+          description: HTTP status code of the original response
+          example: 500
+        errors:
+          nullable: true
+          type: array
+          description: An extension to the RFC that describes errors that occurred in the request
+          items:
+            $ref: '#/components/schemas/ErrorDescription_2'
+  securitySchemes:
+    basicAuth:
+      scheme: basic
+      type: http
+x-refined-from:
+- hm-land-registry-submit-application-to-change-the-register-v0.3-openapi.json
+- hm-land-registry-submit-application-to-change-the-register-v1.0-openapi.json

@@ -1,0 +1,616 @@
+openapi: 3.2.0
+info:
+  title: Hm Land Registry Send a document API
+  version: '1.0'
+  description: 'Operations tagged Send a document API across 2 of this provider''s published API definitions: hm-land-registry-submit-application-to-change-the-register-v0.3-openapi.json, hm-land-registry-submit-application-to-change-the-register-v1.0-openapi.json. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://businessgateway.landregistry.gov.uk/bg2/api
+  description: Production
+- url: https://bgtest.landregistry.gov.uk/bg2test/api
+  description: Stub
+security:
+- basicAuth: []
+tags:
+- name: Send a document API
+paths:
+  /v0/documents/url:
+    post:
+      description: Create an upload URL - Retrieve a generated document upload URL
+      operationId: Create an upload URL
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DocumentUploadUrlRequest'
+        required: true
+      responses:
+        '200':
+          description: Request was successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentUploadUrlDataResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorised - an access token is required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      tags:
+      - Send a document API
+    servers:
+    - url: https://businessgateway.landregistry.gov.uk/bg2/api
+      description: Production
+    - url: https://bgtest.landregistry.gov.uk/bg2test/api
+      description: Stub
+  Upload a document:
+    servers:
+    - url: documentcapture.landregistry.gov.uk
+      description: An example domain for document uploads
+    put:
+      operationId: Upload a document
+      description: 'Upload a document - Upload the document contents. **Note**: This URL, including hostname and path parameters is returned from the create URL endpoint and **should be used unmodified**. The path and hostname given in the API specification here are examples only.'
+      security: []
+      parameters:
+      - in: header
+        name: X-Amz-Checksum-Sha256
+        description: The base64 encoded SHA-256 hash of the file contents. Must match both the document being uploaded and the value provided to the create URL endpoint.
+        schema:
+          type: string
+      - in: header
+        name: Content-Length
+        description: The length of the file in bytes. Must match both the document being uploaded and the value provided to the create URL endpoint.
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
+      responses:
+        '200':
+          description: OK
+        '403':
+          description: Forbidden. Ensure the content length and SHA-256 headers have been provided, and match both the file length and sha256 hash, and were the same values supplied to the create URL endpoint
+      tags:
+      - Send a document API
+  /v1/documents/url:
+    post:
+      summary: Request upload URL for your application attachments
+      description: Create an upload URL - Retrieve a generated document upload URL
+      operationId: send_a_document_v1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DocumentUploadUrlRequest'
+        required: true
+      responses:
+        '200':
+          description: Request was successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentUploadUrlDataResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorised - an access token is required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      tags:
+      - Send a document API
+    servers:
+    - url: https://businessgateway.landregistry.gov.uk/bg2/api
+      description: Production
+    - url: https://bgtest.landregistry.gov.uk/bg2test/api
+      description: Stub
+components:
+  schemas:
+    DocumentUploadUrlDataResponse:
+      type: object
+      description: The response object containing information needed for uploading a document
+      properties:
+        data:
+          $ref: '#/components/schemas/DocumentUploadUrlResponse'
+    DocumentUploadUrlResponse:
+      type: object
+      description: The response object containing information needed for uploading a document
+      properties:
+        upload_url:
+          type: string
+          description: The URL used to upload the document. The request must be a PUT HTTP request, where the body of the request is the document that will be uploaded. This URL should only be used once
+          example: about:blank
+        document_id:
+          type: string
+          description: A unique id for this document, which should be used in the application submission request
+          example: 12345678-1234-1234-1234-1234-123456789abc
+    ErrorResponse:
+      type: object
+      description: Wrapper for any error responses
+      properties:
+        type:
+          type: string
+          format: uri
+          example: https://landregistry.github.io/bgtechdoc/problems/global#bad-request
+        title:
+          type: string
+          example: Bad Request
+        status:
+          type: integer
+          format: int32
+          example: 400
+        detail:
+          type: string
+          example: The request is invalid or malformed.
+        instance:
+          type: string
+          format: uri
+        code:
+          type: string
+          example: ignore me
+        errors:
+          type: array
+          description: A list of all errors generated
+          items:
+            $ref: '#/components/schemas/ProblemDetails'
+    DocumentUploadUrlRequest:
+      required:
+      - data
+      type: object
+      description: The request to send to the endpoint to request an upload URL
+      properties:
+        data:
+          $ref: '#/components/schemas/DocumentUploadUrlData'
+    ProblemDetails:
+      required:
+      - detail
+      - type
+      description: Detailed information about an error
+      type: object
+      properties:
+        type:
+          type: string
+          description: The type of error received
+          example: L2_MDREF_ERROR
+        detail:
+          type: string
+          description: A longer description about the type of error received
+          example: The MDref included in the request does not exist
+        pointer:
+          type: string
+          description: A JSON pointer to the location in the JSON payload that caused the error (optional)
+          example:
+          - /data/transaction/t1/mdref
+    DocumentUploadUrlData:
+      required:
+      - file_length
+      - file_sha256
+      - document_type
+      type: object
+      description: The data needed to generate a URL to upload a document
+      properties:
+        document_type:
+          type: string
+          description: The HM Land registry document type
+          enum:
+          - ABSTRACT
+          - ACKAPU
+          - ADJAR
+          - ADJREVU
+          - ADMIN_LTRS
+          - ADV1
+          - ADV2
+          - AGREEMENT
+          - AMS1
+          - AN1
+          - AP1
+          - APPL_FRM
+          - APPOINTMENT_OF_TRUSTEE
+          - AS1
+          - AS2
+          - AS3
+          - ASSENT
+          - ASSIGNMENT
+          - BIRTH_CERT
+          - BOUND_PLAN
+          - CC
+          - CCD
+          - CERT_CON_CH
+          - CERT_DEATH
+          - CERT_REG_CH
+          - CERT_S89
+          - CH1
+          - CH2
+          - CH3
+          - CHARG_ORD
+          - CHARGE
+          - CIVIL_CERT
+          - CM2
+          - CM5
+          - CM6
+          - CN1
+          - CNFRM_DTMN_LTA_LGHA
+          - CNFRM_NO_DEED_SUR
+          - CNFRM_NO_LTA_LGHA
+          - CNSNT_ADMIN_COURT
+          - COMP_DOC
+          - CONSENT
+          - CONST_COMP
+          - CONTR_RES
+          - CONV_CERT
+          - CONV_CERT_DEATH
+          - CONVEYANCE
+          - COR_CERT
+          - CORRES
+          - COSR
+          - COURT_ORD
+          - CRALIQ
+          - CRED_DEC
+          - CRED_RES
+          - CRT_FORM_7
+          - CRWALIQ
+          - DB
+          - DEATH_CERT
+          - DEC_AB_NULL_MARR
+          - DEED
+          - DEED_POLL
+          - DEED_REG_DIS
+          - DEED_SUR
+          - DISCHARGE
+          - DJP
+          - DL
+          - DOP
+          - DRIVING_LICENCE
+          - DS1
+          - DS2
+          - DS3
+          - DS3_SHORT
+          - EOB
+          - EOL
+          - EVD_NO_RENEW
+          - EVIDENCE
+          - EV_OV_NAME_CHANGE
+          - EX1
+          - EX1A
+          - FORM_600
+          - FORM_600CH
+          - FORM_DI
+          - FORM_JO
+          - FR1
+          - GENDER_CERT
+          - GVD
+          - HR1
+          - HR2
+          - HR4
+          - ID1
+          - ID2
+          - ID3
+          - ID4
+          - ID5
+          - ID_EV
+          - ID_FRM
+          - INDENTURE
+          - JP1
+          - K17_OR_K18
+          - K20
+          - K22
+          - K3
+          - K4
+          - LEASE
+          - LICENCE
+          - LIQ_CERT_1
+          - LIQ_CERT_2
+          - LIQ_CERT_3
+          - LIQ01
+          - LNDLD_CNSNT
+          - LONP
+          - LR_CORRES
+          - LTT
+          - MARR_CERT
+          - MEMO
+          - MORD
+          - MRTG_DEED
+          - NOD
+          - ORD_DISS_NULL_CP
+          - PASSPORT
+          - PLAN
+          - POA
+          - PROBATE
+          - PSS1
+          - REVERS_INT
+          - RN
+          - RX1
+          - RX2
+          - RX3
+          - RX4
+          - RXC
+          - RXCD
+          - SC
+          - SDLT
+          - SEV
+          - SHRF_RTN
+          - SIDE_LTR
+          - SOT
+          - SSALIQ
+          - STAT_DEC
+          - SUB_CHARGE
+          - TP1
+          - TP2
+          - TR1
+          - TR2
+          - TR4
+          - TRANSFER
+          - TRUSTEE_RESOLUTION
+          - UN1
+          - UN2
+          - UN3
+          - UN4
+          - UT1
+          - VAR_CHARGE
+          - VAR_COV
+          - VAR_EAS
+          - VAR_LEASE
+          - VESTING_ORDER
+          - WCT
+          - WINDING_UP
+          - WIT_STATE
+        additional_provider_filter:
+          type: string
+          description: A value that can be used to subsequently retrieve request responses based upon high level grouping
+        file_length:
+          maximum: 41943040
+          minimum: 1
+          type: integer
+          description: The file contents length in bytes
+          format: int64
+        file_sha256:
+          maxLength: 44
+          minLength: 44
+          type: string
+          description: The checksum of file contents, as a base64 encoded string of the SHA-256 binary digest of the file, which should be 44 characters long. See the Business Gateway developer pack for detailed information on generating the correct SHA-256 hash
+    ProblemDetails_2:
+      required:
+      - detail
+      - type
+      description: Detailed information about an error
+      type: object
+      properties:
+        type:
+          type: string
+          description: The type of error received
+          example: L2_MDREF_ERROR
+        detail:
+          type: string
+          description: A longer description about the type of error received
+          example: The MDref included in the request does not exist
+        pointer:
+          type: string
+          description: A JSON pointer to the location in the JSON payload that caused the error (optional)
+          example: /data/transaction/t1/mdref
+    DocumentUploadUrlData_2:
+      required:
+      - file_length
+      - file_sha256
+      - document_type
+      type: object
+      description: The data needed to generate a URL to upload a document
+      properties:
+        document_type:
+          type: string
+          description: The HM Land registry document type
+          enum:
+          - ABSTRACT
+          - ACKAPU
+          - ADJAR
+          - ADJREVU
+          - ADMIN_LTRS
+          - ADV1
+          - ADV2
+          - AGREEMENT
+          - AMS1
+          - AN1
+          - AP1
+          - APPL_FRM
+          - APPOINTMENT_OF_TRUSTEE
+          - AS1
+          - AS2
+          - AS3
+          - ASSENT
+          - ASSIGNMENT
+          - BIRTH_CERT
+          - BOUND_PLAN
+          - CC
+          - CCD
+          - CERT_CON_CH
+          - CERT_DEATH
+          - CERT_RED_EX
+          - CERT_REG_CH
+          - CERT_S89
+          - CH1
+          - CH2
+          - CH3
+          - CHARG_ORD
+          - CHARGE
+          - CIVIL_CERT
+          - CM2
+          - CM5
+          - CM6
+          - CN1
+          - CNFRM_DTMN_LTA_LGHA
+          - CNFRM_NO_DEED_SUR
+          - CNFRM_NO_LTA_LGHA
+          - CNSNT_ADMIN_COURT
+          - COMP_DOC
+          - CONSENT
+          - CONST_COMP
+          - CONTR_RES
+          - CONV_CERT
+          - CONV_CERT_DEATH
+          - CONVEYANCE
+          - COR_CERT
+          - CORRES
+          - COSR
+          - COURT_ORD
+          - CRALIQ
+          - CRED_DEC
+          - CRED_RES
+          - CRT_FORM_7
+          - CRWALIQ
+          - DB
+          - DEATH_CERT
+          - DEBENTURE
+          - DEC_AB_NULL_MARR
+          - DEED
+          - DEED_POLL
+          - DEED_REG_DIS
+          - DEED_SUR
+          - DISCHARGE
+          - DJP
+          - DL
+          - DOP
+          - DRIVING_LICENCE
+          - DS1
+          - DS2
+          - DS3
+          - DS3_SHORT
+          - EOB
+          - EOL
+          - EVD_NO_RENEW
+          - EVIDENCE
+          - EV_OV_NAME_CHANGE
+          - EX1
+          - EX1A
+          - EX3
+          - FORM_600
+          - FORM_600CH
+          - FORM_DI
+          - FORM_JO
+          - FR1
+          - GENDER_CERT
+          - GVD
+          - HR1
+          - HR2
+          - HR4
+          - ID1
+          - ID2
+          - ID3
+          - ID4
+          - ID5
+          - ID_EV
+          - ID_FRM
+          - INDENTURE
+          - JP1
+          - K17_OR_K18
+          - K20
+          - K22
+          - K3
+          - K4
+          - LEASE
+          - LICENCE
+          - LIQ_CERT_1
+          - LIQ_CERT_2
+          - LIQ_CERT_3
+          - LIQ01
+          - LNDLD_CNSNT
+          - LONP
+          - LR_CORRES
+          - LTT
+          - MARR_CERT
+          - MEMO
+          - MORD
+          - MRTG_DEED
+          - NOD
+          - ORD_DISS_NULL_CP
+          - PASSPORT
+          - PLAN
+          - POA
+          - PROBATE
+          - PSS1
+          - REVERS_INT
+          - RN
+          - RX1
+          - RX2
+          - RX3
+          - RX4
+          - RXC
+          - RXCD
+          - SC
+          - SDLT
+          - SEV
+          - SHRF_RTN
+          - SIDE_LTR
+          - SOT
+          - SSALIQ
+          - STAT_DEC
+          - SUB_CHARGE
+          - TP1
+          - TP2
+          - TR1
+          - TR2
+          - TR4
+          - TR5
+          - TRANSFER
+          - TRUSTEE_RESOLUTION
+          - UN1
+          - UN2
+          - UN3
+          - UN4
+          - UT1
+          - VAR_CHARGE
+          - VAR_COV
+          - VAR_EAS
+          - VAR_LEASE
+          - VESTING_ORDER
+          - WCT
+          - WINDING_UP
+          - WIT_STATE
+        additional_provider_filter:
+          maxLength: 300
+          minLength: 1
+          type: string
+          description: A value that can be used to subsequently retrieve request responses based upon high level grouping
+        file_length:
+          maximum: 41943040
+          minimum: 1
+          type: integer
+          description: The file contents length in bytes
+          format: int64
+        file_sha256:
+          maxLength: 44
+          minLength: 44
+          type: string
+          description: The checksum of file contents, as a base64 encoded string of the SHA-256 binary digest of the file, which should be 44 characters long. See the Business Gateway developer pack for detailed information on generating the correct SHA-256 hash
+  securitySchemes:
+    basicAuth:
+      scheme: basic
+      type: http
+x-refined-from:
+- hm-land-registry-submit-application-to-change-the-register-v0.3-openapi.json
+- hm-land-registry-submit-application-to-change-the-register-v1.0-openapi.json

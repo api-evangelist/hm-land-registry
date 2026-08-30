@@ -1,0 +1,347 @@
+openapi: 3.2.0
+info:
+  title: Hm Land Registry Application information API
+  version: '1.0'
+  description: 'Operations tagged Application information API across 2 of this provider''s published API definitions: hm-land-registry-submit-application-to-change-the-register-v0.3-openapi.json, hm-land-registry-submit-application-to-change-the-register-v1.0-openapi.json. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://businessgateway.landregistry.gov.uk/bg2/api
+  description: Production
+- url: https://bgtest.landregistry.gov.uk/bg2test/api
+  description: Stub
+security:
+- basicAuth: []
+tags:
+- name: Application information API
+paths:
+  /v0/applications/{application_request_id}/information:
+    get:
+      description: Application information API - Get the information about an application
+      operationId: Application information API
+      parameters:
+      - description: The ID returned by Application Creation to track submission requests
+        in: path
+        name: application_request_id
+        example: 12345678-1234-1234-1234-123546789abc
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusDataResponse'
+          description: Request status received
+        '400':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Unauthorised - an access token is required
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Application creation request not found in the system
+        '500':
+          description: Internal Server Error
+      tags:
+      - Application information API
+    servers:
+    - url: https://businessgateway.landregistry.gov.uk/bg2/api
+      description: Production
+    - url: https://bgtest.landregistry.gov.uk/bg2test/api
+      description: Stub
+  /v1/applications/{application_request_id}/information:
+    get:
+      summary: Get application details
+      description: Can return status, fees and correspondence documents for an application
+      operationId: get_application_information_v1
+      parameters:
+      - description: The ID returned by Application Creation to track submission requests
+        in: path
+        name: application_request_id
+        example: 12345678-1234-1234-1234-123546789abc
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationInformationDataResponse'
+          description: Request status received
+        '400':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Unauthorised - an access token is required
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Application creation request not found in the system
+        '500':
+          description: Internal Server Error
+      tags:
+      - Application information API
+    servers:
+    - url: https://businessgateway.landregistry.gov.uk/bg2/api
+      description: Production
+    - url: https://bgtest.landregistry.gov.uk/bg2test/api
+      description: Stub
+components:
+  schemas:
+    StatusDataResponse:
+      type: object
+      description: Data wrapper for the status response
+      properties:
+        data:
+          $ref: '#/components/schemas/StatusResponse'
+    ErrorResponse:
+      type: object
+      description: Wrapper for any error responses
+      properties:
+        type:
+          type: string
+          format: uri
+          example: https://landregistry.github.io/bgtechdoc/problems/global#bad-request
+        title:
+          type: string
+          example: Bad Request
+        status:
+          type: integer
+          format: int32
+          example: 400
+        detail:
+          type: string
+          example: The request is invalid or malformed.
+        instance:
+          type: string
+          format: uri
+        code:
+          type: string
+          example: ignore me
+        errors:
+          type: array
+          description: A list of all errors generated
+          items:
+            $ref: '#/components/schemas/ProblemDetails'
+    StatusResponse:
+      type: object
+      description: The response object for the application status endpoint
+      properties:
+        errors:
+          type: array
+          description: A list of errors that caused the application to not be accepted
+          items:
+            $ref: '#/components/schemas/ProblemDetails'
+        hmlr_reference:
+          type: string
+          description: The reference used by HM Land Registry to identify the application
+          example: A123BCD
+        priority_timestamp:
+          type: string
+          format: date-time
+          description: The priority date and time of when the application was accepted onto the day list
+        application_request_id:
+          type: string
+          description: The ID of the application submission request
+          example: 12345678-1234-1234-1234-123546789abc
+        status:
+          type: string
+          description: '* `VALIDATING` - The application is currently being processed.
+
+            * `SYSTEM_ERROR` - There was an error creating the application, please retry the submission.
+
+            * `VALIDATION_FAILED` - We have not accepted the application due to validation errors
+
+            * `ACCEPTED_AWAITING_PRIORITY` - The application has passed validation, and will be accepted onto the day list when it reopens
+
+            * `ACCEPTED_PRIORITY_PROTECTED` - The application has been accepted onto the day list'
+          enum:
+          - VALIDATING
+          - SYSTEM_ERROR
+          - VALIDATION_FAILED
+          - ACCEPTED_AWAITING_PRIORITY
+          - ACCEPTED_PRIORITY_PROTECTED
+        calculated_fees:
+          type: object
+          description: An object containing information about fees taken for the accepted application
+          properties:
+            total_fee:
+              description: Total fee in pence
+              type: integer
+            per_transaction:
+              type: array
+              description: Breakdown of fees per transaction
+              items:
+                $ref: '#/components/schemas/TransactionFee'
+        warnings:
+          type: array
+          description: Warnings that need to be actioned before the application is processed by a caseworker, otherwise a requisition may be issued.
+          items:
+            type: string
+    TransactionReference:
+      maxLength: 50
+      minLength: 1
+      pattern: ^[A-Za-z0-9-?,_]+$
+      type: string
+      description: Unique identifier for transactions, used to reference transactions from elsewhere in the spec
+      example: property charge
+    ProblemDetails:
+      required:
+      - detail
+      - type
+      description: Detailed information about an error
+      type: object
+      properties:
+        type:
+          type: string
+          description: The type of error received
+          example: L2_MDREF_ERROR
+        detail:
+          type: string
+          description: A longer description about the type of error received
+          example: The MDref included in the request does not exist
+        pointer:
+          type: string
+          description: A JSON pointer to the location in the JSON payload that caused the error (optional)
+          example:
+          - /data/transaction/t1/mdref
+    TransactionFee:
+      type: object
+      properties:
+        transaction_reference:
+          $ref: '#/components/schemas/TransactionReference'
+        fee:
+          description: Fee in pence
+          type: integer
+    CorrespondenceRecordDocumentItemWithDownloadId:
+      description: List of documents in the correspondence record
+      properties:
+        created_at:
+          type: string
+        download_id:
+          type: string
+        type:
+          $ref: '#/components/schemas/CorrespondenceDocumentType'
+      required:
+      - type
+    ApplicationInformationDataResponse:
+      type: object
+      description: Data wrapper for the status response
+      properties:
+        data:
+          $ref: '#/components/schemas/ApplicationInformationResponse'
+    CorrespondenceDocumentType:
+      properties:
+        code:
+          type: string
+        name:
+          type: string
+    CorrespondenceRecordInApplicationInformation:
+      description: Representation of a correspondence record
+      properties:
+        documents:
+          type: array
+          description: List of documents in the correspondence record
+          items:
+            $ref: '#/components/schemas/CorrespondenceRecordDocumentItemWithDownloadId'
+        record_id:
+          type: string
+          description: ID of the correspondence record
+          example: '1234567'
+      required:
+      - documents
+      - record_id
+    ApplicationInformationResponse:
+      type: object
+      description: The response object for the application status endpoint
+      properties:
+        correspondences:
+          type: array
+          description: A list of correspondence records on the application
+          items:
+            $ref: '#/components/schemas/CorrespondenceRecordInApplicationInformation'
+        errors:
+          type: array
+          description: A list of errors that caused the application to not be accepted
+          items:
+            $ref: '#/components/schemas/ProblemDetails_2'
+        hmlr_reference:
+          type: string
+          description: The reference used by HM Land Registry to identify the application
+          example: A123BCD
+        priority_timestamp:
+          type: string
+          format: date-time
+          description: The priority date and time of when the application was accepted onto the day list
+        application_request_id:
+          type: string
+          description: The ID of the application submission request
+          example: 12345678-1234-1234-1234-123546789abc
+        status:
+          type: string
+          description: '* `VALIDATING` - The application is currently being processed.
+
+            * `SYSTEM_ERROR` - There was an error creating the application, please retry the submission.
+
+            * `VALIDATION_FAILED` - We have not accepted the application due to validation errors
+
+            * `ACCEPTED_AWAITING_PRIORITY` - The application has passed validation, and will be accepted onto the day list when it reopens
+
+            * `ACCEPTED_PRIORITY_PROTECTED` - The application has been accepted onto the day list'
+          enum:
+          - VALIDATING
+          - SYSTEM_ERROR
+          - VALIDATION_FAILED
+          - ACCEPTED_AWAITING_PRIORITY
+          - ACCEPTED_PRIORITY_PROTECTED
+        warnings:
+          type: array
+          description: Warnings that need to be actioned before the application is processed by a caseworker, otherwise a requisition may be issued.
+          items:
+            type: string
+    ProblemDetails_2:
+      required:
+      - detail
+      - type
+      description: Detailed information about an error
+      type: object
+      properties:
+        type:
+          type: string
+          description: The type of error received
+          example: L2_MDREF_ERROR
+        detail:
+          type: string
+          description: A longer description about the type of error received
+          example: The MDref included in the request does not exist
+        pointer:
+          type: string
+          description: A JSON pointer to the location in the JSON payload that caused the error (optional)
+          example: /data/transaction/t1/mdref
+  securitySchemes:
+    basicAuth:
+      scheme: basic
+      type: http
+x-refined-from:
+- hm-land-registry-submit-application-to-change-the-register-v0.3-openapi.json
+- hm-land-registry-submit-application-to-change-the-register-v1.0-openapi.json

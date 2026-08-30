@@ -1,0 +1,135 @@
+openapi: 3.2.0
+info:
+  description: V1.0 of the set of APIs for the new 'Submit an application to change the Land Register API' Schema
+  title: V1.0 'Submit an application to change the Land Register API' Schema Attach a document API
+  version: 1.0.5
+servers:
+- url: https://businessgateway.landregistry.gov.uk/bg2/api
+  description: Production
+- url: https://bgtest.landregistry.gov.uk/bg2test/api
+  description: Stub
+security:
+- basicAuth: []
+tags:
+- name: Attach a document
+paths:
+  /v1/applications/{application_request_id}/attachments:
+    post:
+      summary: Attach a document to an existing application
+      description: Attach a document from Send a Document to an existing application
+      operationId: attach_a_document_v1
+      parameters:
+      - description: The ID returned by Application Creation to track submission requests
+        in: path
+        name: application_request_id
+        example: 12345678-1234-1234-1234-123546789abc
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AttachADocumentRequest'
+        required: true
+      responses:
+        '202':
+          description: Accepted
+        '400':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Unauthorised - an access token is required
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Application creation request not found in the system
+        '500':
+          description: Internal Server Error
+      tags:
+      - Attach a document
+components:
+  schemas:
+    ProblemDetails:
+      required:
+      - detail
+      - type
+      description: Detailed information about an error
+      type: object
+      properties:
+        type:
+          type: string
+          description: The type of error received
+          example: L2_MDREF_ERROR
+        detail:
+          type: string
+          description: A longer description about the type of error received
+          example: The MDref included in the request does not exist
+        pointer:
+          type: string
+          description: A JSON pointer to the location in the JSON payload that caused the error (optional)
+          example: /data/transaction/t1/mdref
+    ErrorResponse:
+      type: object
+      description: Wrapper for any error responses
+      properties:
+        type:
+          type: string
+          format: uri
+          example: https://landregistry.github.io/bgtechdoc/problems/global#bad-request
+        title:
+          type: string
+          example: Bad Request
+        status:
+          type: integer
+          format: int32
+          example: 400
+        detail:
+          type: string
+          example: The request is invalid or malformed.
+        instance:
+          type: string
+          format: uri
+        code:
+          type: string
+          example: ignore me
+        errors:
+          type: array
+          description: A list of all errors generated
+          items:
+            $ref: '#/components/schemas/ProblemDetails'
+    AttachADocumentRequest:
+      required:
+      - data
+      type: object
+      description: The request to send to the endpoint to request an upload URL
+      properties:
+        data:
+          properties:
+            certification_statement_type:
+              type: string
+              description: "    * `CERTIFIED` - I/we certify this is a true copy of an original document\n    * `CERTIFIED_BY_ANOTHER` - I/we certify this document is a true copy of an original document which is certified by a conveyancer to be a true copy of the original\n    * `NOT_CERTIFIED` - This document is an uncertified copy\n"
+              enum:
+              - CERTIFIED
+              - CERTIFIED_BY_ANOTHER
+              - NOT_CERTIFIED
+            document_id:
+              type: string
+              description: The id of the document from the document upload request
+              example: 12345678-1234-1234-1234-123456789abc
+          required:
+          - certification_statement_type
+          - document_id
+  securitySchemes:
+    basicAuth:
+      scheme: basic
+      type: http

@@ -1,0 +1,163 @@
+openapi: 3.2.0
+info:
+  description: V1.0 of the set of APIs for the new 'Submit an application to change the Land Register API' Schema
+  title: V1.0 'Submit an application to change the Land Register API' Schema Download a document API
+  version: 1.0.5
+servers:
+- url: https://businessgateway.landregistry.gov.uk/bg2/api
+  description: Production
+- url: https://bgtest.landregistry.gov.uk/bg2test/api
+  description: Stub
+security:
+- basicAuth: []
+tags:
+- name: Download a document API
+paths:
+  /v1/documents/{document_id}:
+    get:
+      summary: Obtain download link for an HMLR document
+      description: Request the download link for a document. Currently only supports the download of documents HMLR despatches, i.e correspondence, cancellation and completion documents.
+      operationId: download_a_document_v1
+      parameters:
+      - name: document_id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: May also be referred to as the `download_id` by some services
+      responses:
+        '302':
+          description: Resource was successfully found.
+          headers:
+            location:
+              description: URL to the document resource for download
+              schema:
+                type: string
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Not Found
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Too Many Requests
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Internal Server Error
+      tags:
+      - Download a document API
+  Download a document:
+    servers:
+    - url: documentcapture.landregistry.gov.uk
+      description: An example domain for document downloads
+    get:
+      operationId: Download a document
+      description: 'Download the document contents. <br/><br/>**Note**: This URL, including hostname and path parameters is returned from the GET `/documents/{document_id}` URL endpoint via the `location` header and **should be used unmodified**.'
+      security: []
+      parameters: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/octet-stream: {}
+        '404':
+          description: Not Found.
+      tags:
+      - Download a document API
+components:
+  schemas:
+    ProblemDetails:
+      required:
+      - detail
+      - type
+      description: Detailed information about an error
+      type: object
+      properties:
+        type:
+          type: string
+          description: The type of error received
+          example: L2_MDREF_ERROR
+        detail:
+          type: string
+          description: A longer description about the type of error received
+          example: The MDref included in the request does not exist
+        pointer:
+          type: string
+          description: A JSON pointer to the location in the JSON payload that caused the error (optional)
+          example: /data/transaction/t1/mdref
+    ErrorResponse:
+      type: object
+      description: Wrapper for any error responses
+      properties:
+        type:
+          type: string
+          format: uri
+          example: https://landregistry.github.io/bgtechdoc/problems/global#bad-request
+        title:
+          type: string
+          example: Bad Request
+        status:
+          type: integer
+          format: int32
+          example: 400
+        detail:
+          type: string
+          example: The request is invalid or malformed.
+        instance:
+          type: string
+          format: uri
+        code:
+          type: string
+          example: ignore me
+        errors:
+          type: array
+          description: A list of all errors generated
+          items:
+            $ref: '#/components/schemas/ProblemDetails'
+  securitySchemes:
+    basicAuth:
+      scheme: basic
+      type: http
