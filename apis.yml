@@ -47,21 +47,19 @@ deliveryModel:
   generated: '2026-08-28'
   method: derived
 accessModel:
-  pricing: freemium
-  onboarding: self-serve
+  pricing: unknown
+  onboarding: open
   trial: false
-  try_now: true
+  try_now: false
   public: true
-  label: >-
-    Open Government Licence open data (no key) · self-serve API key for dataset service ·
-    licence + client certificate for Business Gateway
-  confidence: high
+  label: Open access
+  confidence: medium
   source:
-  - documentation
   - authentication
-  - terms-of-use
-  generated: '2026-07-26'
-  method: manual
+  - security
+  - sandbox
+  generated: '2026-09-03'
+  method: derived
 imageNote: >-
   The `image` property was removed on 2026-08-26. It had been copied verbatim out of a
   bootstrap template and pointed at an icon belonging to groq, not to this company.
@@ -449,8 +447,9 @@ common:
   url: well-known/hm-land-registry-gov-uk-security.txt
 - type: SecurityTxt
   url: well-known/hm-land-registry-use-land-property-data-security.txt
-- type: MCPServer
+- type: X-MCPServerCandidate
   url: mcp/hm-land-registry-mcp.yml
+  note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate — a tool list derived from the published API contracts, not an existing server. The scorer already read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type surfaces with a server that does not exist.'
 - type: ToolCrosswalk
   url: mcp/hm-land-registry-tool-crosswalk.yml
 - type: LLMsTxt
