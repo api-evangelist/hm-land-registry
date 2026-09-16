@@ -297,18 +297,6 @@ apis:
     url: openapi/hm-land-registry-notifications-api-api-openapi.yml
   - type: Documentation
     url: https://landregistry.github.io/bgtechdoc/
-- aid: hm-land-registry:hm-land-registry-official-copies-api
-  name: HM Land Registry Official Copies API
-  description: Document information related to a title.
-  humanURL: http://landregistry.data.gov.uk/qonsole
-  baseURL: https://landregistry.data.gov.uk/landregistry/query
-  tags:
-  - Official Copies
-  properties:
-  - type: OpenAPI
-    url: openapi/hm-land-registry-official-copies-api-openapi.yml
-  - type: Documentation
-    url: https://landregistry.github.io/bgtechdoc/
 - aid: hm-land-registry:hm-land-registry-official-search-of-whole-with-data-api
   name: HM Land Registry Official Search of Whole with Data API
   description: >-
