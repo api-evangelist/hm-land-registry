@@ -19,7 +19,7 @@ paths:
       operationId: getRegisteredProprietorNames
       tags:
       - Registered Proprietor Names
-      summary: Get proprietor names associated with a title number.
+      summary: Get proprietor names associated with a title number
       description: Returns the registered proprietor names for the provided title number.
       parameters:
       - $ref: '#/components/parameters/TitleNumberParameter'
@@ -159,11 +159,49 @@ components:
         $ref: '#/components/schemas/TitleNumber'
       required: true
   schemas:
-    TitleNumber:
-      description: The title number of the property.
-      type: string
-      maxLength: 9
-      pattern: ^([a-zA-Z]{0,3}[1-9][0-9]{0,5}|[a-zA-Z]{1,3}[1-9][0-9]{0,3}[zZ])$
+    PrivateIndividual:
+      description: Proprietor details for a private individual.
+      properties:
+        proprietor_name:
+          type: string
+          description: Full name of the individual
+          example: Mrs Sarah Louise Smith OBE
+        title:
+          type: string
+          example: Mrs
+        forenames:
+          type: string
+          example: Sarah Louise
+        surname:
+          type: string
+          example: Smith
+        decoration:
+          type: string
+          description: Text which contains the details of any decoration and/or title held by a private individual. e.g. 'OBE','GC', 'KCMG'. For those private individuals holding titles such as 'Duke of ...', 'Lord' etc., the particulars of such titles will be held in this field.
+          example: OBE
+        proprietor_type:
+          type: string
+          description: Classification of a proprietor to distinguish between a private individual and an organisation.
+          enum:
+          - PRIVATE_INDIVIDUAL
+      allOf:
+      - $ref: '#/components/schemas/Proprietor'
+      x-discriminator-value: PRIVATE_INDIVIDUAL
+    Proprietor:
+      type: object
+      description: A registered proprietor for the provided title number.
+      properties:
+        sequence:
+          type: integer
+          minimum: 1
+          description: The position of the proprietor within the list.
+          format: int32
+          example: 1
+      discriminator:
+        propertyName: proprietor_type
+        mapping:
+          PRIVATE_INDIVIDUAL: '#/components/schemas/PrivateIndividual'
+          ORGANISATION: '#/components/schemas/Organisation'
     ErrorResponse:
       description: A response for an unsuccessful result.
       type: object
@@ -173,6 +211,32 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Error'
+    Error:
+      type: object
+      description: An error response for an unsuccessful request.
+      required:
+      - error_code
+      - error_message
+      properties:
+        error_code:
+          description: The code related to this error, see documentation for more information.
+          type: string
+        error_message:
+          description: The descriptive reason behind an error.
+          type: string
+        http_status:
+          description: The http status code related to this error.
+          type: string
+          example: '503'
+        timestamp:
+          description: The UTC timestamp of when the error occurred.
+          type: string
+          format: date-time
+          example: '2021-04-04T15:29:51.405Z'
+        trace_id:
+          type: string
+          description: A trace identifier for this request.
+          example: c62e9b3f-e523-4f04-a941-c6cf0d60c080
     Organisation:
       type: object
       description: Proprietor details for an organisation.
@@ -230,32 +294,11 @@ components:
       allOf:
       - $ref: '#/components/schemas/Proprietor'
       x-discriminator-value: ORGANISATION
-    Error:
-      type: object
-      description: An error response for an unsuccessful request.
-      required:
-      - error_code
-      - error_message
-      properties:
-        error_code:
-          description: The code related to this error, see documentation for more information.
-          type: string
-        error_message:
-          description: The descriptive reason behind an error.
-          type: string
-        http_status:
-          description: The http status code related to this error.
-          type: string
-          example: '503'
-        timestamp:
-          description: The UTC timestamp of when the error occurred.
-          type: string
-          format: date-time
-          example: '2021-04-04T15:29:51.405Z'
-        trace_id:
-          type: string
-          description: A trace identifier for this request.
-          example: c62e9b3f-e523-4f04-a941-c6cf0d60c080
+    TitleNumber:
+      description: The title number of the property.
+      type: string
+      maxLength: 9
+      pattern: ^([a-zA-Z]{0,3}[1-9][0-9]{0,5}|[a-zA-Z]{1,3}[1-9][0-9]{0,3}[zZ])$
     RegisteredProprietorsResponse:
       type: object
       properties:
@@ -299,49 +342,6 @@ components:
                 - $ref: '#/components/schemas/Organisation'
                 x-force-type: Proprietor
               x-force-type: List<Proprietor>
-    PrivateIndividual:
-      description: Proprietor details for a private individual.
-      properties:
-        proprietor_name:
-          type: string
-          description: Full name of the individual
-          example: Mrs Sarah Louise Smith OBE
-        title:
-          type: string
-          example: Mrs
-        forenames:
-          type: string
-          example: Sarah Louise
-        surname:
-          type: string
-          example: Smith
-        decoration:
-          type: string
-          description: Text which contains the details of any decoration and/or title held by a private individual. e.g. 'OBE','GC', 'KCMG'. For those private individuals holding titles such as 'Duke of ...', 'Lord' etc., the particulars of such titles will be held in this field.
-          example: OBE
-        proprietor_type:
-          type: string
-          description: Classification of a proprietor to distinguish between a private individual and an organisation.
-          enum:
-          - PRIVATE_INDIVIDUAL
-      allOf:
-      - $ref: '#/components/schemas/Proprietor'
-      x-discriminator-value: PRIVATE_INDIVIDUAL
-    Proprietor:
-      type: object
-      description: A registered proprietor for the provided title number.
-      properties:
-        sequence:
-          type: integer
-          minimum: 1
-          description: The position of the proprietor within the list.
-          format: int32
-          example: 1
-      discriminator:
-        propertyName: proprietor_type
-        mapping:
-          PRIVATE_INDIVIDUAL: '#/components/schemas/PrivateIndividual'
-          ORGANISATION: '#/components/schemas/Organisation'
   responses:
     DefaultErrorResponse:
       description: An error has occurred.

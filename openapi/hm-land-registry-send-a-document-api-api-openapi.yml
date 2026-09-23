@@ -50,6 +50,8 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
       tags:
       - Send a document API
+      summary: Create an upload URL
+      x-summary-source: derived
     servers:
     - url: https://businessgateway.landregistry.gov.uk/bg2/api
       description: Production
@@ -88,6 +90,8 @@ paths:
           description: Forbidden. Ensure the content length and SHA-256 headers have been provided, and match both the file length and sha256 hash, and were the same values supplied to the create URL endpoint
       tags:
       - Send a document API
+      summary: Upload a document
+      x-summary-source: derived
   /v1/documents/url:
     post:
       summary: Request upload URL for your application attachments
@@ -133,61 +137,6 @@ paths:
       description: Stub
 components:
   schemas:
-    DocumentUploadUrlDataResponse:
-      type: object
-      description: The response object containing information needed for uploading a document
-      properties:
-        data:
-          $ref: '#/components/schemas/DocumentUploadUrlResponse'
-    DocumentUploadUrlResponse:
-      type: object
-      description: The response object containing information needed for uploading a document
-      properties:
-        upload_url:
-          type: string
-          description: The URL used to upload the document. The request must be a PUT HTTP request, where the body of the request is the document that will be uploaded. This URL should only be used once
-          example: about:blank
-        document_id:
-          type: string
-          description: A unique id for this document, which should be used in the application submission request
-          example: 12345678-1234-1234-1234-1234-123456789abc
-    ErrorResponse:
-      type: object
-      description: Wrapper for any error responses
-      properties:
-        type:
-          type: string
-          format: uri
-          example: https://landregistry.github.io/bgtechdoc/problems/global#bad-request
-        title:
-          type: string
-          example: Bad Request
-        status:
-          type: integer
-          format: int32
-          example: 400
-        detail:
-          type: string
-          example: The request is invalid or malformed.
-        instance:
-          type: string
-          format: uri
-        code:
-          type: string
-          example: ignore me
-        errors:
-          type: array
-          description: A list of all errors generated
-          items:
-            $ref: '#/components/schemas/ProblemDetails'
-    DocumentUploadUrlRequest:
-      required:
-      - data
-      type: object
-      description: The request to send to the endpoint to request an upload URL
-      properties:
-        data:
-          $ref: '#/components/schemas/DocumentUploadUrlData'
     ProblemDetails:
       required:
       - detail
@@ -395,6 +344,61 @@ components:
           minLength: 44
           type: string
           description: The checksum of file contents, as a base64 encoded string of the SHA-256 binary digest of the file, which should be 44 characters long. See the Business Gateway developer pack for detailed information on generating the correct SHA-256 hash
+    DocumentUploadUrlRequest:
+      required:
+      - data
+      type: object
+      description: The request to send to the endpoint to request an upload URL
+      properties:
+        data:
+          $ref: '#/components/schemas/DocumentUploadUrlData'
+    DocumentUploadUrlDataResponse:
+      type: object
+      description: The response object containing information needed for uploading a document
+      properties:
+        data:
+          $ref: '#/components/schemas/DocumentUploadUrlResponse'
+    ErrorResponse:
+      type: object
+      description: Wrapper for any error responses
+      properties:
+        type:
+          type: string
+          format: uri
+          example: https://landregistry.github.io/bgtechdoc/problems/global#bad-request
+        title:
+          type: string
+          example: Bad Request
+        status:
+          type: integer
+          format: int32
+          example: 400
+        detail:
+          type: string
+          example: The request is invalid or malformed.
+        instance:
+          type: string
+          format: uri
+        code:
+          type: string
+          example: ignore me
+        errors:
+          type: array
+          description: A list of all errors generated
+          items:
+            $ref: '#/components/schemas/ProblemDetails'
+    DocumentUploadUrlResponse:
+      type: object
+      description: The response object containing information needed for uploading a document
+      properties:
+        upload_url:
+          type: string
+          description: The URL used to upload the document. The request must be a PUT HTTP request, where the body of the request is the document that will be uploaded. This URL should only be used once
+          example: about:blank
+        document_id:
+          type: string
+          description: A unique id for this document, which should be used in the application submission request
+          example: 12345678-1234-1234-1234-1234-123456789abc
     ProblemDetails_2:
       required:
       - detail

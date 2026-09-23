@@ -115,6 +115,8 @@ paths:
                 $ref: '#/components/schemas/ProblemDetail'
       tags:
       - Notifications API
+      summary: Receive notifications API
+      x-summary-source: derived
     servers:
     - url: https://businessgateway.landregistry.gov.uk/bg2/api
       description: Production
@@ -176,6 +178,8 @@ paths:
                 $ref: '#/components/schemas/ProblemDetail'
       tags:
       - Notifications API
+      summary: Acknowledge notifications API
+      x-summary-source: derived
     servers:
     - url: https://businessgateway.landregistry.gov.uk/bg2/api
       description: Production
@@ -291,6 +295,8 @@ paths:
                 $ref: '#/components/schemas/ProblemDetail_2'
       tags:
       - Notifications API
+      summary: Get notifications v1
+      x-summary-source: derived
     servers:
     - url: https://businessgateway.landregistry.gov.uk/bg2/api
       description: Production
@@ -352,6 +358,8 @@ paths:
                 $ref: '#/components/schemas/ProblemDetail_2'
       tags:
       - Notifications API
+      summary: Acknowledge notifications v1
+      x-summary-source: derived
     servers:
     - url: https://businessgateway.landregistry.gov.uk/bg2/api
       description: Production
@@ -359,33 +367,6 @@ paths:
       description: Stub
 components:
   schemas:
-    ErrorDescription:
-      type: object
-      required:
-      - detail
-      properties:
-        detail:
-          description: A human readable explanation of the error
-          type: string
-          example: Date must be in the past
-        pointer:
-          description: A JSON pointer to where in the body this error occurred
-          type:
-          - string
-          - 'null'
-          example: '#/data/name'
-        header:
-          description: The header where this error occurred
-          type:
-          - string
-          - 'null'
-          example: Idempotency-Key
-        parameter:
-          description: The path or query parameter where this error occurred
-          type:
-          - string
-          - 'null'
-          example: occurred_before
     NotificationResponse:
       type: object
       properties:
@@ -432,6 +413,33 @@ components:
           type: object
           description: The payload of the notification
           additionalProperties: true
+    ErrorDescription:
+      type: object
+      required:
+      - detail
+      properties:
+        detail:
+          description: A human readable explanation of the error
+          type: string
+          example: Date must be in the past
+        pointer:
+          description: A JSON pointer to where in the body this error occurred
+          type:
+          - string
+          - 'null'
+          example: '#/data/name'
+        header:
+          description: The header where this error occurred
+          type:
+          - string
+          - 'null'
+          example: Idempotency-Key
+        parameter:
+          description: The path or query parameter where this error occurred
+          type:
+          - string
+          - 'null'
+          example: occurred_before
     BulkAcknowledgeResult:
       type: object
       properties:

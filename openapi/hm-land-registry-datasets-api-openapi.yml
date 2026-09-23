@@ -1,7 +1,7 @@
 openapi: 3.2.0
 info:
   title: Use Land and Property Data Datasets API
-  description: RESTful JSON API for the HM Land Registry "Use land and property data" service. Lists the bulk datasets available in the service, returns dataset metadata and its resources, returns the history of available files for a dataset, and mints a signed S3 download URL valid for 10 seconds for a named file. Datasets reachable through it include UK companies that own property in England and Wales (CCOD), Overseas companies that own property in England and Wales (OCOD), the National Polygon Service (NPS) and its sample, Restrictive Covenants and Registered Leases. An API key is issued automatically on self-serve account creation and is sent in the Authorization header. Download endpoints additionally require that the caller has signed the licence for that specific dataset and, where the dataset is chargeable, paid for it.
+  description: RESTful JSON API for the HM Land Registry "Use land and property data" service.
   version: v1
   termsOfService: https://use-land-property-data.service.gov.uk/service-terms-of-use
   license:
@@ -196,6 +196,40 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/HistoryEntry'
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Human readable error message.
+        success:
+          type: boolean
+          description: Always false on an error response.
+    HistoryEntry:
+      type: object
+      properties:
+        file_size:
+          type: string
+        filename:
+          type: string
+        last_updated:
+          type: string
+        unsorted_date:
+          type: string
+    DatasetResponse:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/Dataset'
+        success:
+          type: boolean
+    DatasetSummary:
+      type: object
+      properties:
+        name:
+          type: string
+        title:
+          type: string
     Download:
       type: object
       properties:
@@ -208,33 +242,6 @@ components:
         valid_for_seconds:
           type: integer
           example: 10
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Human readable error message.
-        success:
-          type: boolean
-          description: Always false on an error response.
-    DownloadResponse:
-      type: object
-      properties:
-        result:
-          $ref: '#/components/schemas/Download'
-        success:
-          type: boolean
-    HistoryEntry:
-      type: object
-      properties:
-        file_size:
-          type: string
-        filename:
-          type: string
-        last_updated:
-          type: string
-        unsorted_date:
-          type: string
     Resource:
       type: object
       properties:
@@ -250,18 +257,11 @@ components:
           type: string
         row_count:
           type: integer
-    DatasetSummary:
-      type: object
-      properties:
-        name:
-          type: string
-        title:
-          type: string
-    DatasetResponse:
+    DownloadResponse:
       type: object
       properties:
         result:
-          $ref: '#/components/schemas/Dataset'
+          $ref: '#/components/schemas/Download'
         success:
           type: boolean
     DatasetListResponse:

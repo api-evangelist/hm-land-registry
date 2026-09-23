@@ -630,83 +630,6 @@ paths:
           $ref: '#/components/responses/DefaultErrorResponse'
 components:
   schemas:
-    AdvisoryEntry:
-      type: object
-      description: An individual advisory entry with unstructured data
-      required:
-      - entry_text
-      properties:
-        entry_text:
-          type: string
-        name_mismatch:
-          $ref: '#/components/schemas/NameMismatch'
-        commonhold_title:
-          $ref: '#/components/schemas/CommonholdTitle'
-        warning_message:
-          type: string
-          description: The search has been lodged, but supplementary data may not be available.
-          example: Advisory entries are not available as data. Please read the attached OS1 result.
-    TitleNumber:
-      description: Provides the subject property title number which is the subject of the transaction, or on which a search is being prepared
-      type: string
-      minLength: 1
-      maxLength: 9
-      pattern: ^([a-zA-Z]{0,3}[1-9][0-9]{0,5}|[a-zA-Z]{1,3}[1-9][0-9]{0,3}[zZ])$
-      example: DN958744
-    OfficialSearchId:
-      type: string
-      minLength: 5
-      maxLength: 50
-      pattern: ^([a-zA-Z0-9][a-zA-Z0-9\-]*)$
-      example: dfcacc5e-456e-4fd1-88e5-8070e43d6714
-      description: A unique character string, (i.e. a finite set of characters) generally in the form of words of a language, used by end user to get the status update of their request.
-    CertificateTimestamp:
-      description: The certificate date and time of a pending official search of whole
-      type: string
-      format: date-time
-    Error:
-      type: object
-      description: An error response for an unsuccessful request.
-      required:
-      - code
-      - detail
-      properties:
-        code:
-          description: The code related to this error, see documentation for more information.
-          type: string
-        detail:
-          description: The descriptive reason behind an error.
-          type: string
-        status:
-          description: The http status code related to this error.
-          type: string
-          example: '503'
-        trace_id:
-          type: string
-          description: A trace identifier for this request.
-          example: c62e9b3f-e523-4f04-a941-c6cf0d60c080
-        title:
-          type: string
-          description: A short summary of the problem that does not change from occurrence to occurrence of the problem.
-        source:
-          $ref: '#/components/schemas/Source'
-    CurrencyCode:
-      type: string
-      description: The currency code to be used inline with standard ISO 4217 code identifying a currency.
-      minLength: 3
-      maxLength: 3
-      example: GBP
-    RegisterStatusEntry:
-      type: object
-      description: Entry that describes the status of the register as shown in the OS1R result
-      required:
-      - entry_text
-      properties:
-        entry_text:
-          type: string
-          description: The text of the entry as it appears in the official search certificate
-        official_copy_timestamp:
-          $ref: '#/components/schemas/OfficialCopyTimestamp'
     OfficialSearchRequest:
       required:
       - message_id
@@ -733,75 +656,27 @@ components:
           minimum: 1
           items:
             $ref: '#/components/schemas/Contact'
-    Certificate:
+    NameMismatch:
       type: object
-      description: Object holding either link or byte string of the certificate. If type is 'link' there will be a ling to download the certificate . If the type is 'attachment' there will be a base64 encoded string which has the contents of the certificate.
+      description: Provided if the value of request object registered_proprietors_details_or_applicants_for_first_registration does not match with Land Registry's proprietorship register
       required:
-      - type
-      - attachment
+      - registered_proprietor_names
       properties:
-        type:
-          type: string
-          enum:
-          - LINK
-          - ATTACHMENT
-        link:
-          type: string
-          description: S3 link to download pdf certificate
-        attachment:
-          type: string
-          format: byte
-          description: Base64-encoded contents of the pdf certificate
-    Source:
-      type: object
-      description: An object containing references to the primary source of the error.
-      properties:
-        pointer:
-          type: string
-          description: JSON Pointer to the value in the request document that caused the error
-        parameter:
-          type: string
-          description: A string indicating which URI query parameter caused the error
-        header:
-          type: string
-          description: A string indicating the name of a single request header which caused the error
-    Reference:
-      type: object
-      required:
-      - reference
-      description: A unique reference given to identify a particular request, order or instruction in the system of the organisation allocating it with the ability to associate the name of the Company that has allocated it
-      properties:
-        reference:
-          type: string
-          description: A unique reference given to identify a particular request, order or instruction in the system of the organisation allocating it.
-          minLength: 1
-          maxLength: 25
-          pattern: ^([A-Za-z0-9\s~!''@#$%\(\)\*\+,\-\./:;<\?\[\]\{\}\^£;&]*)$
-          example: GB000123Z
-        allocated_by:
-          type: string
-          description: The name of the organisation that has allocated the Reference
-          minLength: 1
-          maxLength: 100
-          pattern: ^(.*\S.*)$
-          example: AAA Conveyancers
-        description:
-          type: string
-          description: This field can be used to provide reference description
-          minLength: 1
-          maxLength: 130
-          pattern: ^(.*\S.*)$
-          example: Reference description
-    ResultEntries:
-      type: object
-      description: The Result section of the OS1R document
-      required:
-      - register_status_entry
-      properties:
-        register_status_entry:
-          $ref: '#/components/schemas/RegisterStatusEntry'
-        advisory_entries:
-          $ref: '#/components/schemas/AdvisoryEntries'
+        registered_proprietor_names:
+          type: array
+          minimum: 1
+          maximum: 4
+          items:
+            type: string
+          example:
+          - John Smith
+          - Jane Smith
+    CurrencyCode:
+      type: string
+      description: The currency code to be used inline with standard ISO 4217 code identifying a currency.
+      minLength: 3
+      maxLength: 3
+      example: GBP
     PendingOfficialSearchesOfWhole:
       type: object
       required:
@@ -816,48 +691,12 @@ components:
         applicant:
           type: string
           description: The name of the applicants from the applicant_pending_search
-    OfficialSearchAcceptedResponseData:
-      description: This is the the Business Gateway confirmation response to the External System for applications that did not generate a successful completion response
-      type: object
-      required:
-      - id
-      - acknowledgement_message
-      properties:
-        id:
-          $ref: '#/components/schemas/OfficialSearchId'
-        expected_response_at:
-          type: string
-          format: date-time
-          description: The expected time when Business Gateway will try to process the queued request.
-        acknowledgement_message:
-          $ref: '#/components/schemas/AcknowledgementMessage'
-        hmlr_reference:
-          $ref: '#/components/schemas/HMLRReference'
-        acknowledgement_code:
-          type: string
-          example: BG200XX Manual Processing
-          description: An acknowledgement code in support of the status of the submitted Official Search
-    PriorityType:
-      type: string
-      enum:
-      - Purchase
-      - Lease
-      - Charge
-      description: The disposition that the search is intended to protect, namely, purchase, lease or charge
-    PhoneNumber:
-      type: string
-      description: Contact phone number
-      minLength: 9
-      maxLength: 50
-    OfficialCopyTimestamp:
-      description: The date and time of an official copy of a register
-      type: string
-      format: date-time
-    HMLRReference:
-      description: A unique reference given to identify a particular request, order or instruction in the system of the organisation allocating it
-      type: string
-      maxLength: 7
-      example: J111AAA
+    AdvisoryEntries:
+      type: array
+      description: Advisory entries as shown on the OS1R result
+      minimum: 1
+      items:
+        $ref: '#/components/schemas/AdvisoryEntry'
     Price:
       type: object
       description: Information about price
@@ -879,27 +718,72 @@ components:
           example: 0.75
         currency_id:
           $ref: '#/components/schemas/CurrencyCode'
-    AdvisoryEntries:
-      type: array
-      description: Advisory entries as shown on the OS1R result
-      minimum: 1
-      items:
-        $ref: '#/components/schemas/AdvisoryEntry'
-    Contact:
+    PriorityType:
+      type: string
+      enum:
+      - Purchase
+      - Lease
+      - Charge
+      description: The disposition that the search is intended to protect, namely, purchase, lease or charge
+    Certificate:
       type: object
-      description: The information relevant to a person or organization that acts as a point of contact with another person or organization
+      description: Object holding either link or byte string of the certificate. If type is 'link' there will be a ling to download the certificate . If the type is 'attachment' there will be a base64 encoded string which has the contents of the certificate.
       required:
-      - name
-      - telephone_number
+      - type
+      - attachment
       properties:
-        name:
+        type:
           type: string
-          description: The name of this contact person or department
-          minLength: 1
-          maxLength: 100
-          example: John Smith
-        telephone_number:
-          $ref: '#/components/schemas/PhoneNumber'
+          enum:
+          - LINK
+          - ATTACHMENT
+        link:
+          type: string
+          description: S3 link to download pdf certificate
+        attachment:
+          type: string
+          format: byte
+          description: Base64-encoded contents of the pdf certificate
+    ResultEntries:
+      type: object
+      description: The Result section of the OS1R document
+      required:
+      - register_status_entry
+      properties:
+        register_status_entry:
+          $ref: '#/components/schemas/RegisterStatusEntry'
+        advisory_entries:
+          $ref: '#/components/schemas/AdvisoryEntries'
+    HMLRReference:
+      description: A unique reference given to identify a particular request, order or instruction in the system of the organisation allocating it
+      type: string
+      maxLength: 7
+      example: J111AAA
+    AcknowledgementMessage:
+      type: string
+      example: We have accepted your application for an official search with priority. Priority begins now and expires on 24 May 2022.
+      description: An acknowledgement in support of the status of the submitted Official Search
+    OfficialSearchAcceptedResponseData:
+      description: This is the the Business Gateway confirmation response to the External System for applications that did not generate a successful completion response
+      type: object
+      required:
+      - id
+      - acknowledgement_message
+      properties:
+        id:
+          $ref: '#/components/schemas/OfficialSearchId'
+        expected_response_at:
+          type: string
+          format: date-time
+          description: The expected time when Business Gateway will try to process the queued request.
+        acknowledgement_message:
+          $ref: '#/components/schemas/AcknowledgementMessage'
+        hmlr_reference:
+          $ref: '#/components/schemas/HMLRReference'
+        acknowledgement_code:
+          type: string
+          example: BG200XX Manual Processing
+          description: An acknowledgement code in support of the status of the submitted Official Search
     OfficialSearchCreatedResponseData:
       description: This is the Business Gateway confirmation response to the External System for applications that generate an automatic response including a result PDF
       type: object
@@ -927,14 +811,37 @@ components:
           $ref: '#/components/schemas/AcknowledgementMessage'
         official_search_data:
           $ref: '#/components/schemas/OfficialSearchData'
-    CommonholdTitle:
+    OfficialCopyTimestamp:
+      description: The date and time of an official copy of a register
+      type: string
+      format: date-time
+    Reference:
       type: object
-      description: Provided if the searched for title number is part of a commonhold title
       required:
-      - commonhold_title_number
+      - reference
+      description: A unique reference given to identify a particular request, order or instruction in the system of the organisation allocating it with the ability to associate the name of the Company that has allocated it
       properties:
-        commonhold_title_number:
-          $ref: '#/components/schemas/TitleNumber'
+        reference:
+          type: string
+          description: A unique reference given to identify a particular request, order or instruction in the system of the organisation allocating it.
+          minLength: 1
+          maxLength: 25
+          pattern: ^([A-Za-z0-9\s~!''@#$%\(\)\*\+,\-\./:;<\?\[\]\{\}\^£;&]*)$
+          example: GB000123Z
+        allocated_by:
+          type: string
+          description: The name of the organisation that has allocated the Reference
+          minLength: 1
+          maxLength: 100
+          pattern: ^(.*\S.*)$
+          example: AAA Conveyancers
+        description:
+          type: string
+          description: This field can be used to provide reference description
+          minLength: 1
+          maxLength: 130
+          pattern: ^(.*\S.*)$
+          example: Reference description
     OfficialSearchData:
       type: object
       required:
@@ -986,34 +893,22 @@ components:
           type: string
           example: '1234567'
           description: A unique identifier for a user account
-    AcknowledgementMessage:
-      type: string
-      example: We have accepted your application for an official search with priority. Priority begins now and expires on 24 May 2022.
-      description: An acknowledgement in support of the status of the submitted Official Search
-    ErrorResponse:
-      description: A response for an unsuccessful result.
+    AdvisoryEntry:
       type: object
-      properties:
-        errors:
-          description: A collection of one or more errors as to why the API request failed.
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
-    NameMismatch:
-      type: object
-      description: Provided if the value of request object registered_proprietors_details_or_applicants_for_first_registration does not match with Land Registry's proprietorship register
+      description: An individual advisory entry with unstructured data
       required:
-      - registered_proprietor_names
+      - entry_text
       properties:
-        registered_proprietor_names:
-          type: array
-          minimum: 1
-          maximum: 4
-          items:
-            type: string
-          example:
-          - John Smith
-          - Jane Smith
+        entry_text:
+          type: string
+        name_mismatch:
+          $ref: '#/components/schemas/NameMismatch'
+        commonhold_title:
+          $ref: '#/components/schemas/CommonholdTitle'
+        warning_message:
+          type: string
+          description: The search has been lodged, but supplementary data may not be available.
+          example: Advisory entries are not available as data. Please read the attached OS1 result.
     OfficialSearchOfWholeWithPriority:
       type: object
       required:
@@ -1066,6 +961,111 @@ components:
           maxLength: 100
           pattern: ^(.*\S.*)$
           example: Acme Bank PLC
+    CommonholdTitle:
+      type: object
+      description: Provided if the searched for title number is part of a commonhold title
+      required:
+      - commonhold_title_number
+      properties:
+        commonhold_title_number:
+          $ref: '#/components/schemas/TitleNumber'
+    CertificateTimestamp:
+      description: The certificate date and time of a pending official search of whole
+      type: string
+      format: date-time
+    Error:
+      type: object
+      description: An error response for an unsuccessful request.
+      required:
+      - code
+      - detail
+      properties:
+        code:
+          description: The code related to this error, see documentation for more information.
+          type: string
+        detail:
+          description: The descriptive reason behind an error.
+          type: string
+        status:
+          description: The http status code related to this error.
+          type: string
+          example: '503'
+        trace_id:
+          type: string
+          description: A trace identifier for this request.
+          example: c62e9b3f-e523-4f04-a941-c6cf0d60c080
+        title:
+          type: string
+          description: A short summary of the problem that does not change from occurrence to occurrence of the problem.
+        source:
+          $ref: '#/components/schemas/Source'
+    Source:
+      type: object
+      description: An object containing references to the primary source of the error.
+      properties:
+        pointer:
+          type: string
+          description: JSON Pointer to the value in the request document that caused the error
+        parameter:
+          type: string
+          description: A string indicating which URI query parameter caused the error
+        header:
+          type: string
+          description: A string indicating the name of a single request header which caused the error
+    OfficialSearchId:
+      type: string
+      minLength: 5
+      maxLength: 50
+      pattern: ^([a-zA-Z0-9][a-zA-Z0-9\-]*)$
+      example: dfcacc5e-456e-4fd1-88e5-8070e43d6714
+      description: A unique character string, (i.e. a finite set of characters) generally in the form of words of a language, used by end user to get the status update of their request.
+    Contact:
+      type: object
+      description: The information relevant to a person or organization that acts as a point of contact with another person or organization
+      required:
+      - name
+      - telephone_number
+      properties:
+        name:
+          type: string
+          description: The name of this contact person or department
+          minLength: 1
+          maxLength: 100
+          example: John Smith
+        telephone_number:
+          $ref: '#/components/schemas/PhoneNumber'
+    TitleNumber:
+      description: Provides the subject property title number which is the subject of the transaction, or on which a search is being prepared
+      type: string
+      minLength: 1
+      maxLength: 9
+      pattern: ^([a-zA-Z]{0,3}[1-9][0-9]{0,5}|[a-zA-Z]{1,3}[1-9][0-9]{0,3}[zZ])$
+      example: DN958744
+    RegisterStatusEntry:
+      type: object
+      description: Entry that describes the status of the register as shown in the OS1R result
+      required:
+      - entry_text
+      properties:
+        entry_text:
+          type: string
+          description: The text of the entry as it appears in the official search certificate
+        official_copy_timestamp:
+          $ref: '#/components/schemas/OfficialCopyTimestamp'
+    PhoneNumber:
+      type: string
+      description: Contact phone number
+      minLength: 9
+      maxLength: 50
+    ErrorResponse:
+      description: A response for an unsuccessful result.
+      type: object
+      properties:
+        errors:
+          description: A collection of one or more errors as to why the API request failed.
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
   responses:
     DefaultErrorResponse:
       description: An error has occurred.

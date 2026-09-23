@@ -1,7 +1,7 @@
 openapi: 3.2.0
 info:
   description: V1.0 of the set of APIs for the new 'Submit an application to change the Land Register API' Schema
-  title: V1.0 'Submit an application to change the Land Register API' Schema Attach a document API
+  title: V1.0 'Submit an application to change the Land Register…
   version: 1.0.5
 servers:
 - url: https://businessgateway.landregistry.gov.uk/bg2/api
@@ -78,6 +78,28 @@ components:
           type: string
           description: A JSON pointer to the location in the JSON payload that caused the error (optional)
           example: /data/transaction/t1/mdref
+    AttachADocumentRequest:
+      required:
+      - data
+      type: object
+      description: The request to send to the endpoint to request an upload URL
+      properties:
+        data:
+          properties:
+            certification_statement_type:
+              type: string
+              description: "    * `CERTIFIED` - I/we certify this is a true copy of an original document\n    * `CERTIFIED_BY_ANOTHER` - I/we certify this document is a true copy of an original document which is certified by a conveyancer to be a true copy of the original\n    * `NOT_CERTIFIED` - This document is an uncertified copy\n"
+              enum:
+              - CERTIFIED
+              - CERTIFIED_BY_ANOTHER
+              - NOT_CERTIFIED
+            document_id:
+              type: string
+              description: The id of the document from the document upload request
+              example: 12345678-1234-1234-1234-123456789abc
+          required:
+          - certification_statement_type
+          - document_id
     ErrorResponse:
       type: object
       description: Wrapper for any error responses
@@ -107,28 +129,6 @@ components:
           description: A list of all errors generated
           items:
             $ref: '#/components/schemas/ProblemDetails'
-    AttachADocumentRequest:
-      required:
-      - data
-      type: object
-      description: The request to send to the endpoint to request an upload URL
-      properties:
-        data:
-          properties:
-            certification_statement_type:
-              type: string
-              description: "    * `CERTIFIED` - I/we certify this is a true copy of an original document\n    * `CERTIFIED_BY_ANOTHER` - I/we certify this document is a true copy of an original document which is certified by a conveyancer to be a true copy of the original\n    * `NOT_CERTIFIED` - This document is an uncertified copy\n"
-              enum:
-              - CERTIFIED
-              - CERTIFIED_BY_ANOTHER
-              - NOT_CERTIFIED
-            document_id:
-              type: string
-              description: The id of the document from the document upload request
-              example: 12345678-1234-1234-1234-123456789abc
-          required:
-          - certification_statement_type
-          - document_id
   securitySchemes:
     basicAuth:
       scheme: basic

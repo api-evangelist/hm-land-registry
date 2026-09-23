@@ -1,7 +1,7 @@
 openapi: 3.2.0
 info:
   description: V1.0 of the set of APIs for the new 'Submit an application to change the Land Register API' Schema
-  title: V1.0 'Submit an application to change the Land Register API' Schema Download a document API
+  title: V1.0 'Submit an application to change the Land Register…
   version: 1.0.5
 servers:
 - url: https://businessgateway.landregistry.gov.uk/bg2/api
@@ -95,7 +95,10 @@ paths:
       description: An example domain for document downloads
     get:
       operationId: Download a document
-      description: 'Download the document contents. <br/><br/>**Note**: This URL, including hostname and path parameters is returned from the GET `/documents/{document_id}` URL endpoint via the `location` header and **should be used unmodified**.'
+      description: 'Download the document contents.
+
+
+        **Note**: This URL, including hostname and path parameters is returned from the GET `/documents/{document_id}` URL endpoint via the `location` header and **should be used unmodified**.'
       security: []
       parameters: []
       responses:
@@ -107,6 +110,8 @@ paths:
           description: Not Found.
       tags:
       - Download a document API
+      summary: Download a document
+      x-summary-source: derived
 components:
   schemas:
     ProblemDetails:

@@ -1,7 +1,7 @@
 openapi: 3.2.0
 info:
   description: V1.0 of the set of APIs for the new 'Submit an application to change the Land Register API' Schema
-  title: V1.0 'Submit an application to change the Land Register API' Schema Attach a message API
+  title: V1.0 'Submit an application to change the Land Register…
   version: 1.0.5
 servers:
 - url: https://businessgateway.landregistry.gov.uk/bg2/api
@@ -59,21 +59,6 @@ paths:
       - Attach a message
 components:
   schemas:
-    AttachAMessageRequest:
-      required:
-      - data
-      type: object
-      description: The request to send to the endpoint to request an upload URL
-      properties:
-        data:
-          properties:
-            message_text:
-              type: string
-              description: The content of the message to be attached
-              maxLength: 4034
-              minLength: 0
-          required:
-          - message_text
     ProblemDetails:
       required:
       - detail
@@ -93,6 +78,21 @@ components:
           type: string
           description: A JSON pointer to the location in the JSON payload that caused the error (optional)
           example: /data/transaction/t1/mdref
+    AttachAMessageRequest:
+      required:
+      - data
+      type: object
+      description: The request to send to the endpoint to request an upload URL
+      properties:
+        data:
+          properties:
+            message_text:
+              type: string
+              description: The content of the message to be attached
+              maxLength: 4034
+              minLength: 0
+          required:
+          - message_text
     ErrorResponse:
       type: object
       description: Wrapper for any error responses
