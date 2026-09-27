@@ -150,67 +150,50 @@ paths:
         default:
           $ref: '#/components/responses/DefaultErrorResponse'
 components:
-  parameters:
-    TitleNumberParameter:
-      in: path
-      name: title_number
-      description: The title number of the property. Characters must be uppercase.
-      schema:
-        $ref: '#/components/schemas/TitleNumber'
-      required: true
   schemas:
-    PrivateIndividual:
-      description: Proprietor details for a private individual.
-      properties:
-        proprietor_name:
-          type: string
-          description: Full name of the individual
-          example: Mrs Sarah Louise Smith OBE
-        title:
-          type: string
-          example: Mrs
-        forenames:
-          type: string
-          example: Sarah Louise
-        surname:
-          type: string
-          example: Smith
-        decoration:
-          type: string
-          description: Text which contains the details of any decoration and/or title held by a private individual. e.g. 'OBE','GC', 'KCMG'. For those private individuals holding titles such as 'Duke of ...', 'Lord' etc., the particulars of such titles will be held in this field.
-          example: OBE
-        proprietor_type:
-          type: string
-          description: Classification of a proprietor to distinguish between a private individual and an organisation.
-          enum:
-          - PRIVATE_INDIVIDUAL
-      allOf:
-      - $ref: '#/components/schemas/Proprietor'
-      x-discriminator-value: PRIVATE_INDIVIDUAL
-    Proprietor:
-      type: object
-      description: A registered proprietor for the provided title number.
-      properties:
-        sequence:
-          type: integer
-          minimum: 1
-          description: The position of the proprietor within the list.
-          format: int32
-          example: 1
-      discriminator:
-        propertyName: proprietor_type
-        mapping:
-          PRIVATE_INDIVIDUAL: '#/components/schemas/PrivateIndividual'
-          ORGANISATION: '#/components/schemas/Organisation'
-    ErrorResponse:
-      description: A response for an unsuccessful result.
+    RegisteredProprietorsResponse:
       type: object
       properties:
-        errors:
-          description: A collection of one or more errors as to why the API request failed.
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
+        data:
+          type: object
+          description: A successful response.
+          required:
+          - title_status
+          - title_status_code
+          - title_number
+          - proprietors
+          properties:
+            title_status:
+              type: string
+              description: The status of the title.
+            title_status_code:
+              type: string
+              enum:
+              - VALID
+              - CLOSED_OR_CANCELLED
+              - CLOSED_AND_CONTINUED
+              - PENDING_NEW_TITLE
+              description: A code representing the current status of the title.
+            title_number:
+              $ref: '#/components/schemas/TitleNumber'
+            continued_under_title_number:
+              type: string
+              description: The title requested has been closed and continued under this title number.
+              example: FL99999
+            proprietors:
+              type: array
+              description: The list of registered proprietors for the provided title number
+              items:
+                discriminator:
+                  propertyName: proprietor_type
+                  mapping:
+                    PRIVATE_INDIVIDUAL: '#/components/schemas/PrivateIndividual'
+                    ORGANISATION: '#/components/schemas/Organisation'
+                oneOf:
+                - $ref: '#/components/schemas/PrivateIndividual'
+                - $ref: '#/components/schemas/Organisation'
+                x-force-type: Proprietor
+              x-force-type: List<Proprietor>
     Error:
       type: object
       description: An error response for an unsuccessful request.
@@ -294,54 +277,63 @@ components:
       allOf:
       - $ref: '#/components/schemas/Proprietor'
       x-discriminator-value: ORGANISATION
+    Proprietor:
+      type: object
+      description: A registered proprietor for the provided title number.
+      properties:
+        sequence:
+          type: integer
+          minimum: 1
+          description: The position of the proprietor within the list.
+          format: int32
+          example: 1
+      discriminator:
+        propertyName: proprietor_type
+        mapping:
+          PRIVATE_INDIVIDUAL: '#/components/schemas/PrivateIndividual'
+          ORGANISATION: '#/components/schemas/Organisation'
+    ErrorResponse:
+      description: A response for an unsuccessful result.
+      type: object
+      properties:
+        errors:
+          description: A collection of one or more errors as to why the API request failed.
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+    PrivateIndividual:
+      description: Proprietor details for a private individual.
+      properties:
+        proprietor_name:
+          type: string
+          description: Full name of the individual
+          example: Mrs Sarah Louise Smith OBE
+        title:
+          type: string
+          example: Mrs
+        forenames:
+          type: string
+          example: Sarah Louise
+        surname:
+          type: string
+          example: Smith
+        decoration:
+          type: string
+          description: Text which contains the details of any decoration and/or title held by a private individual. e.g. 'OBE','GC', 'KCMG'. For those private individuals holding titles such as 'Duke of ...', 'Lord' etc., the particulars of such titles will be held in this field.
+          example: OBE
+        proprietor_type:
+          type: string
+          description: Classification of a proprietor to distinguish between a private individual and an organisation.
+          enum:
+          - PRIVATE_INDIVIDUAL
+      allOf:
+      - $ref: '#/components/schemas/Proprietor'
+      x-discriminator-value: PRIVATE_INDIVIDUAL
     TitleNumber:
       description: The title number of the property.
       type: string
       maxLength: 9
       pattern: ^([a-zA-Z]{0,3}[1-9][0-9]{0,5}|[a-zA-Z]{1,3}[1-9][0-9]{0,3}[zZ])$
-    RegisteredProprietorsResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          description: A successful response.
-          required:
-          - title_status
-          - title_status_code
-          - title_number
-          - proprietors
-          properties:
-            title_status:
-              type: string
-              description: The status of the title.
-            title_status_code:
-              type: string
-              enum:
-              - VALID
-              - CLOSED_OR_CANCELLED
-              - CLOSED_AND_CONTINUED
-              - PENDING_NEW_TITLE
-              description: A code representing the current status of the title.
-            title_number:
-              $ref: '#/components/schemas/TitleNumber'
-            continued_under_title_number:
-              type: string
-              description: The title requested has been closed and continued under this title number.
-              example: FL99999
-            proprietors:
-              type: array
-              description: The list of registered proprietors for the provided title number
-              items:
-                discriminator:
-                  propertyName: proprietor_type
-                  mapping:
-                    PRIVATE_INDIVIDUAL: '#/components/schemas/PrivateIndividual'
-                    ORGANISATION: '#/components/schemas/Organisation'
-                oneOf:
-                - $ref: '#/components/schemas/PrivateIndividual'
-                - $ref: '#/components/schemas/Organisation'
-                x-force-type: Proprietor
-              x-force-type: List<Proprietor>
   responses:
     DefaultErrorResponse:
       description: An error has occurred.
@@ -357,6 +349,14 @@ components:
                   http_status: '504'
                   error_code: BG50004
                   error_message: Gateway timeout
+  parameters:
+    TitleNumberParameter:
+      in: path
+      name: title_number
+      description: The title number of the property. Characters must be uppercase.
+      schema:
+        $ref: '#/components/schemas/TitleNumber'
+      required: true
   securitySchemes:
     basicAuth:
       type: http

@@ -59,25 +59,6 @@ paths:
       - Attach a document
 components:
   schemas:
-    ProblemDetails:
-      required:
-      - detail
-      - type
-      description: Detailed information about an error
-      type: object
-      properties:
-        type:
-          type: string
-          description: The type of error received
-          example: L2_MDREF_ERROR
-        detail:
-          type: string
-          description: A longer description about the type of error received
-          example: The MDref included in the request does not exist
-        pointer:
-          type: string
-          description: A JSON pointer to the location in the JSON payload that caused the error (optional)
-          example: /data/transaction/t1/mdref
     AttachADocumentRequest:
       required:
       - data
@@ -100,6 +81,25 @@ components:
           required:
           - certification_statement_type
           - document_id
+    ProblemDetails:
+      required:
+      - detail
+      - type
+      description: Detailed information about an error
+      type: object
+      properties:
+        type:
+          type: string
+          description: The type of error received
+          example: L2_MDREF_ERROR
+        detail:
+          type: string
+          description: A longer description about the type of error received
+          example: The MDref included in the request does not exist
+        pointer:
+          type: string
+          description: A JSON pointer to the location in the JSON payload that caused the error (optional)
+          example: /data/transaction/t1/mdref
     ErrorResponse:
       type: object
       description: Wrapper for any error responses

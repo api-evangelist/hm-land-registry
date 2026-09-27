@@ -94,7 +94,7 @@ paths:
     - url: documentcapture.landregistry.gov.uk
       description: An example domain for document downloads
     get:
-      operationId: Download a document
+      operationId: DownloadADocument
       description: 'Download the document contents.
 
 
@@ -112,6 +112,8 @@ paths:
       - Download a document API
       summary: Download a document
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: Download a document
 components:
   schemas:
     ProblemDetails:

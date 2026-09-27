@@ -59,6 +59,21 @@ paths:
       - Attach a message
 components:
   schemas:
+    AttachAMessageRequest:
+      required:
+      - data
+      type: object
+      description: The request to send to the endpoint to request an upload URL
+      properties:
+        data:
+          properties:
+            message_text:
+              type: string
+              description: The content of the message to be attached
+              maxLength: 4034
+              minLength: 0
+          required:
+          - message_text
     ProblemDetails:
       required:
       - detail
@@ -78,21 +93,6 @@ components:
           type: string
           description: A JSON pointer to the location in the JSON payload that caused the error (optional)
           example: /data/transaction/t1/mdref
-    AttachAMessageRequest:
-      required:
-      - data
-      type: object
-      description: The request to send to the endpoint to request an upload URL
-      properties:
-        data:
-          properties:
-            message_text:
-              type: string
-              description: The content of the message to be attached
-              maxLength: 4034
-              minLength: 0
-          required:
-          - message_text
     ErrorResponse:
       type: object
       description: Wrapper for any error responses

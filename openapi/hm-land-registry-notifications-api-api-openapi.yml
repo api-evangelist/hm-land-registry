@@ -16,7 +16,7 @@ paths:
   /v0/notifications:
     get:
       description: Receive notifications API - Get any unacknowledged notifications
-      operationId: Receive notifications API
+      operationId: ReceiveNotificationsAPI
       parameters:
       - in: query
         name: created_before
@@ -117,6 +117,8 @@ paths:
       - Notifications API
       summary: Receive notifications API
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: Receive notifications API
     servers:
     - url: https://businessgateway.landregistry.gov.uk/bg2/api
       description: Production
@@ -125,7 +127,7 @@ paths:
   /v0/notifications/acknowledge:
     post:
       description: Acknowledge notifications API - Acknowledge notifications that have been processed, so they are no longer returned when fetching
-      operationId: Acknowledge notifications API
+      operationId: AcknowledgeNotificationsAPI
       requestBody:
         content:
           application/json:
@@ -180,6 +182,8 @@ paths:
       - Notifications API
       summary: Acknowledge notifications API
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: Acknowledge notifications API
     servers:
     - url: https://businessgateway.landregistry.gov.uk/bg2/api
       description: Production
@@ -367,6 +371,63 @@ paths:
       description: Stub
 components:
   schemas:
+    ProblemDetail:
+      type: object
+      required:
+      - type
+      properties:
+        type:
+          type: string
+          format: uri
+          example: about:blank
+          description: A uri referencing documentation for this problem
+        title:
+          type:
+          - string
+          - 'null'
+          example: Server Error
+          description: A brief summary of the problem
+        detail:
+          type:
+          - string
+          - 'null'
+          example: There was a problem with your request, try again soon.
+          description: A human readable explanation of the problem
+        instance:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: /path/you/called
+          description: A reference that identifies the specific occurrence of the problem
+        status:
+          type:
+          - integer
+          - 'null'
+          minimum: 100
+          maximum: 599
+          description: HTTP status code of the original response
+          example: 500
+        errors:
+          type:
+          - array
+          - 'null'
+          description: An extension to the RFC that describes errors that occurred in the request
+          items:
+            $ref: '#/components/schemas/ErrorDescription'
+    BulkAcknowledgeResult:
+      type: object
+      properties:
+        acknowledged:
+          type: array
+          items:
+            type: string
+            format: uuid
+        not_found:
+          type: array
+          items:
+            type: string
+            format: uuid
     NotificationResponse:
       type: object
       properties:
@@ -440,87 +501,6 @@ components:
           - string
           - 'null'
           example: occurred_before
-    BulkAcknowledgeResult:
-      type: object
-      properties:
-        acknowledged:
-          type: array
-          items:
-            type: string
-            format: uuid
-        not_found:
-          type: array
-          items:
-            type: string
-            format: uuid
-    ProblemDetail:
-      type: object
-      required:
-      - type
-      properties:
-        type:
-          type: string
-          format: uri
-          example: about:blank
-          description: A uri referencing documentation for this problem
-        title:
-          type:
-          - string
-          - 'null'
-          example: Server Error
-          description: A brief summary of the problem
-        detail:
-          type:
-          - string
-          - 'null'
-          example: There was a problem with your request, try again soon.
-          description: A human readable explanation of the problem
-        instance:
-          type:
-          - string
-          - 'null'
-          format: uri
-          example: /path/you/called
-          description: A reference that identifies the specific occurrence of the problem
-        status:
-          type:
-          - integer
-          - 'null'
-          minimum: 100
-          maximum: 599
-          description: HTTP status code of the original response
-          example: 500
-        errors:
-          type:
-          - array
-          - 'null'
-          description: An extension to the RFC that describes errors that occurred in the request
-          items:
-            $ref: '#/components/schemas/ErrorDescription'
-    ErrorDescription_2:
-      type: object
-      required:
-      - detail
-      properties:
-        detail:
-          description: A human readable explanation of the error
-          type: string
-          example: Date must be in the past
-        pointer:
-          description: A JSON pointer to where in the body this error occurred
-          nullable: true
-          type: string
-          example: '#/data/name'
-        header:
-          description: The header where this error occurred
-          nullable: true
-          type: string
-          example: Idempotency-Key
-        parameter:
-          description: The path or query parameter where this error occurred
-          nullable: true
-          type: string
-          example: occurred_before
     ProblemDetail_2:
       type: object
       required:
@@ -560,6 +540,30 @@ components:
           description: An extension to the RFC that describes errors that occurred in the request
           items:
             $ref: '#/components/schemas/ErrorDescription_2'
+    ErrorDescription_2:
+      type: object
+      required:
+      - detail
+      properties:
+        detail:
+          description: A human readable explanation of the error
+          type: string
+          example: Date must be in the past
+        pointer:
+          description: A JSON pointer to where in the body this error occurred
+          nullable: true
+          type: string
+          example: '#/data/name'
+        header:
+          description: The header where this error occurred
+          nullable: true
+          type: string
+          example: Idempotency-Key
+        parameter:
+          description: The path or query parameter where this error occurred
+          nullable: true
+          type: string
+          example: occurred_before
   securitySchemes:
     basicAuth:
       scheme: basic

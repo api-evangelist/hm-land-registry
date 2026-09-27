@@ -16,7 +16,7 @@ paths:
   /v0/applications/{application_request_id}/information:
     get:
       description: Application information API - Get the information about an application
-      operationId: Application information API
+      operationId: ApplicationInformationAPI
       parameters:
       - description: The ID returned by Application Creation to track submission requests
         in: path
@@ -56,6 +56,8 @@ paths:
       - Application information API
       summary: Application information API
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: Application information API
     servers:
     - url: https://businessgateway.landregistry.gov.uk/bg2/api
       description: Production
@@ -110,41 +112,12 @@ paths:
       description: Stub
 components:
   schemas:
-    ProblemDetails:
-      required:
-      - detail
-      - type
-      description: Detailed information about an error
+    StatusDataResponse:
       type: object
+      description: Data wrapper for the status response
       properties:
-        type:
-          type: string
-          description: The type of error received
-          example: L2_MDREF_ERROR
-        detail:
-          type: string
-          description: A longer description about the type of error received
-          example: The MDref included in the request does not exist
-        pointer:
-          type: string
-          description: A JSON pointer to the location in the JSON payload that caused the error (optional)
-          example:
-          - /data/transaction/t1/mdref
-    TransactionReference:
-      maxLength: 50
-      minLength: 1
-      pattern: ^[A-Za-z0-9-?,_]+$
-      type: string
-      description: Unique identifier for transactions, used to reference transactions from elsewhere in the spec
-      example: property charge
-    TransactionFee:
-      type: object
-      properties:
-        transaction_reference:
-          $ref: '#/components/schemas/TransactionReference'
-        fee:
-          description: Fee in pence
-          type: integer
+        data:
+          $ref: '#/components/schemas/StatusResponse'
     ErrorResponse:
       type: object
       description: Wrapper for any error responses
@@ -174,12 +147,34 @@ components:
           description: A list of all errors generated
           items:
             $ref: '#/components/schemas/ProblemDetails'
-    StatusDataResponse:
+    TransactionFee:
       type: object
-      description: Data wrapper for the status response
       properties:
-        data:
-          $ref: '#/components/schemas/StatusResponse'
+        transaction_reference:
+          $ref: '#/components/schemas/TransactionReference'
+        fee:
+          description: Fee in pence
+          type: integer
+    ProblemDetails:
+      required:
+      - detail
+      - type
+      description: Detailed information about an error
+      type: object
+      properties:
+        type:
+          type: string
+          description: The type of error received
+          example: L2_MDREF_ERROR
+        detail:
+          type: string
+          description: A longer description about the type of error received
+          example: The MDref included in the request does not exist
+        pointer:
+          type: string
+          description: A JSON pointer to the location in the JSON payload that caused the error (optional)
+          example:
+          - /data/transaction/t1/mdref
     StatusResponse:
       type: object
       description: The response object for the application status endpoint
@@ -235,57 +230,19 @@ components:
           description: Warnings that need to be actioned before the application is processed by a caseworker, otherwise a requisition may be issued.
           items:
             type: string
-    ProblemDetails_2:
-      required:
-      - detail
-      - type
-      description: Detailed information about an error
-      type: object
-      properties:
-        type:
-          type: string
-          description: The type of error received
-          example: L2_MDREF_ERROR
-        detail:
-          type: string
-          description: A longer description about the type of error received
-          example: The MDref included in the request does not exist
-        pointer:
-          type: string
-          description: A JSON pointer to the location in the JSON payload that caused the error (optional)
-          example: /data/transaction/t1/mdref
+    TransactionReference:
+      maxLength: 50
+      minLength: 1
+      pattern: ^[A-Za-z0-9-?,_]+$
+      type: string
+      description: Unique identifier for transactions, used to reference transactions from elsewhere in the spec
+      example: property charge
     ApplicationInformationDataResponse:
       type: object
       description: Data wrapper for the status response
       properties:
         data:
           $ref: '#/components/schemas/ApplicationInformationResponse'
-    CorrespondenceRecordDocumentItemWithDownloadId:
-      description: List of documents in the correspondence record
-      properties:
-        created_at:
-          type: string
-        download_id:
-          type: string
-        type:
-          $ref: '#/components/schemas/CorrespondenceDocumentType'
-      required:
-      - type
-    CorrespondenceRecordInApplicationInformation:
-      description: Representation of a correspondence record
-      properties:
-        documents:
-          type: array
-          description: List of documents in the correspondence record
-          items:
-            $ref: '#/components/schemas/CorrespondenceRecordDocumentItemWithDownloadId'
-        record_id:
-          type: string
-          description: ID of the correspondence record
-          example: '1234567'
-      required:
-      - documents
-      - record_id
     CorrespondenceDocumentType:
       properties:
         code:
@@ -340,6 +297,51 @@ components:
           description: Warnings that need to be actioned before the application is processed by a caseworker, otherwise a requisition may be issued.
           items:
             type: string
+    ProblemDetails_2:
+      required:
+      - detail
+      - type
+      description: Detailed information about an error
+      type: object
+      properties:
+        type:
+          type: string
+          description: The type of error received
+          example: L2_MDREF_ERROR
+        detail:
+          type: string
+          description: A longer description about the type of error received
+          example: The MDref included in the request does not exist
+        pointer:
+          type: string
+          description: A JSON pointer to the location in the JSON payload that caused the error (optional)
+          example: /data/transaction/t1/mdref
+    CorrespondenceRecordDocumentItemWithDownloadId:
+      description: List of documents in the correspondence record
+      properties:
+        created_at:
+          type: string
+        download_id:
+          type: string
+        type:
+          $ref: '#/components/schemas/CorrespondenceDocumentType'
+      required:
+      - type
+    CorrespondenceRecordInApplicationInformation:
+      description: Representation of a correspondence record
+      properties:
+        documents:
+          type: array
+          description: List of documents in the correspondence record
+          items:
+            $ref: '#/components/schemas/CorrespondenceRecordDocumentItemWithDownloadId'
+        record_id:
+          type: string
+          description: ID of the correspondence record
+          example: '1234567'
+      required:
+      - documents
+      - record_id
   securitySchemes:
     basicAuth:
       scheme: basic
