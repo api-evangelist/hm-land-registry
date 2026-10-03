@@ -371,6 +371,33 @@ paths:
       description: Stub
 components:
   schemas:
+    ErrorDescription:
+      type: object
+      required:
+      - detail
+      properties:
+        detail:
+          description: A human readable explanation of the error
+          type: string
+          example: Date must be in the past
+        pointer:
+          description: A JSON pointer to where in the body this error occurred
+          type:
+          - string
+          - 'null'
+          example: '#/data/name'
+        header:
+          description: The header where this error occurred
+          type:
+          - string
+          - 'null'
+          example: Idempotency-Key
+        parameter:
+          description: The path or query parameter where this error occurred
+          type:
+          - string
+          - 'null'
+          example: occurred_before
     ProblemDetail:
       type: object
       required:
@@ -474,7 +501,7 @@ components:
           type: object
           description: The payload of the notification
           additionalProperties: true
-    ErrorDescription:
+    ErrorDescription_2:
       type: object
       required:
       - detail
@@ -485,21 +512,18 @@ components:
           example: Date must be in the past
         pointer:
           description: A JSON pointer to where in the body this error occurred
-          type:
-          - string
-          - 'null'
+          nullable: true
+          type: string
           example: '#/data/name'
         header:
           description: The header where this error occurred
-          type:
-          - string
-          - 'null'
+          nullable: true
+          type: string
           example: Idempotency-Key
         parameter:
           description: The path or query parameter where this error occurred
-          type:
-          - string
-          - 'null'
+          nullable: true
+          type: string
           example: occurred_before
     ProblemDetail_2:
       type: object
@@ -540,30 +564,6 @@ components:
           description: An extension to the RFC that describes errors that occurred in the request
           items:
             $ref: '#/components/schemas/ErrorDescription_2'
-    ErrorDescription_2:
-      type: object
-      required:
-      - detail
-      properties:
-        detail:
-          description: A human readable explanation of the error
-          type: string
-          example: Date must be in the past
-        pointer:
-          description: A JSON pointer to where in the body this error occurred
-          nullable: true
-          type: string
-          example: '#/data/name'
-        header:
-          description: The header where this error occurred
-          nullable: true
-          type: string
-          example: Idempotency-Key
-        parameter:
-          description: The path or query parameter where this error occurred
-          nullable: true
-          type: string
-          example: occurred_before
   securitySchemes:
     basicAuth:
       scheme: basic

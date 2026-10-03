@@ -103,36 +103,6 @@ paths:
           $ref: '#/components/responses/DefaultErrorResponse'
 components:
   schemas:
-    Error:
-      type: object
-      description: An error response for an unsuccessful request.
-      required:
-      - code
-      - detail
-      properties:
-        code:
-          description: The code related to this error, see documentation for more information.
-          type: string
-        detail:
-          description: The descriptive reason behind an error.
-          type: string
-        status:
-          description: The http status code related to this error.
-          type: string
-          example: '503'
-        trace_id:
-          type: string
-          description: A trace identifier for this request.
-          example: c62e9b3f-e523-4f04-a941-c6cf0d60c080
-        title:
-          type: string
-          description: A short summary of the problem that does not change from occurrence to occurrence of the problem.
-        source:
-          $ref: '#/components/schemas/Source'
-    ApplicationReference:
-      description: HMLR generated unique set of characters that identifies applications
-      type: string
-      pattern: ^([A-Z][0-9]{3}[A-Z]{3})|([A-Z]{2}[0-9A-F]{5})$
     ECDResponseData:
       description: Response object
       type: object
@@ -166,6 +136,32 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Error'
+    Error:
+      type: object
+      description: An error response for an unsuccessful request.
+      required:
+      - code
+      - detail
+      properties:
+        code:
+          description: The code related to this error, see documentation for more information.
+          type: string
+        detail:
+          description: The descriptive reason behind an error.
+          type: string
+        status:
+          description: The http status code related to this error.
+          type: string
+          example: '503'
+        trace_id:
+          type: string
+          description: A trace identifier for this request.
+          example: c62e9b3f-e523-4f04-a941-c6cf0d60c080
+        title:
+          type: string
+          description: A short summary of the problem that does not change from occurrence to occurrence of the problem.
+        source:
+          $ref: '#/components/schemas/Source'
     Source:
       type: object
       description: An object containing references to the primary source of the error.
@@ -179,6 +175,19 @@ components:
         header:
           type: string
           description: A string indicating the name of a single request header which caused the error
+    ApplicationReference:
+      description: HMLR generated unique set of characters that identifies applications
+      type: string
+      pattern: ^([A-Z][0-9]{3}[A-Z]{3})|([A-Z]{2}[0-9A-F]{5})$
+    ECDStatus:
+      type: string
+      description: "A code representing the status of obtaining the estimated completion date.  \n - AVAILABLE: ECD is available \n - CALCULATING: This is shown when the ECD for the application is being calculated for the first time. \n - EXCEEDED: ECD is unavailable. This is shown when the ECD for the application has elapsed. \n - UNAVAILABLE: ECD is unavailable. Application status is completed or cancelled. \n - NOT_APPLICABLE: ECD is unavailable."
+      enum:
+      - AVAILABLE
+      - CALCULATING
+      - EXCEEDED
+      - UNAVAILABLE
+      - NOT_APPLICABLE
     ECD:
       type: object
       description: If EstimatedCompletionDateStatus is [AVAILABLE] the estimated completion date of the application is provided.
@@ -193,15 +202,6 @@ components:
           example: 0.9
           minimum: 0
           maximum: 1
-    ECDStatus:
-      type: string
-      description: "A code representing the status of obtaining the estimated completion date.  \n - AVAILABLE: ECD is available \n - CALCULATING: This is shown when the ECD for the application is being calculated for the first time. \n - EXCEEDED: ECD is unavailable. This is shown when the ECD for the application has elapsed. \n - UNAVAILABLE: ECD is unavailable. Application status is completed or cancelled. \n - NOT_APPLICABLE: ECD is unavailable."
-      enum:
-      - AVAILABLE
-      - CALCULATING
-      - EXCEEDED
-      - UNAVAILABLE
-      - NOT_APPLICABLE
     ApplicationStatus:
       type: string
       description: "A code representing the status of an application.  \n - DELAYED: The application has requisitions, an extension of time has been granted, a site visit has been requested, the application has been referred internally or there are prior pending applications. \n - RECEIVED: The application has been received, the priority is protected and is awaiting processing. \n - CANCELLED: The application has been cancelled and removed from the Daylist. \n - COMPLETED: The application has been completed and is no longer active on the Daylist."

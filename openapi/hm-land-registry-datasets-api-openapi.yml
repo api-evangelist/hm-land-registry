@@ -141,24 +141,6 @@ paths:
           $ref: '#/components/responses/AccessDenied'
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Human readable error message.
-        success:
-          type: boolean
-          description: Always false on an error response.
-    DatasetListResponse:
-      type: object
-      properties:
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/DatasetSummary'
-        success:
-          type: boolean
     Resource:
       type: object
       properties:
@@ -174,50 +156,6 @@ components:
           type: string
         row_count:
           type: integer
-    Download:
-      type: object
-      properties:
-        download_url:
-          type: string
-          format: uri
-          description: Pre-signed S3 URL.
-        resource:
-          type: string
-        valid_for_seconds:
-          type: integer
-          example: 10
-    DownloadResponse:
-      type: object
-      properties:
-        result:
-          $ref: '#/components/schemas/Download'
-        success:
-          type: boolean
-    DatasetResponse:
-      type: object
-      properties:
-        result:
-          $ref: '#/components/schemas/Dataset'
-        success:
-          type: boolean
-    DatasetHistoryResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-        dataset:
-          type: string
-        dataset_history:
-          type: array
-          items:
-            $ref: '#/components/schemas/HistoryEntry'
-    DatasetSummary:
-      type: object
-      properties:
-        name:
-          type: string
-        title:
-          type: string
     Dataset:
       type: object
       properties:
@@ -273,6 +211,68 @@ components:
           type: string
         unsorted_date:
           type: string
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Human readable error message.
+        success:
+          type: boolean
+          description: Always false on an error response.
+    DownloadResponse:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/Download'
+        success:
+          type: boolean
+    DatasetListResponse:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/DatasetSummary'
+        success:
+          type: boolean
+    DatasetSummary:
+      type: object
+      properties:
+        name:
+          type: string
+        title:
+          type: string
+    DatasetResponse:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/Dataset'
+        success:
+          type: boolean
+    DatasetHistoryResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        dataset:
+          type: string
+        dataset_history:
+          type: array
+          items:
+            $ref: '#/components/schemas/HistoryEntry'
+    Download:
+      type: object
+      properties:
+        download_url:
+          type: string
+          format: uri
+          description: Pre-signed S3 URL.
+        resource:
+          type: string
+        valid_for_seconds:
+          type: integer
+          example: 10
   responses:
     AccessDenied:
       description: Access denied. Returned when no API key is supplied, or when the caller has not signed the licence for the requested dataset.

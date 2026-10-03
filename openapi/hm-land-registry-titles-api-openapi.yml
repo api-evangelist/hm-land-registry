@@ -49,13 +49,45 @@ paths:
           $ref: '#/components/responses/DefaultErrorResponse'
 components:
   schemas:
-    OfficialCopyAvailabilityCode:
-      description: The download availability states for a document.
+    RegisterAvailability:
+      type: object
+      description: The availability of the record we create when registering titles to Land Registry.
+      required:
+      - type_code
+      - type
+      - availability
+      - availability_code
+      - backdated
+      properties:
+        type:
+          type: string
+        type_code:
+          description: The document code for a register.
+          type: string
+          enum:
+          - REGISTER
+        availability:
+          description: The document availability description.
+          type: string
+        availability_code:
+          $ref: '#/components/schemas/OfficialCopyAvailabilityCode'
+        backdated:
+          type: boolean
+          description: Whether or not the document will be backdated due to pending applications.
+    ErrorResponse:
+      description: A response for an unsuccesful result.
+      type: object
+      properties:
+        errors:
+          description: A collection of one or more errors as to why the API request failed.
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+    TitleNumber:
+      description: The title number of the property. Characters must be uppercase.
       type: string
-      enum:
-      - IMMEDIATE
-      - MANUAL
-      - UNAVAILABLE
+      maxLength: 9
+      pattern: ^[A-Z0-9]{1,9}$
     Error:
       type: object
       description: An error response for an unsuccessful request.
@@ -82,31 +114,13 @@ components:
           description: A trace identifier for this request.
           type: string
           example: c62e9b3f-e523-4f04-a941-c6cf0d60c080
-    TitlePlanAvailability:
-      type: object
-      description: The availability of the official plan produced by HM Land Registry to show the extent of land in an individual registered title.
-      required:
-      - type_code
-      - type
-      - availability
-      - availability_code
-      - backdated
-      properties:
-        type:
-          type: string
-        type_code:
-          description: The document code for a title plan.
-          type: string
-          enum:
-          - TITLEPLAN
-        availability:
-          description: The document availability description.
-          type: string
-        availability_code:
-          $ref: '#/components/schemas/OfficialCopyAvailabilityCode'
-        backdated:
-          type: boolean
-          description: Whether or not the document will be backdated due to pending applications.
+    OfficialCopyAvailabilityCode:
+      description: The download availability states for a document.
+      type: string
+      enum:
+      - IMMEDIATE
+      - MANUAL
+      - UNAVAILABLE
     OfficialCopiesResponse:
       type: object
       description: A successful response.
@@ -196,23 +210,9 @@ components:
           type: string
         availability_code:
           $ref: '#/components/schemas/OfficialCopyAvailabilityCode'
-    ErrorResponse:
-      description: A response for an unsuccesful result.
+    TitlePlanAvailability:
       type: object
-      properties:
-        errors:
-          description: A collection of one or more errors as to why the API request failed.
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
-    TitleNumber:
-      description: The title number of the property. Characters must be uppercase.
-      type: string
-      maxLength: 9
-      pattern: ^[A-Z0-9]{1,9}$
-    RegisterAvailability:
-      type: object
-      description: The availability of the record we create when registering titles to Land Registry.
+      description: The availability of the official plan produced by HM Land Registry to show the extent of land in an individual registered title.
       required:
       - type_code
       - type
@@ -223,10 +223,10 @@ components:
         type:
           type: string
         type_code:
-          description: The document code for a register.
+          description: The document code for a title plan.
           type: string
           enum:
-          - REGISTER
+          - TITLEPLAN
         availability:
           description: The document availability description.
           type: string
@@ -235,6 +235,14 @@ components:
         backdated:
           type: boolean
           description: Whether or not the document will be backdated due to pending applications.
+  parameters:
+    TitleNumberParameter:
+      in: path
+      name: title_number
+      description: The title number of the property. Characters must be uppercase.
+      schema:
+        $ref: '#/components/schemas/TitleNumber'
+      required: true
   responses:
     DefaultErrorResponse:
       description: An error has occurred.
@@ -250,14 +258,6 @@ components:
                   http_status: '504'
                   error_code: BG50004
                   error_message: Internal service timeout
-  parameters:
-    TitleNumberParameter:
-      in: path
-      name: title_number
-      description: The title number of the property. Characters must be uppercase.
-      schema:
-        $ref: '#/components/schemas/TitleNumber'
-      required: true
   securitySchemes:
     basicAuth:
       type: http
