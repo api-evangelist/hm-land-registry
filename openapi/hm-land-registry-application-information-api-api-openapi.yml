@@ -112,14 +112,6 @@ paths:
       description: Stub
 components:
   schemas:
-    TransactionFee:
-      type: object
-      properties:
-        transaction_reference:
-          $ref: '#/components/schemas/TransactionReference'
-        fee:
-          description: Fee in pence
-          type: integer
     ErrorResponse:
       type: object
       description: Wrapper for any error responses
@@ -149,13 +141,6 @@ components:
           description: A list of all errors generated
           items:
             $ref: '#/components/schemas/ProblemDetails'
-    TransactionReference:
-      maxLength: 50
-      minLength: 1
-      pattern: ^[A-Za-z0-9-?,_]+$
-      type: string
-      description: Unique identifier for transactions, used to reference transactions from elsewhere in the spec
-      example: property charge
     StatusDataResponse:
       type: object
       description: Data wrapper for the status response
@@ -237,27 +222,21 @@ components:
           description: Warnings that need to be actioned before the application is processed by a caseworker, otherwise a requisition may be issued.
           items:
             type: string
-    CorrespondenceRecordInApplicationInformation:
-      description: Representation of a correspondence record
-      properties:
-        documents:
-          type: array
-          description: List of documents in the correspondence record
-          items:
-            $ref: '#/components/schemas/CorrespondenceRecordDocumentItemWithDownloadId'
-        record_id:
-          type: string
-          description: ID of the correspondence record
-          example: '1234567'
-      required:
-      - documents
-      - record_id
-    ApplicationInformationDataResponse:
+    TransactionFee:
       type: object
-      description: Data wrapper for the status response
       properties:
-        data:
-          $ref: '#/components/schemas/ApplicationInformationResponse'
+        transaction_reference:
+          $ref: '#/components/schemas/TransactionReference'
+        fee:
+          description: Fee in pence
+          type: integer
+    TransactionReference:
+      maxLength: 50
+      minLength: 1
+      pattern: ^[A-Za-z0-9-?,_]+$
+      type: string
+      description: Unique identifier for transactions, used to reference transactions from elsewhere in the spec
+      example: property charge
     ProblemDetails_2:
       required:
       - detail
@@ -325,6 +304,33 @@ components:
           description: Warnings that need to be actioned before the application is processed by a caseworker, otherwise a requisition may be issued.
           items:
             type: string
+    CorrespondenceRecordInApplicationInformation:
+      description: Representation of a correspondence record
+      properties:
+        documents:
+          type: array
+          description: List of documents in the correspondence record
+          items:
+            $ref: '#/components/schemas/CorrespondenceRecordDocumentItemWithDownloadId'
+        record_id:
+          type: string
+          description: ID of the correspondence record
+          example: '1234567'
+      required:
+      - documents
+      - record_id
+    CorrespondenceDocumentType:
+      properties:
+        code:
+          type: string
+        name:
+          type: string
+    ApplicationInformationDataResponse:
+      type: object
+      description: Data wrapper for the status response
+      properties:
+        data:
+          $ref: '#/components/schemas/ApplicationInformationResponse'
     CorrespondenceRecordDocumentItemWithDownloadId:
       description: List of documents in the correspondence record
       properties:
@@ -336,12 +342,6 @@ components:
           $ref: '#/components/schemas/CorrespondenceDocumentType'
       required:
       - type
-    CorrespondenceDocumentType:
-      properties:
-        code:
-          type: string
-        name:
-          type: string
   securitySchemes:
     basicAuth:
       scheme: basic

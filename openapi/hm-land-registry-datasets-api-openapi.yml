@@ -141,6 +141,52 @@ paths:
           $ref: '#/components/responses/AccessDenied'
 components:
   schemas:
+    Download:
+      type: object
+      properties:
+        download_url:
+          type: string
+          format: uri
+          description: Pre-signed S3 URL.
+        resource:
+          type: string
+        valid_for_seconds:
+          type: integer
+          example: 10
+    DatasetSummary:
+      type: object
+      properties:
+        name:
+          type: string
+        title:
+          type: string
+    DatasetHistoryResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        dataset:
+          type: string
+        dataset_history:
+          type: array
+          items:
+            $ref: '#/components/schemas/HistoryEntry'
+    DatasetListResponse:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/DatasetSummary'
+        success:
+          type: boolean
+    DatasetResponse:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/Dataset'
+        success:
+          type: boolean
     Resource:
       type: object
       properties:
@@ -156,6 +202,26 @@ components:
           type: string
         row_count:
           type: integer
+    HistoryEntry:
+      type: object
+      properties:
+        file_size:
+          type: string
+        filename:
+          type: string
+        last_updated:
+          type: string
+        unsorted_date:
+          type: string
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Human readable error message.
+        success:
+          type: boolean
+          description: Always false on an error response.
     Dataset:
       type: object
       properties:
@@ -200,26 +266,6 @@ components:
           type: string
         version:
           type: string
-    HistoryEntry:
-      type: object
-      properties:
-        file_size:
-          type: string
-        filename:
-          type: string
-        last_updated:
-          type: string
-        unsorted_date:
-          type: string
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Human readable error message.
-        success:
-          type: boolean
-          description: Always false on an error response.
     DownloadResponse:
       type: object
       properties:
@@ -227,52 +273,15 @@ components:
           $ref: '#/components/schemas/Download'
         success:
           type: boolean
-    DatasetListResponse:
-      type: object
-      properties:
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/DatasetSummary'
-        success:
-          type: boolean
-    DatasetSummary:
-      type: object
-      properties:
-        name:
-          type: string
-        title:
-          type: string
-    DatasetResponse:
-      type: object
-      properties:
-        result:
-          $ref: '#/components/schemas/Dataset'
-        success:
-          type: boolean
-    DatasetHistoryResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-        dataset:
-          type: string
-        dataset_history:
-          type: array
-          items:
-            $ref: '#/components/schemas/HistoryEntry'
-    Download:
-      type: object
-      properties:
-        download_url:
-          type: string
-          format: uri
-          description: Pre-signed S3 URL.
-        resource:
-          type: string
-        valid_for_seconds:
-          type: integer
-          example: 10
+  parameters:
+    DatasetName:
+      name: dataset_name
+      in: path
+      required: true
+      description: The dataset name, for example ccod, ocod, nps or nps_sample. CCOD and OCOD remain the machine names for the renamed UK companies and Overseas companies datasets.
+      schema:
+        type: string
+      example: ccod
   responses:
     AccessDenied:
       description: Access denied. Returned when no API key is supplied, or when the caller has not signed the licence for the requested dataset.
@@ -283,15 +292,6 @@ components:
           example:
             error: 'Access denied: You need to provide your API Key to perform this operation'
             success: false
-  parameters:
-    DatasetName:
-      name: dataset_name
-      in: path
-      required: true
-      description: The dataset name, for example ccod, ocod, nps or nps_sample. CCOD and OCOD remain the machine names for the renamed UK companies and Overseas companies datasets.
-      schema:
-        type: string
-      example: ccod
   securitySchemes:
     apiKey:
       type: apiKey

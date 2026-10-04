@@ -103,6 +103,27 @@ paths:
           $ref: '#/components/responses/DefaultErrorResponse'
 components:
   schemas:
+    ApplicationReference:
+      description: HMLR generated unique set of characters that identifies applications
+      type: string
+      pattern: ^([A-Z][0-9]{3}[A-Z]{3})|([A-Z]{2}[0-9A-F]{5})$
+    ErrorResponse:
+      description: A response for an unsuccessful result.
+      type: object
+      properties:
+        errors:
+          description: A collection of one or more errors as to why the API request failed.
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+    ApplicationStatus:
+      type: string
+      description: "A code representing the status of an application.  \n - DELAYED: The application has requisitions, an extension of time has been granted, a site visit has been requested, the application has been referred internally or there are prior pending applications. \n - RECEIVED: The application has been received, the priority is protected and is awaiting processing. \n - CANCELLED: The application has been cancelled and removed from the Daylist. \n - COMPLETED: The application has been completed and is no longer active on the Daylist."
+      enum:
+      - DELAYED
+      - CANCELLED
+      - RECEIVED
+      - COMPLETED
     ECDResponseData:
       description: Response object
       type: object
@@ -127,15 +148,33 @@ components:
           minItems: 1
           items:
             $ref: '#/components/schemas/ECD'
-    ErrorResponse:
-      description: A response for an unsuccessful result.
+    Source:
       type: object
+      description: An object containing references to the primary source of the error.
       properties:
-        errors:
-          description: A collection of one or more errors as to why the API request failed.
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
+        pointer:
+          type: string
+          description: JSON Pointer to the value in the request document that caused the error
+        parameter:
+          type: string
+          description: A string indicating which URI query parameter caused the error
+        header:
+          type: string
+          description: A string indicating the name of a single request header which caused the error
+    ECD:
+      type: object
+      description: If EstimatedCompletionDateStatus is [AVAILABLE] the estimated completion date of the application is provided.
+      properties:
+        date:
+          type: string
+          format: date
+          description: ECD is calculated using the time in which 90% of the application type were completed. See documentation for current calculation ruleset.
+        probability:
+          description: The chance the application will be completed by this date.
+          type: number
+          example: 0.9
+          minimum: 0
+          maximum: 1
     Error:
       type: object
       description: An error response for an unsuccessful request.
@@ -162,23 +201,6 @@ components:
           description: A short summary of the problem that does not change from occurrence to occurrence of the problem.
         source:
           $ref: '#/components/schemas/Source'
-    Source:
-      type: object
-      description: An object containing references to the primary source of the error.
-      properties:
-        pointer:
-          type: string
-          description: JSON Pointer to the value in the request document that caused the error
-        parameter:
-          type: string
-          description: A string indicating which URI query parameter caused the error
-        header:
-          type: string
-          description: A string indicating the name of a single request header which caused the error
-    ApplicationReference:
-      description: HMLR generated unique set of characters that identifies applications
-      type: string
-      pattern: ^([A-Z][0-9]{3}[A-Z]{3})|([A-Z]{2}[0-9A-F]{5})$
     ECDStatus:
       type: string
       description: "A code representing the status of obtaining the estimated completion date.  \n - AVAILABLE: ECD is available \n - CALCULATING: This is shown when the ECD for the application is being calculated for the first time. \n - EXCEEDED: ECD is unavailable. This is shown when the ECD for the application has elapsed. \n - UNAVAILABLE: ECD is unavailable. Application status is completed or cancelled. \n - NOT_APPLICABLE: ECD is unavailable."
@@ -188,36 +210,6 @@ components:
       - EXCEEDED
       - UNAVAILABLE
       - NOT_APPLICABLE
-    ECD:
-      type: object
-      description: If EstimatedCompletionDateStatus is [AVAILABLE] the estimated completion date of the application is provided.
-      properties:
-        date:
-          type: string
-          format: date
-          description: ECD is calculated using the time in which 90% of the application type were completed. See documentation for current calculation ruleset.
-        probability:
-          description: The chance the application will be completed by this date.
-          type: number
-          example: 0.9
-          minimum: 0
-          maximum: 1
-    ApplicationStatus:
-      type: string
-      description: "A code representing the status of an application.  \n - DELAYED: The application has requisitions, an extension of time has been granted, a site visit has been requested, the application has been referred internally or there are prior pending applications. \n - RECEIVED: The application has been received, the priority is protected and is awaiting processing. \n - CANCELLED: The application has been cancelled and removed from the Daylist. \n - COMPLETED: The application has been completed and is no longer active on the Daylist."
-      enum:
-      - DELAYED
-      - CANCELLED
-      - RECEIVED
-      - COMPLETED
-  parameters:
-    ApplicationReferenceParameter:
-      in: path
-      name: application_reference
-      description: HMLR generated unique set of characters that identifies applications.
-      required: true
-      schema:
-        $ref: '#/components/schemas/ApplicationReference'
   responses:
     DefaultErrorResponse:
       description: An error has occurred.
@@ -234,6 +226,14 @@ components:
                   status: '504'
                   trace_id: c62e9b3f-e523-4f04-a941-c6cf0d60c080
                   title: An error has occurred
+  parameters:
+    ApplicationReferenceParameter:
+      in: path
+      name: application_reference
+      description: HMLR generated unique set of characters that identifies applications.
+      required: true
+      schema:
+        $ref: '#/components/schemas/ApplicationReference'
   securitySchemes:
     basicAuth:
       type: http

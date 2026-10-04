@@ -119,20 +119,129 @@ paths:
       description: Stub
 components:
   schemas:
-    UnknownParty:
-      required:
-      - freeformat_name
+    AddressReference:
+      maxLength: 50
+      minLength: 1
+      pattern: ^[A-Za-z0-9-?,_]+$
+      type: string
+      description: Unique identifier for addresses, used to reference addresses from elsewhere in the spec
+      example: property address
+    UkAddress:
       type: object
-      description: A party object to capture infomation about an unknown party
+      description: A UK postal address
+      required:
+      - postcode
+      - post_town
+      - building_description
       allOf:
-      - $ref: '#/components/schemas/PartyDetails'
+      - $ref: '#/components/schemas/AddressDetails'
       - type: object
         properties:
-          freeformat_name:
-            maxLength: 366
+          building_description:
+            maxLength: 85
             minLength: 0
             type: string
-            description: The name of the party, when type is UNKNOWN
+            description: Name of residential or commercial premise
+          care_of_name:
+            maxLength: 200
+            minLength: 0
+            type: string
+            description: The care of name to address correspondence to
+          department_name:
+            maxLength: 60
+            minLength: 0
+            type: string
+            description: Used to supplement Organisation Name to identify a department within the organisation
+          dependent_locality:
+            maxLength: 35
+            minLength: 0
+            type: string
+            description: Used when the same thoroughfare or street name reoccurs in a Post town
+          dependent_street:
+            maxLength: 80
+            minLength: 0
+            type: string
+            description: Used to supplement street, when a street name is used twice in the same post town
+          double_dependent_locality:
+            maxLength: 35
+            minLength: 0
+            type: string
+            description: Used to supplement Dependant Locality, when the dependant locality exists twice in the same locality
+          organisation_name:
+            maxLength: 60
+            minLength: 0
+            type: string
+            description: The name of the organisation at the address
+          post_town:
+            maxLength: 35
+            minLength: 0
+            type: string
+            description: The town of the delivery point of the address
+          postcode:
+            maxLength: 8
+            minLength: 5
+            type: string
+            description: A UK postcode
+          street:
+            maxLength: 80
+            minLength: 0
+            type: string
+            description: The street of the address
+          sub_building_description:
+            maxLength: 40
+            minLength: 0
+            type: string
+            description: Used to identify a specific building when a premise is split into individual units
+          uprn:
+            minimum: 1
+            type: integer
+            format: int64
+            description: The Unique Property Reference Number of the address
+    Address:
+      required:
+      - details
+      type: object
+      description: An object containing an address, where the address details may be one of multiple types
+      properties:
+        details:
+          oneOf:
+          - $ref: '#/components/schemas/BfpoAddress'
+          - $ref: '#/components/schemas/DxAddress'
+          - $ref: '#/components/schemas/EmailAddress'
+          - $ref: '#/components/schemas/OverseasAddress'
+          - $ref: '#/components/schemas/PoBoxAddress'
+          - $ref: '#/components/schemas/UkAddress'
+    BfpoAddress:
+      description: A British Forces Post Office address
+      required:
+      - number
+      - service_number_rank
+      - unit_regiment
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/AddressDetails'
+      - type: object
+        properties:
+          care_of_name:
+            maxLength: 200
+            minLength: 0
+            type: string
+            description: The care of name to address correspondence to
+          number:
+            maxLength: 10
+            minLength: 0
+            type: string
+            description: The BPFO number for the address
+          service_number_rank:
+            maxLength: 35
+            minLength: 0
+            type: string
+            description: The service number of the personnel
+          unit_regiment:
+            maxLength: 35
+            minLength: 0
+            type: string
+            description: The unit or regiment of the personnel
     OtherConveyancer:
       required:
       - full_name
@@ -159,6 +268,193 @@ components:
           type: string
           description: The conveyancer's registered address
           example: 123 Green St., Made Up, MU1 2AB, UK
+    TransactionDetails:
+      required:
+      - type
+      type: object
+      description: Details of the transaction that apply to all transaction types
+      properties:
+        type:
+          type: string
+          description: The overall type of the transaction (Transfer, Charge, Discharge, Amount)
+      discriminator:
+        propertyName: type
+    AddressForServiceOption:
+      type: string
+      description: '* `PROVIDED_ADDRESS` - The address for service has been provided alongside this option
+
+        * `NOT_REQUIRED` - The address for service is not required for the party'
+      enum:
+      - PROVIDED_ADDRESS
+      - NOT_REQUIRED
+    Transfer:
+      required:
+      - additional_provisions_code
+      - consideration_type
+      - date
+      - title_guarantee_code
+      type: object
+      description: Details about a transfer transaction
+      allOf:
+      - $ref: '#/components/schemas/TransactionDetails'
+      - type: object
+        properties:
+          additional_provisions:
+            type: string
+            description: The provided additional provisions
+          additional_provisions_code:
+            type: string
+            description: '* `NO_PROVISIONS` - There are no additional provisions
+
+              * `MANUAL_TR1_FORM` - The details of the additional provision are on the TR1 form
+
+              * `DETAILS_ENTERED` - The details have been provided with the submission'
+            enum:
+            - NO_PROVISIONS
+            - MANUAL_TR1_FORM
+            - DETAILS_ENTERED
+          consideration_description:
+            maxLength: 200
+            minLength: 0
+            type: string
+            description: The consideration, when a consideration_type of OTHER is specified
+          consideration_type:
+            type: string
+            description: '* `MONETARY_VALUE` - The sum received by the transferor from the transferee for the property
+
+              * `NO_MONETARY_VALUE` - The transfer is not for money or anything that has a monetary value
+
+              * `OTHER` - to be specified in consideration_description'
+            enum:
+            - MONETARY_VALUE
+            - NO_MONETARY_VALUE
+            - OTHER
+          date:
+            type: string
+            format: date
+            description: The date of the transfer, in the format yyyy-MM-dd
+          title_guarantee_code:
+            type: string
+            description: '* `FULL` - the transferor(s) guarantee, to the best of their knowledge, that there are no financial charges/encumbrances (such as mortgages) or other third party interests (such as rights of way/leases) which affect the property other than those already revealed to the transferee(s).
+
+              * `LIMITED` - a more restricted set of promises by the transferor(s). This guarantees that the transferor(s) have not themselves created, or allowed to be created, any charge, encumbrance or third party interest that still exists at the date of the transfer'
+            enum:
+            - FULL
+            - LIMITED
+          trust_declaration_type:
+            type: string
+            description: '* `JOINT_TENANTS` - The transferees are joint tenants.
+
+              * `TENANTS_IN_COMMON` - The transferees are tenants in common
+
+              * `TRUST_DETAILS` - Details of the trust declaration will be provided in the application
+
+              * `FORM_JO` - The trust details will be provided in an attached FormJO document'
+            enum:
+            - JOINT_TENANTS
+            - TENANTS_IN_COMMON
+            - TRUST_DETAILS
+            - FORM_JO
+          trust_details:
+            maxLength: 300
+            minLength: 0
+            type: string
+            description: Details of the trust declaration, to be provided when trust_declaration_type is TRUST_DETAILS
+          value:
+            minimum: 0
+            type: integer
+            format: int32
+            description: Transaction value of the equity being transferred (including VAT if applicable) in pounds
+          value_band:
+            $ref: '#/components/schemas/ValueBand'
+          full_value_of_property_band:
+            $ref: '#/components/schemas/ValueBand'
+          full_value_of_property:
+            type: integer
+            format: int32
+            description: Full value of the property in the title(s) in pounds
+          outstanding_charge:
+            type: integer
+            format: int32
+            description: Value in pounds of any outstanding charge if applicable
+    PartyDetails:
+      required:
+      - type
+      type: object
+      description: Details of the party that apply to all party types
+      properties:
+        type:
+          type: string
+          description: The overall type of the party (`PRIVATE_INDIVIDUAL` - A singular person `UK_COMPANY` - A company that was incorporated/registered in the UK `OVERSEAS_COMPANY` - A company that was first incorporated outside the UK `OTHER_ORGANISATION` - Any other organisation, e.g. a charity `UNKNOWN` - The type of the party is unknown)
+          enum:
+          - PRIVATE_INDIVIDUAL
+          - OTHER_ORGANISATION
+          - OVERSEAS_COMPANY
+          - UK_COMPANY
+          - UNKNOWN
+      discriminator:
+        propertyName: type
+    AddressDetails:
+      type: object
+      description: The details captured for a specific address. Details differ depending on type
+      required:
+      - type
+      properties:
+        type:
+          type: string
+          enum:
+          - UK
+          - OVERSEAS
+          - EMAIL
+          - DX
+          - BFPO
+          - PO_BOX
+      discriminator:
+        propertyName: type
+    OverseasAddress:
+      type: object
+      description: The address of a premise outside the UK
+      required:
+      - country
+      allOf:
+      - $ref: '#/components/schemas/AddressDetails'
+      - type: object
+        properties:
+          care_of_name:
+            maxLength: 200
+            minLength: 0
+            type: string
+            description: The care of name to address correspondence to
+          country:
+            maxLength: 35
+            minLength: 0
+            type: string
+            description: The country the address resides in
+          line1:
+            maxLength: 35
+            minLength: 0
+            type: string
+            description: The first line of the address, may differ per country/region
+          line2:
+            maxLength: 35
+            minLength: 0
+            type: string
+            description: The second line of the address, may differ per country/region
+          line3:
+            maxLength: 35
+            minLength: 0
+            type: string
+            description: The third line of the address, may differ per country/region
+          line4:
+            maxLength: 35
+            minLength: 0
+            type: string
+            description: The fourth line of the address, may differ per country/region
+          line5:
+            maxLength: 35
+            minLength: 0
+            type: string
+            description: The fifth line of the address, may differ per country/region
     ErrorResponse:
       type: object
       description: Wrapper for any error responses
@@ -188,92 +484,20 @@ components:
           description: A list of all errors generated
           items:
             $ref: '#/components/schemas/ProblemDetails'
-    SubstantiveApplication:
+    OtherOrganisation:
       required:
-      - data
-      type: object
-      description: The request to submit an application to HM Land Registry
-      properties:
-        data:
-          $ref: '#/components/schemas/SubstantiveApplicationData'
-    BypassValidationData:
-      required:
-      - comment
-      - reason
-      - validation_pointer
-      - validation_type
-      type: object
-      description: Fields to describe which validators to bypass and why
-      properties:
-        validation_type:
-          maxLength: 250
-          minLength: 1
-          description: The type of validation to bypass. Should match the 'type' returned within a status API error
-          type: string
-        validation_pointer:
-          maxLength: 250
-          minLength: 1
-          description: A JSON pointer to the field in the submission payload to bypass the validation on. Should match the 'pointer' returned within a status API error
-          type: string
-          example: /data/customer_reference
-        reason:
-          type: string
-          description: The reason the validation is being bypassed
-          enum:
-          - DISAGREE_WITH_REGISTER
-          - HMLR_DATA_INCORRECT_OR_OUTDATED
-          - EXCEPTION_NOT_COVERED_BY_BUSINESS_RULES
-        comment:
-          maxLength: 250
-          minLength: 1
-          description: A user inputted description of why the validation is being bypassed
-          type: string
-    ApplicationCreationDataResponse:
-      type: object
-      description: The response wrapper from the application submission request
-      properties:
-        data:
-          $ref: '#/components/schemas/ApplicationCreationResponse'
-    AddressReference:
-      maxLength: 50
-      minLength: 1
-      pattern: ^[A-Za-z0-9-?,_]+$
-      type: string
-      description: Unique identifier for addresses, used to reference addresses from elsewhere in the spec
-      example: property address
-    OverseasCompany:
-      required:
-      - incorporation_territory
       - organisation_name
       type: object
-      description: A party object to capture infomation about an overseas company
+      description: A party object to capture infomation about an other organisation
       allOf:
       - $ref: '#/components/schemas/PartyDetails'
       - type: object
         properties:
-          company_number:
-            maxLength: 30
-            minLength: 0
-            type: string
-            description: The UK Company Number or UK LLC number
           organisation_name:
             maxLength: 366
             minLength: 0
             type: string
             description: Full name registered at Companies House or Company name as incorporated in its state of origin
-          incorporation_territory:
-            maxLength: 254
-            minLength: 0
-            type: string
-            description: The territory, country or place where the company was first incorporated
-    AddressForServiceOption:
-      type: string
-      description: '* `PROVIDED_ADDRESS` - The address for service has been provided alongside this option
-
-        * `NOT_REQUIRED` - The address for service is not required for the party'
-      enum:
-      - PROVIDED_ADDRESS
-      - NOT_REQUIRED
     Party:
       required:
       - details
@@ -330,30 +554,48 @@ components:
           - $ref: '#/components/schemas/PrivateIndividual'
           - $ref: '#/components/schemas/UKCompany'
           - $ref: '#/components/schemas/UnknownParty'
-    DocumentMetadata:
+    ApplicationLodger:
+      description: Information about the person lodging the application (This is usually the conveyancer lodging on behalf of an individual)
       required:
-      - certification_statement_type
-      - document_filename
+      - email
+      - type
       type: object
-      description: Metadata about the document that was uploaded
       properties:
-        certification_statement_type:
-          type: string
-          description: '* `CERTIFIED` - I/we certify this is a true copy of an original document
-
-            * `CERTIFIED_BY_ANOTHER` - I/we certify this document is a true copy of an original document which is certified by a conveyancer to be a true copy of the original
-
-            * `NOT_CERTIFIED` - This document is an uncertified copy '
-          enum:
-          - CERTIFIED
-          - CERTIFIED_BY_ANOTHER
-          - NOT_CERTIFIED
-        document_filename:
-          maxLength: 255
+        email:
+          maxLength: 254
           minLength: 0
-          description: The filename of the document
+          pattern: .+@.+
           type: string
-          example: thedeed.pdf
+          description: The email address of the application lodger
+          example: me@site.co.uk
+        telephone:
+          maxLength: 50
+          minLength: 0
+          type: string
+          description: A telephone number that can be used to contact the person lodging the application
+          example: '+440000000000'
+        type:
+          type: string
+          description: '* `CONVEYANCER` - The user submitting the application is a conveyancer or acting on behalf of a conveyancer
+
+            * `NON_CONVEYANCER` - The user submitting the application is not a conveyancer'
+          enum:
+          - CONVEYANCER
+          - NON_CONVEYANCER
+    UnknownParty:
+      required:
+      - freeformat_name
+      type: object
+      description: A party object to capture infomation about an unknown party
+      allOf:
+      - $ref: '#/components/schemas/PartyDetails'
+      - type: object
+        properties:
+          freeformat_name:
+            maxLength: 366
+            minLength: 0
+            type: string
+            description: The name of the party, when type is UNKNOWN
     DxAddress:
       required:
       - exchange_name
@@ -379,104 +621,6 @@ components:
             minLength: 0
             type: string
             description: The DX number
-    Discharge:
-      required:
-      - discharge_submission_type
-      type: object
-      description: A TransactionDetails object to capture information about a discharge
-      allOf:
-      - $ref: '#/components/schemas/TransactionDetails'
-      - type: object
-        properties:
-          discharge_submission_type:
-            type: string
-            description: 'How the discharge will be submitted:
-
-              * ATTACHED - The discharge is submitted with this application
-
-              * LENDER - The lender will submit the discharge
-
-              * LATER - The discharge will be submitted later'
-            enum:
-            - ATTACHED
-            - LENDER
-            - LATER
-    BfpoAddress:
-      description: A British Forces Post Office address
-      required:
-      - number
-      - service_number_rank
-      - unit_regiment
-      type: object
-      allOf:
-      - $ref: '#/components/schemas/AddressDetails'
-      - type: object
-        properties:
-          care_of_name:
-            maxLength: 200
-            minLength: 0
-            type: string
-            description: The care of name to address correspondence to
-          number:
-            maxLength: 10
-            minLength: 0
-            type: string
-            description: The BPFO number for the address
-          service_number_rank:
-            maxLength: 35
-            minLength: 0
-            type: string
-            description: The service number of the personnel
-          unit_regiment:
-            maxLength: 35
-            minLength: 0
-            type: string
-            description: The unit or regiment of the personnel
-    OtherOrganisation:
-      required:
-      - organisation_name
-      type: object
-      description: A party object to capture infomation about an other organisation
-      allOf:
-      - $ref: '#/components/schemas/PartyDetails'
-      - type: object
-        properties:
-          organisation_name:
-            maxLength: 366
-            minLength: 0
-            type: string
-            description: Full name registered at Companies House or Company name as incorporated in its state of origin
-    PartyReference:
-      maxLength: 50
-      minLength: 1
-      pattern: ^[A-Za-z0-9-?,_]+$
-      type: string
-      description: Unique identifier for parties, used to reference parties from elsewhere in the spec
-      example: customer
-    AddressDetails:
-      type: object
-      description: The details captured for a specific address. Details differ depending on type
-      required:
-      - type
-      properties:
-        type:
-          type: string
-          enum:
-          - UK
-          - OVERSEAS
-          - EMAIL
-          - DX
-          - BFPO
-          - PO_BOX
-      discriminator:
-        propertyName: type
-    DocumentReference:
-      maxLength: 50
-      minLength: 1
-      pattern: ^[A-Za-z0-9-?,_]+$
-      type: string
-      description: Unique identifier for documents, used to reference documents from elsewhere in the spec
-      example: signed_charge
     DocumentDetails:
       required:
       - document_id
@@ -665,283 +809,6 @@ components:
           - WCT
           - WINDING_UP
           - WIT_STATE
-    Address:
-      required:
-      - details
-      type: object
-      description: An object containing an address, where the address details may be one of multiple types
-      properties:
-        details:
-          oneOf:
-          - $ref: '#/components/schemas/BfpoAddress'
-          - $ref: '#/components/schemas/DxAddress'
-          - $ref: '#/components/schemas/EmailAddress'
-          - $ref: '#/components/schemas/OverseasAddress'
-          - $ref: '#/components/schemas/PoBoxAddress'
-          - $ref: '#/components/schemas/UkAddress'
-    PoBoxAddress:
-      required:
-      - number
-      - post_town
-      - postcode
-      type: object
-      description: An address of a PO Box
-      allOf:
-      - $ref: '#/components/schemas/AddressDetails'
-      - type: object
-        properties:
-          care_of_name:
-            maxLength: 200
-            minLength: 0
-            type: string
-            description: The care of name to address correspondence to
-          number:
-            maxLength: 20
-            minLength: 0
-            type: string
-            description: The number of the PO Box
-          post_town:
-            maxLength: 35
-            minLength: 0
-            type: string
-            description: The town/city of the PO Box
-          postcode:
-            maxLength: 8
-            minLength: 5
-            type: string
-            description: The postcode of the PO Box
-    AmountDetails:
-      type: object
-      description: A type of TransactionDetails that captures the value of the transaction
-      allOf:
-      - $ref: '#/components/schemas/TransactionDetails'
-      - type: object
-        properties:
-          value:
-            minimum: 0
-            description: The value associated with the transaction in pounds
-            type: integer
-            format: int32
-          value_band:
-            $ref: '#/components/schemas/ValueBand'
-          full_value_of_property_band:
-            $ref: '#/components/schemas/ValueBand'
-          full_value_of_property:
-            type: integer
-            format: int32
-            description: Full value of the property in the title(s) in pounds
-          outstanding_charge:
-            type: integer
-            format: int32
-            description: Value in pounds of any outstanding charge if applicable
-    OverseasAddress:
-      type: object
-      description: The address of a premise outside the UK
-      required:
-      - country
-      allOf:
-      - $ref: '#/components/schemas/AddressDetails'
-      - type: object
-        properties:
-          care_of_name:
-            maxLength: 200
-            minLength: 0
-            type: string
-            description: The care of name to address correspondence to
-          country:
-            maxLength: 35
-            minLength: 0
-            type: string
-            description: The country the address resides in
-          line1:
-            maxLength: 35
-            minLength: 0
-            type: string
-            description: The first line of the address, may differ per country/region
-          line2:
-            maxLength: 35
-            minLength: 0
-            type: string
-            description: The second line of the address, may differ per country/region
-          line3:
-            maxLength: 35
-            minLength: 0
-            type: string
-            description: The third line of the address, may differ per country/region
-          line4:
-            maxLength: 35
-            minLength: 0
-            type: string
-            description: The fourth line of the address, may differ per country/region
-          line5:
-            maxLength: 35
-            minLength: 0
-            type: string
-            description: The fifth line of the address, may differ per country/region
-    UkAddress:
-      type: object
-      description: A UK postal address
-      required:
-      - postcode
-      - post_town
-      - building_description
-      allOf:
-      - $ref: '#/components/schemas/AddressDetails'
-      - type: object
-        properties:
-          building_description:
-            maxLength: 85
-            minLength: 0
-            type: string
-            description: Name of residential or commercial premise
-          care_of_name:
-            maxLength: 200
-            minLength: 0
-            type: string
-            description: The care of name to address correspondence to
-          department_name:
-            maxLength: 60
-            minLength: 0
-            type: string
-            description: Used to supplement Organisation Name to identify a department within the organisation
-          dependent_locality:
-            maxLength: 35
-            minLength: 0
-            type: string
-            description: Used when the same thoroughfare or street name reoccurs in a Post town
-          dependent_street:
-            maxLength: 80
-            minLength: 0
-            type: string
-            description: Used to supplement street, when a street name is used twice in the same post town
-          double_dependent_locality:
-            maxLength: 35
-            minLength: 0
-            type: string
-            description: Used to supplement Dependant Locality, when the dependant locality exists twice in the same locality
-          organisation_name:
-            maxLength: 60
-            minLength: 0
-            type: string
-            description: The name of the organisation at the address
-          post_town:
-            maxLength: 35
-            minLength: 0
-            type: string
-            description: The town of the delivery point of the address
-          postcode:
-            maxLength: 8
-            minLength: 5
-            type: string
-            description: A UK postcode
-          street:
-            maxLength: 80
-            minLength: 0
-            type: string
-            description: The street of the address
-          sub_building_description:
-            maxLength: 40
-            minLength: 0
-            type: string
-            description: Used to identify a specific building when a premise is split into individual units
-          uprn:
-            minimum: 1
-            type: integer
-            format: int64
-            description: The Unique Property Reference Number of the address
-    TitleDetails:
-      required:
-      - scope_details
-      - title_number
-      - title_type
-      - disclosable_overriding_interests
-      type: object
-      description: Information about a HM Land Registry title
-      properties:
-        disclosable_overriding_interests:
-          type: boolean
-          description: Are there any disclosable overriding interests for the title
-        scope_details:
-          $ref: '#/components/schemas/TitleScopeDetails'
-        title_number:
-          maxLength: 9
-          minLength: 0
-          pattern: ^[A-Z]{0,3}[0-9]{1,6}[ZT]?$
-          type: string
-          description: The HM Land Registry title number
-        title_type:
-          type: string
-          description: '* `REGISTER_TITLE` - Any titles on REGISTER_UPDATE or REMOVE_JP1 application types
-
-            * `TRANSFEROR_TITLE` - Titles related to the transferor (TRANSFER_OF_PART applications only)
-
-            * `LANDLORD_TITLE` - Titles related to the landlord (DISPOSITIONARY_FIRST_LEASE applications only)
-
-            * `TENANT_TITLE` - The title related to the tenant on a DISPOSITIONARY_FIRST_LEASE application which is a lease extension.
-
-            * `ADDITIONAL_TITLE` - Any other titles on TRANSFER_OF_PART or DISPOSITIONARY_FIRST_LEASE applications'
-          enum:
-          - REGISTER_TITLE
-          - TRANSFEROR_TITLE
-          - ADDITIONAL_TITLE
-          - LANDLORD_TITLE
-          - TENANT_TITLE
-    UKCompany:
-      required:
-      - company_number
-      - organisation_name
-      type: object
-      description: A party object to capture infomation about an UK company
-      allOf:
-      - $ref: '#/components/schemas/PartyDetails'
-      - type: object
-        properties:
-          company_number:
-            maxLength: 30
-            minLength: 0
-            type: string
-            description: The UK Company Number or UK LLC number
-          organisation_name:
-            maxLength: 366
-            minLength: 0
-            type: string
-            description: Full name registered at Companies House or Company name as incorporated in its state of origin
-    TitleScopeDetails:
-      required:
-      - scope
-      type: object
-      description: The scope of the title that is being updated
-      properties:
-        part_description:
-          maxLength: 100
-          minLength: 0
-          type: string
-          description: A description of the part of the title being updated
-          example: red outlined area
-        scope:
-          type: string
-          description: '* `WHOLE` - The whole of the title
-
-            * `PART` - Part of the title'
-          enum:
-          - WHOLE
-          - PART
-    ValueBand:
-      required:
-      - lower_value_band
-      type: object
-      description: "A range the value of the transaction falls between. Valid bands are:\n* `0 - 100000`\n * `100001 - 200000\n* `200001 - 500000`\n* `500001 - 1000000`\n* `1000001 +`"
-      properties:
-        lower_value_band:
-          minimum: 1
-          type: integer
-          format: int32
-          description: The lower value in the band in pounds
-        upper_value_band:
-          minimum: 100000
-          type: integer
-          format: int32
-          description: The upper value in the band in pounds. Not required when lower_value_band equals 1000001
     ApplicationCreationResponse:
       type: object
       description: The response from the application submission endpoint
@@ -950,288 +817,28 @@ components:
           type: string
           description: The ID of the application submission request
           example: 12345678-1234-1234-1234-123546789abc
-    EmailAddress:
+    Discharge:
       required:
-      - email
+      - discharge_submission_type
       type: object
-      description: An object containing the email address of the customer
-      allOf:
-      - $ref: '#/components/schemas/AddressDetails'
-      - type: object
-        properties:
-          email:
-            maxLength: 254
-            minLength: 0
-            type: string
-            description: The email address of the customer
-    Charge:
-      required:
-      - date
-      - value
-      type: object
-      description: A TransactionDetails object to capture information about a charge
+      description: A TransactionDetails object to capture information about a discharge
       allOf:
       - $ref: '#/components/schemas/TransactionDetails'
       - type: object
         properties:
-          date:
-            description: The date of the charge, in the format yyyy-MM-dd
+          discharge_submission_type:
             type: string
-            format: date
-          mdref:
-            maxLength: 10
-            minLength: 0
-            description: The unique MD reference given to the mortgage
-            type: string
-            example: MD123A
-          value:
-            type: integer
-            description: The total charge amount for all titles in pounds
-            format: int32
-    PartyRole:
-      required:
-      - role
-      - party_reference
-      type: object
-      description: Information about the roles and capacities for a specific party
-      properties:
-        capacity:
-          type: string
-          description: 'This enum describes the capacity in which a party is acting in a transaction. The possible values are:
+            description: 'How the discharge will be submitted:
 
-            * `REGISTERED_PROPRIETOR` - The party is acting as a registered proprietor.
+              * ATTACHED - The discharge is submitted with this application
 
-            * `ENTITLED_REGISTERED_PROPRIETOR` - The party is acting as entitled to be registered as the proprietor.
+              * LENDER - The lender will submit the discharge
 
-            * `ADDITIONAL_TRUSTEE` - The party is acting as an additional trustee.
-
-            * `INSOLVENCY_PRACTITIONER` - The party is acting as an insolvency practitioner.
-
-            * `RECEIVER` - The party is acting as receiver.
-
-            * `DEPUTY` - The party is acting as a deputy.
-
-            * `GUARDIAN` - The party is acting as a guardian.
-
-            * `PERSONAL_REPRESENTATIVE` - The party is acting as a personal representative.
-
-            * `NOT_REQUIRED` - Capacity is not required for the party role (at time of capture by land registry policy).
-
-            * `null` - The capacity value is not known for the party.
-
-            '
-          enum:
-          - REGISTERED_PROPRIETOR
-          - ENTITLED_REGISTERED_PROPRIETOR
-          - ADDITIONAL_TRUSTEE
-          - INSOLVENCY_PRACTITIONER
-          - RECEIVER
-          - DEPUTY
-          - GUARDIAN
-          - PERSONAL_REPRESENTATIVE
-          - NOT_REQUIRED
-        party_reference:
-          $ref: '#/components/schemas/PartyReference'
-        role:
-          type: string
-          description: The role the party is performing on the transaction
-          enum:
-          - ATTORNEY
-          - TRANSFEROR
-          - TRANSFEREE
-          - LENDER
-          - BORROWER
-          - PERSONAL_REPRESENTATIVE
-          - ASSENTOR
-          - LANDLORD
-          - TENANT
-    ApplicationLodger:
-      description: Information about the person lodging the application (This is usually the conveyancer lodging on behalf of an individual)
-      required:
-      - email
-      - type
-      type: object
-      properties:
-        email:
-          maxLength: 254
-          minLength: 0
-          pattern: .+@.+
-          type: string
-          description: The email address of the application lodger
-          example: me@site.co.uk
-        telephone:
-          maxLength: 50
-          minLength: 0
-          type: string
-          description: A telephone number that can be used to contact the person lodging the application
-          example: '+440000000000'
-        type:
-          type: string
-          description: '* `CONVEYANCER` - The user submitting the application is a conveyancer or acting on behalf of a conveyancer
-
-            * `NON_CONVEYANCER` - The user submitting the application is not a conveyancer'
-          enum:
-          - CONVEYANCER
-          - NON_CONVEYANCER
-    PrivateIndividual:
-      required:
-      - surname
-      type: object
-      description: A party object to capture infomation about a private individual
-      allOf:
-      - $ref: '#/components/schemas/PartyDetails'
-      - type: object
-        properties:
-          forenames:
-            maxLength: 366
-            minLength: 0
-            type: string
-            description: Forenames of a private individual
-            example: John
-          surname:
-            maxLength: 366
-            minLength: 0
-            type: string
-            description: The surname of a private individual
-            example: Doe
-    ProblemDetails:
-      required:
-      - detail
-      - type
-      description: Detailed information about an error
-      type: object
-      properties:
-        type:
-          type: string
-          description: The type of error received
-          example: L2_MDREF_ERROR
-        detail:
-          type: string
-          description: A longer description about the type of error received
-          example: The MDref included in the request does not exist
-        pointer:
-          type: string
-          description: A JSON pointer to the location in the JSON payload that caused the error (optional)
-          example:
-          - /data/transaction/t1/mdref
-    PartyDetails:
-      required:
-      - type
-      type: object
-      description: Details of the party that apply to all party types
-      properties:
-        type:
-          type: string
-          description: The overall type of the party (`PRIVATE_INDIVIDUAL` - A singular person `UK_COMPANY` - A company that was incorporated/registered in the UK `OVERSEAS_COMPANY` - A company that was first incorporated outside the UK `OTHER_ORGANISATION` - Any other organisation, e.g. a charity `UNKNOWN` - The type of the party is unknown)
-          enum:
-          - PRIVATE_INDIVIDUAL
-          - OTHER_ORGANISATION
-          - OVERSEAS_COMPANY
-          - UK_COMPANY
-          - UNKNOWN
-      discriminator:
-        propertyName: type
-    TransactionDetails:
-      required:
-      - type
-      type: object
-      description: Details of the transaction that apply to all transaction types
-      properties:
-        type:
-          type: string
-          description: The overall type of the transaction (Transfer, Charge, Discharge, Amount)
-      discriminator:
-        propertyName: type
-    Transfer:
-      required:
-      - additional_provisions_code
-      - consideration_type
-      - date
-      - title_guarantee_code
-      type: object
-      description: Details about a transfer transaction
-      allOf:
-      - $ref: '#/components/schemas/TransactionDetails'
-      - type: object
-        properties:
-          additional_provisions:
-            type: string
-            description: The provided additional provisions
-          additional_provisions_code:
-            type: string
-            description: '* `NO_PROVISIONS` - There are no additional provisions
-
-              * `MANUAL_TR1_FORM` - The details of the additional provision are on the TR1 form
-
-              * `DETAILS_ENTERED` - The details have been provided with the submission'
+              * LATER - The discharge will be submitted later'
             enum:
-            - NO_PROVISIONS
-            - MANUAL_TR1_FORM
-            - DETAILS_ENTERED
-          consideration_description:
-            maxLength: 200
-            minLength: 0
-            type: string
-            description: The consideration, when a consideration_type of OTHER is specified
-          consideration_type:
-            type: string
-            description: '* `MONETARY_VALUE` - The sum received by the transferor from the transferee for the property
-
-              * `NO_MONETARY_VALUE` - The transfer is not for money or anything that has a monetary value
-
-              * `OTHER` - to be specified in consideration_description'
-            enum:
-            - MONETARY_VALUE
-            - NO_MONETARY_VALUE
-            - OTHER
-          date:
-            type: string
-            format: date
-            description: The date of the transfer, in the format yyyy-MM-dd
-          title_guarantee_code:
-            type: string
-            description: '* `FULL` - the transferor(s) guarantee, to the best of their knowledge, that there are no financial charges/encumbrances (such as mortgages) or other third party interests (such as rights of way/leases) which affect the property other than those already revealed to the transferee(s).
-
-              * `LIMITED` - a more restricted set of promises by the transferor(s). This guarantees that the transferor(s) have not themselves created, or allowed to be created, any charge, encumbrance or third party interest that still exists at the date of the transfer'
-            enum:
-            - FULL
-            - LIMITED
-          trust_declaration_type:
-            type: string
-            description: '* `JOINT_TENANTS` - The transferees are joint tenants.
-
-              * `TENANTS_IN_COMMON` - The transferees are tenants in common
-
-              * `TRUST_DETAILS` - Details of the trust declaration will be provided in the application
-
-              * `FORM_JO` - The trust details will be provided in an attached FormJO document'
-            enum:
-            - JOINT_TENANTS
-            - TENANTS_IN_COMMON
-            - TRUST_DETAILS
-            - FORM_JO
-          trust_details:
-            maxLength: 300
-            minLength: 0
-            type: string
-            description: Details of the trust declaration, to be provided when trust_declaration_type is TRUST_DETAILS
-          value:
-            minimum: 0
-            type: integer
-            format: int32
-            description: Transaction value of the equity being transferred (including VAT if applicable) in pounds
-          value_band:
-            $ref: '#/components/schemas/ValueBand'
-          full_value_of_property_band:
-            $ref: '#/components/schemas/ValueBand'
-          full_value_of_property:
-            type: integer
-            format: int32
-            description: Full value of the property in the title(s) in pounds
-          outstanding_charge:
-            type: integer
-            format: int32
-            description: Value in pounds of any outstanding charge if applicable
+            - ATTACHED
+            - LENDER
+            - LATER
     SubstantiveApplicationData:
       required:
       - applicants
@@ -1311,6 +918,198 @@ components:
           pattern: ^\w*$
           type: string
           description: A value that can be used to subsequently retrieve request responses based upon high level grouping
+    PartyReference:
+      maxLength: 50
+      minLength: 1
+      pattern: ^[A-Za-z0-9-?,_]+$
+      type: string
+      description: Unique identifier for parties, used to reference parties from elsewhere in the spec
+      example: customer
+    OverseasCompany:
+      required:
+      - incorporation_territory
+      - organisation_name
+      type: object
+      description: A party object to capture infomation about an overseas company
+      allOf:
+      - $ref: '#/components/schemas/PartyDetails'
+      - type: object
+        properties:
+          company_number:
+            maxLength: 30
+            minLength: 0
+            type: string
+            description: The UK Company Number or UK LLC number
+          organisation_name:
+            maxLength: 366
+            minLength: 0
+            type: string
+            description: Full name registered at Companies House or Company name as incorporated in its state of origin
+          incorporation_territory:
+            maxLength: 254
+            minLength: 0
+            type: string
+            description: The territory, country or place where the company was first incorporated
+    BypassValidationData:
+      required:
+      - comment
+      - reason
+      - validation_pointer
+      - validation_type
+      type: object
+      description: Fields to describe which validators to bypass and why
+      properties:
+        validation_type:
+          maxLength: 250
+          minLength: 1
+          description: The type of validation to bypass. Should match the 'type' returned within a status API error
+          type: string
+        validation_pointer:
+          maxLength: 250
+          minLength: 1
+          description: A JSON pointer to the field in the submission payload to bypass the validation on. Should match the 'pointer' returned within a status API error
+          type: string
+          example: /data/customer_reference
+        reason:
+          type: string
+          description: The reason the validation is being bypassed
+          enum:
+          - DISAGREE_WITH_REGISTER
+          - HMLR_DATA_INCORRECT_OR_OUTDATED
+          - EXCEPTION_NOT_COVERED_BY_BUSINESS_RULES
+        comment:
+          maxLength: 250
+          minLength: 1
+          description: A user inputted description of why the validation is being bypassed
+          type: string
+    EmailAddress:
+      required:
+      - email
+      type: object
+      description: An object containing the email address of the customer
+      allOf:
+      - $ref: '#/components/schemas/AddressDetails'
+      - type: object
+        properties:
+          email:
+            maxLength: 254
+            minLength: 0
+            type: string
+            description: The email address of the customer
+    ProblemDetails:
+      required:
+      - detail
+      - type
+      description: Detailed information about an error
+      type: object
+      properties:
+        type:
+          type: string
+          description: The type of error received
+          example: L2_MDREF_ERROR
+        detail:
+          type: string
+          description: A longer description about the type of error received
+          example: The MDref included in the request does not exist
+        pointer:
+          type: string
+          description: A JSON pointer to the location in the JSON payload that caused the error (optional)
+          example:
+          - /data/transaction/t1/mdref
+    DocumentReference:
+      maxLength: 50
+      minLength: 1
+      pattern: ^[A-Za-z0-9-?,_]+$
+      type: string
+      description: Unique identifier for documents, used to reference documents from elsewhere in the spec
+      example: signed_charge
+    Charge:
+      required:
+      - date
+      - value
+      type: object
+      description: A TransactionDetails object to capture information about a charge
+      allOf:
+      - $ref: '#/components/schemas/TransactionDetails'
+      - type: object
+        properties:
+          date:
+            description: The date of the charge, in the format yyyy-MM-dd
+            type: string
+            format: date
+          mdref:
+            maxLength: 10
+            minLength: 0
+            description: The unique MD reference given to the mortgage
+            type: string
+            example: MD123A
+          value:
+            type: integer
+            description: The total charge amount for all titles in pounds
+            format: int32
+    UKCompany:
+      required:
+      - company_number
+      - organisation_name
+      type: object
+      description: A party object to capture infomation about an UK company
+      allOf:
+      - $ref: '#/components/schemas/PartyDetails'
+      - type: object
+        properties:
+          company_number:
+            maxLength: 30
+            minLength: 0
+            type: string
+            description: The UK Company Number or UK LLC number
+          organisation_name:
+            maxLength: 366
+            minLength: 0
+            type: string
+            description: Full name registered at Companies House or Company name as incorporated in its state of origin
+    ApplicationCreationDataResponse:
+      type: object
+      description: The response wrapper from the application submission request
+      properties:
+        data:
+          $ref: '#/components/schemas/ApplicationCreationResponse'
+    TitleDetails:
+      required:
+      - scope_details
+      - title_number
+      - title_type
+      - disclosable_overriding_interests
+      type: object
+      description: Information about a HM Land Registry title
+      properties:
+        disclosable_overriding_interests:
+          type: boolean
+          description: Are there any disclosable overriding interests for the title
+        scope_details:
+          $ref: '#/components/schemas/TitleScopeDetails'
+        title_number:
+          maxLength: 9
+          minLength: 0
+          pattern: ^[A-Z]{0,3}[0-9]{1,6}[ZT]?$
+          type: string
+          description: The HM Land Registry title number
+        title_type:
+          type: string
+          description: '* `REGISTER_TITLE` - Any titles on REGISTER_UPDATE or REMOVE_JP1 application types
+
+            * `TRANSFEROR_TITLE` - Titles related to the transferor (TRANSFER_OF_PART applications only)
+
+            * `LANDLORD_TITLE` - Titles related to the landlord (DISPOSITIONARY_FIRST_LEASE applications only)
+
+            * `TENANT_TITLE` - The title related to the tenant on a DISPOSITIONARY_FIRST_LEASE application which is a lease extension.
+
+            * `ADDITIONAL_TITLE` - Any other titles on TRANSFER_OF_PART or DISPOSITIONARY_FIRST_LEASE applications'
+          enum:
+          - REGISTER_TITLE
+          - TRANSFEROR_TITLE
+          - ADDITIONAL_TITLE
+          - LANDLORD_TITLE
+          - TENANT_TITLE
     Transaction:
       required:
       - fee_in_pence
@@ -1500,21 +1299,290 @@ components:
             type: string
           minItems: 1
           maxItems: 2147483647
-    UnknownParty_2:
+    DocumentMetadata:
       required:
-      - freeformat_name
-      - type
+      - certification_statement_type
+      - document_filename
       type: object
-      description: A party object to capture infomation about an unknown party
+      description: Metadata about the document that was uploaded
+      properties:
+        certification_statement_type:
+          type: string
+          description: '* `CERTIFIED` - I/we certify this is a true copy of an original document
+
+            * `CERTIFIED_BY_ANOTHER` - I/we certify this document is a true copy of an original document which is certified by a conveyancer to be a true copy of the original
+
+            * `NOT_CERTIFIED` - This document is an uncertified copy '
+          enum:
+          - CERTIFIED
+          - CERTIFIED_BY_ANOTHER
+          - NOT_CERTIFIED
+        document_filename:
+          maxLength: 255
+          minLength: 0
+          description: The filename of the document
+          type: string
+          example: thedeed.pdf
+    PrivateIndividual:
+      required:
+      - surname
+      type: object
+      description: A party object to capture infomation about a private individual
       allOf:
       - $ref: '#/components/schemas/PartyDetails'
       - type: object
         properties:
-          freeformat_name:
+          forenames:
             maxLength: 366
             minLength: 0
             type: string
-            description: The name of the party, when type is UNKNOWN
+            description: Forenames of a private individual
+            example: John
+          surname:
+            maxLength: 366
+            minLength: 0
+            type: string
+            description: The surname of a private individual
+            example: Doe
+    PoBoxAddress:
+      required:
+      - number
+      - post_town
+      - postcode
+      type: object
+      description: An address of a PO Box
+      allOf:
+      - $ref: '#/components/schemas/AddressDetails'
+      - type: object
+        properties:
+          care_of_name:
+            maxLength: 200
+            minLength: 0
+            type: string
+            description: The care of name to address correspondence to
+          number:
+            maxLength: 20
+            minLength: 0
+            type: string
+            description: The number of the PO Box
+          post_town:
+            maxLength: 35
+            minLength: 0
+            type: string
+            description: The town/city of the PO Box
+          postcode:
+            maxLength: 8
+            minLength: 5
+            type: string
+            description: The postcode of the PO Box
+    TitleScopeDetails:
+      required:
+      - scope
+      type: object
+      description: The scope of the title that is being updated
+      properties:
+        part_description:
+          maxLength: 100
+          minLength: 0
+          type: string
+          description: A description of the part of the title being updated
+          example: red outlined area
+        scope:
+          type: string
+          description: '* `WHOLE` - The whole of the title
+
+            * `PART` - Part of the title'
+          enum:
+          - WHOLE
+          - PART
+    ValueBand:
+      required:
+      - lower_value_band
+      type: object
+      description: "A range the value of the transaction falls between. Valid bands are:\n* `0 - 100000`\n * `100001 - 200000\n* `200001 - 500000`\n* `500001 - 1000000`\n* `1000001 +`"
+      properties:
+        lower_value_band:
+          minimum: 1
+          type: integer
+          format: int32
+          description: The lower value in the band in pounds
+        upper_value_band:
+          minimum: 100000
+          type: integer
+          format: int32
+          description: The upper value in the band in pounds. Not required when lower_value_band equals 1000001
+    SubstantiveApplication:
+      required:
+      - data
+      type: object
+      description: The request to submit an application to HM Land Registry
+      properties:
+        data:
+          $ref: '#/components/schemas/SubstantiveApplicationData'
+    AmountDetails:
+      type: object
+      description: A type of TransactionDetails that captures the value of the transaction
+      allOf:
+      - $ref: '#/components/schemas/TransactionDetails'
+      - type: object
+        properties:
+          value:
+            minimum: 0
+            description: The value associated with the transaction in pounds
+            type: integer
+            format: int32
+          value_band:
+            $ref: '#/components/schemas/ValueBand'
+          full_value_of_property_band:
+            $ref: '#/components/schemas/ValueBand'
+          full_value_of_property:
+            type: integer
+            format: int32
+            description: Full value of the property in the title(s) in pounds
+          outstanding_charge:
+            type: integer
+            format: int32
+            description: Value in pounds of any outstanding charge if applicable
+    PartyRole:
+      required:
+      - role
+      - party_reference
+      type: object
+      description: Information about the roles and capacities for a specific party
+      properties:
+        capacity:
+          type: string
+          description: 'This enum describes the capacity in which a party is acting in a transaction. The possible values are:
+
+            * `REGISTERED_PROPRIETOR` - The party is acting as a registered proprietor.
+
+            * `ENTITLED_REGISTERED_PROPRIETOR` - The party is acting as entitled to be registered as the proprietor.
+
+            * `ADDITIONAL_TRUSTEE` - The party is acting as an additional trustee.
+
+            * `INSOLVENCY_PRACTITIONER` - The party is acting as an insolvency practitioner.
+
+            * `RECEIVER` - The party is acting as receiver.
+
+            * `DEPUTY` - The party is acting as a deputy.
+
+            * `GUARDIAN` - The party is acting as a guardian.
+
+            * `PERSONAL_REPRESENTATIVE` - The party is acting as a personal representative.
+
+            * `NOT_REQUIRED` - Capacity is not required for the party role (at time of capture by land registry policy).
+
+            * `null` - The capacity value is not known for the party.
+
+            '
+          enum:
+          - REGISTERED_PROPRIETOR
+          - ENTITLED_REGISTERED_PROPRIETOR
+          - ADDITIONAL_TRUSTEE
+          - INSOLVENCY_PRACTITIONER
+          - RECEIVER
+          - DEPUTY
+          - GUARDIAN
+          - PERSONAL_REPRESENTATIVE
+          - NOT_REQUIRED
+        party_reference:
+          $ref: '#/components/schemas/PartyReference'
+        role:
+          type: string
+          description: The role the party is performing on the transaction
+          enum:
+          - ATTORNEY
+          - TRANSFEROR
+          - TRANSFEREE
+          - LENDER
+          - BORROWER
+          - PERSONAL_REPRESENTATIVE
+          - ASSENTOR
+          - LANDLORD
+          - TENANT
+    AddressReference_2:
+      maxLength: 50
+      minLength: 1
+      pattern: ^[A-Za-z0-9-?,_]+$
+      type: string
+      description: Unique identifier for addresses, used to reference addresses from elsewhere in the spec
+      example: address_reference_1
+    UkAddress_2:
+      type: object
+      description: A UK postal address
+      required:
+      - postcode
+      - post_town
+      - building_description
+      allOf:
+      - $ref: '#/components/schemas/AddressDetails'
+      - type: object
+        properties:
+          building_description:
+            maxLength: 85
+            minLength: 0
+            type: string
+            description: Name of residential or commercial premise
+          care_of_name:
+            maxLength: 200
+            minLength: 0
+            type: string
+            description: The care of name to address correspondence to
+          county:
+            type: string
+            description: UK County
+            maxLength: 50
+            minLength: 0
+          department_name:
+            maxLength: 60
+            minLength: 0
+            type: string
+            description: Used to supplement Organisation Name to identify a department within the organisation
+          dependent_locality:
+            maxLength: 35
+            minLength: 0
+            type: string
+            description: Used when the same thoroughfare or street name reoccurs in a Post town
+          dependent_street:
+            maxLength: 80
+            minLength: 0
+            type: string
+            description: Used to supplement street, when a street name is used twice in the same post town
+          double_dependent_locality:
+            maxLength: 35
+            minLength: 0
+            type: string
+            description: Used to supplement Dependant Locality, when the dependant locality exists twice in the same locality
+          organisation_name:
+            maxLength: 60
+            minLength: 0
+            type: string
+            description: The name of the organisation at the address
+          post_town:
+            maxLength: 35
+            minLength: 0
+            type: string
+            description: The town of the delivery point of the address
+          postcode:
+            type: string
+            description: A UK postcode
+            minLength: 1
+            pattern: ^([Gg][Ii][Rr] ?0[Aa]{2})|([A-Za-z]{1,2}[0-9][0-9A-Za-z]? ?[0-9][A-Za-z]{2})$
+          street:
+            maxLength: 80
+            minLength: 0
+            type: string
+            description: The street of the address
+          sub_building_description:
+            maxLength: 40
+            minLength: 0
+            type: string
+            description: Used to identify a specific building when a premise is split into individual units
+          uprn:
+            minimum: 1
+            type: integer
+            format: int64
+            description: The Unique Property Reference Number of the address
     OtherConveyancer_2:
       required:
       - address_reference
@@ -1539,47 +1607,141 @@ components:
           type: string
           description: The conveyancer's full name
           example: John Doe
-    AddressReference_2:
-      maxLength: 50
-      minLength: 1
-      pattern: ^[A-Za-z0-9-?,_]+$
-      type: string
-      description: Unique identifier for addresses, used to reference addresses from elsewhere in the spec
-      example: address_reference_1
-    OverseasCompany_2:
+    Transfer_2:
       required:
-      - incorporation_territory
-      - organisation_name
-      - roe_id_exempt
+      - additional_provisions_code
+      - consideration_type
+      - date
+      - title_guarantee_code
+      type: object
+      description: Details about a transfer transaction
+      allOf:
+      - $ref: '#/components/schemas/TransactionDetails'
+      - type: object
+        properties:
+          additional_provisions:
+            type: string
+            description: The provided additional provisions
+            maxLength: 10000
+            minLength: 0
+          additional_provisions_code:
+            type: string
+            description: '* `NO_PROVISIONS` - There are no additional provisions
+
+              * `MANUAL_TR1_FORM` - The details of the additional provision are on the TR1 form
+
+              * `DETAILS_ENTERED` - The details have been provided with the submission'
+            enum:
+            - NO_PROVISIONS
+            - MANUAL_TR1_FORM
+            - DETAILS_ENTERED
+          consideration_description:
+            maxLength: 200
+            minLength: 0
+            type: string
+            description: The consideration, when a consideration_type of OTHER is specified
+          consideration_type:
+            type: string
+            description: '* `MONETARY_VALUE` - The sum received by the transferor from the transferee for the property
+
+              * `NO_MONETARY_VALUE` - The transfer is not for money or anything that has a monetary value
+
+              * `OTHER` - to be specified in consideration_description'
+            enum:
+            - MONETARY_VALUE
+            - NO_MONETARY_VALUE
+            - OTHER
+          date:
+            type: string
+            format: date
+            description: The date of the transfer, in the format yyyy-MM-dd
+          title_guarantee_code:
+            type: string
+            description: '* `FULL` - the transferor(s) guarantee, to the best of their knowledge, that there are no financial charges/encumbrances (such as mortgages) or other third party interests (such as rights of way/leases) which affect the property other than those already revealed to the transferee(s).
+
+              * `LIMITED` - a more restricted set of promises by the transferor(s). This guarantees that the transferor(s) have not themselves created, or allowed to be created, any charge, encumbrance or third party interest that still exists at the date of the transfer'
+            enum:
+            - FULL
+            - LIMITED
+          trust_declaration_type:
+            type: string
+            description: '* `JOINT_TENANTS` - The transferees are joint tenants.
+
+              * `TENANTS_IN_COMMON` - The transferees are tenants in common
+
+              * `TRUST_DETAILS` - Details of the trust declaration will be provided in the application
+
+              * `FORM_JO` - The trust details will be provided in an attached FormJO document'
+            enum:
+            - JOINT_TENANTS
+            - TENANTS_IN_COMMON
+            - TRUST_DETAILS
+            - FORM_JO
+          trust_details:
+            maxLength: 300
+            minLength: 0
+            type: string
+            description: Details of the trust declaration, to be provided when trust_declaration_type is TRUST_DETAILS
+          value:
+            minimum: 0
+            type: integer
+            format: int32
+            description: Transaction value of the equity being transferred (including VAT if applicable) in pounds
+          value_band:
+            $ref: '#/components/schemas/ValueBand_2'
+          full_value_of_property_band:
+            $ref: '#/components/schemas/ValueBand_2'
+          full_value_of_property:
+            type: integer
+            format: int32
+            description: Full value of the property in the title(s) in pounds
+          outstanding_charge:
+            type: integer
+            format: int32
+            description: Value in pounds of any outstanding charge if applicable
+    ApplicationLodger_2:
+      description: Information about the person lodging the application (This is usually the conveyancer lodging on behalf of an individual)
+      required:
+      - email
       - type
       type: object
-      description: A party object to capture infomation about an overseas company
+      properties:
+        email:
+          maxLength: 254
+          minLength: 0
+          pattern: ^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$
+          type: string
+          description: The email address of the application lodger
+          example: me@site.co.uk
+        telephone:
+          maxLength: 50
+          minLength: 0
+          type: string
+          description: A telephone number that can be used to contact the person lodging the application
+          example: '+440000000000'
+        type:
+          type: string
+          description: '* `CONVEYANCER` - The user submitting the application is a conveyancer or acting on behalf of a conveyancer
+
+            * `NON_CONVEYANCER` - The user submitting the application is not a conveyancer'
+          enum:
+          - CONVEYANCER
+          - NON_CONVEYANCER
+    UnknownParty_2:
+      required:
+      - freeformat_name
+      - type
+      type: object
+      description: A party object to capture infomation about an unknown party
       allOf:
       - $ref: '#/components/schemas/PartyDetails'
       - type: object
         properties:
-          company_number:
-            maxLength: 30
-            minLength: 0
-            type: string
-            description: The UK Company Number or UK LLC number
-          organisation_name:
+          freeformat_name:
             maxLength: 366
             minLength: 0
             type: string
-            description: Full name registered at Companies House or Company name as incorporated in its state of origin
-          incorporation_territory:
-            maxLength: 254
-            minLength: 0
-            type: string
-            description: The territory, country or place where the company was first incorporated
-          roe_id:
-            type: string
-            description: Registration of Overseas Entity ID
-            pattern: OE\d{6}
-          roe_id_exempt:
-            type: boolean
-            description: Set to true if the company is exempt from providing a ROE ID
+            description: The name of the party, when type is UNKNOWN
     DocumentDetails_2:
       required:
       - document_id
@@ -1773,404 +1935,6 @@ components:
           - WCT
           - WINDING_UP
           - WIT_STATE
-    PoBoxAddress_2:
-      required:
-      - number
-      - post_town
-      - postcode
-      type: object
-      description: An address of a PO Box
-      allOf:
-      - $ref: '#/components/schemas/AddressDetails'
-      - type: object
-        properties:
-          care_of_name:
-            maxLength: 200
-            minLength: 0
-            type: string
-            description: The care of name to address correspondence to
-          number:
-            maxLength: 20
-            minLength: 0
-            type: string
-            description: The number of the PO Box
-          post_town:
-            maxLength: 35
-            minLength: 0
-            type: string
-            description: The town/city of the PO Box
-          postcode:
-            type: string
-            description: The postcode of the PO Box
-            minLength: 1
-            pattern: ^([Gg][Ii][Rr] ?0[Aa]{2})|([A-Za-z]{1,2}[0-9][0-9A-Za-z]? ?[0-9][A-Za-z]{2})$
-    UkAddress_2:
-      type: object
-      description: A UK postal address
-      required:
-      - postcode
-      - post_town
-      - building_description
-      allOf:
-      - $ref: '#/components/schemas/AddressDetails'
-      - type: object
-        properties:
-          building_description:
-            maxLength: 85
-            minLength: 0
-            type: string
-            description: Name of residential or commercial premise
-          care_of_name:
-            maxLength: 200
-            minLength: 0
-            type: string
-            description: The care of name to address correspondence to
-          county:
-            type: string
-            description: UK County
-            maxLength: 50
-            minLength: 0
-          department_name:
-            maxLength: 60
-            minLength: 0
-            type: string
-            description: Used to supplement Organisation Name to identify a department within the organisation
-          dependent_locality:
-            maxLength: 35
-            minLength: 0
-            type: string
-            description: Used when the same thoroughfare or street name reoccurs in a Post town
-          dependent_street:
-            maxLength: 80
-            minLength: 0
-            type: string
-            description: Used to supplement street, when a street name is used twice in the same post town
-          double_dependent_locality:
-            maxLength: 35
-            minLength: 0
-            type: string
-            description: Used to supplement Dependant Locality, when the dependant locality exists twice in the same locality
-          organisation_name:
-            maxLength: 60
-            minLength: 0
-            type: string
-            description: The name of the organisation at the address
-          post_town:
-            maxLength: 35
-            minLength: 0
-            type: string
-            description: The town of the delivery point of the address
-          postcode:
-            type: string
-            description: A UK postcode
-            minLength: 1
-            pattern: ^([Gg][Ii][Rr] ?0[Aa]{2})|([A-Za-z]{1,2}[0-9][0-9A-Za-z]? ?[0-9][A-Za-z]{2})$
-          street:
-            maxLength: 80
-            minLength: 0
-            type: string
-            description: The street of the address
-          sub_building_description:
-            maxLength: 40
-            minLength: 0
-            type: string
-            description: Used to identify a specific building when a premise is split into individual units
-          uprn:
-            minimum: 1
-            type: integer
-            format: int64
-            description: The Unique Property Reference Number of the address
-    UKCompany_2:
-      required:
-      - organisation_name
-      type: object
-      description: A party object to capture infomation about an UK company
-      allOf:
-      - $ref: '#/components/schemas/PartyDetails'
-      - type: object
-        properties:
-          company_number:
-            maxLength: 30
-            minLength: 0
-            type: string
-            description: The UK Company Number or UK LLC number
-          organisation_name:
-            maxLength: 366
-            minLength: 0
-            type: string
-            description: Full name registered at Companies House or Company name as incorporated in its state of origin
-    ValueBand_2:
-      required:
-      - lower_value_band
-      type: object
-      description: "A range the value of the transaction falls between. Valid bands are:\n* `0 - 100000`\n * `100001 - 200000`\n* `200001 - 500000`\n* `500001 - 1000000`\n* `1000001 +`"
-      properties:
-        lower_value_band:
-          minimum: 0
-          type: integer
-          format: int32
-          description: The lower value in the band in pounds
-        upper_value_band:
-          minimum: 100000
-          type: integer
-          format: int32
-          description: The upper value in the band in pounds. Not required when lower_value_band equals 1000001
-    PartyRole_2:
-      required:
-      - role
-      - party_reference
-      type: object
-      description: Information about the roles and capacities for a specific party
-      properties:
-        attorneys:
-          type: array
-          description: List of references to parties who hold power of attorney for this party
-          items:
-            type: string
-            description: List of references to parties who hold power of attorney for this party
-          maxItems: 4
-          minItems: 0
-        capacity:
-          type: string
-          description: 'This enum describes the capacity in which a party is acting in a transaction. The possible values are:
-
-            * `REGISTERED_PROPRIETOR` - The party is acting as a registered proprietor.
-
-            * `ENTITLED_REGISTERED_PROPRIETOR` - The party is acting as entitled to be registered as the proprietor.
-
-            * `ADDITIONAL_TRUSTEE` - The party is acting as an additional trustee.
-
-            * `INSOLVENCY_PRACTITIONER` - The party is acting as an insolvency practitioner.
-
-            * `RECEIVER` - The party is acting as receiver.
-
-            * `DEPUTY` - The party is acting as a deputy.
-
-            * `GUARDIAN` - The party is acting as a guardian.
-
-            * `PERSONAL_REPRESENTATIVE` - The party is acting as a personal representative.
-
-            * `NOT_REQUIRED` - Capacity is not required for the party role (at time of capture by land registry policy).
-
-            * `null` - The capacity value is not known for the party.
-
-            '
-          enum:
-          - REGISTERED_PROPRIETOR
-          - ENTITLED_REGISTERED_PROPRIETOR
-          - ADDITIONAL_TRUSTEE
-          - INSOLVENCY_PRACTITIONER
-          - RECEIVER
-          - DEPUTY
-          - GUARDIAN
-          - PERSONAL_REPRESENTATIVE
-          - NOT_REQUIRED
-        party_reference:
-          $ref: '#/components/schemas/PartyReference'
-        role:
-          type: string
-          description: The role the party is performing on the transaction
-          enum:
-          - ATTORNEY
-          - TRANSFEROR
-          - TRANSFEREE
-          - LENDER
-          - BORROWER
-          - PERSONAL_REPRESENTATIVE
-          - ASSENTOR
-          - LANDLORD
-          - TENANT
-    ApplicationLodger_2:
-      description: Information about the person lodging the application (This is usually the conveyancer lodging on behalf of an individual)
-      required:
-      - email
-      - type
-      type: object
-      properties:
-        email:
-          maxLength: 254
-          minLength: 0
-          pattern: ^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$
-          type: string
-          description: The email address of the application lodger
-          example: me@site.co.uk
-        telephone:
-          maxLength: 50
-          minLength: 0
-          type: string
-          description: A telephone number that can be used to contact the person lodging the application
-          example: '+440000000000'
-        type:
-          type: string
-          description: '* `CONVEYANCER` - The user submitting the application is a conveyancer or acting on behalf of a conveyancer
-
-            * `NON_CONVEYANCER` - The user submitting the application is not a conveyancer'
-          enum:
-          - CONVEYANCER
-          - NON_CONVEYANCER
-    PrivateIndividual_2:
-      required:
-      - surname
-      - type
-      type: object
-      description: A party object to capture infomation about a private individual
-      allOf:
-      - $ref: '#/components/schemas/PartyDetails'
-      - type: object
-        properties:
-          forenames:
-            maxLength: 366
-            minLength: 0
-            type: string
-            description: Forenames of a private individual
-            example: John
-          surname:
-            maxLength: 366
-            minLength: 0
-            type: string
-            description: The surname of a private individual
-            example: Doe
-    ValidationDisagreement:
-      description: Fields to describe which validation results are contested and why
-      properties:
-        comment:
-          type: string
-          description: A free text description of the disagreement
-          maxLength: 250
-          minLength: 1
-        reason:
-          type: string
-          description: The reason for disagreeing with the validation result
-          enum:
-          - DISAGREE_WITH_REGISTER
-          - HMLR_DATA_INCORRECT_OR_OUTDATED
-          - EXCEPTION_NOT_COVERED_BY_BUSINESS_RULES
-        validation_pointer:
-          type: string
-          description: A JSON pointer to the contested field in the submission payload. Should match the 'pointer' returned within a status API error
-          maxLength: 250
-          minLength: 1
-        validation_type:
-          type: string
-          description: The type of validation being contested. Should match the 'type' returned within a status API error
-          maxLength: 250
-          minLength: 1
-      required:
-      - comment
-      - reason
-      - validation_pointer
-      - validation_type
-    ProblemDetails_2:
-      required:
-      - detail
-      - type
-      description: Detailed information about an error
-      type: object
-      properties:
-        type:
-          type: string
-          description: The type of error received
-          example: L2_MDREF_ERROR
-        detail:
-          type: string
-          description: A longer description about the type of error received
-          example: The MDref included in the request does not exist
-        pointer:
-          type: string
-          description: A JSON pointer to the location in the JSON payload that caused the error (optional)
-          example: /data/transaction/t1/mdref
-    Transfer_2:
-      required:
-      - additional_provisions_code
-      - consideration_type
-      - date
-      - title_guarantee_code
-      type: object
-      description: Details about a transfer transaction
-      allOf:
-      - $ref: '#/components/schemas/TransactionDetails'
-      - type: object
-        properties:
-          additional_provisions:
-            type: string
-            description: The provided additional provisions
-            maxLength: 10000
-            minLength: 0
-          additional_provisions_code:
-            type: string
-            description: '* `NO_PROVISIONS` - There are no additional provisions
-
-              * `MANUAL_TR1_FORM` - The details of the additional provision are on the TR1 form
-
-              * `DETAILS_ENTERED` - The details have been provided with the submission'
-            enum:
-            - NO_PROVISIONS
-            - MANUAL_TR1_FORM
-            - DETAILS_ENTERED
-          consideration_description:
-            maxLength: 200
-            minLength: 0
-            type: string
-            description: The consideration, when a consideration_type of OTHER is specified
-          consideration_type:
-            type: string
-            description: '* `MONETARY_VALUE` - The sum received by the transferor from the transferee for the property
-
-              * `NO_MONETARY_VALUE` - The transfer is not for money or anything that has a monetary value
-
-              * `OTHER` - to be specified in consideration_description'
-            enum:
-            - MONETARY_VALUE
-            - NO_MONETARY_VALUE
-            - OTHER
-          date:
-            type: string
-            format: date
-            description: The date of the transfer, in the format yyyy-MM-dd
-          title_guarantee_code:
-            type: string
-            description: '* `FULL` - the transferor(s) guarantee, to the best of their knowledge, that there are no financial charges/encumbrances (such as mortgages) or other third party interests (such as rights of way/leases) which affect the property other than those already revealed to the transferee(s).
-
-              * `LIMITED` - a more restricted set of promises by the transferor(s). This guarantees that the transferor(s) have not themselves created, or allowed to be created, any charge, encumbrance or third party interest that still exists at the date of the transfer'
-            enum:
-            - FULL
-            - LIMITED
-          trust_declaration_type:
-            type: string
-            description: '* `JOINT_TENANTS` - The transferees are joint tenants.
-
-              * `TENANTS_IN_COMMON` - The transferees are tenants in common
-
-              * `TRUST_DETAILS` - Details of the trust declaration will be provided in the application
-
-              * `FORM_JO` - The trust details will be provided in an attached FormJO document'
-            enum:
-            - JOINT_TENANTS
-            - TENANTS_IN_COMMON
-            - TRUST_DETAILS
-            - FORM_JO
-          trust_details:
-            maxLength: 300
-            minLength: 0
-            type: string
-            description: Details of the trust declaration, to be provided when trust_declaration_type is TRUST_DETAILS
-          value:
-            minimum: 0
-            type: integer
-            format: int32
-            description: Transaction value of the equity being transferred (including VAT if applicable) in pounds
-          value_band:
-            $ref: '#/components/schemas/ValueBand_2'
-          full_value_of_property_band:
-            $ref: '#/components/schemas/ValueBand_2'
-          full_value_of_property:
-            type: integer
-            format: int32
-            description: Full value of the property in the title(s) in pounds
-          outstanding_charge:
-            type: integer
-            format: int32
-            description: Value in pounds of any outstanding charge if applicable
     SubstantiveApplicationData_2:
       required:
       - customer_reference
@@ -2252,6 +2016,78 @@ components:
           - TRANSFER_OF_PART
           - DISPOSITIONARY_FIRST_LEASE
           - REMOVE_JP1
+    OverseasCompany_2:
+      required:
+      - incorporation_territory
+      - organisation_name
+      - roe_id_exempt
+      - type
+      type: object
+      description: A party object to capture infomation about an overseas company
+      allOf:
+      - $ref: '#/components/schemas/PartyDetails'
+      - type: object
+        properties:
+          company_number:
+            maxLength: 30
+            minLength: 0
+            type: string
+            description: The UK Company Number or UK LLC number
+          organisation_name:
+            maxLength: 366
+            minLength: 0
+            type: string
+            description: Full name registered at Companies House or Company name as incorporated in its state of origin
+          incorporation_territory:
+            maxLength: 254
+            minLength: 0
+            type: string
+            description: The territory, country or place where the company was first incorporated
+          roe_id:
+            type: string
+            description: Registration of Overseas Entity ID
+            pattern: OE\d{6}
+          roe_id_exempt:
+            type: boolean
+            description: Set to true if the company is exempt from providing a ROE ID
+    ProblemDetails_2:
+      required:
+      - detail
+      - type
+      description: Detailed information about an error
+      type: object
+      properties:
+        type:
+          type: string
+          description: The type of error received
+          example: L2_MDREF_ERROR
+        detail:
+          type: string
+          description: A longer description about the type of error received
+          example: The MDref included in the request does not exist
+        pointer:
+          type: string
+          description: A JSON pointer to the location in the JSON payload that caused the error (optional)
+          example: /data/transaction/t1/mdref
+    UKCompany_2:
+      required:
+      - organisation_name
+      type: object
+      description: A party object to capture infomation about an UK company
+      allOf:
+      - $ref: '#/components/schemas/PartyDetails'
+      - type: object
+        properties:
+          company_number:
+            maxLength: 30
+            minLength: 0
+            type: string
+            description: The UK Company Number or UK LLC number
+          organisation_name:
+            maxLength: 366
+            minLength: 0
+            type: string
+            description: Full name registered at Companies House or Company name as incorporated in its state of origin
     Transaction_2:
       required:
       - fee_in_pence
@@ -2450,6 +2286,170 @@ components:
             maxLength: 9
             minLength: 0
             type: string
+    PrivateIndividual_2:
+      required:
+      - surname
+      - type
+      type: object
+      description: A party object to capture infomation about a private individual
+      allOf:
+      - $ref: '#/components/schemas/PartyDetails'
+      - type: object
+        properties:
+          forenames:
+            maxLength: 366
+            minLength: 0
+            type: string
+            description: Forenames of a private individual
+            example: John
+          surname:
+            maxLength: 366
+            minLength: 0
+            type: string
+            description: The surname of a private individual
+            example: Doe
+    PoBoxAddress_2:
+      required:
+      - number
+      - post_town
+      - postcode
+      type: object
+      description: An address of a PO Box
+      allOf:
+      - $ref: '#/components/schemas/AddressDetails'
+      - type: object
+        properties:
+          care_of_name:
+            maxLength: 200
+            minLength: 0
+            type: string
+            description: The care of name to address correspondence to
+          number:
+            maxLength: 20
+            minLength: 0
+            type: string
+            description: The number of the PO Box
+          post_town:
+            maxLength: 35
+            minLength: 0
+            type: string
+            description: The town/city of the PO Box
+          postcode:
+            type: string
+            description: The postcode of the PO Box
+            minLength: 1
+            pattern: ^([Gg][Ii][Rr] ?0[Aa]{2})|([A-Za-z]{1,2}[0-9][0-9A-Za-z]? ?[0-9][A-Za-z]{2})$
+    ValueBand_2:
+      required:
+      - lower_value_band
+      type: object
+      description: "A range the value of the transaction falls between. Valid bands are:\n* `0 - 100000`\n * `100001 - 200000`\n* `200001 - 500000`\n* `500001 - 1000000`\n* `1000001 +`"
+      properties:
+        lower_value_band:
+          minimum: 0
+          type: integer
+          format: int32
+          description: The lower value in the band in pounds
+        upper_value_band:
+          minimum: 100000
+          type: integer
+          format: int32
+          description: The upper value in the band in pounds. Not required when lower_value_band equals 1000001
+    ValidationDisagreement:
+      description: Fields to describe which validation results are contested and why
+      properties:
+        comment:
+          type: string
+          description: A free text description of the disagreement
+          maxLength: 250
+          minLength: 1
+        reason:
+          type: string
+          description: The reason for disagreeing with the validation result
+          enum:
+          - DISAGREE_WITH_REGISTER
+          - HMLR_DATA_INCORRECT_OR_OUTDATED
+          - EXCEPTION_NOT_COVERED_BY_BUSINESS_RULES
+        validation_pointer:
+          type: string
+          description: A JSON pointer to the contested field in the submission payload. Should match the 'pointer' returned within a status API error
+          maxLength: 250
+          minLength: 1
+        validation_type:
+          type: string
+          description: The type of validation being contested. Should match the 'type' returned within a status API error
+          maxLength: 250
+          minLength: 1
+      required:
+      - comment
+      - reason
+      - validation_pointer
+      - validation_type
+    PartyRole_2:
+      required:
+      - role
+      - party_reference
+      type: object
+      description: Information about the roles and capacities for a specific party
+      properties:
+        attorneys:
+          type: array
+          description: List of references to parties who hold power of attorney for this party
+          items:
+            type: string
+            description: List of references to parties who hold power of attorney for this party
+          maxItems: 4
+          minItems: 0
+        capacity:
+          type: string
+          description: 'This enum describes the capacity in which a party is acting in a transaction. The possible values are:
+
+            * `REGISTERED_PROPRIETOR` - The party is acting as a registered proprietor.
+
+            * `ENTITLED_REGISTERED_PROPRIETOR` - The party is acting as entitled to be registered as the proprietor.
+
+            * `ADDITIONAL_TRUSTEE` - The party is acting as an additional trustee.
+
+            * `INSOLVENCY_PRACTITIONER` - The party is acting as an insolvency practitioner.
+
+            * `RECEIVER` - The party is acting as receiver.
+
+            * `DEPUTY` - The party is acting as a deputy.
+
+            * `GUARDIAN` - The party is acting as a guardian.
+
+            * `PERSONAL_REPRESENTATIVE` - The party is acting as a personal representative.
+
+            * `NOT_REQUIRED` - Capacity is not required for the party role (at time of capture by land registry policy).
+
+            * `null` - The capacity value is not known for the party.
+
+            '
+          enum:
+          - REGISTERED_PROPRIETOR
+          - ENTITLED_REGISTERED_PROPRIETOR
+          - ADDITIONAL_TRUSTEE
+          - INSOLVENCY_PRACTITIONER
+          - RECEIVER
+          - DEPUTY
+          - GUARDIAN
+          - PERSONAL_REPRESENTATIVE
+          - NOT_REQUIRED
+        party_reference:
+          $ref: '#/components/schemas/PartyReference'
+        role:
+          type: string
+          description: The role the party is performing on the transaction
+          enum:
+          - ATTORNEY
+          - TRANSFEROR
+          - TRANSFEREE
+          - LENDER
+          - BORROWER
+          - PERSONAL_REPRESENTATIVE
+          - ASSENTOR
+          - LANDLORD
+          - TENANT
   securitySchemes:
     basicAuth:
       scheme: basic

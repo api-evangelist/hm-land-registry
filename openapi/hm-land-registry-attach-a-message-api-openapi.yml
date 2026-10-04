@@ -59,21 +59,6 @@ paths:
       - Attach a message
 components:
   schemas:
-    AttachAMessageRequest:
-      required:
-      - data
-      type: object
-      description: The request to send to the endpoint to request an upload URL
-      properties:
-        data:
-          properties:
-            message_text:
-              type: string
-              description: The content of the message to be attached
-              maxLength: 4034
-              minLength: 0
-          required:
-          - message_text
     ProblemDetails:
       required:
       - detail
@@ -122,6 +107,21 @@ components:
           description: A list of all errors generated
           items:
             $ref: '#/components/schemas/ProblemDetails'
+    AttachAMessageRequest:
+      required:
+      - data
+      type: object
+      description: The request to send to the endpoint to request an upload URL
+      properties:
+        data:
+          properties:
+            message_text:
+              type: string
+              description: The content of the message to be attached
+              maxLength: 4034
+              minLength: 0
+          required:
+          - message_text
   securitySchemes:
     basicAuth:
       scheme: basic

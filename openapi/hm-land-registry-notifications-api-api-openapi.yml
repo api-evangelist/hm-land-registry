@@ -398,50 +398,6 @@ components:
           - string
           - 'null'
           example: occurred_before
-    ProblemDetail:
-      type: object
-      required:
-      - type
-      properties:
-        type:
-          type: string
-          format: uri
-          example: about:blank
-          description: A uri referencing documentation for this problem
-        title:
-          type:
-          - string
-          - 'null'
-          example: Server Error
-          description: A brief summary of the problem
-        detail:
-          type:
-          - string
-          - 'null'
-          example: There was a problem with your request, try again soon.
-          description: A human readable explanation of the problem
-        instance:
-          type:
-          - string
-          - 'null'
-          format: uri
-          example: /path/you/called
-          description: A reference that identifies the specific occurrence of the problem
-        status:
-          type:
-          - integer
-          - 'null'
-          minimum: 100
-          maximum: 599
-          description: HTTP status code of the original response
-          example: 500
-        errors:
-          type:
-          - array
-          - 'null'
-          description: An extension to the RFC that describes errors that occurred in the request
-          items:
-            $ref: '#/components/schemas/ErrorDescription'
     BulkAcknowledgeResult:
       type: object
       properties:
@@ -501,6 +457,50 @@ components:
           type: object
           description: The payload of the notification
           additionalProperties: true
+    ProblemDetail:
+      type: object
+      required:
+      - type
+      properties:
+        type:
+          type: string
+          format: uri
+          example: about:blank
+          description: A uri referencing documentation for this problem
+        title:
+          type:
+          - string
+          - 'null'
+          example: Server Error
+          description: A brief summary of the problem
+        detail:
+          type:
+          - string
+          - 'null'
+          example: There was a problem with your request, try again soon.
+          description: A human readable explanation of the problem
+        instance:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: /path/you/called
+          description: A reference that identifies the specific occurrence of the problem
+        status:
+          type:
+          - integer
+          - 'null'
+          minimum: 100
+          maximum: 599
+          description: HTTP status code of the original response
+          example: 500
+        errors:
+          type:
+          - array
+          - 'null'
+          description: An extension to the RFC that describes errors that occurred in the request
+          items:
+            $ref: '#/components/schemas/ErrorDescription'
     ErrorDescription_2:
       type: object
       required:
