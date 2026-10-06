@@ -99,7 +99,7 @@ tags_raw:
 - PropTech
 - Real-Estate
 created: '2026-07-26'
-modified: '2026-07-26'
+modified: '2026-10-06'
 specificationVersion: '0.23'
 apis:
 - aid: hm-land-registry:hm-land-registry-open-data-sparql-api
@@ -382,6 +382,10 @@ apis:
   - type: Documentation
     url: https://landregistry.github.io/bgtechdoc/
 common:
+- url: https://www.gov.uk/search/news-and-communications
+  type: Blog
+- url: https://www.gov.uk/search/news-and-communications.atom
+  type: BlogRSS
 - type: Overlay
   url: overlays/hm-land-registry-land-register-api-overlay.yaml
 - type: IssueTracker
