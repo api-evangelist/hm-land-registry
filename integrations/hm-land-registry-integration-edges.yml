@@ -1,0 +1,125 @@
+edges:
+- partner_name: UK Government API Catalogue (CDDO)
+  partner: null
+  partner_match: register
+  type: register
+  direction: partner-built
+  channel: standard-directory
+  relationship: standard-participant
+  evidence: https://raw.githubusercontent.com/co-cddo/api-catalogue/main/data/catalogue.csv
+  match:
+    method: domain+verified
+    domains:
+    - landregistry.gov.uk
+  register_listing:
+    publisher: hm-land-registry
+    apis:
+    - name: Application Enquiry
+      url: https://businessgateway.landregistry.gov.uk/b2b/BGSoapEngine/ApplicationEnquiryV1_0WebService?wsdl
+      documentation: https://landregistry.github.io/bgtechdoc/services/application_enquiry/
+      license: null
+      date_updated: '2022-10-11'
+      matched_on: url
+    - name: Discharge Enquiry
+      url: https://businessgateway.landregistry.gov.uk/b2b/BGSoapEngine/DischargeActivityV1_0WebService?wsdl
+      documentation: https://landregistry.github.io/bgtechdoc/services/discharge_activity/
+      license: null
+      date_updated: '2022-10-11'
+      matched_on: url
+    - name: e-Document Registration Service
+      url: https://businessgateway.landregistry.gov.uk/b2b/ECDRS_SoapEngine/EDocumentRegistrationV2_1WebService?wsdl
+      documentation: https://landregistry.github.io/bgtechdoc/services/edrs/
+      license: null
+      date_updated: '2022-11-23'
+      matched_on: url
+    - name: Land Charges Full Search
+      url: https://businessgateway.landregistry.gov.uk/b2b/BGSoapEngine/FullSearchV2_1WebService?wsdl
+      documentation: https://landregistry.github.io/bgtechdoc/services/land_charges_full_search/
+      license: null
+      date_updated: '2023-01-10'
+      matched_on: url
+    - name: Land Charges Bankruptcy Search
+      url: https://businessgateway.landregistry.gov.uk/b2b/BGSoapEngine/BankruptcySearchV2_1WebService?wsdl
+      documentation: https://landregistry.github.io/bgtechdoc/services/land_charges_bankruptcy_search/
+      license: null
+      date_updated: '2023-02-13'
+      matched_on: url
+    - name: Local Land Charges Search
+      url: https://businessgateway.landregistry.gov.uk/b2b/ECLLC_SoapEngine/LLCSearchV2_0WebService?wsdl
+      documentation: https://landregistry.github.io/bgtechdoc/services/local_land_charges_search/
+      license: null
+      date_updated: '2023-02-20'
+      matched_on: url
+    - name: Official Copy Document Availability
+      url: https://businessgateway.landregistry.gov.uk/bg2/s1/v1
+      documentation: https://landregistry.github.io/bgtechdoc/services/official_copy_document_availability_v1/
+      license: null
+      date_updated: '2026-03-31'
+      matched_on: url
+    - name: Official Copy Document Availability V2
+      url: https://businessgateway.landregistry.gov.uk/bg2/api/v2/titles/{title_number}/official-copies/availability
+      documentation: https://landregistry.github.io/bgtechdoc/services/official_copy_document_availability_v2/#official-copy-document-availability-v2
+      license: null
+      date_updated: '2026-03-31'
+      matched_on: url
+    - name: Search by Property Description
+      url: https://businessgateway.landregistry.gov.uk/b2b/BGSoapEngine/EnquiryByPropertyDescriptionV2_0WebService?wsdl
+      documentation: https://landregistry.github.io/bgtechdoc/services/search_property_description/
+      license: null
+      date_updated: '2026-03-31'
+      matched_on: url
+    - name: Estimated Completion Date
+      url: https://businessgateway.landregistry.gov.uk/bg2/api/v1/applications/{application_reference}/estimate-completion-date
+      documentation: https://landregistry.github.io/bgtechdoc/services/estimated_completion_date/
+      license: null
+      date_updated: '2023-10-12'
+      matched_on: url
+    - name: Official Copy Title Known
+      url: https://businessgateway.landregistry.gov.uk/b2b/BGSoapEngine/OfficialCopyTitleKnownV2_1WebService?wsdl
+      documentation: https://landregistry.github.io/bgtechdoc/services/official_copy_title_known/
+      license: null
+      date_updated: '2024-01-16'
+      matched_on: url
+    - name: Official Search of Whole (with priority)
+      url: https://businessgateway.landregistry.gov.uk/b2b/BGSoapEngine/OfficialSearchV2_1WebService?wsdl
+      documentation: https://landregistry.github.io/bgtechdoc/services/official_search_of_whole/
+      license: null
+      date_updated: '2024-01-23'
+      matched_on: url
+    - name: Official Search of Whole (with Priority) with Data
+      url: https://businessgateway.landregistry.gov.uk/bg2/api/v1/official-searches-of-whole
+      documentation: https://landregistry.github.io/bgtechdoc/services/official_search_of_whole_rest/
+      license: null
+      date_updated: '2024-01-24'
+      matched_on: url
+    - name: Official Search of Part
+      url: https://businessgateway.landregistry.gov.uk/b2b/BGSoapEngine/OfficialSearchOfPartV2_1WebService?wsdl
+      documentation: https://landregistry.github.io/bgtechdoc/services/official_search_of_part/
+      license: null
+      date_updated: '2024-06-24'
+      matched_on: url
+    - name: Online Owner Verification
+      url: https://businessgateway.landregistry.gov.uk/b2b/EOOV_SoapEngine/OnlineOwnershipVerificationV1_0WebService?wsdl
+      documentation: https://landregistry.github.io/bgtechdoc/services/online_owner_verification/
+      license: null
+      date_updated: '2025-01-06'
+      matched_on: url
+  contract_reference:
+    register: co-cddo/api-catalogue (UK Government API Catalogue, CDDO)
+    spec_file: null
+    role: public-sector-api-publisher
+    registered_name: hm-land-registry
+    register_id: hm-land-registry
+    matched_domain: landregistry.gov.uk
+    detected_by: sweep-gov-open-data.py
+    detected: '2026-10-15'
+  detected_by: sweep-gov-open-data.py
+  first_seen: '2026-10-15'
+generated: '2026-10-15'
+method: searched
+checked:
+- 'https://api.gouv.fr/api/v1/apis (200 text/html: not machine-readable)'
+- 'https://catalog.data.gov/api/3/action/package_search (404; GSA mirror keyed: 403 API_KEY_MISSING)'
+- https://raw.githubusercontent.com/co-cddo/api-catalogue/main/data/catalogue.csv
+source:
+- https://raw.githubusercontent.com/co-cddo/api-catalogue/main/data/catalogue.csv
