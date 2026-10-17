@@ -170,26 +170,14 @@ components:
           description: A list of all errors generated
           items:
             $ref: '#/components/schemas/ProblemDetails'
-    ProblemDetails:
+    DocumentUploadUrlRequest:
       required:
-      - detail
-      - type
-      description: Detailed information about an error
+      - data
       type: object
+      description: The request to send to the endpoint to request an upload URL
       properties:
-        type:
-          type: string
-          description: The type of error received
-          example: L2_MDREF_ERROR
-        detail:
-          type: string
-          description: A longer description about the type of error received
-          example: The MDref included in the request does not exist
-        pointer:
-          type: string
-          description: A JSON pointer to the location in the JSON payload that caused the error (optional)
-          example:
-          - /data/transaction/t1/mdref
+        data:
+          $ref: '#/components/schemas/DocumentUploadUrlData'
     DocumentUploadUrlData:
       required:
       - file_length
@@ -377,33 +365,7 @@ components:
           minLength: 44
           type: string
           description: The checksum of file contents, as a base64 encoded string of the SHA-256 binary digest of the file, which should be 44 characters long. See the Business Gateway developer pack for detailed information on generating the correct SHA-256 hash
-    DocumentUploadUrlDataResponse:
-      type: object
-      description: The response object containing information needed for uploading a document
-      properties:
-        data:
-          $ref: '#/components/schemas/DocumentUploadUrlResponse'
-    DocumentUploadUrlResponse:
-      type: object
-      description: The response object containing information needed for uploading a document
-      properties:
-        upload_url:
-          type: string
-          description: The URL used to upload the document. The request must be a PUT HTTP request, where the body of the request is the document that will be uploaded. This URL should only be used once
-          example: about:blank
-        document_id:
-          type: string
-          description: A unique id for this document, which should be used in the application submission request
-          example: 12345678-1234-1234-1234-1234-123456789abc
-    DocumentUploadUrlRequest:
-      required:
-      - data
-      type: object
-      description: The request to send to the endpoint to request an upload URL
-      properties:
-        data:
-          $ref: '#/components/schemas/DocumentUploadUrlData'
-    ProblemDetails_2:
+    ProblemDetails:
       required:
       - detail
       - type
@@ -421,7 +383,26 @@ components:
         pointer:
           type: string
           description: A JSON pointer to the location in the JSON payload that caused the error (optional)
-          example: /data/transaction/t1/mdref
+          example:
+          - /data/transaction/t1/mdref
+    DocumentUploadUrlResponse:
+      type: object
+      description: The response object containing information needed for uploading a document
+      properties:
+        upload_url:
+          type: string
+          description: The URL used to upload the document. The request must be a PUT HTTP request, where the body of the request is the document that will be uploaded. This URL should only be used once
+          example: about:blank
+        document_id:
+          type: string
+          description: A unique id for this document, which should be used in the application submission request
+          example: 12345678-1234-1234-1234-1234-123456789abc
+    DocumentUploadUrlDataResponse:
+      type: object
+      description: The response object containing information needed for uploading a document
+      properties:
+        data:
+          $ref: '#/components/schemas/DocumentUploadUrlResponse'
     DocumentUploadUrlData_2:
       required:
       - file_length
@@ -615,6 +596,25 @@ components:
           minLength: 44
           type: string
           description: The checksum of file contents, as a base64 encoded string of the SHA-256 binary digest of the file, which should be 44 characters long. See the Business Gateway developer pack for detailed information on generating the correct SHA-256 hash
+    ProblemDetails_2:
+      required:
+      - detail
+      - type
+      description: Detailed information about an error
+      type: object
+      properties:
+        type:
+          type: string
+          description: The type of error received
+          example: L2_MDREF_ERROR
+        detail:
+          type: string
+          description: A longer description about the type of error received
+          example: The MDref included in the request does not exist
+        pointer:
+          type: string
+          description: A JSON pointer to the location in the JSON payload that caused the error (optional)
+          example: /data/transaction/t1/mdref
   securitySchemes:
     basicAuth:
       scheme: basic

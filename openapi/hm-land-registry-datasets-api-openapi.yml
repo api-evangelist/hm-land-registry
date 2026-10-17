@@ -141,6 +141,20 @@ paths:
           $ref: '#/components/responses/AccessDenied'
 components:
   schemas:
+    DownloadResponse:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/Download'
+        success:
+          type: boolean
+    DatasetSummary:
+      type: object
+      properties:
+        name:
+          type: string
+        title:
+          type: string
     Download:
       type: object
       properties:
@@ -153,66 +167,6 @@ components:
         valid_for_seconds:
           type: integer
           example: 10
-    DatasetSummary:
-      type: object
-      properties:
-        name:
-          type: string
-        title:
-          type: string
-    DatasetHistoryResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-        dataset:
-          type: string
-        dataset_history:
-          type: array
-          items:
-            $ref: '#/components/schemas/HistoryEntry'
-    DatasetListResponse:
-      type: object
-      properties:
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/DatasetSummary'
-        success:
-          type: boolean
-    DatasetResponse:
-      type: object
-      properties:
-        result:
-          $ref: '#/components/schemas/Dataset'
-        success:
-          type: boolean
-    Resource:
-      type: object
-      properties:
-        file_count:
-          type: integer
-        file_name:
-          type: string
-        file_size:
-          type: string
-        format:
-          type: string
-        name:
-          type: string
-        row_count:
-          type: integer
-    HistoryEntry:
-      type: object
-      properties:
-        file_size:
-          type: string
-        filename:
-          type: string
-        last_updated:
-          type: string
-        unsorted_date:
-          type: string
     Error:
       type: object
       properties:
@@ -266,22 +220,59 @@ components:
           type: string
         version:
           type: string
-    DownloadResponse:
+    Resource:
+      type: object
+      properties:
+        file_count:
+          type: integer
+        file_name:
+          type: string
+        file_size:
+          type: string
+        format:
+          type: string
+        name:
+          type: string
+        row_count:
+          type: integer
+    DatasetResponse:
       type: object
       properties:
         result:
-          $ref: '#/components/schemas/Download'
+          $ref: '#/components/schemas/Dataset'
         success:
           type: boolean
-  parameters:
-    DatasetName:
-      name: dataset_name
-      in: path
-      required: true
-      description: The dataset name, for example ccod, ocod, nps or nps_sample. CCOD and OCOD remain the machine names for the renamed UK companies and Overseas companies datasets.
-      schema:
-        type: string
-      example: ccod
+    DatasetHistoryResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        dataset:
+          type: string
+        dataset_history:
+          type: array
+          items:
+            $ref: '#/components/schemas/HistoryEntry'
+    HistoryEntry:
+      type: object
+      properties:
+        file_size:
+          type: string
+        filename:
+          type: string
+        last_updated:
+          type: string
+        unsorted_date:
+          type: string
+    DatasetListResponse:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/DatasetSummary'
+        success:
+          type: boolean
   responses:
     AccessDenied:
       description: Access denied. Returned when no API key is supplied, or when the caller has not signed the licence for the requested dataset.
@@ -292,6 +283,15 @@ components:
           example:
             error: 'Access denied: You need to provide your API Key to perform this operation'
             success: false
+  parameters:
+    DatasetName:
+      name: dataset_name
+      in: path
+      required: true
+      description: The dataset name, for example ccod, ocod, nps or nps_sample. CCOD and OCOD remain the machine names for the renamed UK companies and Overseas companies datasets.
+      schema:
+        type: string
+      example: ccod
   securitySchemes:
     apiKey:
       type: apiKey
