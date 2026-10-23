@@ -382,6 +382,8 @@ apis:
   - type: Documentation
     url: https://landregistry.github.io/bgtechdoc/
 common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/hm-land-registry/overview
 - url: https://www.gov.uk/search/news-and-communications
   type: Blog
 - url: https://www.gov.uk/search/news-and-communications.atom

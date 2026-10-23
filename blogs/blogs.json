@@ -5,7 +5,7 @@
       "source": "https://www.gov.uk/search/news-and-communications",
       "feed_url": "https://www.gov.uk/search/news-and-communications.atom",
       "title": "",
-      "saved": 20,
+      "saved": 0,
       "method": "discovered"
     },
     {
@@ -23,6 +23,13 @@
       "method": "discovered"
     },
     {
+      "source": "https://hmlandregistry.blog.gov.uk/blog/feed/",
+      "feed_url": "https://hmlandregistry.blog.gov.uk/blog/feed/",
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    },
+    {
       "source": "https://landregistry.github.io/bgtechdoc/rest/get_started/developer_guide/index.html",
       "feed_url": "https://landregistry.github.io/bgtechdoc/rest/get_started/developer_guide/index.html",
       "title": "",
@@ -30,6 +37,6 @@
       "method": "none"
     }
   ],
-  "post_count": 20,
-  "fetched": "2026-10-10T13:15:00Z"
+  "post_count": 40,
+  "fetched": "2026-10-17T14:53:57Z"
 }
