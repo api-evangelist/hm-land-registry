@@ -1,0 +1,280 @@
+{
+  "info": {
+    "_postman_id": "98dae57c-25c7-48b2-94e4-ee553fc390ac",
+    "name": "Land Register Title API",
+    "description": "The Land Register API aims to be the primary method of accessing register data for HM Land Registry.\n\nContact Support:\n Name: Digital Register Team\n Email: DigitalRegister@landregistry.gov.uk",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:14:46.000Z",
+    "updatedAt": "2026-10-21T20:14:46.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-98dae57c-25c7-48b2-94e4-ee553fc390ac"
+  },
+  "item": [
+    {
+      "name": "title",
+      "item": [
+        {
+          "name": "{titleNumber}",
+          "item": [
+            {
+              "name": "Gets summary information for the title with the specified title number",
+              "id": "02bff9ff-5cd4-48cb-9838-49f741e76871",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/title/:titleNumber",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "title",
+                    ":titleNumber"
+                  ],
+                  "variable": [
+                    {
+                      "id": "adaac5ae-42ea-4887-9a4d-ab709713139e",
+                      "key": "titleNumber",
+                      "value": "<string>",
+                      "description": "(Required) The unique reference number of the desired title.\n\n---\n\nThe following constraints apply to this parameter:\n| Constraint                                                           | Error message                                           |\n|----------------------------------------------------------------------|---------------------------------------------------------|\n| The parameter must have a length less than or equal to 9 characters. | *The title number must be no longer than 9 characters.* |"
+                    }
+                  ]
+                },
+                "description": "## Error responses\nCalls to this endpoint may return the following error codes:\n| Error code | Message | Cause |\n|--------------|-----------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------|\n| `LRAPI00401` | The request could not be completed because a valid access token was not provided. | A valid access token must be provided to be able to access this data. Try the request again with a valid access token. |\n| `LRAPI00404` | A title number must be provided. | The path parameter __{titleNumber}__ cannot be empty. Try the request again with a non-empty value. |\n| `LRAPI01001` | The request failed to validate. | An invalid title number was provided. Check the value to ensure it does not violate the parameter constraints. |\n| `LRAPI02000` | Title number '__{titleNumber}__' does not exist. | No title with the given title number could be found in the Land Register. Check that the title number is correct. |"
+              },
+              "response": [
+                {
+                  "id": "cb14e320-ee9a-431b-82ef-bc73a4084ed3",
+                  "name": "Summary information for the title.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/title/:titleNumber",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "title",
+                        ":titleNumber"
+                      ],
+                      "variable": [
+                        {
+                          "key": "titleNumber"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"application_reference\": \"<string>\",\n  \"caution_against_first_registration\": \"<boolean>\",\n  \"entries\": [\n    {\n      \"legacy_entry_id\": \"<string>\",\n      \"entry_text\": \"<string>\",\n      \"language_code\": \"cym\",\n      \"schedule\": {\n        \"code\": \"Z\",\n        \"sequence\": \"<integer>\",\n        \"header\": {\n          \"exercitation_1\": \"<string>\",\n          \"aliqua216\": \"<string>\"\n        }\n      },\n      \"draft_entry_code\": \"NOKRX\",\n      \"sub_register_sequence\": \"<integer>\",\n      \"role_code\": \"YC5X\",\n      \"draft_entry_version\": \"<integer>\",\n      \"entry_sequence\": \"<integer>\",\n      \"entry_date\": \"<date>\",\n      \"sub_register_code\": \"C\"\n    }\n  ],\n  \"prices_paid\": [\n    {\n      \"date\": {\n        \"description\": \"<string>\",\n        \"value\": \"<date>\"\n      },\n      \"price_paid_type\": \"value stated\",\n      \"sequence\": \"<integer>\",\n      \"amount\": {\n        \"amount_type\": \"amount range\",\n        \"description\": \"<string>\"\n      },\n      \"legacy_entry_id\": \"<string>\",\n      \"additional_properties\": \"<string>\"\n    }\n  ],\n  \"properties\": [\n    {\n      \"address\": {\n        \"description\": \"<string>\",\n        \"legacy_addr_id\": \"<string>\"\n      },\n      \"sequence\": \"<integer>\"\n    }\n  ],\n  \"proprietors\": [\n    {\n      \"name\": \"<string>\",\n      \"proprietor_type\": \"private individual\",\n      \"sequence\": \"<integer>\",\n      \"addresses\": [\n        {\n          \"building_name\": \"<string>\",\n          \"double_dependent_locality\": \"<string>\",\n          \"postcode\": \"<string>\",\n          \"description\": \"<string>\",\n          \"sub_building_name\": \"<string>\",\n          \"care_of_name\": \"<string>\",\n          \"type\": \"uk\",\n          \"thoroughfare\": \"<string>\",\n          \"sequence\": \"<integer>\",\n          \"dependent_locality\": \"<string>\",\n          \"post_town\": \"<string>\",\n          \"care_of_indicator\": \"<boolean>\",\n          \"dependent_thoroughfare\": \"<string>\",\n          \"legacy_addr_id\": \"<string>\",\n          \"building_number\": \"<integer>\"\n        }\n      ],\n      \"legacy_name_id\": \"<string>\",\n      \"decor\": \"<string>\",\n      \"surname\": \"<string>\",\n      \"title\": \"<string>\",\n      \"forenames\": \"<string>\"\n    }\n  ],\n  \"status\": {\n    \"value\": \"pending new title\",\n    \"date\": \"<date>\"\n  },\n  \"title_number\": \"<string>\",\n  \"data_issues\": [\n    {\n      \"code\": \"data_quality_previous_relationship_invalid\",\n      \"message\": \"<string>\",\n      \"property_name\": \"<string>\",\n      \"reference\": \"<uuid>\"\n    }\n  ],\n  \"previous_title_number\": \"<string>\",\n  \"scheme_status\": \"current scheme title\",\n  \"continuation_title_number\": \"<string>\",\n  \"application_timestamp\": \"<dateTime>\",\n  \"timeshare_lease_issued\": \"<boolean>\",\n  \"district_name\": \"<string>\",\n  \"pre_act_caution\": \"<boolean>\",\n  \"edition_date\": \"<date>\",\n  \"estate_interest\": \"profit \u00e0 prendre in gross\",\n  \"class_of_title\": \"absolute\",\n  \"tenure\": \"freehold\",\n  \"commonhold_type\": \"part\",\n  \"developer_status\": \"currently a developing title\",\n  \"interests\": {\n    \"notices\": [\n      {\n        \"legacy_entry_ids\": [\n          \"<string>\"\n        ],\n        \"protected_interests\": [\n          \"<string>\"\n        ],\n        \"additional_considerations\": [\n          \"<string>\"\n        ],\n        \"notes\": [\n          \"<string>\"\n        ],\n        \"sources\": [\n          {\n            \"date\": \"<date>\",\n            \"parties\": [\n              {\n                \"names\": [\n                  \"<string>\"\n                ],\n                \"role\": \"<string>\"\n              }\n            ],\n            \"type\": \"<string>\"\n          }\n        ],\n        \"expiry_condition\": \"<string>\",\n        \"subject\": \"<string>\",\n        \"parish_church\": \"<string>\",\n        \"notice_type\": \"unilateral notice\",\n        \"notice_date\": \"<string>\",\n        \"lease_term\": \"<string>\",\n        \"served_by\": \"<string>\",\n        \"entry_dates\": [\n          \"<date>\"\n        ],\n        \"beneficiaries\": [\n          \"<string>\"\n        ],\n        \"statute\": \"<string>\",\n        \"object\": \"<string>\"\n      }\n    ],\n    \"covenants\": {\n      \"implied_covenants\": [\n        {\n          \"legacy_entry_id\": \"<string>\",\n          \"subject\": \"<string>\",\n          \"notes\": [\n            \"<string>\"\n          ],\n          \"covenant_type\": \"<string>\",\n          \"statute\": \"<string>\",\n          \"entry_date\": \"<date>\",\n          \"object\": \"<string>\"\n        }\n      ],\n      \"personal_covenants\": [\n        {\n          \"legacy_entry_id\": \"<string>\",\n          \"subject\": \"<string>\",\n          \"notes\": [\n            \"<string>\"\n          ],\n          \"sources\": [\n            {\n              \"date\": \"<date>\",\n              \"parties\": [\n                {\n                  \"names\": [\n                    \"<string>\"\n                  ],\n                  \"role\": \"<string>\"\n                }\n              ],\n              \"type\": \"<string>\"\n            }\n          ],\n          \"covenantor\": \"vendor\",\n          \"covenant_type\": \"positive covenant\",\n          \"entry_date\": \"<date>\",\n          \"object\": \"<string>\"\n        }\n      ]\n    },\n    \"charges\": [\n      {\n        \"charge_type\": \"unknown\",\n        \"additional_considerations\": [\n          \"<string>\"\n        ],\n        \"notes\": [\n          \"<string>\"\n        ],\n        \"sources\": [\n          {\n            \"date\": \"<date>\",\n            \"parties\": [\n              {\n                \"names\": [\n                  \"<string>\"\n                ],\n                \"role\": \"<string>\"\n              }\n            ],\n            \"type\": \"<string>\"\n          }\n        ],\n        \"legacy_postponement_entry_ids\": [\n          \"<string>\"\n        ],\n        \"subject\": \"<string>\",\n        \"legacy_charge_id\": \"<string>\",\n        \"charge_date\": \"<date>\",\n        \"statute\": \"<string>\",\n        \"object\": \"<string>\",\n        \"discount_charge\": \"<boolean>\",\n        \"legacy_charge_entry_id\": \"<string>\",\n        \"entry_date\": \"<date>\",\n        \"chargees\": [\n          {\n            \"name\": \"<string>\",\n            \"proprietor_type\": \"private individual\",\n            \"sequence\": \"<integer>\",\n            \"addresses\": [\n              {\n                \"building_name\": \"<string>\",\n                \"double_dependent_locality\": \"<string>\",\n                \"postcode\": \"<string>\",\n                \"description\": \"<string>\",\n                \"sub_building_name\": \"<string>\",\n                \"care_of_name\": \"<string>\",\n                \"type\": \"electronic\",\n                \"thoroughfare\": \"<string>\",\n                \"sequence\": \"<integer>\",\n                \"dependent_locality\": \"<string>\",\n                \"post_town\": \"<string>\",\n                \"care_of_indicator\": \"<boolean>\",\n                \"dependent_thoroughfare\": \"<string>\",\n                \"legacy_addr_id\": \"<string>\",\n                \"building_number\": \"<integer>\"\n              }\n            ],\n            \"legacy_name_id\": \"<string>\",\n            \"decor\": \"<string>\",\n            \"surname\": \"<string>\",\n            \"title\": \"<string>\",\n            \"forenames\": \"<string>\"\n          }\n        ],\n        \"legacy_chargee_entry_id\": \"<string>\",\n        \"legacy_charge_restriction_entry_ids\": [\n          \"<string>\"\n        ],\n        \"legacy_obligation_entry_ids\": [\n          \"<string>\"\n        ],\n        \"expiry_date\": \"<date>\"\n      }\n    ],\n    \"restrictions\": [\n      {\n        \"actions\": [\n          \"<string>\"\n        ],\n        \"legacy_entry_id\": \"<string>\",\n        \"restriction_type\": \"<string>\",\n        \"additional_considerations\": [\n          \"<string>\"\n        ],\n        \"notes\": [\n          \"<string>\"\n        ],\n        \"restricted_parties\": [\n          \"<string>\"\n        ],\n        \"expiry_condition\": \"<string>\",\n        \"subject\": \"<string>\",\n        \"expiry_date\": \"<date>\",\n        \"impacted_action_condition\": \"<string>\",\n        \"legacy_charge_id\": \"<string>\",\n        \"entry_date\": \"7217-28-34\",\n        \"compliances\": [\n          {\n            \"additional_authorities\": [\n              {\n                \"authority\": \"<string>\",\n                \"description\": \"<string>\"\n              }\n            ],\n            \"alternative_authorities\": [\n              {\n                \"authority\": \"<string>\",\n                \"description\": \"<string>\"\n              }\n            ],\n            \"authority_title_number\": \"<string>\",\n            \"form_of_compliance\": \"<string>\",\n            \"authority\": \"<string>\",\n            \"description\": \"<string>\",\n            \"compliance_type\": \"<string>\"\n          }\n        ],\n        \"impacted_action_condition_date\": \"2430-46-94\",\n        \"restriction_form\": \"S\",\n        \"housing_association_impact\": \"<string>\",\n        \"exemptions\": [\n          {\n            \"context\": \"<string>\",\n            \"exemption\": \"<string>\"\n          }\n        ],\n        \"restricted_charge_date\": \"<string>\",\n        \"restriction_form_description\": \"Land vested in official custodian on trust for non-exempt charity \u2013 authority required\",\n        \"object\": \"<string>\"\n      }\n    ]\n  },\n  \"concerns\": {\n    \"postponements\": [\n      {\n        \"legacy_entry_id\": \"<string>\",\n        \"additional_considerations\": [\n          \"<string>\"\n        ],\n        \"postponement_charges\": [\n          \"<string>\"\n        ],\n        \"entry_date\": \"<date>\"\n      }\n    ]\n  }\n}",
+                  "createdAt": "2026-10-21T20:14:46.000Z",
+                  "updatedAt": "2026-10-21T20:14:46.000Z",
+                  "uid": "35240-cb14e320-ee9a-431b-82ef-bc73a4084ed3"
+                },
+                {
+                  "id": "5ad9d78e-50f5-4492-b217-f6adf4296b20",
+                  "name": "An invalid title number was supplied.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/title/:titleNumber",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "title",
+                        ":titleNumber"
+                      ],
+                      "variable": [
+                        {
+                          "key": "titleNumber"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error_code\": \"<string>\",\n  \"error_message\": \"<string>\",\n  \"reference\": \"<uuid>\",\n  \"status\": \"<integer>\",\n  \"validation_issues\": [\n    {\n      \"message\": \"<string>\",\n      \"property_name\": \"<string>\",\n      \"type\": \"validation_issue_no_charge_found_for_charge_id\"\n    },\n    {\n      \"message\": \"<string>\",\n      \"property_name\": \"<string>\",\n      \"type\": \"validation_issue_additional_restricted_party_invalid\"\n    }\n  ]\n}",
+                  "createdAt": "2026-10-21T20:14:46.000Z",
+                  "updatedAt": "2026-10-21T20:14:46.000Z",
+                  "uid": "35240-5ad9d78e-50f5-4492-b217-f6adf4296b20"
+                },
+                {
+                  "id": "c356026a-43d4-4b61-b2d6-7856554e8fbf",
+                  "name": "A valid access token was not provided.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/title/:titleNumber",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "title",
+                        ":titleNumber"
+                      ],
+                      "variable": [
+                        {
+                          "key": "titleNumber"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error_code\": \"<string>\",\n  \"error_message\": \"<string>\",\n  \"reference\": \"<uuid>\",\n  \"status\": \"<integer>\"\n}",
+                  "createdAt": "2026-10-21T20:14:46.000Z",
+                  "updatedAt": "2026-10-21T20:14:46.000Z",
+                  "uid": "35240-c356026a-43d4-4b61-b2d6-7856554e8fbf"
+                },
+                {
+                  "id": "1850a7c4-4abd-49f9-a71a-bf9f4405195b",
+                  "name": "No title with the given title number could be found.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/title/:titleNumber",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "title",
+                        ":titleNumber"
+                      ],
+                      "variable": [
+                        {
+                          "key": "titleNumber"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error_code\": \"<string>\",\n  \"error_message\": \"<string>\",\n  \"reference\": \"<uuid>\",\n  \"status\": \"<integer>\"\n}",
+                  "createdAt": "2026-10-21T20:14:46.000Z",
+                  "updatedAt": "2026-10-21T20:14:46.000Z",
+                  "uid": "35240-1850a7c4-4abd-49f9-a71a-bf9f4405195b"
+                }
+              ],
+              "createdAt": "2026-10-21T20:14:46.000Z",
+              "updatedAt": "2026-10-21T20:14:46.000Z",
+              "uid": "35240-02bff9ff-5cd4-48cb-9838-49f741e76871"
+            }
+          ],
+          "id": "d53d0bed-9577-42d2-96c8-c8a908fad686",
+          "createdAt": "2026-10-21T20:14:46.000Z",
+          "updatedAt": "2026-10-21T20:14:46.000Z",
+          "uid": "35240-d53d0bed-9577-42d2-96c8-c8a908fad686"
+        }
+      ],
+      "id": "e7b7db0d-f643-4718-a90e-5065e0f37797",
+      "createdAt": "2026-10-21T20:14:46.000Z",
+      "updatedAt": "2026-10-21T20:14:46.000Z",
+      "uid": "35240-e7b7db0d-f643-4718-a90e-5065e0f37797"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080/api/v1/"
+    }
+  ]
+}

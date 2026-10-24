@@ -1,0 +1,429 @@
+{
+  "info": {
+    "_postman_id": "4f471319-79fb-424d-9f6d-b7fb4a3705ac",
+    "name": "V1.0 'Submit an application to change the Land Register\u2026",
+    "description": "V1.0 of the set of APIs for the new 'Submit an application to change the Land Register API' Schema",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:13:45.000Z",
+    "updatedAt": "2026-10-21T20:13:45.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-4f471319-79fb-424d-9f6d-b7fb4a3705ac"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "applications",
+          "item": [
+            {
+              "name": "{application_request_id}",
+              "item": [
+                {
+                  "name": "attachments",
+                  "item": [
+                    {
+                      "name": "Attach a document to an existing application",
+                      "id": "e0440154-ed90-4577-8294-9c96d7245b05",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "*/*"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"data\": {\n    \"certification_statement_type\": \"CERTIFIED_BY_ANOTHER\",\n    \"document_id\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/applications/:application_request_id/attachments",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "applications",
+                            ":application_request_id",
+                            "attachments"
+                          ],
+                          "variable": [
+                            {
+                              "id": "99467a21-a518-417a-a835-c44450310227",
+                              "key": "application_request_id",
+                              "value": "<string>",
+                              "description": "(Required) The ID returned by Application Creation to track submission requests"
+                            }
+                          ]
+                        },
+                        "description": "Attach a document from Send a Document to an existing application"
+                      },
+                      "response": [
+                        {
+                          "id": "66ef4c2c-7be7-4c56-8682-bd1fe5b14662",
+                          "name": "Accepted",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"data\": {\n    \"certification_statement_type\": \"CERTIFIED_BY_ANOTHER\",\n    \"document_id\": \"<string>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/applications/:application_request_id/attachments",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "applications",
+                                ":application_request_id",
+                                "attachments"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "application_request_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Accepted",
+                          "code": 202,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-21T20:13:46.000Z",
+                          "updatedAt": "2026-10-21T20:13:46.000Z",
+                          "uid": "35240-66ef4c2c-7be7-4c56-8682-bd1fe5b14662"
+                        },
+                        {
+                          "id": "63f783de-d019-4cc6-9d87-27cf596f0f09",
+                          "name": "Bad Request",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "*/*"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"data\": {\n    \"certification_statement_type\": \"CERTIFIED_BY_ANOTHER\",\n    \"document_id\": \"<string>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/applications/:application_request_id/attachments",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "applications",
+                                ":application_request_id",
+                                "attachments"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "application_request_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "*/*"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"type\": \"<uri>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\",\n  \"instance\": \"<uri>\",\n  \"code\": \"<string>\",\n  \"errors\": [\n    {\n      \"detail\": \"<string>\",\n      \"type\": \"<string>\",\n      \"pointer\": \"<string>\"\n    },\n    {\n      \"detail\": \"<string>\",\n      \"type\": \"<string>\",\n      \"pointer\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-10-21T20:13:46.000Z",
+                          "updatedAt": "2026-10-21T20:13:46.000Z",
+                          "uid": "35240-63f783de-d019-4cc6-9d87-27cf596f0f09"
+                        },
+                        {
+                          "id": "268f9475-7998-4457-adcb-771a13bddca5",
+                          "name": "Unauthorised - an access token is required",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"data\": {\n    \"certification_statement_type\": \"CERTIFIED_BY_ANOTHER\",\n    \"document_id\": \"<string>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/applications/:application_request_id/attachments",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "applications",
+                                ":application_request_id",
+                                "attachments"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "application_request_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"type\": \"<uri>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\",\n  \"instance\": \"<uri>\",\n  \"code\": \"<string>\",\n  \"errors\": [\n    {\n      \"detail\": \"<string>\",\n      \"type\": \"<string>\",\n      \"pointer\": \"<string>\"\n    },\n    {\n      \"detail\": \"<string>\",\n      \"type\": \"<string>\",\n      \"pointer\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-10-21T20:13:46.000Z",
+                          "updatedAt": "2026-10-21T20:13:46.000Z",
+                          "uid": "35240-268f9475-7998-4457-adcb-771a13bddca5"
+                        },
+                        {
+                          "id": "3c370c59-58a9-4f15-9b1d-860031776732",
+                          "name": "Application creation request not found in the system",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"data\": {\n    \"certification_statement_type\": \"CERTIFIED_BY_ANOTHER\",\n    \"document_id\": \"<string>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/applications/:application_request_id/attachments",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "applications",
+                                ":application_request_id",
+                                "attachments"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "application_request_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"type\": \"<uri>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\",\n  \"instance\": \"<uri>\",\n  \"code\": \"<string>\",\n  \"errors\": [\n    {\n      \"detail\": \"<string>\",\n      \"type\": \"<string>\",\n      \"pointer\": \"<string>\"\n    },\n    {\n      \"detail\": \"<string>\",\n      \"type\": \"<string>\",\n      \"pointer\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-10-21T20:13:46.000Z",
+                          "updatedAt": "2026-10-21T20:13:46.000Z",
+                          "uid": "35240-3c370c59-58a9-4f15-9b1d-860031776732"
+                        },
+                        {
+                          "id": "5abbcda0-87a9-45d4-b94c-e3cbba015333",
+                          "name": "Internal Server Error",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"data\": {\n    \"certification_statement_type\": \"CERTIFIED_BY_ANOTHER\",\n    \"document_id\": \"<string>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/applications/:application_request_id/attachments",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "applications",
+                                ":application_request_id",
+                                "attachments"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "application_request_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-21T20:13:46.000Z",
+                          "updatedAt": "2026-10-21T20:13:46.000Z",
+                          "uid": "35240-5abbcda0-87a9-45d4-b94c-e3cbba015333"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:13:46.000Z",
+                      "updatedAt": "2026-10-21T20:13:46.000Z",
+                      "uid": "35240-e0440154-ed90-4577-8294-9c96d7245b05"
+                    }
+                  ],
+                  "id": "d20989da-7783-4daf-8c58-d6c711024d6c",
+                  "createdAt": "2026-10-21T20:13:46.000Z",
+                  "updatedAt": "2026-10-21T20:13:46.000Z",
+                  "uid": "35240-d20989da-7783-4daf-8c58-d6c711024d6c"
+                }
+              ],
+              "id": "dcda8abd-0edc-4ad0-94b3-4483b577b389",
+              "createdAt": "2026-10-21T20:13:46.000Z",
+              "updatedAt": "2026-10-21T20:13:46.000Z",
+              "uid": "35240-dcda8abd-0edc-4ad0-94b3-4483b577b389"
+            }
+          ],
+          "id": "631cb0a8-a732-450a-abed-2f69125c872b",
+          "createdAt": "2026-10-21T20:13:46.000Z",
+          "updatedAt": "2026-10-21T20:13:46.000Z",
+          "uid": "35240-631cb0a8-a732-450a-abed-2f69125c872b"
+        }
+      ],
+      "id": "1e6366a9-c040-4e7c-bb41-08a6df4672c1",
+      "createdAt": "2026-10-21T20:13:46.000Z",
+      "updatedAt": "2026-10-21T20:13:46.000Z",
+      "uid": "35240-1e6366a9-c040-4e7c-bb41-08a6df4672c1"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://businessgateway.landregistry.gov.uk/bg2/api"
+    }
+  ]
+}

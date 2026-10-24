@@ -1,0 +1,263 @@
+{
+  "info": {
+    "_postman_id": "92736491-2d6c-4169-b7f0-94b6b779f6da",
+    "name": "Estimate Completion Date ECD API",
+    "description": "A specification for the HMLR Business Gateway estimate completion date service.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:14:11.000Z",
+    "updatedAt": "2026-10-21T20:14:11.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-92736491-2d6c-4169-b7f0-94b6b779f6da"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "applications",
+          "item": [
+            {
+              "name": "{application_reference}",
+              "item": [
+                {
+                  "name": "estimate-completion-date",
+                  "item": [
+                    {
+                      "name": "Get estimate completion date of associated application reference",
+                      "id": "e7a29a6c-60f2-4c5a-b7c7-218b98f2573a",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/applications/:application_reference/estimate-completion-date",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "applications",
+                            ":application_reference",
+                            "estimate-completion-date"
+                          ],
+                          "variable": [
+                            {
+                              "id": "996be173-f06c-4883-9cd1-5ef40f177755",
+                              "key": "application_reference",
+                              "value": "ET2EB8B",
+                              "description": "(Required) HMLR generated unique set of characters that identifies applications."
+                            }
+                          ]
+                        },
+                        "description": "Get estimated completion date for register create/update applications associated to application reference."
+                      },
+                      "response": [
+                        {
+                          "id": "81b3b701-c145-4cad-a1c3-b6bb32d6807d",
+                          "name": "Successfully retrieved the application estimate completion date",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/applications/:application_reference/estimate-completion-date",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "applications",
+                                ":application_reference",
+                                "estimate-completion-date"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "application_reference"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"data\": {\n    \"application_reference\": \"KKAAF9D\",\n    \"application_status\": \"DELAYED\",\n    \"application_priority_date\": \"<date>\",\n    \"estimated_completion_date_status\": \"EXCEEDED\",\n    \"estimated_completion_dates\": [\n      {\n        \"date\": \"<date>\",\n        \"probability\": \"<number>\"\n      }\n    ]\n  }\n}",
+                          "createdAt": "2026-10-21T20:14:12.000Z",
+                          "updatedAt": "2026-10-21T20:14:12.000Z",
+                          "uid": "35240-81b3b701-c145-4cad-a1c3-b6bb32d6807d"
+                        },
+                        {
+                          "id": "e46d4315-1b5f-4728-87b3-2c76fb002f90",
+                          "name": "client errors",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/applications/:application_reference/estimate-completion-date",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "applications",
+                                ":application_reference",
+                                "estimate-completion-date"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "application_reference"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"status\": \"<string>\",\n      \"trace_id\": \"<string>\",\n      \"title\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\",\n        \"header\": \"<string>\"\n      }\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"status\": \"<string>\",\n      \"trace_id\": \"<string>\",\n      \"title\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\",\n        \"header\": \"<string>\"\n      }\n    }\n  ]\n}",
+                          "createdAt": "2026-10-21T20:14:12.000Z",
+                          "updatedAt": "2026-10-21T20:14:12.000Z",
+                          "uid": "35240-e46d4315-1b5f-4728-87b3-2c76fb002f90"
+                        },
+                        {
+                          "id": "84bc3b06-c757-4020-8b24-f2fe45dc36c1",
+                          "name": "An error has occurred.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/applications/:application_reference/estimate-completion-date",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "applications",
+                                ":application_reference",
+                                "estimate-completion-date"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "application_reference"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"status\": \"<string>\",\n      \"trace_id\": \"<string>\",\n      \"title\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\",\n        \"header\": \"<string>\"\n      }\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"status\": \"<string>\",\n      \"trace_id\": \"<string>\",\n      \"title\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\",\n        \"header\": \"<string>\"\n      }\n    }\n  ]\n}",
+                          "createdAt": "2026-10-21T20:14:12.000Z",
+                          "updatedAt": "2026-10-21T20:14:12.000Z",
+                          "uid": "35240-84bc3b06-c757-4020-8b24-f2fe45dc36c1"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:14:12.000Z",
+                      "updatedAt": "2026-10-21T20:14:12.000Z",
+                      "uid": "35240-e7a29a6c-60f2-4c5a-b7c7-218b98f2573a"
+                    }
+                  ],
+                  "id": "7af0c47c-38a5-4ffc-b8f8-991d33dbca15",
+                  "createdAt": "2026-10-21T20:14:11.000Z",
+                  "updatedAt": "2026-10-21T20:14:11.000Z",
+                  "uid": "35240-7af0c47c-38a5-4ffc-b8f8-991d33dbca15"
+                }
+              ],
+              "id": "7e69228c-8f23-4883-ac57-91845d0f81eb",
+              "createdAt": "2026-10-21T20:14:11.000Z",
+              "updatedAt": "2026-10-21T20:14:11.000Z",
+              "uid": "35240-7e69228c-8f23-4883-ac57-91845d0f81eb"
+            }
+          ],
+          "id": "e9a6aa03-67ac-4942-a8c0-04db304de08b",
+          "createdAt": "2026-10-21T20:14:11.000Z",
+          "updatedAt": "2026-10-21T20:14:11.000Z",
+          "uid": "35240-e9a6aa03-67ac-4942-a8c0-04db304de08b"
+        }
+      ],
+      "id": "54580d96-5fed-47b7-b30d-b7be4f21db2c",
+      "createdAt": "2026-10-21T20:14:11.000Z",
+      "updatedAt": "2026-10-21T20:14:11.000Z",
+      "uid": "35240-54580d96-5fed-47b7-b30d-b7be4f21db2c"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://businessgateway.landregistry.gov.uk/bg2/api"
+    }
+  ]
+}

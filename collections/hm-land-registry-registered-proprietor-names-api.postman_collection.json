@@ -1,0 +1,299 @@
+{
+  "info": {
+    "_postman_id": "5a306190-bced-4342-97fe-080d99963577",
+    "name": "Service Registered Proprietor Names API",
+    "description": "A specification for the HMLR Business Gateway registered proprietor names service.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:14:29.000Z",
+    "updatedAt": "2026-10-21T20:14:30.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-5a306190-bced-4342-97fe-080d99963577"
+  },
+  "item": [
+    {
+      "name": "titles",
+      "item": [
+        {
+          "name": "{title_number}",
+          "item": [
+            {
+              "name": "registered-proprietor-names",
+              "item": [
+                {
+                  "name": "Get proprietor names associated with a title number",
+                  "id": "da6f272d-2c93-49d0-9865-7a998bb02631",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/titles/:title_number/registered-proprietor-names",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "titles",
+                        ":title_number",
+                        "registered-proprietor-names"
+                      ],
+                      "variable": [
+                        {
+                          "id": "76c55db8-d94b-4f65-a476-df660b7018f2",
+                          "key": "title_number",
+                          "value": "Y530686",
+                          "description": "(Required) The title number of the property. Characters must be uppercase."
+                        }
+                      ]
+                    },
+                    "description": "Returns the registered proprietor names for the provided title number."
+                  },
+                  "response": [
+                    {
+                      "id": "71c5addf-2a55-4802-b3ea-81831aa9b9ec",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/titles/:title_number/registered-proprietor-names",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "titles",
+                            ":title_number",
+                            "registered-proprietor-names"
+                          ],
+                          "variable": [
+                            {
+                              "key": "title_number"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": {\n    \"title_status\": \"<string>\",\n    \"title_status_code\": \"PENDING_NEW_TITLE\",\n    \"title_number\": \"jAr5Z\",\n    \"proprietors\": [\n      {\n        \"proprietor_name\": \"voluptate amet ullamco Ut\",\n        \"title\": \"nulla do elit minim et\",\n        \"forenames\": \"qui anim \",\n        \"surname\": \"ex Ut proident\",\n        \"decoration\": \"amet dolor\",\n        \"proprietor_type\": \"PRIVATE_INDIVIDUAL\",\n        \"sequence\": \"<integer>\"\n      },\n      {\n        \"proprietor_name\": \"ullamco nostrud consectetur proident\",\n        \"title\": \"quis labore\",\n        \"forenames\": \"dolor in incididunt\",\n        \"surname\": \"anim Duis minim sint commodo\",\n        \"decoration\": \"ea qui nisi ut veniam\",\n        \"proprietor_type\": \"PRIVATE_INDIVIDUAL\",\n        \"sequence\": \"<integer>\"\n      }\n    ],\n    \"continued_under_title_number\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-21T20:14:30.000Z",
+                      "updatedAt": "2026-10-21T20:14:30.000Z",
+                      "uid": "35240-71c5addf-2a55-4802-b3ea-81831aa9b9ec"
+                    },
+                    {
+                      "id": "56cb53f7-5fbe-4a11-bfa7-2b9774101eb5",
+                      "name": "Invalid request",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/titles/:title_number/registered-proprietor-names",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "titles",
+                            ":title_number",
+                            "registered-proprietor-names"
+                          ],
+                          "variable": [
+                            {
+                              "key": "title_number"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errors\": [\n    {\n      \"error_code\": \"<string>\",\n      \"error_message\": \"<string>\",\n      \"http_status\": \"<string>\",\n      \"timestamp\": \"<dateTime>\",\n      \"trace_id\": \"<string>\"\n    },\n    {\n      \"error_code\": \"<string>\",\n      \"error_message\": \"<string>\",\n      \"http_status\": \"<string>\",\n      \"timestamp\": \"<dateTime>\",\n      \"trace_id\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-21T20:14:30.000Z",
+                      "updatedAt": "2026-10-21T20:14:30.000Z",
+                      "uid": "35240-56cb53f7-5fbe-4a11-bfa7-2b9774101eb5"
+                    },
+                    {
+                      "id": "fa0a3a2b-1bd6-4d73-92cf-2b04e2caa766",
+                      "name": "Title not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/titles/:title_number/registered-proprietor-names",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "titles",
+                            ":title_number",
+                            "registered-proprietor-names"
+                          ],
+                          "variable": [
+                            {
+                              "key": "title_number"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errors\": [\n    {\n      \"error_code\": \"<string>\",\n      \"error_message\": \"<string>\",\n      \"http_status\": \"<string>\",\n      \"timestamp\": \"<dateTime>\",\n      \"trace_id\": \"<string>\"\n    },\n    {\n      \"error_code\": \"<string>\",\n      \"error_message\": \"<string>\",\n      \"http_status\": \"<string>\",\n      \"timestamp\": \"<dateTime>\",\n      \"trace_id\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-21T20:14:30.000Z",
+                      "updatedAt": "2026-10-21T20:14:30.000Z",
+                      "uid": "35240-fa0a3a2b-1bd6-4d73-92cf-2b04e2caa766"
+                    },
+                    {
+                      "id": "b3834ff2-87f4-418d-8811-86a2552e7825",
+                      "name": "An error has occurred.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/titles/:title_number/registered-proprietor-names",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "titles",
+                            ":title_number",
+                            "registered-proprietor-names"
+                          ],
+                          "variable": [
+                            {
+                              "key": "title_number"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errors\": [\n    {\n      \"error_code\": \"<string>\",\n      \"error_message\": \"<string>\",\n      \"http_status\": \"<string>\",\n      \"timestamp\": \"<dateTime>\",\n      \"trace_id\": \"<string>\"\n    },\n    {\n      \"error_code\": \"<string>\",\n      \"error_message\": \"<string>\",\n      \"http_status\": \"<string>\",\n      \"timestamp\": \"<dateTime>\",\n      \"trace_id\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-21T20:14:30.000Z",
+                      "updatedAt": "2026-10-21T20:14:30.000Z",
+                      "uid": "35240-b3834ff2-87f4-418d-8811-86a2552e7825"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:14:30.000Z",
+                  "updatedAt": "2026-10-21T20:14:30.000Z",
+                  "uid": "35240-da6f272d-2c93-49d0-9865-7a998bb02631"
+                }
+              ],
+              "id": "9754d89e-e615-49c0-ba97-2408417f1ff4",
+              "createdAt": "2026-10-21T20:14:30.000Z",
+              "updatedAt": "2026-10-21T20:14:30.000Z",
+              "uid": "35240-9754d89e-e615-49c0-ba97-2408417f1ff4"
+            }
+          ],
+          "id": "368d28a6-98bd-48fe-9318-a20c0f0bc31d",
+          "createdAt": "2026-10-21T20:14:30.000Z",
+          "updatedAt": "2026-10-21T20:14:30.000Z",
+          "uid": "35240-368d28a6-98bd-48fe-9318-a20c0f0bc31d"
+        }
+      ],
+      "id": "505231b5-9adf-41c8-abd9-7dfceca7ae9b",
+      "createdAt": "2026-10-21T20:14:30.000Z",
+      "updatedAt": "2026-10-21T20:14:30.000Z",
+      "uid": "35240-505231b5-9adf-41c8-abd9-7dfceca7ae9b"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://businessgateway.landregistry.gov.uk/bg2/api/v1/"
+    }
+  ]
+}

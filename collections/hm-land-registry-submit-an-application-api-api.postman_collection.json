@@ -1,0 +1,669 @@
+{
+  "info": {
+    "_postman_id": "808369a9-ff1b-40f2-b865-68f0162793e5",
+    "name": "Hm Land Registry Submit an application API",
+    "description": "Operations tagged Submit an application API across 2 of this provider's published API definitions: hm-land-registry-submit-application-to-change-the-register-v0.3-openapi.json, hm-land-registry-submit-application-to-change-the-register-v1.0-openapi.json. Each path carries the servers of the definition it was published in.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:14:37.000Z",
+    "updatedAt": "2026-10-21T20:14:38.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-808369a9-ff1b-40f2-b865-68f0162793e5"
+  },
+  "item": [
+    {
+      "name": "v0",
+      "item": [
+        {
+          "name": "applications",
+          "item": [
+            {
+              "name": "Submit an application API",
+              "id": "ac5cf010-0ee9-4f70-bf51-fb2156c227f5",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) ",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"applicants\": [\n      \"1GE\"\n    ],\n    \"customer_reference\": \"<string>\",\n    \"application_lodger\": {\n      \"email\": \"dBK$M!@<[\",\n      \"type\": \"NON_CONVEYANCER\",\n      \"telephone\": \"<string>\"\n    },\n    \"submission_warning_understood\": \"<boolean>\",\n    \"titles\": {\n      \"voluptate_6_\": {\n        \"scope_details\": {\n          \"scope\": \"PART\",\n          \"part_description\": \"<string>\"\n        },\n        \"title_number\": \"W355282Z\",\n        \"title_type\": \"LANDLORD_TITLE\",\n        \"disclosable_overriding_interests\": \"<boolean>\"\n      }\n    },\n    \"transactions\": {\n      \"ullamco0\": {\n        \"fee_in_pence\": \"<integer>\",\n        \"type\": \"CPVU\",\n        \"priority\": \"<integer>\",\n        \"details\": {\n          \"type\": \"<string>\",\n          \"value\": \"<integer>\",\n          \"value_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property\": \"<integer>\",\n          \"outstanding_charge\": \"<integer>\"\n        },\n        \"documents\": [\n          \"m3A\",\n          \"ixY8\"\n        ],\n        \"relates_to_new_title\": false,\n        \"party_roles\": [\n          {\n            \"role\": \"ASSENTOR\",\n            \"party_reference\": \"s_ym-4V\",\n            \"capacity\": \"ENTITLED_REGISTERED_PROPRIETOR\"\n          },\n          {\n            \"role\": \"ATTORNEY\",\n            \"party_reference\": \"vTDHH0\",\n            \"capacity\": \"INSOLVENCY_PRACTITIONER\"\n          }\n        ],\n        \"title_references\": [\n          \"<string>\"\n        ]\n      },\n      \"labore_c\": {\n        \"fee_in_pence\": \"<integer>\",\n        \"type\": \"DFT\",\n        \"priority\": \"<integer>\",\n        \"details\": {\n          \"type\": \"<string>\",\n          \"value\": \"<integer>\",\n          \"value_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property\": \"<integer>\",\n          \"outstanding_charge\": \"<integer>\"\n        },\n        \"documents\": [\n          \"7pRftrV\",\n          \"TIX99l0Er\"\n        ],\n        \"relates_to_new_title\": false,\n        \"party_roles\": [\n          {\n            \"role\": \"ASSENTOR\",\n            \"party_reference\": \"BYtEbgE7fiE\",\n            \"capacity\": \"INSOLVENCY_PRACTITIONER\"\n          },\n          {\n            \"role\": \"TENANT\",\n            \"party_reference\": \"BwCvymGyBuc\",\n            \"capacity\": \"DEPUTY\"\n          }\n        ],\n        \"title_references\": [\n          \"<string>\"\n        ]\n      },\n      \"Duis_\": {\n        \"fee_in_pence\": \"<integer>\",\n        \"type\": \"NOL\",\n        \"priority\": \"<integer>\",\n        \"details\": {\n          \"type\": \"<string>\",\n          \"value\": \"<integer>\",\n          \"value_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property\": \"<integer>\",\n          \"outstanding_charge\": \"<integer>\"\n        },\n        \"documents\": [\n          \"Yh1dF7mll\",\n          \"-GKQ2VK59T\"\n        ],\n        \"relates_to_new_title\": false,\n        \"party_roles\": [\n          {\n            \"role\": \"ATTORNEY\",\n            \"party_reference\": \"Wce?TK\",\n            \"capacity\": \"NOT_REQUIRED\"\n          },\n          {\n            \"role\": \"ASSENTOR\",\n            \"party_reference\": \"wm8K\",\n            \"capacity\": \"NOT_REQUIRED\"\n          }\n        ],\n        \"title_references\": [\n          \"<string>\"\n        ]\n      },\n      \"reprehenderit_637\": {\n        \"fee_in_pence\": \"<integer>\",\n        \"type\": \"VC\",\n        \"priority\": \"<integer>\",\n        \"details\": {\n          \"type\": \"<string>\",\n          \"value\": \"<integer>\",\n          \"value_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property\": \"<integer>\",\n          \"outstanding_charge\": \"<integer>\"\n        },\n        \"documents\": [\n          \"wf\",\n          \",EcsXyq,\"\n        ],\n        \"relates_to_new_title\": false,\n        \"party_roles\": [\n          {\n            \"role\": \"PERSONAL_REPRESENTATIVE\",\n            \"party_reference\": \"sNX\",\n            \"capacity\": \"DEPUTY\"\n          },\n          {\n            \"role\": \"TRANSFEREE\",\n            \"party_reference\": \"?RzH\",\n            \"capacity\": \"RECEIVER\"\n          }\n        ],\n        \"title_references\": [\n          \"<string>\"\n        ]\n      }\n    },\n    \"type\": \"TRANSFER_OF_PART\",\n    \"addresses\": {\n      \"Duis_80d\": {\n        \"details\": {\n          \"number\": \"<string>\",\n          \"service_number_rank\": \"<string>\",\n          \"type\": \"EMAIL\",\n          \"unit_regiment\": \"<string>\",\n          \"care_of_name\": \"<string>\"\n        }\n      },\n      \"aute_b\": {\n        \"details\": {\n          \"number\": \"<string>\",\n          \"service_number_rank\": \"<string>\",\n          \"type\": \"DX\",\n          \"unit_regiment\": \"<string>\",\n          \"care_of_name\": \"<string>\"\n        }\n      }\n    },\n    \"bypass_validation\": [\n      {\n        \"comment\": \"<string>\",\n        \"reason\": \"EXCEPTION_NOT_COVERED_BY_BUSINESS_RULES\",\n        \"validation_pointer\": \"<string>\",\n        \"validation_type\": \"<string>\"\n      },\n      {\n        \"comment\": \"<string>\",\n        \"reason\": \"HMLR_DATA_INCORRECT_OR_OUTDATED\",\n        \"validation_pointer\": \"<string>\",\n        \"validation_type\": \"<string>\"\n      }\n    ],\n    \"documents\": {\n      \"id_47d\": {\n        \"document_id\": \"<string>\",\n        \"document_metadata\": {\n          \"certification_statement_type\": \"NOT_CERTIFIED\",\n          \"document_filename\": \"<string>\"\n        },\n        \"type\": \"CN1\",\n        \"companies_house_certification\": \"<boolean>\"\n      },\n      \"Excepteurca\": {\n        \"document_id\": \"<string>\",\n        \"document_metadata\": {\n          \"certification_statement_type\": \"CERTIFIED_BY_ANOTHER\",\n          \"document_filename\": \"<string>\"\n        },\n        \"type\": \"AS2\",\n        \"companies_house_certification\": \"<boolean>\"\n      },\n      \"in_e\": {\n        \"document_id\": \"<string>\",\n        \"document_metadata\": {\n          \"certification_statement_type\": \"CERTIFIED\",\n          \"document_filename\": \"<string>\"\n        },\n        \"type\": \"BIRTH_CERT\",\n        \"companies_house_certification\": \"<boolean>\"\n      }\n    },\n    \"jp1_reference\": \"SXP1SXP\",\n    \"parties\": {\n      \"minim__\": {\n        \"details\": {\n          \"organisation_name\": \"<string>\",\n          \"type\": \"UNKNOWN\"\n        },\n        \"address_for_service_option\": \"NOT_REQUIRED\",\n        \"representation_type\": \"NOT_REQUIRED\",\n        \"addresses\": [\n          \"Y\",\n          \"pGnW-\"\n        ],\n        \"identity_evidence_type\": \"NOT_REQUIRED\",\n        \"other_conveyancer\": {\n          \"full_name\": \"<string>\",\n          \"registered_address\": \"<string>\",\n          \"conveyancer_reference\": \"<string>\"\n        },\n        \"register_action\": \"REMOVE\"\n      },\n      \"consectetur_4\": {\n        \"details\": {\n          \"organisation_name\": \"<string>\",\n          \"type\": \"OTHER_ORGANISATION\"\n        },\n        \"address_for_service_option\": \"NOT_REQUIRED\",\n        \"representation_type\": \"LODGING_CONVEYANCER\",\n        \"addresses\": [\n          \"tYd,_41\",\n          \"kTOLB5jR\"\n        ],\n        \"identity_evidence_type\": \"VERIFIED\",\n        \"other_conveyancer\": {\n          \"full_name\": \"<string>\",\n          \"registered_address\": \"<string>\",\n          \"conveyancer_reference\": \"<string>\"\n        },\n        \"register_action\": \"AMEND\"\n      }\n    },\n    \"additional_provider_filter\": \"2u\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v0/applications",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v0",
+                    "applications"
+                  ]
+                },
+                "description": "Submit an application API - Submit application creation requests for processing"
+              },
+              "response": [
+                {
+                  "id": "131fe465-8dd6-4b35-ac4d-51551c5df8b2",
+                  "name": "Application creation request accepted",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "Idempotency-Key",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"data\": {\n    \"applicants\": [\n      \"1GE\"\n    ],\n    \"customer_reference\": \"<string>\",\n    \"application_lodger\": {\n      \"email\": \"dBK$M!@<[\",\n      \"type\": \"NON_CONVEYANCER\",\n      \"telephone\": \"<string>\"\n    },\n    \"submission_warning_understood\": \"<boolean>\",\n    \"titles\": {\n      \"voluptate_6_\": {\n        \"scope_details\": {\n          \"scope\": \"PART\",\n          \"part_description\": \"<string>\"\n        },\n        \"title_number\": \"W355282Z\",\n        \"title_type\": \"LANDLORD_TITLE\",\n        \"disclosable_overriding_interests\": \"<boolean>\"\n      }\n    },\n    \"transactions\": {\n      \"ullamco0\": {\n        \"fee_in_pence\": \"<integer>\",\n        \"type\": \"CPVU\",\n        \"priority\": \"<integer>\",\n        \"details\": {\n          \"type\": \"<string>\",\n          \"value\": \"<integer>\",\n          \"value_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property\": \"<integer>\",\n          \"outstanding_charge\": \"<integer>\"\n        },\n        \"documents\": [\n          \"m3A\",\n          \"ixY8\"\n        ],\n        \"relates_to_new_title\": false,\n        \"party_roles\": [\n          {\n            \"role\": \"ASSENTOR\",\n            \"party_reference\": \"s_ym-4V\",\n            \"capacity\": \"ENTITLED_REGISTERED_PROPRIETOR\"\n          },\n          {\n            \"role\": \"ATTORNEY\",\n            \"party_reference\": \"vTDHH0\",\n            \"capacity\": \"INSOLVENCY_PRACTITIONER\"\n          }\n        ],\n        \"title_references\": [\n          \"<string>\"\n        ]\n      },\n      \"labore_c\": {\n        \"fee_in_pence\": \"<integer>\",\n        \"type\": \"DFT\",\n        \"priority\": \"<integer>\",\n        \"details\": {\n          \"type\": \"<string>\",\n          \"value\": \"<integer>\",\n          \"value_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property\": \"<integer>\",\n          \"outstanding_charge\": \"<integer>\"\n        },\n        \"documents\": [\n          \"7pRftrV\",\n          \"TIX99l0Er\"\n        ],\n        \"relates_to_new_title\": false,\n        \"party_roles\": [\n          {\n            \"role\": \"ASSENTOR\",\n            \"party_reference\": \"BYtEbgE7fiE\",\n            \"capacity\": \"INSOLVENCY_PRACTITIONER\"\n          },\n          {\n            \"role\": \"TENANT\",\n            \"party_reference\": \"BwCvymGyBuc\",\n            \"capacity\": \"DEPUTY\"\n          }\n        ],\n        \"title_references\": [\n          \"<string>\"\n        ]\n      },\n      \"Duis_\": {\n        \"fee_in_pence\": \"<integer>\",\n        \"type\": \"NOL\",\n        \"priority\": \"<integer>\",\n        \"details\": {\n          \"type\": \"<string>\",\n          \"value\": \"<integer>\",\n          \"value_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property\": \"<integer>\",\n          \"outstanding_charge\": \"<integer>\"\n        },\n        \"documents\": [\n          \"Yh1dF7mll\",\n          \"-GKQ2VK59T\"\n        ],\n        \"relates_to_new_title\": false,\n        \"party_roles\": [\n          {\n            \"role\": \"ATTORNEY\",\n            \"party_reference\": \"Wce?TK\",\n            \"capacity\": \"NOT_REQUIRED\"\n          },\n          {\n            \"role\": \"ASSENTOR\",\n            \"party_reference\": \"wm8K\",\n            \"capacity\": \"NOT_REQUIRED\"\n          }\n        ],\n        \"title_references\": [\n          \"<string>\"\n        ]\n      },\n      \"reprehenderit_637\": {\n        \"fee_in_pence\": \"<integer>\",\n        \"type\": \"VC\",\n        \"priority\": \"<integer>\",\n        \"details\": {\n          \"type\": \"<string>\",\n          \"value\": \"<integer>\",\n          \"value_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property\": \"<integer>\",\n          \"outstanding_charge\": \"<integer>\"\n        },\n        \"documents\": [\n          \"wf\",\n          \",EcsXyq,\"\n        ],\n        \"relates_to_new_title\": false,\n        \"party_roles\": [\n          {\n            \"role\": \"PERSONAL_REPRESENTATIVE\",\n            \"party_reference\": \"sNX\",\n            \"capacity\": \"DEPUTY\"\n          },\n          {\n            \"role\": \"TRANSFEREE\",\n            \"party_reference\": \"?RzH\",\n            \"capacity\": \"RECEIVER\"\n          }\n        ],\n        \"title_references\": [\n          \"<string>\"\n        ]\n      }\n    },\n    \"type\": \"TRANSFER_OF_PART\",\n    \"addresses\": {\n      \"Duis_80d\": {\n        \"details\": {\n          \"number\": \"<string>\",\n          \"service_number_rank\": \"<string>\",\n          \"type\": \"EMAIL\",\n          \"unit_regiment\": \"<string>\",\n          \"care_of_name\": \"<string>\"\n        }\n      },\n      \"aute_b\": {\n        \"details\": {\n          \"number\": \"<string>\",\n          \"service_number_rank\": \"<string>\",\n          \"type\": \"DX\",\n          \"unit_regiment\": \"<string>\",\n          \"care_of_name\": \"<string>\"\n        }\n      }\n    },\n    \"bypass_validation\": [\n      {\n        \"comment\": \"<string>\",\n        \"reason\": \"EXCEPTION_NOT_COVERED_BY_BUSINESS_RULES\",\n        \"validation_pointer\": \"<string>\",\n        \"validation_type\": \"<string>\"\n      },\n      {\n        \"comment\": \"<string>\",\n        \"reason\": \"HMLR_DATA_INCORRECT_OR_OUTDATED\",\n        \"validation_pointer\": \"<string>\",\n        \"validation_type\": \"<string>\"\n      }\n    ],\n    \"documents\": {\n      \"id_47d\": {\n        \"document_id\": \"<string>\",\n        \"document_metadata\": {\n          \"certification_statement_type\": \"NOT_CERTIFIED\",\n          \"document_filename\": \"<string>\"\n        },\n        \"type\": \"CN1\",\n        \"companies_house_certification\": \"<boolean>\"\n      },\n      \"Excepteurca\": {\n        \"document_id\": \"<string>\",\n        \"document_metadata\": {\n          \"certification_statement_type\": \"CERTIFIED_BY_ANOTHER\",\n          \"document_filename\": \"<string>\"\n        },\n        \"type\": \"AS2\",\n        \"companies_house_certification\": \"<boolean>\"\n      },\n      \"in_e\": {\n        \"document_id\": \"<string>\",\n        \"document_metadata\": {\n          \"certification_statement_type\": \"CERTIFIED\",\n          \"document_filename\": \"<string>\"\n        },\n        \"type\": \"BIRTH_CERT\",\n        \"companies_house_certification\": \"<boolean>\"\n      }\n    },\n    \"jp1_reference\": \"SXP1SXP\",\n    \"parties\": {\n      \"minim__\": {\n        \"details\": {\n          \"organisation_name\": \"<string>\",\n          \"type\": \"UNKNOWN\"\n        },\n        \"address_for_service_option\": \"NOT_REQUIRED\",\n        \"representation_type\": \"NOT_REQUIRED\",\n        \"addresses\": [\n          \"Y\",\n          \"pGnW-\"\n        ],\n        \"identity_evidence_type\": \"NOT_REQUIRED\",\n        \"other_conveyancer\": {\n          \"full_name\": \"<string>\",\n          \"registered_address\": \"<string>\",\n          \"conveyancer_reference\": \"<string>\"\n        },\n        \"register_action\": \"REMOVE\"\n      },\n      \"consectetur_4\": {\n        \"details\": {\n          \"organisation_name\": \"<string>\",\n          \"type\": \"OTHER_ORGANISATION\"\n        },\n        \"address_for_service_option\": \"NOT_REQUIRED\",\n        \"representation_type\": \"LODGING_CONVEYANCER\",\n        \"addresses\": [\n          \"tYd,_41\",\n          \"kTOLB5jR\"\n        ],\n        \"identity_evidence_type\": \"VERIFIED\",\n        \"other_conveyancer\": {\n          \"full_name\": \"<string>\",\n          \"registered_address\": \"<string>\",\n          \"conveyancer_reference\": \"<string>\"\n        },\n        \"register_action\": \"AMEND\"\n      }\n    },\n    \"additional_provider_filter\": \"2u\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v0/applications",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v0",
+                        "applications"
+                      ]
+                    }
+                  },
+                  "status": "Accepted",
+                  "code": 202,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Get application creation status URI for checking status",
+                        "type": "text/plain"
+                      },
+                      "key": "Location",
+                      "value": "<string>"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"application_request_id\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-21T20:14:38.000Z",
+                  "updatedAt": "2026-10-21T20:14:38.000Z",
+                  "uid": "35240-131fe465-8dd6-4b35-ac4d-51551c5df8b2"
+                },
+                {
+                  "id": "caa1482c-b6ad-406c-a57e-0bf08fda2cb8",
+                  "name": "Bad Request due to payload not meeting the required schema",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "Idempotency-Key",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"data\": {\n    \"applicants\": [\n      \"1GE\"\n    ],\n    \"customer_reference\": \"<string>\",\n    \"application_lodger\": {\n      \"email\": \"dBK$M!@<[\",\n      \"type\": \"NON_CONVEYANCER\",\n      \"telephone\": \"<string>\"\n    },\n    \"submission_warning_understood\": \"<boolean>\",\n    \"titles\": {\n      \"voluptate_6_\": {\n        \"scope_details\": {\n          \"scope\": \"PART\",\n          \"part_description\": \"<string>\"\n        },\n        \"title_number\": \"W355282Z\",\n        \"title_type\": \"LANDLORD_TITLE\",\n        \"disclosable_overriding_interests\": \"<boolean>\"\n      }\n    },\n    \"transactions\": {\n      \"ullamco0\": {\n        \"fee_in_pence\": \"<integer>\",\n        \"type\": \"CPVU\",\n        \"priority\": \"<integer>\",\n        \"details\": {\n          \"type\": \"<string>\",\n          \"value\": \"<integer>\",\n          \"value_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property\": \"<integer>\",\n          \"outstanding_charge\": \"<integer>\"\n        },\n        \"documents\": [\n          \"m3A\",\n          \"ixY8\"\n        ],\n        \"relates_to_new_title\": false,\n        \"party_roles\": [\n          {\n            \"role\": \"ASSENTOR\",\n            \"party_reference\": \"s_ym-4V\",\n            \"capacity\": \"ENTITLED_REGISTERED_PROPRIETOR\"\n          },\n          {\n            \"role\": \"ATTORNEY\",\n            \"party_reference\": \"vTDHH0\",\n            \"capacity\": \"INSOLVENCY_PRACTITIONER\"\n          }\n        ],\n        \"title_references\": [\n          \"<string>\"\n        ]\n      },\n      \"labore_c\": {\n        \"fee_in_pence\": \"<integer>\",\n        \"type\": \"DFT\",\n        \"priority\": \"<integer>\",\n        \"details\": {\n          \"type\": \"<string>\",\n          \"value\": \"<integer>\",\n          \"value_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property\": \"<integer>\",\n          \"outstanding_charge\": \"<integer>\"\n        },\n        \"documents\": [\n          \"7pRftrV\",\n          \"TIX99l0Er\"\n        ],\n        \"relates_to_new_title\": false,\n        \"party_roles\": [\n          {\n            \"role\": \"ASSENTOR\",\n            \"party_reference\": \"BYtEbgE7fiE\",\n            \"capacity\": \"INSOLVENCY_PRACTITIONER\"\n          },\n          {\n            \"role\": \"TENANT\",\n            \"party_reference\": \"BwCvymGyBuc\",\n            \"capacity\": \"DEPUTY\"\n          }\n        ],\n        \"title_references\": [\n          \"<string>\"\n        ]\n      },\n      \"Duis_\": {\n        \"fee_in_pence\": \"<integer>\",\n        \"type\": \"NOL\",\n        \"priority\": \"<integer>\",\n        \"details\": {\n          \"type\": \"<string>\",\n          \"value\": \"<integer>\",\n          \"value_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property\": \"<integer>\",\n          \"outstanding_charge\": \"<integer>\"\n        },\n        \"documents\": [\n          \"Yh1dF7mll\",\n          \"-GKQ2VK59T\"\n        ],\n        \"relates_to_new_title\": false,\n        \"party_roles\": [\n          {\n            \"role\": \"ATTORNEY\",\n            \"party_reference\": \"Wce?TK\",\n            \"capacity\": \"NOT_REQUIRED\"\n          },\n          {\n            \"role\": \"ASSENTOR\",\n            \"party_reference\": \"wm8K\",\n            \"capacity\": \"NOT_REQUIRED\"\n          }\n        ],\n        \"title_references\": [\n          \"<string>\"\n        ]\n      },\n      \"reprehenderit_637\": {\n        \"fee_in_pence\": \"<integer>\",\n        \"type\": \"VC\",\n        \"priority\": \"<integer>\",\n        \"details\": {\n          \"type\": \"<string>\",\n          \"value\": \"<integer>\",\n          \"value_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property\": \"<integer>\",\n          \"outstanding_charge\": \"<integer>\"\n        },\n        \"documents\": [\n          \"wf\",\n          \",EcsXyq,\"\n        ],\n        \"relates_to_new_title\": false,\n        \"party_roles\": [\n          {\n            \"role\": \"PERSONAL_REPRESENTATIVE\",\n            \"party_reference\": \"sNX\",\n            \"capacity\": \"DEPUTY\"\n          },\n          {\n            \"role\": \"TRANSFEREE\",\n            \"party_reference\": \"?RzH\",\n            \"capacity\": \"RECEIVER\"\n          }\n        ],\n        \"title_references\": [\n          \"<string>\"\n        ]\n      }\n    },\n    \"type\": \"TRANSFER_OF_PART\",\n    \"addresses\": {\n      \"Duis_80d\": {\n        \"details\": {\n          \"number\": \"<string>\",\n          \"service_number_rank\": \"<string>\",\n          \"type\": \"EMAIL\",\n          \"unit_regiment\": \"<string>\",\n          \"care_of_name\": \"<string>\"\n        }\n      },\n      \"aute_b\": {\n        \"details\": {\n          \"number\": \"<string>\",\n          \"service_number_rank\": \"<string>\",\n          \"type\": \"DX\",\n          \"unit_regiment\": \"<string>\",\n          \"care_of_name\": \"<string>\"\n        }\n      }\n    },\n    \"bypass_validation\": [\n      {\n        \"comment\": \"<string>\",\n        \"reason\": \"EXCEPTION_NOT_COVERED_BY_BUSINESS_RULES\",\n        \"validation_pointer\": \"<string>\",\n        \"validation_type\": \"<string>\"\n      },\n      {\n        \"comment\": \"<string>\",\n        \"reason\": \"HMLR_DATA_INCORRECT_OR_OUTDATED\",\n        \"validation_pointer\": \"<string>\",\n        \"validation_type\": \"<string>\"\n      }\n    ],\n    \"documents\": {\n      \"id_47d\": {\n        \"document_id\": \"<string>\",\n        \"document_metadata\": {\n          \"certification_statement_type\": \"NOT_CERTIFIED\",\n          \"document_filename\": \"<string>\"\n        },\n        \"type\": \"CN1\",\n        \"companies_house_certification\": \"<boolean>\"\n      },\n      \"Excepteurca\": {\n        \"document_id\": \"<string>\",\n        \"document_metadata\": {\n          \"certification_statement_type\": \"CERTIFIED_BY_ANOTHER\",\n          \"document_filename\": \"<string>\"\n        },\n        \"type\": \"AS2\",\n        \"companies_house_certification\": \"<boolean>\"\n      },\n      \"in_e\": {\n        \"document_id\": \"<string>\",\n        \"document_metadata\": {\n          \"certification_statement_type\": \"CERTIFIED\",\n          \"document_filename\": \"<string>\"\n        },\n        \"type\": \"BIRTH_CERT\",\n        \"companies_house_certification\": \"<boolean>\"\n      }\n    },\n    \"jp1_reference\": \"SXP1SXP\",\n    \"parties\": {\n      \"minim__\": {\n        \"details\": {\n          \"organisation_name\": \"<string>\",\n          \"type\": \"UNKNOWN\"\n        },\n        \"address_for_service_option\": \"NOT_REQUIRED\",\n        \"representation_type\": \"NOT_REQUIRED\",\n        \"addresses\": [\n          \"Y\",\n          \"pGnW-\"\n        ],\n        \"identity_evidence_type\": \"NOT_REQUIRED\",\n        \"other_conveyancer\": {\n          \"full_name\": \"<string>\",\n          \"registered_address\": \"<string>\",\n          \"conveyancer_reference\": \"<string>\"\n        },\n        \"register_action\": \"REMOVE\"\n      },\n      \"consectetur_4\": {\n        \"details\": {\n          \"organisation_name\": \"<string>\",\n          \"type\": \"OTHER_ORGANISATION\"\n        },\n        \"address_for_service_option\": \"NOT_REQUIRED\",\n        \"representation_type\": \"LODGING_CONVEYANCER\",\n        \"addresses\": [\n          \"tYd,_41\",\n          \"kTOLB5jR\"\n        ],\n        \"identity_evidence_type\": \"VERIFIED\",\n        \"other_conveyancer\": {\n          \"full_name\": \"<string>\",\n          \"registered_address\": \"<string>\",\n          \"conveyancer_reference\": \"<string>\"\n        },\n        \"register_action\": \"AMEND\"\n      }\n    },\n    \"additional_provider_filter\": \"2u\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v0/applications",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v0",
+                        "applications"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"type\": \"<uri>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\",\n  \"instance\": \"<uri>\",\n  \"code\": \"<string>\",\n  \"errors\": [\n    {\n      \"detail\": \"<string>\",\n      \"type\": \"<string>\",\n      \"pointer\": \"<string>\"\n    },\n    {\n      \"detail\": \"<string>\",\n      \"type\": \"<string>\",\n      \"pointer\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-10-21T20:14:38.000Z",
+                  "updatedAt": "2026-10-21T20:14:38.000Z",
+                  "uid": "35240-caa1482c-b6ad-406c-a57e-0bf08fda2cb8"
+                },
+                {
+                  "id": "2543ebd6-59f8-40cc-9b21-1e8af6d741a6",
+                  "name": "Unauthorised - an access token is required",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "Idempotency-Key",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "*/*"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"data\": {\n    \"applicants\": [\n      \"1GE\"\n    ],\n    \"customer_reference\": \"<string>\",\n    \"application_lodger\": {\n      \"email\": \"dBK$M!@<[\",\n      \"type\": \"NON_CONVEYANCER\",\n      \"telephone\": \"<string>\"\n    },\n    \"submission_warning_understood\": \"<boolean>\",\n    \"titles\": {\n      \"voluptate_6_\": {\n        \"scope_details\": {\n          \"scope\": \"PART\",\n          \"part_description\": \"<string>\"\n        },\n        \"title_number\": \"W355282Z\",\n        \"title_type\": \"LANDLORD_TITLE\",\n        \"disclosable_overriding_interests\": \"<boolean>\"\n      }\n    },\n    \"transactions\": {\n      \"ullamco0\": {\n        \"fee_in_pence\": \"<integer>\",\n        \"type\": \"CPVU\",\n        \"priority\": \"<integer>\",\n        \"details\": {\n          \"type\": \"<string>\",\n          \"value\": \"<integer>\",\n          \"value_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property\": \"<integer>\",\n          \"outstanding_charge\": \"<integer>\"\n        },\n        \"documents\": [\n          \"m3A\",\n          \"ixY8\"\n        ],\n        \"relates_to_new_title\": false,\n        \"party_roles\": [\n          {\n            \"role\": \"ASSENTOR\",\n            \"party_reference\": \"s_ym-4V\",\n            \"capacity\": \"ENTITLED_REGISTERED_PROPRIETOR\"\n          },\n          {\n            \"role\": \"ATTORNEY\",\n            \"party_reference\": \"vTDHH0\",\n            \"capacity\": \"INSOLVENCY_PRACTITIONER\"\n          }\n        ],\n        \"title_references\": [\n          \"<string>\"\n        ]\n      },\n      \"labore_c\": {\n        \"fee_in_pence\": \"<integer>\",\n        \"type\": \"DFT\",\n        \"priority\": \"<integer>\",\n        \"details\": {\n          \"type\": \"<string>\",\n          \"value\": \"<integer>\",\n          \"value_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property\": \"<integer>\",\n          \"outstanding_charge\": \"<integer>\"\n        },\n        \"documents\": [\n          \"7pRftrV\",\n          \"TIX99l0Er\"\n        ],\n        \"relates_to_new_title\": false,\n        \"party_roles\": [\n          {\n            \"role\": \"ASSENTOR\",\n            \"party_reference\": \"BYtEbgE7fiE\",\n            \"capacity\": \"INSOLVENCY_PRACTITIONER\"\n          },\n          {\n            \"role\": \"TENANT\",\n            \"party_reference\": \"BwCvymGyBuc\",\n            \"capacity\": \"DEPUTY\"\n          }\n        ],\n        \"title_references\": [\n          \"<string>\"\n        ]\n      },\n      \"Duis_\": {\n        \"fee_in_pence\": \"<integer>\",\n        \"type\": \"NOL\",\n        \"priority\": \"<integer>\",\n        \"details\": {\n          \"type\": \"<string>\",\n          \"value\": \"<integer>\",\n          \"value_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property\": \"<integer>\",\n          \"outstanding_charge\": \"<integer>\"\n        },\n        \"documents\": [\n          \"Yh1dF7mll\",\n          \"-GKQ2VK59T\"\n        ],\n        \"relates_to_new_title\": false,\n        \"party_roles\": [\n          {\n            \"role\": \"ATTORNEY\",\n            \"party_reference\": \"Wce?TK\",\n            \"capacity\": \"NOT_REQUIRED\"\n          },\n          {\n            \"role\": \"ASSENTOR\",\n            \"party_reference\": \"wm8K\",\n            \"capacity\": \"NOT_REQUIRED\"\n          }\n        ],\n        \"title_references\": [\n          \"<string>\"\n        ]\n      },\n      \"reprehenderit_637\": {\n        \"fee_in_pence\": \"<integer>\",\n        \"type\": \"VC\",\n        \"priority\": \"<integer>\",\n        \"details\": {\n          \"type\": \"<string>\",\n          \"value\": \"<integer>\",\n          \"value_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property\": \"<integer>\",\n          \"outstanding_charge\": \"<integer>\"\n        },\n        \"documents\": [\n          \"wf\",\n          \",EcsXyq,\"\n        ],\n        \"relates_to_new_title\": false,\n        \"party_roles\": [\n          {\n            \"role\": \"PERSONAL_REPRESENTATIVE\",\n            \"party_reference\": \"sNX\",\n            \"capacity\": \"DEPUTY\"\n          },\n          {\n            \"role\": \"TRANSFEREE\",\n            \"party_reference\": \"?RzH\",\n            \"capacity\": \"RECEIVER\"\n          }\n        ],\n        \"title_references\": [\n          \"<string>\"\n        ]\n      }\n    },\n    \"type\": \"TRANSFER_OF_PART\",\n    \"addresses\": {\n      \"Duis_80d\": {\n        \"details\": {\n          \"number\": \"<string>\",\n          \"service_number_rank\": \"<string>\",\n          \"type\": \"EMAIL\",\n          \"unit_regiment\": \"<string>\",\n          \"care_of_name\": \"<string>\"\n        }\n      },\n      \"aute_b\": {\n        \"details\": {\n          \"number\": \"<string>\",\n          \"service_number_rank\": \"<string>\",\n          \"type\": \"DX\",\n          \"unit_regiment\": \"<string>\",\n          \"care_of_name\": \"<string>\"\n        }\n      }\n    },\n    \"bypass_validation\": [\n      {\n        \"comment\": \"<string>\",\n        \"reason\": \"EXCEPTION_NOT_COVERED_BY_BUSINESS_RULES\",\n        \"validation_pointer\": \"<string>\",\n        \"validation_type\": \"<string>\"\n      },\n      {\n        \"comment\": \"<string>\",\n        \"reason\": \"HMLR_DATA_INCORRECT_OR_OUTDATED\",\n        \"validation_pointer\": \"<string>\",\n        \"validation_type\": \"<string>\"\n      }\n    ],\n    \"documents\": {\n      \"id_47d\": {\n        \"document_id\": \"<string>\",\n        \"document_metadata\": {\n          \"certification_statement_type\": \"NOT_CERTIFIED\",\n          \"document_filename\": \"<string>\"\n        },\n        \"type\": \"CN1\",\n        \"companies_house_certification\": \"<boolean>\"\n      },\n      \"Excepteurca\": {\n        \"document_id\": \"<string>\",\n        \"document_metadata\": {\n          \"certification_statement_type\": \"CERTIFIED_BY_ANOTHER\",\n          \"document_filename\": \"<string>\"\n        },\n        \"type\": \"AS2\",\n        \"companies_house_certification\": \"<boolean>\"\n      },\n      \"in_e\": {\n        \"document_id\": \"<string>\",\n        \"document_metadata\": {\n          \"certification_statement_type\": \"CERTIFIED\",\n          \"document_filename\": \"<string>\"\n        },\n        \"type\": \"BIRTH_CERT\",\n        \"companies_house_certification\": \"<boolean>\"\n      }\n    },\n    \"jp1_reference\": \"SXP1SXP\",\n    \"parties\": {\n      \"minim__\": {\n        \"details\": {\n          \"organisation_name\": \"<string>\",\n          \"type\": \"UNKNOWN\"\n        },\n        \"address_for_service_option\": \"NOT_REQUIRED\",\n        \"representation_type\": \"NOT_REQUIRED\",\n        \"addresses\": [\n          \"Y\",\n          \"pGnW-\"\n        ],\n        \"identity_evidence_type\": \"NOT_REQUIRED\",\n        \"other_conveyancer\": {\n          \"full_name\": \"<string>\",\n          \"registered_address\": \"<string>\",\n          \"conveyancer_reference\": \"<string>\"\n        },\n        \"register_action\": \"REMOVE\"\n      },\n      \"consectetur_4\": {\n        \"details\": {\n          \"organisation_name\": \"<string>\",\n          \"type\": \"OTHER_ORGANISATION\"\n        },\n        \"address_for_service_option\": \"NOT_REQUIRED\",\n        \"representation_type\": \"LODGING_CONVEYANCER\",\n        \"addresses\": [\n          \"tYd,_41\",\n          \"kTOLB5jR\"\n        ],\n        \"identity_evidence_type\": \"VERIFIED\",\n        \"other_conveyancer\": {\n          \"full_name\": \"<string>\",\n          \"registered_address\": \"<string>\",\n          \"conveyancer_reference\": \"<string>\"\n        },\n        \"register_action\": \"AMEND\"\n      }\n    },\n    \"additional_provider_filter\": \"2u\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v0/applications",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v0",
+                        "applications"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "*/*"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"type\": \"<uri>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\",\n  \"instance\": \"<uri>\",\n  \"code\": \"<string>\",\n  \"errors\": [\n    {\n      \"detail\": \"<string>\",\n      \"type\": \"<string>\",\n      \"pointer\": \"<string>\"\n    },\n    {\n      \"detail\": \"<string>\",\n      \"type\": \"<string>\",\n      \"pointer\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-10-21T20:14:38.000Z",
+                  "updatedAt": "2026-10-21T20:14:38.000Z",
+                  "uid": "35240-2543ebd6-59f8-40cc-9b21-1e8af6d741a6"
+                },
+                {
+                  "id": "6616bdfc-6128-4be2-b972-c07112dfce3a",
+                  "name": "Internal Server Error",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "Idempotency-Key",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"data\": {\n    \"applicants\": [\n      \"1GE\"\n    ],\n    \"customer_reference\": \"<string>\",\n    \"application_lodger\": {\n      \"email\": \"dBK$M!@<[\",\n      \"type\": \"NON_CONVEYANCER\",\n      \"telephone\": \"<string>\"\n    },\n    \"submission_warning_understood\": \"<boolean>\",\n    \"titles\": {\n      \"voluptate_6_\": {\n        \"scope_details\": {\n          \"scope\": \"PART\",\n          \"part_description\": \"<string>\"\n        },\n        \"title_number\": \"W355282Z\",\n        \"title_type\": \"LANDLORD_TITLE\",\n        \"disclosable_overriding_interests\": \"<boolean>\"\n      }\n    },\n    \"transactions\": {\n      \"ullamco0\": {\n        \"fee_in_pence\": \"<integer>\",\n        \"type\": \"CPVU\",\n        \"priority\": \"<integer>\",\n        \"details\": {\n          \"type\": \"<string>\",\n          \"value\": \"<integer>\",\n          \"value_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property\": \"<integer>\",\n          \"outstanding_charge\": \"<integer>\"\n        },\n        \"documents\": [\n          \"m3A\",\n          \"ixY8\"\n        ],\n        \"relates_to_new_title\": false,\n        \"party_roles\": [\n          {\n            \"role\": \"ASSENTOR\",\n            \"party_reference\": \"s_ym-4V\",\n            \"capacity\": \"ENTITLED_REGISTERED_PROPRIETOR\"\n          },\n          {\n            \"role\": \"ATTORNEY\",\n            \"party_reference\": \"vTDHH0\",\n            \"capacity\": \"INSOLVENCY_PRACTITIONER\"\n          }\n        ],\n        \"title_references\": [\n          \"<string>\"\n        ]\n      },\n      \"labore_c\": {\n        \"fee_in_pence\": \"<integer>\",\n        \"type\": \"DFT\",\n        \"priority\": \"<integer>\",\n        \"details\": {\n          \"type\": \"<string>\",\n          \"value\": \"<integer>\",\n          \"value_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property\": \"<integer>\",\n          \"outstanding_charge\": \"<integer>\"\n        },\n        \"documents\": [\n          \"7pRftrV\",\n          \"TIX99l0Er\"\n        ],\n        \"relates_to_new_title\": false,\n        \"party_roles\": [\n          {\n            \"role\": \"ASSENTOR\",\n            \"party_reference\": \"BYtEbgE7fiE\",\n            \"capacity\": \"INSOLVENCY_PRACTITIONER\"\n          },\n          {\n            \"role\": \"TENANT\",\n            \"party_reference\": \"BwCvymGyBuc\",\n            \"capacity\": \"DEPUTY\"\n          }\n        ],\n        \"title_references\": [\n          \"<string>\"\n        ]\n      },\n      \"Duis_\": {\n        \"fee_in_pence\": \"<integer>\",\n        \"type\": \"NOL\",\n        \"priority\": \"<integer>\",\n        \"details\": {\n          \"type\": \"<string>\",\n          \"value\": \"<integer>\",\n          \"value_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property\": \"<integer>\",\n          \"outstanding_charge\": \"<integer>\"\n        },\n        \"documents\": [\n          \"Yh1dF7mll\",\n          \"-GKQ2VK59T\"\n        ],\n        \"relates_to_new_title\": false,\n        \"party_roles\": [\n          {\n            \"role\": \"ATTORNEY\",\n            \"party_reference\": \"Wce?TK\",\n            \"capacity\": \"NOT_REQUIRED\"\n          },\n          {\n            \"role\": \"ASSENTOR\",\n            \"party_reference\": \"wm8K\",\n            \"capacity\": \"NOT_REQUIRED\"\n          }\n        ],\n        \"title_references\": [\n          \"<string>\"\n        ]\n      },\n      \"reprehenderit_637\": {\n        \"fee_in_pence\": \"<integer>\",\n        \"type\": \"VC\",\n        \"priority\": \"<integer>\",\n        \"details\": {\n          \"type\": \"<string>\",\n          \"value\": \"<integer>\",\n          \"value_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property\": \"<integer>\",\n          \"outstanding_charge\": \"<integer>\"\n        },\n        \"documents\": [\n          \"wf\",\n          \",EcsXyq,\"\n        ],\n        \"relates_to_new_title\": false,\n        \"party_roles\": [\n          {\n            \"role\": \"PERSONAL_REPRESENTATIVE\",\n            \"party_reference\": \"sNX\",\n            \"capacity\": \"DEPUTY\"\n          },\n          {\n            \"role\": \"TRANSFEREE\",\n            \"party_reference\": \"?RzH\",\n            \"capacity\": \"RECEIVER\"\n          }\n        ],\n        \"title_references\": [\n          \"<string>\"\n        ]\n      }\n    },\n    \"type\": \"TRANSFER_OF_PART\",\n    \"addresses\": {\n      \"Duis_80d\": {\n        \"details\": {\n          \"number\": \"<string>\",\n          \"service_number_rank\": \"<string>\",\n          \"type\": \"EMAIL\",\n          \"unit_regiment\": \"<string>\",\n          \"care_of_name\": \"<string>\"\n        }\n      },\n      \"aute_b\": {\n        \"details\": {\n          \"number\": \"<string>\",\n          \"service_number_rank\": \"<string>\",\n          \"type\": \"DX\",\n          \"unit_regiment\": \"<string>\",\n          \"care_of_name\": \"<string>\"\n        }\n      }\n    },\n    \"bypass_validation\": [\n      {\n        \"comment\": \"<string>\",\n        \"reason\": \"EXCEPTION_NOT_COVERED_BY_BUSINESS_RULES\",\n        \"validation_pointer\": \"<string>\",\n        \"validation_type\": \"<string>\"\n      },\n      {\n        \"comment\": \"<string>\",\n        \"reason\": \"HMLR_DATA_INCORRECT_OR_OUTDATED\",\n        \"validation_pointer\": \"<string>\",\n        \"validation_type\": \"<string>\"\n      }\n    ],\n    \"documents\": {\n      \"id_47d\": {\n        \"document_id\": \"<string>\",\n        \"document_metadata\": {\n          \"certification_statement_type\": \"NOT_CERTIFIED\",\n          \"document_filename\": \"<string>\"\n        },\n        \"type\": \"CN1\",\n        \"companies_house_certification\": \"<boolean>\"\n      },\n      \"Excepteurca\": {\n        \"document_id\": \"<string>\",\n        \"document_metadata\": {\n          \"certification_statement_type\": \"CERTIFIED_BY_ANOTHER\",\n          \"document_filename\": \"<string>\"\n        },\n        \"type\": \"AS2\",\n        \"companies_house_certification\": \"<boolean>\"\n      },\n      \"in_e\": {\n        \"document_id\": \"<string>\",\n        \"document_metadata\": {\n          \"certification_statement_type\": \"CERTIFIED\",\n          \"document_filename\": \"<string>\"\n        },\n        \"type\": \"BIRTH_CERT\",\n        \"companies_house_certification\": \"<boolean>\"\n      }\n    },\n    \"jp1_reference\": \"SXP1SXP\",\n    \"parties\": {\n      \"minim__\": {\n        \"details\": {\n          \"organisation_name\": \"<string>\",\n          \"type\": \"UNKNOWN\"\n        },\n        \"address_for_service_option\": \"NOT_REQUIRED\",\n        \"representation_type\": \"NOT_REQUIRED\",\n        \"addresses\": [\n          \"Y\",\n          \"pGnW-\"\n        ],\n        \"identity_evidence_type\": \"NOT_REQUIRED\",\n        \"other_conveyancer\": {\n          \"full_name\": \"<string>\",\n          \"registered_address\": \"<string>\",\n          \"conveyancer_reference\": \"<string>\"\n        },\n        \"register_action\": \"REMOVE\"\n      },\n      \"consectetur_4\": {\n        \"details\": {\n          \"organisation_name\": \"<string>\",\n          \"type\": \"OTHER_ORGANISATION\"\n        },\n        \"address_for_service_option\": \"NOT_REQUIRED\",\n        \"representation_type\": \"LODGING_CONVEYANCER\",\n        \"addresses\": [\n          \"tYd,_41\",\n          \"kTOLB5jR\"\n        ],\n        \"identity_evidence_type\": \"VERIFIED\",\n        \"other_conveyancer\": {\n          \"full_name\": \"<string>\",\n          \"registered_address\": \"<string>\",\n          \"conveyancer_reference\": \"<string>\"\n        },\n        \"register_action\": \"AMEND\"\n      }\n    },\n    \"additional_provider_filter\": \"2u\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v0/applications",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v0",
+                        "applications"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-21T20:14:38.000Z",
+                  "updatedAt": "2026-10-21T20:14:38.000Z",
+                  "uid": "35240-6616bdfc-6128-4be2-b972-c07112dfce3a"
+                }
+              ],
+              "createdAt": "2026-10-21T20:14:38.000Z",
+              "updatedAt": "2026-10-21T20:14:38.000Z",
+              "uid": "35240-ac5cf010-0ee9-4f70-bf51-fb2156c227f5"
+            }
+          ],
+          "id": "94e28e20-46f6-4d07-a861-e53837ccd211",
+          "createdAt": "2026-10-21T20:14:38.000Z",
+          "updatedAt": "2026-10-21T20:14:38.000Z",
+          "uid": "35240-94e28e20-46f6-4d07-a861-e53837ccd211"
+        }
+      ],
+      "id": "329c32fe-79e1-48b1-9e3f-2f8e46116d60",
+      "createdAt": "2026-10-21T20:14:38.000Z",
+      "updatedAt": "2026-10-21T20:14:38.000Z",
+      "uid": "35240-329c32fe-79e1-48b1-9e3f-2f8e46116d60"
+    },
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "applications",
+          "item": [
+            {
+              "name": "Submit an application",
+              "id": "8d6cd91f-1c59-4137-b67f-e90e6aed86f0",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) ",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"applicants\": [\n      \"1GE\"\n    ],\n    \"customer_reference\": \"<string>\",\n    \"application_lodger\": {\n      \"email\": \"dBK$M!@<[\",\n      \"type\": \"NON_CONVEYANCER\",\n      \"telephone\": \"<string>\"\n    },\n    \"submission_warning_understood\": \"<boolean>\",\n    \"titles\": {\n      \"voluptate_6_\": {\n        \"scope_details\": {\n          \"scope\": \"PART\",\n          \"part_description\": \"<string>\"\n        },\n        \"title_number\": \"W355282Z\",\n        \"title_type\": \"LANDLORD_TITLE\",\n        \"disclosable_overriding_interests\": \"<boolean>\"\n      }\n    },\n    \"transactions\": {\n      \"ullamco0\": {\n        \"fee_in_pence\": \"<integer>\",\n        \"type\": \"CPVU\",\n        \"priority\": \"<integer>\",\n        \"details\": {\n          \"type\": \"<string>\",\n          \"value\": \"<integer>\",\n          \"value_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property\": \"<integer>\",\n          \"outstanding_charge\": \"<integer>\"\n        },\n        \"documents\": [\n          \"m3A\",\n          \"ixY8\"\n        ],\n        \"relates_to_new_title\": false,\n        \"party_roles\": [\n          {\n            \"role\": \"ASSENTOR\",\n            \"party_reference\": \"s_ym-4V\",\n            \"capacity\": \"ENTITLED_REGISTERED_PROPRIETOR\"\n          },\n          {\n            \"role\": \"ATTORNEY\",\n            \"party_reference\": \"vTDHH0\",\n            \"capacity\": \"INSOLVENCY_PRACTITIONER\"\n          }\n        ],\n        \"title_references\": [\n          \"<string>\"\n        ]\n      },\n      \"labore_c\": {\n        \"fee_in_pence\": \"<integer>\",\n        \"type\": \"DFT\",\n        \"priority\": \"<integer>\",\n        \"details\": {\n          \"type\": \"<string>\",\n          \"value\": \"<integer>\",\n          \"value_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property\": \"<integer>\",\n          \"outstanding_charge\": \"<integer>\"\n        },\n        \"documents\": [\n          \"7pRftrV\",\n          \"TIX99l0Er\"\n        ],\n        \"relates_to_new_title\": false,\n        \"party_roles\": [\n          {\n            \"role\": \"ASSENTOR\",\n            \"party_reference\": \"BYtEbgE7fiE\",\n            \"capacity\": \"INSOLVENCY_PRACTITIONER\"\n          },\n          {\n            \"role\": \"TENANT\",\n            \"party_reference\": \"BwCvymGyBuc\",\n            \"capacity\": \"DEPUTY\"\n          }\n        ],\n        \"title_references\": [\n          \"<string>\"\n        ]\n      },\n      \"Duis_\": {\n        \"fee_in_pence\": \"<integer>\",\n        \"type\": \"NOL\",\n        \"priority\": \"<integer>\",\n        \"details\": {\n          \"type\": \"<string>\",\n          \"value\": \"<integer>\",\n          \"value_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property\": \"<integer>\",\n          \"outstanding_charge\": \"<integer>\"\n        },\n        \"documents\": [\n          \"Yh1dF7mll\",\n          \"-GKQ2VK59T\"\n        ],\n        \"relates_to_new_title\": false,\n        \"party_roles\": [\n          {\n            \"role\": \"ATTORNEY\",\n            \"party_reference\": \"Wce?TK\",\n            \"capacity\": \"NOT_REQUIRED\"\n          },\n          {\n            \"role\": \"ASSENTOR\",\n            \"party_reference\": \"wm8K\",\n            \"capacity\": \"NOT_REQUIRED\"\n          }\n        ],\n        \"title_references\": [\n          \"<string>\"\n        ]\n      },\n      \"reprehenderit_637\": {\n        \"fee_in_pence\": \"<integer>\",\n        \"type\": \"VC\",\n        \"priority\": \"<integer>\",\n        \"details\": {\n          \"type\": \"<string>\",\n          \"value\": \"<integer>\",\n          \"value_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property\": \"<integer>\",\n          \"outstanding_charge\": \"<integer>\"\n        },\n        \"documents\": [\n          \"wf\",\n          \",EcsXyq,\"\n        ],\n        \"relates_to_new_title\": false,\n        \"party_roles\": [\n          {\n            \"role\": \"PERSONAL_REPRESENTATIVE\",\n            \"party_reference\": \"sNX\",\n            \"capacity\": \"DEPUTY\"\n          },\n          {\n            \"role\": \"TRANSFEREE\",\n            \"party_reference\": \"?RzH\",\n            \"capacity\": \"RECEIVER\"\n          }\n        ],\n        \"title_references\": [\n          \"<string>\"\n        ]\n      }\n    },\n    \"type\": \"TRANSFER_OF_PART\",\n    \"addresses\": {\n      \"Duis_80d\": {\n        \"details\": {\n          \"number\": \"<string>\",\n          \"service_number_rank\": \"<string>\",\n          \"type\": \"EMAIL\",\n          \"unit_regiment\": \"<string>\",\n          \"care_of_name\": \"<string>\"\n        }\n      },\n      \"aute_b\": {\n        \"details\": {\n          \"number\": \"<string>\",\n          \"service_number_rank\": \"<string>\",\n          \"type\": \"DX\",\n          \"unit_regiment\": \"<string>\",\n          \"care_of_name\": \"<string>\"\n        }\n      }\n    },\n    \"bypass_validation\": [\n      {\n        \"comment\": \"<string>\",\n        \"reason\": \"EXCEPTION_NOT_COVERED_BY_BUSINESS_RULES\",\n        \"validation_pointer\": \"<string>\",\n        \"validation_type\": \"<string>\"\n      },\n      {\n        \"comment\": \"<string>\",\n        \"reason\": \"HMLR_DATA_INCORRECT_OR_OUTDATED\",\n        \"validation_pointer\": \"<string>\",\n        \"validation_type\": \"<string>\"\n      }\n    ],\n    \"documents\": {\n      \"id_47d\": {\n        \"document_id\": \"<string>\",\n        \"document_metadata\": {\n          \"certification_statement_type\": \"NOT_CERTIFIED\",\n          \"document_filename\": \"<string>\"\n        },\n        \"type\": \"CN1\",\n        \"companies_house_certification\": \"<boolean>\"\n      },\n      \"Excepteurca\": {\n        \"document_id\": \"<string>\",\n        \"document_metadata\": {\n          \"certification_statement_type\": \"CERTIFIED_BY_ANOTHER\",\n          \"document_filename\": \"<string>\"\n        },\n        \"type\": \"AS2\",\n        \"companies_house_certification\": \"<boolean>\"\n      },\n      \"in_e\": {\n        \"document_id\": \"<string>\",\n        \"document_metadata\": {\n          \"certification_statement_type\": \"CERTIFIED\",\n          \"document_filename\": \"<string>\"\n        },\n        \"type\": \"BIRTH_CERT\",\n        \"companies_house_certification\": \"<boolean>\"\n      }\n    },\n    \"jp1_reference\": \"SXP1SXP\",\n    \"parties\": {\n      \"minim__\": {\n        \"details\": {\n          \"organisation_name\": \"<string>\",\n          \"type\": \"UNKNOWN\"\n        },\n        \"address_for_service_option\": \"NOT_REQUIRED\",\n        \"representation_type\": \"NOT_REQUIRED\",\n        \"addresses\": [\n          \"Y\",\n          \"pGnW-\"\n        ],\n        \"identity_evidence_type\": \"NOT_REQUIRED\",\n        \"other_conveyancer\": {\n          \"full_name\": \"<string>\",\n          \"registered_address\": \"<string>\",\n          \"conveyancer_reference\": \"<string>\"\n        },\n        \"register_action\": \"REMOVE\"\n      },\n      \"consectetur_4\": {\n        \"details\": {\n          \"organisation_name\": \"<string>\",\n          \"type\": \"OTHER_ORGANISATION\"\n        },\n        \"address_for_service_option\": \"NOT_REQUIRED\",\n        \"representation_type\": \"LODGING_CONVEYANCER\",\n        \"addresses\": [\n          \"tYd,_41\",\n          \"kTOLB5jR\"\n        ],\n        \"identity_evidence_type\": \"VERIFIED\",\n        \"other_conveyancer\": {\n          \"full_name\": \"<string>\",\n          \"registered_address\": \"<string>\",\n          \"conveyancer_reference\": \"<string>\"\n        },\n        \"register_action\": \"AMEND\"\n      }\n    },\n    \"additional_provider_filter\": \"2u\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/applications",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "applications"
+                  ]
+                },
+                "description": "Submit an application API - Submit application creation requests for processing"
+              },
+              "response": [
+                {
+                  "id": "334895f7-9b0b-4df3-b700-8f941a8fb05b",
+                  "name": "Application creation request accepted",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "Idempotency-Key",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"data\": {\n    \"applicants\": [\n      \"1GE\"\n    ],\n    \"customer_reference\": \"<string>\",\n    \"application_lodger\": {\n      \"email\": \"dBK$M!@<[\",\n      \"type\": \"NON_CONVEYANCER\",\n      \"telephone\": \"<string>\"\n    },\n    \"submission_warning_understood\": \"<boolean>\",\n    \"titles\": {\n      \"voluptate_6_\": {\n        \"scope_details\": {\n          \"scope\": \"PART\",\n          \"part_description\": \"<string>\"\n        },\n        \"title_number\": \"W355282Z\",\n        \"title_type\": \"LANDLORD_TITLE\",\n        \"disclosable_overriding_interests\": \"<boolean>\"\n      }\n    },\n    \"transactions\": {\n      \"ullamco0\": {\n        \"fee_in_pence\": \"<integer>\",\n        \"type\": \"CPVU\",\n        \"priority\": \"<integer>\",\n        \"details\": {\n          \"type\": \"<string>\",\n          \"value\": \"<integer>\",\n          \"value_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property\": \"<integer>\",\n          \"outstanding_charge\": \"<integer>\"\n        },\n        \"documents\": [\n          \"m3A\",\n          \"ixY8\"\n        ],\n        \"relates_to_new_title\": false,\n        \"party_roles\": [\n          {\n            \"role\": \"ASSENTOR\",\n            \"party_reference\": \"s_ym-4V\",\n            \"capacity\": \"ENTITLED_REGISTERED_PROPRIETOR\"\n          },\n          {\n            \"role\": \"ATTORNEY\",\n            \"party_reference\": \"vTDHH0\",\n            \"capacity\": \"INSOLVENCY_PRACTITIONER\"\n          }\n        ],\n        \"title_references\": [\n          \"<string>\"\n        ]\n      },\n      \"labore_c\": {\n        \"fee_in_pence\": \"<integer>\",\n        \"type\": \"DFT\",\n        \"priority\": \"<integer>\",\n        \"details\": {\n          \"type\": \"<string>\",\n          \"value\": \"<integer>\",\n          \"value_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property\": \"<integer>\",\n          \"outstanding_charge\": \"<integer>\"\n        },\n        \"documents\": [\n          \"7pRftrV\",\n          \"TIX99l0Er\"\n        ],\n        \"relates_to_new_title\": false,\n        \"party_roles\": [\n          {\n            \"role\": \"ASSENTOR\",\n            \"party_reference\": \"BYtEbgE7fiE\",\n            \"capacity\": \"INSOLVENCY_PRACTITIONER\"\n          },\n          {\n            \"role\": \"TENANT\",\n            \"party_reference\": \"BwCvymGyBuc\",\n            \"capacity\": \"DEPUTY\"\n          }\n        ],\n        \"title_references\": [\n          \"<string>\"\n        ]\n      },\n      \"Duis_\": {\n        \"fee_in_pence\": \"<integer>\",\n        \"type\": \"NOL\",\n        \"priority\": \"<integer>\",\n        \"details\": {\n          \"type\": \"<string>\",\n          \"value\": \"<integer>\",\n          \"value_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property\": \"<integer>\",\n          \"outstanding_charge\": \"<integer>\"\n        },\n        \"documents\": [\n          \"Yh1dF7mll\",\n          \"-GKQ2VK59T\"\n        ],\n        \"relates_to_new_title\": false,\n        \"party_roles\": [\n          {\n            \"role\": \"ATTORNEY\",\n            \"party_reference\": \"Wce?TK\",\n            \"capacity\": \"NOT_REQUIRED\"\n          },\n          {\n            \"role\": \"ASSENTOR\",\n            \"party_reference\": \"wm8K\",\n            \"capacity\": \"NOT_REQUIRED\"\n          }\n        ],\n        \"title_references\": [\n          \"<string>\"\n        ]\n      },\n      \"reprehenderit_637\": {\n        \"fee_in_pence\": \"<integer>\",\n        \"type\": \"VC\",\n        \"priority\": \"<integer>\",\n        \"details\": {\n          \"type\": \"<string>\",\n          \"value\": \"<integer>\",\n          \"value_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property\": \"<integer>\",\n          \"outstanding_charge\": \"<integer>\"\n        },\n        \"documents\": [\n          \"wf\",\n          \",EcsXyq,\"\n        ],\n        \"relates_to_new_title\": false,\n        \"party_roles\": [\n          {\n            \"role\": \"PERSONAL_REPRESENTATIVE\",\n            \"party_reference\": \"sNX\",\n            \"capacity\": \"DEPUTY\"\n          },\n          {\n            \"role\": \"TRANSFEREE\",\n            \"party_reference\": \"?RzH\",\n            \"capacity\": \"RECEIVER\"\n          }\n        ],\n        \"title_references\": [\n          \"<string>\"\n        ]\n      }\n    },\n    \"type\": \"TRANSFER_OF_PART\",\n    \"addresses\": {\n      \"Duis_80d\": {\n        \"details\": {\n          \"number\": \"<string>\",\n          \"service_number_rank\": \"<string>\",\n          \"type\": \"EMAIL\",\n          \"unit_regiment\": \"<string>\",\n          \"care_of_name\": \"<string>\"\n        }\n      },\n      \"aute_b\": {\n        \"details\": {\n          \"number\": \"<string>\",\n          \"service_number_rank\": \"<string>\",\n          \"type\": \"DX\",\n          \"unit_regiment\": \"<string>\",\n          \"care_of_name\": \"<string>\"\n        }\n      }\n    },\n    \"bypass_validation\": [\n      {\n        \"comment\": \"<string>\",\n        \"reason\": \"EXCEPTION_NOT_COVERED_BY_BUSINESS_RULES\",\n        \"validation_pointer\": \"<string>\",\n        \"validation_type\": \"<string>\"\n      },\n      {\n        \"comment\": \"<string>\",\n        \"reason\": \"HMLR_DATA_INCORRECT_OR_OUTDATED\",\n        \"validation_pointer\": \"<string>\",\n        \"validation_type\": \"<string>\"\n      }\n    ],\n    \"documents\": {\n      \"id_47d\": {\n        \"document_id\": \"<string>\",\n        \"document_metadata\": {\n          \"certification_statement_type\": \"NOT_CERTIFIED\",\n          \"document_filename\": \"<string>\"\n        },\n        \"type\": \"CN1\",\n        \"companies_house_certification\": \"<boolean>\"\n      },\n      \"Excepteurca\": {\n        \"document_id\": \"<string>\",\n        \"document_metadata\": {\n          \"certification_statement_type\": \"CERTIFIED_BY_ANOTHER\",\n          \"document_filename\": \"<string>\"\n        },\n        \"type\": \"AS2\",\n        \"companies_house_certification\": \"<boolean>\"\n      },\n      \"in_e\": {\n        \"document_id\": \"<string>\",\n        \"document_metadata\": {\n          \"certification_statement_type\": \"CERTIFIED\",\n          \"document_filename\": \"<string>\"\n        },\n        \"type\": \"BIRTH_CERT\",\n        \"companies_house_certification\": \"<boolean>\"\n      }\n    },\n    \"jp1_reference\": \"SXP1SXP\",\n    \"parties\": {\n      \"minim__\": {\n        \"details\": {\n          \"organisation_name\": \"<string>\",\n          \"type\": \"UNKNOWN\"\n        },\n        \"address_for_service_option\": \"NOT_REQUIRED\",\n        \"representation_type\": \"NOT_REQUIRED\",\n        \"addresses\": [\n          \"Y\",\n          \"pGnW-\"\n        ],\n        \"identity_evidence_type\": \"NOT_REQUIRED\",\n        \"other_conveyancer\": {\n          \"full_name\": \"<string>\",\n          \"registered_address\": \"<string>\",\n          \"conveyancer_reference\": \"<string>\"\n        },\n        \"register_action\": \"REMOVE\"\n      },\n      \"consectetur_4\": {\n        \"details\": {\n          \"organisation_name\": \"<string>\",\n          \"type\": \"OTHER_ORGANISATION\"\n        },\n        \"address_for_service_option\": \"NOT_REQUIRED\",\n        \"representation_type\": \"LODGING_CONVEYANCER\",\n        \"addresses\": [\n          \"tYd,_41\",\n          \"kTOLB5jR\"\n        ],\n        \"identity_evidence_type\": \"VERIFIED\",\n        \"other_conveyancer\": {\n          \"full_name\": \"<string>\",\n          \"registered_address\": \"<string>\",\n          \"conveyancer_reference\": \"<string>\"\n        },\n        \"register_action\": \"AMEND\"\n      }\n    },\n    \"additional_provider_filter\": \"2u\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/applications",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "applications"
+                      ]
+                    }
+                  },
+                  "status": "Accepted",
+                  "code": 202,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Get application creation status URI for checking status",
+                        "type": "text/plain"
+                      },
+                      "key": "Location",
+                      "value": "<string>"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"application_request_id\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-21T20:14:38.000Z",
+                  "updatedAt": "2026-10-21T20:14:38.000Z",
+                  "uid": "35240-334895f7-9b0b-4df3-b700-8f941a8fb05b"
+                },
+                {
+                  "id": "1d207523-3aac-4a1a-90e0-f62542a4ddcb",
+                  "name": "Bad Request due to payload not meeting the required schema",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "Idempotency-Key",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"data\": {\n    \"applicants\": [\n      \"1GE\"\n    ],\n    \"customer_reference\": \"<string>\",\n    \"application_lodger\": {\n      \"email\": \"dBK$M!@<[\",\n      \"type\": \"NON_CONVEYANCER\",\n      \"telephone\": \"<string>\"\n    },\n    \"submission_warning_understood\": \"<boolean>\",\n    \"titles\": {\n      \"voluptate_6_\": {\n        \"scope_details\": {\n          \"scope\": \"PART\",\n          \"part_description\": \"<string>\"\n        },\n        \"title_number\": \"W355282Z\",\n        \"title_type\": \"LANDLORD_TITLE\",\n        \"disclosable_overriding_interests\": \"<boolean>\"\n      }\n    },\n    \"transactions\": {\n      \"ullamco0\": {\n        \"fee_in_pence\": \"<integer>\",\n        \"type\": \"CPVU\",\n        \"priority\": \"<integer>\",\n        \"details\": {\n          \"type\": \"<string>\",\n          \"value\": \"<integer>\",\n          \"value_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property\": \"<integer>\",\n          \"outstanding_charge\": \"<integer>\"\n        },\n        \"documents\": [\n          \"m3A\",\n          \"ixY8\"\n        ],\n        \"relates_to_new_title\": false,\n        \"party_roles\": [\n          {\n            \"role\": \"ASSENTOR\",\n            \"party_reference\": \"s_ym-4V\",\n            \"capacity\": \"ENTITLED_REGISTERED_PROPRIETOR\"\n          },\n          {\n            \"role\": \"ATTORNEY\",\n            \"party_reference\": \"vTDHH0\",\n            \"capacity\": \"INSOLVENCY_PRACTITIONER\"\n          }\n        ],\n        \"title_references\": [\n          \"<string>\"\n        ]\n      },\n      \"labore_c\": {\n        \"fee_in_pence\": \"<integer>\",\n        \"type\": \"DFT\",\n        \"priority\": \"<integer>\",\n        \"details\": {\n          \"type\": \"<string>\",\n          \"value\": \"<integer>\",\n          \"value_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property\": \"<integer>\",\n          \"outstanding_charge\": \"<integer>\"\n        },\n        \"documents\": [\n          \"7pRftrV\",\n          \"TIX99l0Er\"\n        ],\n        \"relates_to_new_title\": false,\n        \"party_roles\": [\n          {\n            \"role\": \"ASSENTOR\",\n            \"party_reference\": \"BYtEbgE7fiE\",\n            \"capacity\": \"INSOLVENCY_PRACTITIONER\"\n          },\n          {\n            \"role\": \"TENANT\",\n            \"party_reference\": \"BwCvymGyBuc\",\n            \"capacity\": \"DEPUTY\"\n          }\n        ],\n        \"title_references\": [\n          \"<string>\"\n        ]\n      },\n      \"Duis_\": {\n        \"fee_in_pence\": \"<integer>\",\n        \"type\": \"NOL\",\n        \"priority\": \"<integer>\",\n        \"details\": {\n          \"type\": \"<string>\",\n          \"value\": \"<integer>\",\n          \"value_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property\": \"<integer>\",\n          \"outstanding_charge\": \"<integer>\"\n        },\n        \"documents\": [\n          \"Yh1dF7mll\",\n          \"-GKQ2VK59T\"\n        ],\n        \"relates_to_new_title\": false,\n        \"party_roles\": [\n          {\n            \"role\": \"ATTORNEY\",\n            \"party_reference\": \"Wce?TK\",\n            \"capacity\": \"NOT_REQUIRED\"\n          },\n          {\n            \"role\": \"ASSENTOR\",\n            \"party_reference\": \"wm8K\",\n            \"capacity\": \"NOT_REQUIRED\"\n          }\n        ],\n        \"title_references\": [\n          \"<string>\"\n        ]\n      },\n      \"reprehenderit_637\": {\n        \"fee_in_pence\": \"<integer>\",\n        \"type\": \"VC\",\n        \"priority\": \"<integer>\",\n        \"details\": {\n          \"type\": \"<string>\",\n          \"value\": \"<integer>\",\n          \"value_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property\": \"<integer>\",\n          \"outstanding_charge\": \"<integer>\"\n        },\n        \"documents\": [\n          \"wf\",\n          \",EcsXyq,\"\n        ],\n        \"relates_to_new_title\": false,\n        \"party_roles\": [\n          {\n            \"role\": \"PERSONAL_REPRESENTATIVE\",\n            \"party_reference\": \"sNX\",\n            \"capacity\": \"DEPUTY\"\n          },\n          {\n            \"role\": \"TRANSFEREE\",\n            \"party_reference\": \"?RzH\",\n            \"capacity\": \"RECEIVER\"\n          }\n        ],\n        \"title_references\": [\n          \"<string>\"\n        ]\n      }\n    },\n    \"type\": \"TRANSFER_OF_PART\",\n    \"addresses\": {\n      \"Duis_80d\": {\n        \"details\": {\n          \"number\": \"<string>\",\n          \"service_number_rank\": \"<string>\",\n          \"type\": \"EMAIL\",\n          \"unit_regiment\": \"<string>\",\n          \"care_of_name\": \"<string>\"\n        }\n      },\n      \"aute_b\": {\n        \"details\": {\n          \"number\": \"<string>\",\n          \"service_number_rank\": \"<string>\",\n          \"type\": \"DX\",\n          \"unit_regiment\": \"<string>\",\n          \"care_of_name\": \"<string>\"\n        }\n      }\n    },\n    \"bypass_validation\": [\n      {\n        \"comment\": \"<string>\",\n        \"reason\": \"EXCEPTION_NOT_COVERED_BY_BUSINESS_RULES\",\n        \"validation_pointer\": \"<string>\",\n        \"validation_type\": \"<string>\"\n      },\n      {\n        \"comment\": \"<string>\",\n        \"reason\": \"HMLR_DATA_INCORRECT_OR_OUTDATED\",\n        \"validation_pointer\": \"<string>\",\n        \"validation_type\": \"<string>\"\n      }\n    ],\n    \"documents\": {\n      \"id_47d\": {\n        \"document_id\": \"<string>\",\n        \"document_metadata\": {\n          \"certification_statement_type\": \"NOT_CERTIFIED\",\n          \"document_filename\": \"<string>\"\n        },\n        \"type\": \"CN1\",\n        \"companies_house_certification\": \"<boolean>\"\n      },\n      \"Excepteurca\": {\n        \"document_id\": \"<string>\",\n        \"document_metadata\": {\n          \"certification_statement_type\": \"CERTIFIED_BY_ANOTHER\",\n          \"document_filename\": \"<string>\"\n        },\n        \"type\": \"AS2\",\n        \"companies_house_certification\": \"<boolean>\"\n      },\n      \"in_e\": {\n        \"document_id\": \"<string>\",\n        \"document_metadata\": {\n          \"certification_statement_type\": \"CERTIFIED\",\n          \"document_filename\": \"<string>\"\n        },\n        \"type\": \"BIRTH_CERT\",\n        \"companies_house_certification\": \"<boolean>\"\n      }\n    },\n    \"jp1_reference\": \"SXP1SXP\",\n    \"parties\": {\n      \"minim__\": {\n        \"details\": {\n          \"organisation_name\": \"<string>\",\n          \"type\": \"UNKNOWN\"\n        },\n        \"address_for_service_option\": \"NOT_REQUIRED\",\n        \"representation_type\": \"NOT_REQUIRED\",\n        \"addresses\": [\n          \"Y\",\n          \"pGnW-\"\n        ],\n        \"identity_evidence_type\": \"NOT_REQUIRED\",\n        \"other_conveyancer\": {\n          \"full_name\": \"<string>\",\n          \"registered_address\": \"<string>\",\n          \"conveyancer_reference\": \"<string>\"\n        },\n        \"register_action\": \"REMOVE\"\n      },\n      \"consectetur_4\": {\n        \"details\": {\n          \"organisation_name\": \"<string>\",\n          \"type\": \"OTHER_ORGANISATION\"\n        },\n        \"address_for_service_option\": \"NOT_REQUIRED\",\n        \"representation_type\": \"LODGING_CONVEYANCER\",\n        \"addresses\": [\n          \"tYd,_41\",\n          \"kTOLB5jR\"\n        ],\n        \"identity_evidence_type\": \"VERIFIED\",\n        \"other_conveyancer\": {\n          \"full_name\": \"<string>\",\n          \"registered_address\": \"<string>\",\n          \"conveyancer_reference\": \"<string>\"\n        },\n        \"register_action\": \"AMEND\"\n      }\n    },\n    \"additional_provider_filter\": \"2u\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/applications",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "applications"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"type\": \"<uri>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\",\n  \"instance\": \"<uri>\",\n  \"code\": \"<string>\",\n  \"errors\": [\n    {\n      \"detail\": \"<string>\",\n      \"type\": \"<string>\",\n      \"pointer\": \"<string>\"\n    },\n    {\n      \"detail\": \"<string>\",\n      \"type\": \"<string>\",\n      \"pointer\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-10-21T20:14:38.000Z",
+                  "updatedAt": "2026-10-21T20:14:38.000Z",
+                  "uid": "35240-1d207523-3aac-4a1a-90e0-f62542a4ddcb"
+                },
+                {
+                  "id": "b660d198-98f1-46ec-bc4a-82dc5c8d36c5",
+                  "name": "Unauthorised - an access token is required",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "Idempotency-Key",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "*/*"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"data\": {\n    \"applicants\": [\n      \"1GE\"\n    ],\n    \"customer_reference\": \"<string>\",\n    \"application_lodger\": {\n      \"email\": \"dBK$M!@<[\",\n      \"type\": \"NON_CONVEYANCER\",\n      \"telephone\": \"<string>\"\n    },\n    \"submission_warning_understood\": \"<boolean>\",\n    \"titles\": {\n      \"voluptate_6_\": {\n        \"scope_details\": {\n          \"scope\": \"PART\",\n          \"part_description\": \"<string>\"\n        },\n        \"title_number\": \"W355282Z\",\n        \"title_type\": \"LANDLORD_TITLE\",\n        \"disclosable_overriding_interests\": \"<boolean>\"\n      }\n    },\n    \"transactions\": {\n      \"ullamco0\": {\n        \"fee_in_pence\": \"<integer>\",\n        \"type\": \"CPVU\",\n        \"priority\": \"<integer>\",\n        \"details\": {\n          \"type\": \"<string>\",\n          \"value\": \"<integer>\",\n          \"value_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property\": \"<integer>\",\n          \"outstanding_charge\": \"<integer>\"\n        },\n        \"documents\": [\n          \"m3A\",\n          \"ixY8\"\n        ],\n        \"relates_to_new_title\": false,\n        \"party_roles\": [\n          {\n            \"role\": \"ASSENTOR\",\n            \"party_reference\": \"s_ym-4V\",\n            \"capacity\": \"ENTITLED_REGISTERED_PROPRIETOR\"\n          },\n          {\n            \"role\": \"ATTORNEY\",\n            \"party_reference\": \"vTDHH0\",\n            \"capacity\": \"INSOLVENCY_PRACTITIONER\"\n          }\n        ],\n        \"title_references\": [\n          \"<string>\"\n        ]\n      },\n      \"labore_c\": {\n        \"fee_in_pence\": \"<integer>\",\n        \"type\": \"DFT\",\n        \"priority\": \"<integer>\",\n        \"details\": {\n          \"type\": \"<string>\",\n          \"value\": \"<integer>\",\n          \"value_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property\": \"<integer>\",\n          \"outstanding_charge\": \"<integer>\"\n        },\n        \"documents\": [\n          \"7pRftrV\",\n          \"TIX99l0Er\"\n        ],\n        \"relates_to_new_title\": false,\n        \"party_roles\": [\n          {\n            \"role\": \"ASSENTOR\",\n            \"party_reference\": \"BYtEbgE7fiE\",\n            \"capacity\": \"INSOLVENCY_PRACTITIONER\"\n          },\n          {\n            \"role\": \"TENANT\",\n            \"party_reference\": \"BwCvymGyBuc\",\n            \"capacity\": \"DEPUTY\"\n          }\n        ],\n        \"title_references\": [\n          \"<string>\"\n        ]\n      },\n      \"Duis_\": {\n        \"fee_in_pence\": \"<integer>\",\n        \"type\": \"NOL\",\n        \"priority\": \"<integer>\",\n        \"details\": {\n          \"type\": \"<string>\",\n          \"value\": \"<integer>\",\n          \"value_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property\": \"<integer>\",\n          \"outstanding_charge\": \"<integer>\"\n        },\n        \"documents\": [\n          \"Yh1dF7mll\",\n          \"-GKQ2VK59T\"\n        ],\n        \"relates_to_new_title\": false,\n        \"party_roles\": [\n          {\n            \"role\": \"ATTORNEY\",\n            \"party_reference\": \"Wce?TK\",\n            \"capacity\": \"NOT_REQUIRED\"\n          },\n          {\n            \"role\": \"ASSENTOR\",\n            \"party_reference\": \"wm8K\",\n            \"capacity\": \"NOT_REQUIRED\"\n          }\n        ],\n        \"title_references\": [\n          \"<string>\"\n        ]\n      },\n      \"reprehenderit_637\": {\n        \"fee_in_pence\": \"<integer>\",\n        \"type\": \"VC\",\n        \"priority\": \"<integer>\",\n        \"details\": {\n          \"type\": \"<string>\",\n          \"value\": \"<integer>\",\n          \"value_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property\": \"<integer>\",\n          \"outstanding_charge\": \"<integer>\"\n        },\n        \"documents\": [\n          \"wf\",\n          \",EcsXyq,\"\n        ],\n        \"relates_to_new_title\": false,\n        \"party_roles\": [\n          {\n            \"role\": \"PERSONAL_REPRESENTATIVE\",\n            \"party_reference\": \"sNX\",\n            \"capacity\": \"DEPUTY\"\n          },\n          {\n            \"role\": \"TRANSFEREE\",\n            \"party_reference\": \"?RzH\",\n            \"capacity\": \"RECEIVER\"\n          }\n        ],\n        \"title_references\": [\n          \"<string>\"\n        ]\n      }\n    },\n    \"type\": \"TRANSFER_OF_PART\",\n    \"addresses\": {\n      \"Duis_80d\": {\n        \"details\": {\n          \"number\": \"<string>\",\n          \"service_number_rank\": \"<string>\",\n          \"type\": \"EMAIL\",\n          \"unit_regiment\": \"<string>\",\n          \"care_of_name\": \"<string>\"\n        }\n      },\n      \"aute_b\": {\n        \"details\": {\n          \"number\": \"<string>\",\n          \"service_number_rank\": \"<string>\",\n          \"type\": \"DX\",\n          \"unit_regiment\": \"<string>\",\n          \"care_of_name\": \"<string>\"\n        }\n      }\n    },\n    \"bypass_validation\": [\n      {\n        \"comment\": \"<string>\",\n        \"reason\": \"EXCEPTION_NOT_COVERED_BY_BUSINESS_RULES\",\n        \"validation_pointer\": \"<string>\",\n        \"validation_type\": \"<string>\"\n      },\n      {\n        \"comment\": \"<string>\",\n        \"reason\": \"HMLR_DATA_INCORRECT_OR_OUTDATED\",\n        \"validation_pointer\": \"<string>\",\n        \"validation_type\": \"<string>\"\n      }\n    ],\n    \"documents\": {\n      \"id_47d\": {\n        \"document_id\": \"<string>\",\n        \"document_metadata\": {\n          \"certification_statement_type\": \"NOT_CERTIFIED\",\n          \"document_filename\": \"<string>\"\n        },\n        \"type\": \"CN1\",\n        \"companies_house_certification\": \"<boolean>\"\n      },\n      \"Excepteurca\": {\n        \"document_id\": \"<string>\",\n        \"document_metadata\": {\n          \"certification_statement_type\": \"CERTIFIED_BY_ANOTHER\",\n          \"document_filename\": \"<string>\"\n        },\n        \"type\": \"AS2\",\n        \"companies_house_certification\": \"<boolean>\"\n      },\n      \"in_e\": {\n        \"document_id\": \"<string>\",\n        \"document_metadata\": {\n          \"certification_statement_type\": \"CERTIFIED\",\n          \"document_filename\": \"<string>\"\n        },\n        \"type\": \"BIRTH_CERT\",\n        \"companies_house_certification\": \"<boolean>\"\n      }\n    },\n    \"jp1_reference\": \"SXP1SXP\",\n    \"parties\": {\n      \"minim__\": {\n        \"details\": {\n          \"organisation_name\": \"<string>\",\n          \"type\": \"UNKNOWN\"\n        },\n        \"address_for_service_option\": \"NOT_REQUIRED\",\n        \"representation_type\": \"NOT_REQUIRED\",\n        \"addresses\": [\n          \"Y\",\n          \"pGnW-\"\n        ],\n        \"identity_evidence_type\": \"NOT_REQUIRED\",\n        \"other_conveyancer\": {\n          \"full_name\": \"<string>\",\n          \"registered_address\": \"<string>\",\n          \"conveyancer_reference\": \"<string>\"\n        },\n        \"register_action\": \"REMOVE\"\n      },\n      \"consectetur_4\": {\n        \"details\": {\n          \"organisation_name\": \"<string>\",\n          \"type\": \"OTHER_ORGANISATION\"\n        },\n        \"address_for_service_option\": \"NOT_REQUIRED\",\n        \"representation_type\": \"LODGING_CONVEYANCER\",\n        \"addresses\": [\n          \"tYd,_41\",\n          \"kTOLB5jR\"\n        ],\n        \"identity_evidence_type\": \"VERIFIED\",\n        \"other_conveyancer\": {\n          \"full_name\": \"<string>\",\n          \"registered_address\": \"<string>\",\n          \"conveyancer_reference\": \"<string>\"\n        },\n        \"register_action\": \"AMEND\"\n      }\n    },\n    \"additional_provider_filter\": \"2u\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/applications",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "applications"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "*/*"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"type\": \"<uri>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\",\n  \"instance\": \"<uri>\",\n  \"code\": \"<string>\",\n  \"errors\": [\n    {\n      \"detail\": \"<string>\",\n      \"type\": \"<string>\",\n      \"pointer\": \"<string>\"\n    },\n    {\n      \"detail\": \"<string>\",\n      \"type\": \"<string>\",\n      \"pointer\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-10-21T20:14:38.000Z",
+                  "updatedAt": "2026-10-21T20:14:38.000Z",
+                  "uid": "35240-b660d198-98f1-46ec-bc4a-82dc5c8d36c5"
+                },
+                {
+                  "id": "1ddc2d9c-747b-4290-bb52-4f45e181fa33",
+                  "name": "Internal Server Error",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "Idempotency-Key",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"data\": {\n    \"applicants\": [\n      \"1GE\"\n    ],\n    \"customer_reference\": \"<string>\",\n    \"application_lodger\": {\n      \"email\": \"dBK$M!@<[\",\n      \"type\": \"NON_CONVEYANCER\",\n      \"telephone\": \"<string>\"\n    },\n    \"submission_warning_understood\": \"<boolean>\",\n    \"titles\": {\n      \"voluptate_6_\": {\n        \"scope_details\": {\n          \"scope\": \"PART\",\n          \"part_description\": \"<string>\"\n        },\n        \"title_number\": \"W355282Z\",\n        \"title_type\": \"LANDLORD_TITLE\",\n        \"disclosable_overriding_interests\": \"<boolean>\"\n      }\n    },\n    \"transactions\": {\n      \"ullamco0\": {\n        \"fee_in_pence\": \"<integer>\",\n        \"type\": \"CPVU\",\n        \"priority\": \"<integer>\",\n        \"details\": {\n          \"type\": \"<string>\",\n          \"value\": \"<integer>\",\n          \"value_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property\": \"<integer>\",\n          \"outstanding_charge\": \"<integer>\"\n        },\n        \"documents\": [\n          \"m3A\",\n          \"ixY8\"\n        ],\n        \"relates_to_new_title\": false,\n        \"party_roles\": [\n          {\n            \"role\": \"ASSENTOR\",\n            \"party_reference\": \"s_ym-4V\",\n            \"capacity\": \"ENTITLED_REGISTERED_PROPRIETOR\"\n          },\n          {\n            \"role\": \"ATTORNEY\",\n            \"party_reference\": \"vTDHH0\",\n            \"capacity\": \"INSOLVENCY_PRACTITIONER\"\n          }\n        ],\n        \"title_references\": [\n          \"<string>\"\n        ]\n      },\n      \"labore_c\": {\n        \"fee_in_pence\": \"<integer>\",\n        \"type\": \"DFT\",\n        \"priority\": \"<integer>\",\n        \"details\": {\n          \"type\": \"<string>\",\n          \"value\": \"<integer>\",\n          \"value_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property\": \"<integer>\",\n          \"outstanding_charge\": \"<integer>\"\n        },\n        \"documents\": [\n          \"7pRftrV\",\n          \"TIX99l0Er\"\n        ],\n        \"relates_to_new_title\": false,\n        \"party_roles\": [\n          {\n            \"role\": \"ASSENTOR\",\n            \"party_reference\": \"BYtEbgE7fiE\",\n            \"capacity\": \"INSOLVENCY_PRACTITIONER\"\n          },\n          {\n            \"role\": \"TENANT\",\n            \"party_reference\": \"BwCvymGyBuc\",\n            \"capacity\": \"DEPUTY\"\n          }\n        ],\n        \"title_references\": [\n          \"<string>\"\n        ]\n      },\n      \"Duis_\": {\n        \"fee_in_pence\": \"<integer>\",\n        \"type\": \"NOL\",\n        \"priority\": \"<integer>\",\n        \"details\": {\n          \"type\": \"<string>\",\n          \"value\": \"<integer>\",\n          \"value_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property\": \"<integer>\",\n          \"outstanding_charge\": \"<integer>\"\n        },\n        \"documents\": [\n          \"Yh1dF7mll\",\n          \"-GKQ2VK59T\"\n        ],\n        \"relates_to_new_title\": false,\n        \"party_roles\": [\n          {\n            \"role\": \"ATTORNEY\",\n            \"party_reference\": \"Wce?TK\",\n            \"capacity\": \"NOT_REQUIRED\"\n          },\n          {\n            \"role\": \"ASSENTOR\",\n            \"party_reference\": \"wm8K\",\n            \"capacity\": \"NOT_REQUIRED\"\n          }\n        ],\n        \"title_references\": [\n          \"<string>\"\n        ]\n      },\n      \"reprehenderit_637\": {\n        \"fee_in_pence\": \"<integer>\",\n        \"type\": \"VC\",\n        \"priority\": \"<integer>\",\n        \"details\": {\n          \"type\": \"<string>\",\n          \"value\": \"<integer>\",\n          \"value_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property_band\": {\n            \"lower_value_band\": \"<integer>\",\n            \"upper_value_band\": \"<integer>\"\n          },\n          \"full_value_of_property\": \"<integer>\",\n          \"outstanding_charge\": \"<integer>\"\n        },\n        \"documents\": [\n          \"wf\",\n          \",EcsXyq,\"\n        ],\n        \"relates_to_new_title\": false,\n        \"party_roles\": [\n          {\n            \"role\": \"PERSONAL_REPRESENTATIVE\",\n            \"party_reference\": \"sNX\",\n            \"capacity\": \"DEPUTY\"\n          },\n          {\n            \"role\": \"TRANSFEREE\",\n            \"party_reference\": \"?RzH\",\n            \"capacity\": \"RECEIVER\"\n          }\n        ],\n        \"title_references\": [\n          \"<string>\"\n        ]\n      }\n    },\n    \"type\": \"TRANSFER_OF_PART\",\n    \"addresses\": {\n      \"Duis_80d\": {\n        \"details\": {\n          \"number\": \"<string>\",\n          \"service_number_rank\": \"<string>\",\n          \"type\": \"EMAIL\",\n          \"unit_regiment\": \"<string>\",\n          \"care_of_name\": \"<string>\"\n        }\n      },\n      \"aute_b\": {\n        \"details\": {\n          \"number\": \"<string>\",\n          \"service_number_rank\": \"<string>\",\n          \"type\": \"DX\",\n          \"unit_regiment\": \"<string>\",\n          \"care_of_name\": \"<string>\"\n        }\n      }\n    },\n    \"bypass_validation\": [\n      {\n        \"comment\": \"<string>\",\n        \"reason\": \"EXCEPTION_NOT_COVERED_BY_BUSINESS_RULES\",\n        \"validation_pointer\": \"<string>\",\n        \"validation_type\": \"<string>\"\n      },\n      {\n        \"comment\": \"<string>\",\n        \"reason\": \"HMLR_DATA_INCORRECT_OR_OUTDATED\",\n        \"validation_pointer\": \"<string>\",\n        \"validation_type\": \"<string>\"\n      }\n    ],\n    \"documents\": {\n      \"id_47d\": {\n        \"document_id\": \"<string>\",\n        \"document_metadata\": {\n          \"certification_statement_type\": \"NOT_CERTIFIED\",\n          \"document_filename\": \"<string>\"\n        },\n        \"type\": \"CN1\",\n        \"companies_house_certification\": \"<boolean>\"\n      },\n      \"Excepteurca\": {\n        \"document_id\": \"<string>\",\n        \"document_metadata\": {\n          \"certification_statement_type\": \"CERTIFIED_BY_ANOTHER\",\n          \"document_filename\": \"<string>\"\n        },\n        \"type\": \"AS2\",\n        \"companies_house_certification\": \"<boolean>\"\n      },\n      \"in_e\": {\n        \"document_id\": \"<string>\",\n        \"document_metadata\": {\n          \"certification_statement_type\": \"CERTIFIED\",\n          \"document_filename\": \"<string>\"\n        },\n        \"type\": \"BIRTH_CERT\",\n        \"companies_house_certification\": \"<boolean>\"\n      }\n    },\n    \"jp1_reference\": \"SXP1SXP\",\n    \"parties\": {\n      \"minim__\": {\n        \"details\": {\n          \"organisation_name\": \"<string>\",\n          \"type\": \"UNKNOWN\"\n        },\n        \"address_for_service_option\": \"NOT_REQUIRED\",\n        \"representation_type\": \"NOT_REQUIRED\",\n        \"addresses\": [\n          \"Y\",\n          \"pGnW-\"\n        ],\n        \"identity_evidence_type\": \"NOT_REQUIRED\",\n        \"other_conveyancer\": {\n          \"full_name\": \"<string>\",\n          \"registered_address\": \"<string>\",\n          \"conveyancer_reference\": \"<string>\"\n        },\n        \"register_action\": \"REMOVE\"\n      },\n      \"consectetur_4\": {\n        \"details\": {\n          \"organisation_name\": \"<string>\",\n          \"type\": \"OTHER_ORGANISATION\"\n        },\n        \"address_for_service_option\": \"NOT_REQUIRED\",\n        \"representation_type\": \"LODGING_CONVEYANCER\",\n        \"addresses\": [\n          \"tYd,_41\",\n          \"kTOLB5jR\"\n        ],\n        \"identity_evidence_type\": \"VERIFIED\",\n        \"other_conveyancer\": {\n          \"full_name\": \"<string>\",\n          \"registered_address\": \"<string>\",\n          \"conveyancer_reference\": \"<string>\"\n        },\n        \"register_action\": \"AMEND\"\n      }\n    },\n    \"additional_provider_filter\": \"2u\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/applications",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "applications"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-21T20:14:38.000Z",
+                  "updatedAt": "2026-10-21T20:14:38.000Z",
+                  "uid": "35240-1ddc2d9c-747b-4290-bb52-4f45e181fa33"
+                }
+              ],
+              "createdAt": "2026-10-21T20:14:38.000Z",
+              "updatedAt": "2026-10-21T20:14:38.000Z",
+              "uid": "35240-8d6cd91f-1c59-4137-b67f-e90e6aed86f0"
+            }
+          ],
+          "id": "035f69e0-ee8a-4ae4-9215-462e7c81f22b",
+          "createdAt": "2026-10-21T20:14:38.000Z",
+          "updatedAt": "2026-10-21T20:14:38.000Z",
+          "uid": "35240-035f69e0-ee8a-4ae4-9215-462e7c81f22b"
+        }
+      ],
+      "id": "ec7fce8c-87a4-447b-b59a-735dcb848293",
+      "createdAt": "2026-10-21T20:14:38.000Z",
+      "updatedAt": "2026-10-21T20:14:38.000Z",
+      "uid": "35240-ec7fce8c-87a4-447b-b59a-735dcb848293"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://businessgateway.landregistry.gov.uk/bg2/api"
+    }
+  ]
+}

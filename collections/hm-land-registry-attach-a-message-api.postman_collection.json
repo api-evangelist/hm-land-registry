@@ -1,0 +1,429 @@
+{
+  "info": {
+    "_postman_id": "e9d97e23-a2a4-4343-a7ac-ff9b286f8816",
+    "name": "V1.0 'Submit an application to change the Land Register\u2026",
+    "description": "V1.0 of the set of APIs for the new 'Submit an application to change the Land Register API' Schema",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:13:49.000Z",
+    "updatedAt": "2026-10-21T20:13:50.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e9d97e23-a2a4-4343-a7ac-ff9b286f8816"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "applications",
+          "item": [
+            {
+              "name": "{application_request_id}",
+              "item": [
+                {
+                  "name": "messages",
+                  "item": [
+                    {
+                      "name": "Attach a message to an existing application",
+                      "id": "bcc9fab7-7607-4860-be35-117cf92b9ee5",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "*/*"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"data\": {\n    \"message_text\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/applications/:application_request_id/messages",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "applications",
+                            ":application_request_id",
+                            "messages"
+                          ],
+                          "variable": [
+                            {
+                              "id": "34322e3e-72e3-4289-95aa-d051e5f20f10",
+                              "key": "application_request_id",
+                              "value": "<string>",
+                              "description": "(Required) The ID returned by Application Creation to track submission requests"
+                            }
+                          ]
+                        },
+                        "description": "Application information API - Get the information about an application"
+                      },
+                      "response": [
+                        {
+                          "id": "0c8617b2-44bb-4be9-a290-2e44a4a79e9c",
+                          "name": "Accepted",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"data\": {\n    \"message_text\": \"<string>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/applications/:application_request_id/messages",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "applications",
+                                ":application_request_id",
+                                "messages"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "application_request_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Accepted",
+                          "code": 202,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-21T20:13:50.000Z",
+                          "updatedAt": "2026-10-21T20:13:50.000Z",
+                          "uid": "35240-0c8617b2-44bb-4be9-a290-2e44a4a79e9c"
+                        },
+                        {
+                          "id": "e606731f-0dff-45a1-833f-ab1913e6edcc",
+                          "name": "Bad Request",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "*/*"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"data\": {\n    \"message_text\": \"<string>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/applications/:application_request_id/messages",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "applications",
+                                ":application_request_id",
+                                "messages"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "application_request_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "*/*"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"type\": \"<uri>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\",\n  \"instance\": \"<uri>\",\n  \"code\": \"<string>\",\n  \"errors\": [\n    {\n      \"detail\": \"<string>\",\n      \"type\": \"<string>\",\n      \"pointer\": \"<string>\"\n    },\n    {\n      \"detail\": \"<string>\",\n      \"type\": \"<string>\",\n      \"pointer\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-10-21T20:13:50.000Z",
+                          "updatedAt": "2026-10-21T20:13:50.000Z",
+                          "uid": "35240-e606731f-0dff-45a1-833f-ab1913e6edcc"
+                        },
+                        {
+                          "id": "7c69c7c7-7a75-444a-b371-1dd8803230b4",
+                          "name": "Unauthorised - an access token is required",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"data\": {\n    \"message_text\": \"<string>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/applications/:application_request_id/messages",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "applications",
+                                ":application_request_id",
+                                "messages"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "application_request_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"type\": \"<uri>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\",\n  \"instance\": \"<uri>\",\n  \"code\": \"<string>\",\n  \"errors\": [\n    {\n      \"detail\": \"<string>\",\n      \"type\": \"<string>\",\n      \"pointer\": \"<string>\"\n    },\n    {\n      \"detail\": \"<string>\",\n      \"type\": \"<string>\",\n      \"pointer\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-10-21T20:13:50.000Z",
+                          "updatedAt": "2026-10-21T20:13:50.000Z",
+                          "uid": "35240-7c69c7c7-7a75-444a-b371-1dd8803230b4"
+                        },
+                        {
+                          "id": "ba40c9dd-6925-4247-a623-fe9a30cccc4d",
+                          "name": "Application creation request not found in the system",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"data\": {\n    \"message_text\": \"<string>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/applications/:application_request_id/messages",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "applications",
+                                ":application_request_id",
+                                "messages"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "application_request_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"type\": \"<uri>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\",\n  \"instance\": \"<uri>\",\n  \"code\": \"<string>\",\n  \"errors\": [\n    {\n      \"detail\": \"<string>\",\n      \"type\": \"<string>\",\n      \"pointer\": \"<string>\"\n    },\n    {\n      \"detail\": \"<string>\",\n      \"type\": \"<string>\",\n      \"pointer\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-10-21T20:13:50.000Z",
+                          "updatedAt": "2026-10-21T20:13:50.000Z",
+                          "uid": "35240-ba40c9dd-6925-4247-a623-fe9a30cccc4d"
+                        },
+                        {
+                          "id": "da03ecca-962b-4bd1-8b7c-17129bc33366",
+                          "name": "Internal Server Error",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"data\": {\n    \"message_text\": \"<string>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/applications/:application_request_id/messages",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "applications",
+                                ":application_request_id",
+                                "messages"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "application_request_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-21T20:13:50.000Z",
+                          "updatedAt": "2026-10-21T20:13:50.000Z",
+                          "uid": "35240-da03ecca-962b-4bd1-8b7c-17129bc33366"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:13:50.000Z",
+                      "updatedAt": "2026-10-21T20:13:50.000Z",
+                      "uid": "35240-bcc9fab7-7607-4860-be35-117cf92b9ee5"
+                    }
+                  ],
+                  "id": "87e25c01-5824-4dc4-a16c-fecc1bd519ed",
+                  "createdAt": "2026-10-21T20:13:50.000Z",
+                  "updatedAt": "2026-10-21T20:13:50.000Z",
+                  "uid": "35240-87e25c01-5824-4dc4-a16c-fecc1bd519ed"
+                }
+              ],
+              "id": "eea15c2a-f616-4ce3-87d3-b0d515759ca8",
+              "createdAt": "2026-10-21T20:13:50.000Z",
+              "updatedAt": "2026-10-21T20:13:50.000Z",
+              "uid": "35240-eea15c2a-f616-4ce3-87d3-b0d515759ca8"
+            }
+          ],
+          "id": "91f7bdd3-d3dd-4961-8483-cae247e97764",
+          "createdAt": "2026-10-21T20:13:50.000Z",
+          "updatedAt": "2026-10-21T20:13:50.000Z",
+          "uid": "35240-91f7bdd3-d3dd-4961-8483-cae247e97764"
+        }
+      ],
+      "id": "c77b9892-5e0d-40f8-9ce7-a15761ef150d",
+      "createdAt": "2026-10-21T20:13:50.000Z",
+      "updatedAt": "2026-10-21T20:13:50.000Z",
+      "uid": "35240-c77b9892-5e0d-40f8-9ce7-a15761ef150d"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://businessgateway.landregistry.gov.uk/bg2/api"
+    }
+  ]
+}

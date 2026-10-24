@@ -1,0 +1,553 @@
+{
+  "info": {
+    "_postman_id": "075ea7f2-5d44-4e4a-a1c7-8b8c5663e305",
+    "name": "V1.0 'Submit an application to change the Land Register\u2026",
+    "description": "V1.0 of the set of APIs for the new 'Submit an application to change the Land Register API' Schema",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:14:00.000Z",
+    "updatedAt": "2026-10-21T20:14:01.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-075ea7f2-5d44-4e4a-a1c7-8b8c5663e305"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "documents",
+          "item": [
+            {
+              "name": "{document_id}",
+              "item": [
+                {
+                  "name": "Obtain download link for an HMLR document",
+                  "id": "e5b196da-458d-4dbe-9831-c632233b04d2",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/documents/:document_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "documents",
+                        ":document_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "16989c82-6cb2-4b9c-a8b1-6978622d0506",
+                          "key": "document_id",
+                          "value": "<string>",
+                          "description": "(Required) May also be referred to as the `download_id` by some services"
+                        }
+                      ]
+                    },
+                    "description": "Request the download link for a document. Currently only supports the download of documents HMLR despatches, i.e correspondence, cancellation and completion documents."
+                  },
+                  "response": [
+                    {
+                      "id": "c1b91bde-b359-477d-9364-178d923895ea",
+                      "name": "Resource was successfully found.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/documents/:document_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "documents",
+                            ":document_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "document_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Found",
+                      "code": 302,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "URL to the document resource for download",
+                            "type": "text/plain"
+                          },
+                          "key": "location",
+                          "value": "<string>"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-21T20:14:01.000Z",
+                      "updatedAt": "2026-10-21T20:14:01.000Z",
+                      "uid": "35240-c1b91bde-b359-477d-9364-178d923895ea"
+                    },
+                    {
+                      "id": "903e8fc6-f687-4290-8cfe-0907222e2a82",
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/documents/:document_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "documents",
+                            ":document_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "document_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<uri>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\",\n  \"instance\": \"<uri>\",\n  \"code\": \"<string>\",\n  \"errors\": [\n    {\n      \"detail\": \"<string>\",\n      \"type\": \"<string>\",\n      \"pointer\": \"<string>\"\n    },\n    {\n      \"detail\": \"<string>\",\n      \"type\": \"<string>\",\n      \"pointer\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-21T20:14:01.000Z",
+                      "updatedAt": "2026-10-21T20:14:01.000Z",
+                      "uid": "35240-903e8fc6-f687-4290-8cfe-0907222e2a82"
+                    },
+                    {
+                      "id": "103ef2a1-0b6f-4eb3-9168-aae832e5728f",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/documents/:document_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "documents",
+                            ":document_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "document_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<uri>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\",\n  \"instance\": \"<uri>\",\n  \"code\": \"<string>\",\n  \"errors\": [\n    {\n      \"detail\": \"<string>\",\n      \"type\": \"<string>\",\n      \"pointer\": \"<string>\"\n    },\n    {\n      \"detail\": \"<string>\",\n      \"type\": \"<string>\",\n      \"pointer\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-21T20:14:01.000Z",
+                      "updatedAt": "2026-10-21T20:14:01.000Z",
+                      "uid": "35240-103ef2a1-0b6f-4eb3-9168-aae832e5728f"
+                    },
+                    {
+                      "id": "59d80e55-f8fe-413c-bb25-d7f9a22c9617",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/documents/:document_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "documents",
+                            ":document_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "document_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<uri>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\",\n  \"instance\": \"<uri>\",\n  \"code\": \"<string>\",\n  \"errors\": [\n    {\n      \"detail\": \"<string>\",\n      \"type\": \"<string>\",\n      \"pointer\": \"<string>\"\n    },\n    {\n      \"detail\": \"<string>\",\n      \"type\": \"<string>\",\n      \"pointer\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-21T20:14:01.000Z",
+                      "updatedAt": "2026-10-21T20:14:01.000Z",
+                      "uid": "35240-59d80e55-f8fe-413c-bb25-d7f9a22c9617"
+                    },
+                    {
+                      "id": "54ac82cd-f296-4247-a4fb-0e8519c06ba5",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/documents/:document_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "documents",
+                            ":document_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "document_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<uri>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\",\n  \"instance\": \"<uri>\",\n  \"code\": \"<string>\",\n  \"errors\": [\n    {\n      \"detail\": \"<string>\",\n      \"type\": \"<string>\",\n      \"pointer\": \"<string>\"\n    },\n    {\n      \"detail\": \"<string>\",\n      \"type\": \"<string>\",\n      \"pointer\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-21T20:14:01.000Z",
+                      "updatedAt": "2026-10-21T20:14:01.000Z",
+                      "uid": "35240-54ac82cd-f296-4247-a4fb-0e8519c06ba5"
+                    },
+                    {
+                      "id": "7bb71a97-fd48-495f-bdda-d447b4798fff",
+                      "name": "Too Many Requests",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/documents/:document_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "documents",
+                            ":document_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "document_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<uri>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\",\n  \"instance\": \"<uri>\",\n  \"code\": \"<string>\",\n  \"errors\": [\n    {\n      \"detail\": \"<string>\",\n      \"type\": \"<string>\",\n      \"pointer\": \"<string>\"\n    },\n    {\n      \"detail\": \"<string>\",\n      \"type\": \"<string>\",\n      \"pointer\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-21T20:14:01.000Z",
+                      "updatedAt": "2026-10-21T20:14:01.000Z",
+                      "uid": "35240-7bb71a97-fd48-495f-bdda-d447b4798fff"
+                    },
+                    {
+                      "id": "e41f29a3-e18f-4395-b24f-7730f261eceb",
+                      "name": "Internal Server Error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/documents/:document_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "documents",
+                            ":document_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "document_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<uri>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\",\n  \"instance\": \"<uri>\",\n  \"code\": \"<string>\",\n  \"errors\": [\n    {\n      \"detail\": \"<string>\",\n      \"type\": \"<string>\",\n      \"pointer\": \"<string>\"\n    },\n    {\n      \"detail\": \"<string>\",\n      \"type\": \"<string>\",\n      \"pointer\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-21T20:14:01.000Z",
+                      "updatedAt": "2026-10-21T20:14:01.000Z",
+                      "uid": "35240-e41f29a3-e18f-4395-b24f-7730f261eceb"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:14:01.000Z",
+                  "updatedAt": "2026-10-21T20:14:01.000Z",
+                  "uid": "35240-e5b196da-458d-4dbe-9831-c632233b04d2"
+                }
+              ],
+              "id": "db6627c1-4046-44ab-9b4f-fd00ab3a7708",
+              "createdAt": "2026-10-21T20:14:01.000Z",
+              "updatedAt": "2026-10-21T20:14:01.000Z",
+              "uid": "35240-db6627c1-4046-44ab-9b4f-fd00ab3a7708"
+            }
+          ],
+          "id": "9a7f7b41-20c1-410b-8856-507f63c42ae9",
+          "createdAt": "2026-10-21T20:14:01.000Z",
+          "updatedAt": "2026-10-21T20:14:01.000Z",
+          "uid": "35240-9a7f7b41-20c1-410b-8856-507f63c42ae9"
+        }
+      ],
+      "id": "cfb65f3a-6b3f-4525-b378-d4c1e9b18eb5",
+      "createdAt": "2026-10-21T20:14:01.000Z",
+      "updatedAt": "2026-10-21T20:14:01.000Z",
+      "uid": "35240-cfb65f3a-6b3f-4525-b378-d4c1e9b18eb5"
+    },
+    {
+      "name": "Download a document",
+      "item": [
+        {
+          "name": "Download a document",
+          "id": "89fdc254-1134-446c-b499-6c36581ffd2d",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/octet-stream"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}Download a document",
+              "host": [
+                "{{baseUrl}}Download a document"
+              ]
+            },
+            "description": "Download the document contents.\n\n**Note**: This URL, including hostname and path parameters is returned from the GET `/documents/{document_id}` URL endpoint via the `location` header and **should be used unmodified**."
+          },
+          "response": [
+            {
+              "id": "e217b046-b17e-46f1-acbf-fb1ef53ac092",
+              "name": "OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/octet-stream"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}Download a document",
+                  "host": [
+                    "{{baseUrl}}Download a document"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/octet-stream"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "",
+              "createdAt": "2026-10-21T20:14:01.000Z",
+              "updatedAt": "2026-10-21T20:14:01.000Z",
+              "uid": "35240-e217b046-b17e-46f1-acbf-fb1ef53ac092"
+            },
+            {
+              "id": "b7bc6819-6996-42bd-8ae9-2970d95e2ec3",
+              "name": "Not Found.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}Download a document",
+                  "host": [
+                    "{{baseUrl}}Download a document"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-21T20:14:01.000Z",
+              "updatedAt": "2026-10-21T20:14:01.000Z",
+              "uid": "35240-b7bc6819-6996-42bd-8ae9-2970d95e2ec3"
+            }
+          ],
+          "createdAt": "2026-10-21T20:14:01.000Z",
+          "updatedAt": "2026-10-21T20:14:01.000Z",
+          "uid": "35240-89fdc254-1134-446c-b499-6c36581ffd2d"
+        }
+      ],
+      "id": "a653209f-de90-49c0-8972-843c4fbd94ea",
+      "createdAt": "2026-10-21T20:14:01.000Z",
+      "updatedAt": "2026-10-21T20:14:01.000Z",
+      "uid": "35240-a653209f-de90-49c0-8972-843c4fbd94ea"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://businessgateway.landregistry.gov.uk/bg2/api"
+    }
+  ]
+}

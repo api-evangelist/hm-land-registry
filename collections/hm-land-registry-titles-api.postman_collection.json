@@ -1,0 +1,313 @@
+{
+  "info": {
+    "_postman_id": "cdaed7da-3396-4f39-b626-15dabdeabd87",
+    "name": "HMLR Business Gateway Titles API",
+    "description": "A specification for the Business Gateway API.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:14:49.000Z",
+    "updatedAt": "2026-10-21T20:14:49.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-cdaed7da-3396-4f39-b626-15dabdeabd87"
+  },
+  "item": [
+    {
+      "name": "titles",
+      "item": [
+        {
+          "name": "{title_number}",
+          "item": [
+            {
+              "name": "official-copies",
+              "item": [
+                {
+                  "name": "availability",
+                  "item": [
+                    {
+                      "name": "Get document availability associated with a title number",
+                      "id": "6c7f68c2-db09-406b-a4ff-a65efcdc30d1",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/titles/:title_number/official-copies/availability",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "titles",
+                            ":title_number",
+                            "official-copies",
+                            "availability"
+                          ],
+                          "variable": [
+                            {
+                              "id": "87482f88-fe8d-4c5f-8708-111aa9e55e8c",
+                              "key": "title_number",
+                              "value": "4IO",
+                              "description": "(Required) The title number of the property. Characters must be uppercase."
+                            }
+                          ]
+                        },
+                        "description": "Returns the OC1 document availability (title register and title plan) and a collection of OC2 document availability (referred to in the register) for the provided title number."
+                      },
+                      "response": [
+                        {
+                          "id": "e65b9b6b-9f26-41e1-8aa7-3932f58dbae8",
+                          "name": "Success",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/titles/:title_number/official-copies/availability",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "titles",
+                                ":title_number",
+                                "official-copies",
+                                "availability"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "title_number"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"data\": {\n    \"title_status\": \"<string>\",\n    \"title_status_code\": \"CLOSED\",\n    \"title_number\": \"FYW3PL\",\n    \"applications_pending\": \"<boolean>\",\n    \"referred_to_documents\": [\n      {\n        \"type_code\": \"<string>\",\n        \"type\": \"<string>\",\n        \"entry_numbers\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"filed_under\": \"QFLTEZ9A\",\n        \"availability\": \"<string>\",\n        \"availability_code\": \"IMMEDIATE\",\n        \"date\": \"<string,null-date>\"\n      },\n      {\n        \"type_code\": \"<string>\",\n        \"type\": \"<string>\",\n        \"entry_numbers\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"filed_under\": \"W3JXG9TJS\",\n        \"availability\": \"<string>\",\n        \"availability_code\": \"MANUAL\",\n        \"date\": \"<string,null-date>\"\n      }\n    ],\n    \"register\": {\n      \"type_code\": \"REGISTER\",\n      \"type\": \"<string>\",\n      \"availability\": \"<string>\",\n      \"availability_code\": \"IMMEDIATE\",\n      \"backdated\": \"<boolean>\"\n    },\n    \"title_plan\": {\n      \"type_code\": \"TITLEPLAN\",\n      \"type\": \"<string>\",\n      \"availability\": \"<string>\",\n      \"availability_code\": \"UNAVAILABLE\",\n      \"backdated\": \"<boolean>\"\n    },\n    \"continued_under_title_number\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-10-21T20:14:49.000Z",
+                          "updatedAt": "2026-10-21T20:14:49.000Z",
+                          "uid": "35240-e65b9b6b-9f26-41e1-8aa7-3932f58dbae8"
+                        },
+                        {
+                          "id": "5985413b-aa52-4b91-95eb-35dc2907d19d",
+                          "name": "Invalid request",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/titles/:title_number/official-copies/availability",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "titles",
+                                ":title_number",
+                                "official-copies",
+                                "availability"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "title_number"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"error_code\": \"<string>\",\n      \"error_message\": \"<string>\",\n      \"http_status\": \"<string>\",\n      \"timestamp\": \"<dateTime>\",\n      \"trace_id\": \"<string>\"\n    },\n    {\n      \"error_code\": \"<string>\",\n      \"error_message\": \"<string>\",\n      \"http_status\": \"<string>\",\n      \"timestamp\": \"<dateTime>\",\n      \"trace_id\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-10-21T20:14:49.000Z",
+                          "updatedAt": "2026-10-21T20:14:49.000Z",
+                          "uid": "35240-5985413b-aa52-4b91-95eb-35dc2907d19d"
+                        },
+                        {
+                          "id": "58d18a92-4205-4962-850c-7f8af9e0cde8",
+                          "name": "Title not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/titles/:title_number/official-copies/availability",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "titles",
+                                ":title_number",
+                                "official-copies",
+                                "availability"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "title_number"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"error_code\": \"<string>\",\n      \"error_message\": \"<string>\",\n      \"http_status\": \"<string>\",\n      \"timestamp\": \"<dateTime>\",\n      \"trace_id\": \"<string>\"\n    },\n    {\n      \"error_code\": \"<string>\",\n      \"error_message\": \"<string>\",\n      \"http_status\": \"<string>\",\n      \"timestamp\": \"<dateTime>\",\n      \"trace_id\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-10-21T20:14:49.000Z",
+                          "updatedAt": "2026-10-21T20:14:49.000Z",
+                          "uid": "35240-58d18a92-4205-4962-850c-7f8af9e0cde8"
+                        },
+                        {
+                          "id": "3e6bb38b-1282-421e-a3ee-740cd4f32227",
+                          "name": "An error has occurred.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/titles/:title_number/official-copies/availability",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "titles",
+                                ":title_number",
+                                "official-copies",
+                                "availability"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "title_number"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"error_code\": \"<string>\",\n      \"error_message\": \"<string>\",\n      \"http_status\": \"<string>\",\n      \"timestamp\": \"<dateTime>\",\n      \"trace_id\": \"<string>\"\n    },\n    {\n      \"error_code\": \"<string>\",\n      \"error_message\": \"<string>\",\n      \"http_status\": \"<string>\",\n      \"timestamp\": \"<dateTime>\",\n      \"trace_id\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-10-21T20:14:49.000Z",
+                          "updatedAt": "2026-10-21T20:14:49.000Z",
+                          "uid": "35240-3e6bb38b-1282-421e-a3ee-740cd4f32227"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:14:49.000Z",
+                      "updatedAt": "2026-10-21T20:14:49.000Z",
+                      "uid": "35240-6c7f68c2-db09-406b-a4ff-a65efcdc30d1"
+                    }
+                  ],
+                  "id": "0f587ca4-b101-4041-ad42-7359ee645f19",
+                  "createdAt": "2026-10-21T20:14:49.000Z",
+                  "updatedAt": "2026-10-21T20:14:49.000Z",
+                  "uid": "35240-0f587ca4-b101-4041-ad42-7359ee645f19"
+                }
+              ],
+              "id": "a26d82cb-f8b7-4c64-a363-74af254af3b8",
+              "createdAt": "2026-10-21T20:14:49.000Z",
+              "updatedAt": "2026-10-21T20:14:49.000Z",
+              "uid": "35240-a26d82cb-f8b7-4c64-a363-74af254af3b8"
+            }
+          ],
+          "id": "b1f6982c-7a14-426b-bf3c-63398046ee49",
+          "createdAt": "2026-10-21T20:14:49.000Z",
+          "updatedAt": "2026-10-21T20:14:49.000Z",
+          "uid": "35240-b1f6982c-7a14-426b-bf3c-63398046ee49"
+        }
+      ],
+      "id": "aaffb21c-7ad4-4862-be28-a1a218f28452",
+      "createdAt": "2026-10-21T20:14:49.000Z",
+      "updatedAt": "2026-10-21T20:14:49.000Z",
+      "uid": "35240-aaffb21c-7ad4-4862-be28-a1a218f28452"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://bgtest.landregistry.gov.uk/bg2test/api/v1"
+    }
+  ]
+}

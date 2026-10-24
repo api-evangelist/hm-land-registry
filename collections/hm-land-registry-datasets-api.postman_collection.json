@@ -1,0 +1,626 @@
+{
+  "info": {
+    "_postman_id": "429f82c0-56f6-4573-8833-ebbcf52e11ab",
+    "name": "Use Land and Property Data Datasets API",
+    "description": "RESTful JSON API for the HM Land Registry \"Use land and property data\" service.\n\nContact Support:\n Name: Use land and property data support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:13:55.000Z",
+    "updatedAt": "2026-10-21T20:13:56.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-429f82c0-56f6-4573-8833-ebbcf52e11ab"
+  },
+  "item": [
+    {
+      "name": "datasets",
+      "item": [
+        {
+          "name": "{dataset_name}",
+          "item": [
+            {
+              "name": "{file_name}",
+              "item": [
+                {
+                  "name": "Get a signed download URL for a dataset file",
+                  "id": "af2656a2-9469-4893-abc1-ca0dfb6ec2f9",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/datasets/:dataset_name/:file_name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "datasets",
+                        ":dataset_name",
+                        ":file_name"
+                      ],
+                      "variable": [
+                        {
+                          "id": "d5732248-70e0-4416-bd32-7986e04edfcc",
+                          "key": "dataset_name",
+                          "value": "<string>",
+                          "description": "(Required) The dataset name, for example ccod, ocod, nps or nps_sample. CCOD and OCOD remain the machine names for the renamed UK companies and Overseas companies datasets."
+                        },
+                        {
+                          "id": "23880aa5-110a-4cc5-bc77-d9b6298edf74",
+                          "key": "file_name",
+                          "value": "<string>",
+                          "description": "(Required) The file name of the resource within the dataset."
+                        }
+                      ]
+                    },
+                    "description": "Returns a download URL valid for 10 seconds for a specific file in a dataset. This endpoint will only work if you have agreed to the dataset licence and have the correct access, which is arranged on the Use land and property data service."
+                  },
+                  "response": [
+                    {
+                      "id": "83659f8d-6dd5-4429-a9b6-d6db4b440e33",
+                      "name": "A short-lived signed download URL.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/datasets/:dataset_name/:file_name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "datasets",
+                            ":dataset_name",
+                            ":file_name"
+                          ],
+                          "variable": [
+                            {
+                              "key": "dataset_name"
+                            },
+                            {
+                              "key": "file_name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"result\": {\n    \"download_url\": \"<uri>\",\n    \"resource\": \"<string>\",\n    \"valid_for_seconds\": \"<integer>\"\n  },\n  \"success\": \"<boolean>\"\n}",
+                      "createdAt": "2026-10-21T20:13:56.000Z",
+                      "updatedAt": "2026-10-21T20:13:56.000Z",
+                      "uid": "35240-83659f8d-6dd5-4429-a9b6-d6db4b440e33"
+                    },
+                    {
+                      "id": "c02342f6-c694-497b-9a2f-093c5bdc8693",
+                      "name": "Access denied. Returned when no API key is supplied, or when the caller has not signed the licence for the requested dataset.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/datasets/:dataset_name/:file_name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "datasets",
+                            ":dataset_name",
+                            ":file_name"
+                          ],
+                          "variable": [
+                            {
+                              "key": "dataset_name"
+                            },
+                            {
+                              "key": "file_name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"success\": \"<boolean>\"\n}",
+                      "createdAt": "2026-10-21T20:13:56.000Z",
+                      "updatedAt": "2026-10-21T20:13:56.000Z",
+                      "uid": "35240-c02342f6-c694-497b-9a2f-093c5bdc8693"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:13:56.000Z",
+                  "updatedAt": "2026-10-21T20:13:56.000Z",
+                  "uid": "35240-af2656a2-9469-4893-abc1-ca0dfb6ec2f9"
+                }
+              ],
+              "id": "3fa35a06-c2ec-4b75-b6ce-280b3472e442",
+              "createdAt": "2026-10-21T20:13:56.000Z",
+              "updatedAt": "2026-10-21T20:13:56.000Z",
+              "uid": "35240-3fa35a06-c2ec-4b75-b6ce-280b3472e442"
+            },
+            {
+              "name": "Get dataset metadata and resources",
+              "id": "d111dd97-1762-4f8f-8c2e-998080f91bc6",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/datasets/:dataset_name",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "datasets",
+                    ":dataset_name"
+                  ],
+                  "variable": [
+                    {
+                      "id": "659c1d96-e9db-4f09-ad58-03e3cd208515",
+                      "key": "dataset_name",
+                      "value": "<string>",
+                      "description": "(Required) The dataset name, for example ccod, ocod, nps or nps_sample. CCOD and OCOD remain the machine names for the renamed UK companies and Overseas companies datasets."
+                    }
+                  ]
+                },
+                "description": "Returns the metadata of a dataset and its resources."
+              },
+              "response": [
+                {
+                  "id": "bba632ef-0a3f-4c6d-a390-dc4ba8bb548a",
+                  "name": "Dataset metadata.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/datasets/:dataset_name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "datasets",
+                        ":dataset_name"
+                      ],
+                      "variable": [
+                        {
+                          "key": "dataset_name"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"result\": {\n    \"description\": \"<string>\",\n    \"external\": \"<boolean>\",\n    \"fee\": \"<string>\",\n    \"file_count\": \"<integer>\",\n    \"file_size\": \"<string>\",\n    \"format\": \"<string>\",\n    \"last_updated\": \"<string>\",\n    \"licence_id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"private\": \"<boolean>\",\n    \"public_resources\": [\n      {\n        \"file_count\": \"<integer>\",\n        \"file_name\": \"<string>\",\n        \"file_size\": \"<string>\",\n        \"format\": \"<string>\",\n        \"name\": \"<string>\",\n        \"row_count\": \"<integer>\"\n      },\n      {\n        \"file_count\": \"<integer>\",\n        \"file_name\": \"<string>\",\n        \"file_size\": \"<string>\",\n        \"format\": \"<string>\",\n        \"name\": \"<string>\",\n        \"row_count\": \"<integer>\"\n      }\n    ],\n    \"resources\": [\n      {\n        \"file_count\": \"<integer>\",\n        \"file_name\": \"<string>\",\n        \"file_size\": \"<string>\",\n        \"format\": \"<string>\",\n        \"name\": \"<string>\",\n        \"row_count\": \"<integer>\"\n      },\n      {\n        \"file_count\": \"<integer>\",\n        \"file_name\": \"<string>\",\n        \"file_size\": \"<string>\",\n        \"format\": \"<string>\",\n        \"name\": \"<string>\",\n        \"row_count\": \"<integer>\"\n      }\n    ],\n    \"state\": \"<string>\",\n    \"tech_spec_url\": \"<uri>\",\n    \"title\": \"<string>\",\n    \"type\": \"<string>\",\n    \"update_frequency\": \"<string>\",\n    \"version\": \"<string>\"\n  },\n  \"success\": \"<boolean>\"\n}",
+                  "createdAt": "2026-10-21T20:13:56.000Z",
+                  "updatedAt": "2026-10-21T20:13:56.000Z",
+                  "uid": "35240-bba632ef-0a3f-4c6d-a390-dc4ba8bb548a"
+                },
+                {
+                  "id": "426297d8-d7ef-49d5-ba70-5bac4db7561c",
+                  "name": "Access denied. Returned when no API key is supplied, or when the caller has not signed the licence for the requested dataset.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/datasets/:dataset_name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "datasets",
+                        ":dataset_name"
+                      ],
+                      "variable": [
+                        {
+                          "key": "dataset_name"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"success\": \"<boolean>\"\n}",
+                  "createdAt": "2026-10-21T20:13:56.000Z",
+                  "updatedAt": "2026-10-21T20:13:56.000Z",
+                  "uid": "35240-426297d8-d7ef-49d5-ba70-5bac4db7561c"
+                }
+              ],
+              "createdAt": "2026-10-21T20:13:56.000Z",
+              "updatedAt": "2026-10-21T20:13:56.000Z",
+              "uid": "35240-d111dd97-1762-4f8f-8c2e-998080f91bc6"
+            }
+          ],
+          "id": "8dba2c54-af3d-444e-9349-05e04ec76678",
+          "createdAt": "2026-10-21T20:13:56.000Z",
+          "updatedAt": "2026-10-21T20:13:56.000Z",
+          "uid": "35240-8dba2c54-af3d-444e-9349-05e04ec76678"
+        },
+        {
+          "name": "history",
+          "item": [
+            {
+              "name": "{dataset_name}",
+              "item": [
+                {
+                  "name": "List historical resources for a dataset",
+                  "id": "36105b97-0453-47cc-9174-647f6a911fa9",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/datasets/history/:dataset_name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "datasets",
+                        "history",
+                        ":dataset_name"
+                      ],
+                      "variable": [
+                        {
+                          "id": "c679001b-c251-4467-ba5d-2f469b4236fc",
+                          "key": "dataset_name",
+                          "value": "<string>",
+                          "description": "(Required) The dataset name, for example ccod, ocod, nps or nps_sample. CCOD and OCOD remain the machine names for the renamed UK companies and Overseas companies datasets."
+                        }
+                      ]
+                    },
+                    "description": "Returns a list of available historical resources for a dataset."
+                  },
+                  "response": [
+                    {
+                      "id": "85f0cc99-f010-45bf-aa99-79e60bd312f6",
+                      "name": "The dataset history.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/datasets/history/:dataset_name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "datasets",
+                            "history",
+                            ":dataset_name"
+                          ],
+                          "variable": [
+                            {
+                              "key": "dataset_name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"success\": \"<boolean>\",\n  \"dataset\": \"<string>\",\n  \"dataset_history\": [\n    {\n      \"file_size\": \"<string>\",\n      \"filename\": \"<string>\",\n      \"last_updated\": \"<string>\",\n      \"unsorted_date\": \"<string>\"\n    },\n    {\n      \"file_size\": \"<string>\",\n      \"filename\": \"<string>\",\n      \"last_updated\": \"<string>\",\n      \"unsorted_date\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-21T20:13:56.000Z",
+                      "updatedAt": "2026-10-21T20:13:56.000Z",
+                      "uid": "35240-85f0cc99-f010-45bf-aa99-79e60bd312f6"
+                    },
+                    {
+                      "id": "ff49e3cb-d490-446d-89b8-06f90b7d8171",
+                      "name": "Access denied. Returned when no API key is supplied, or when the caller has not signed the licence for the requested dataset.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/datasets/history/:dataset_name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "datasets",
+                            "history",
+                            ":dataset_name"
+                          ],
+                          "variable": [
+                            {
+                              "key": "dataset_name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"success\": \"<boolean>\"\n}",
+                      "createdAt": "2026-10-21T20:13:56.000Z",
+                      "updatedAt": "2026-10-21T20:13:56.000Z",
+                      "uid": "35240-ff49e3cb-d490-446d-89b8-06f90b7d8171"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:13:56.000Z",
+                  "updatedAt": "2026-10-21T20:13:56.000Z",
+                  "uid": "35240-36105b97-0453-47cc-9174-647f6a911fa9"
+                }
+              ],
+              "id": "459efc09-a199-4bfa-81a1-2613725b0cc6",
+              "createdAt": "2026-10-21T20:13:56.000Z",
+              "updatedAt": "2026-10-21T20:13:56.000Z",
+              "uid": "35240-459efc09-a199-4bfa-81a1-2613725b0cc6"
+            }
+          ],
+          "id": "dfd30ceb-75ed-4b13-ad0b-a10576779601",
+          "createdAt": "2026-10-21T20:13:56.000Z",
+          "updatedAt": "2026-10-21T20:13:56.000Z",
+          "uid": "35240-dfd30ceb-75ed-4b13-ad0b-a10576779601"
+        },
+        {
+          "name": "List available datasets",
+          "id": "75b08f94-92f6-4ef7-9e43-fcf184c69310",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/datasets",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "datasets"
+              ]
+            },
+            "description": "Returns a JSON list of the dataset names and titles that are available in the service."
+          },
+          "response": [
+            {
+              "id": "685f866c-6695-4920-8169-37bc3d71dc9b",
+              "name": "The list of available datasets.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/datasets",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "datasets"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"result\": [\n    {\n      \"name\": \"<string>\",\n      \"title\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"title\": \"<string>\"\n    }\n  ],\n  \"success\": \"<boolean>\"\n}",
+              "createdAt": "2026-10-21T20:13:56.000Z",
+              "updatedAt": "2026-10-21T20:13:56.000Z",
+              "uid": "35240-685f866c-6695-4920-8169-37bc3d71dc9b"
+            },
+            {
+              "id": "70626b13-0127-4eff-9736-a687b0fa7ced",
+              "name": "Access denied. Returned when no API key is supplied, or when the caller has not signed the licence for the requested dataset.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/datasets",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "datasets"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"success\": \"<boolean>\"\n}",
+              "createdAt": "2026-10-21T20:13:56.000Z",
+              "updatedAt": "2026-10-21T20:13:56.000Z",
+              "uid": "35240-70626b13-0127-4eff-9736-a687b0fa7ced"
+            }
+          ],
+          "createdAt": "2026-10-21T20:13:56.000Z",
+          "updatedAt": "2026-10-21T20:13:56.000Z",
+          "uid": "35240-75b08f94-92f6-4ef7-9e43-fcf184c69310"
+        }
+      ],
+      "id": "e07d141f-fb9c-466e-abef-aa37e06fcb15",
+      "createdAt": "2026-10-21T20:13:56.000Z",
+      "updatedAt": "2026-10-21T20:13:56.000Z",
+      "uid": "35240-e07d141f-fb9c-466e-abef-aa37e06fcb15"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://use-land-property-data.service.gov.uk/api/v1"
+    }
+  ]
+}

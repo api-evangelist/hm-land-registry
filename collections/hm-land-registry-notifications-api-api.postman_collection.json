@@ -1,0 +1,1991 @@
+{
+  "info": {
+    "_postman_id": "bad54de4-ea1d-4925-af90-98fee3460e9f",
+    "name": "Hm Land Registry Notifications API",
+    "description": "Operations tagged Notifications API across 2 of this provider's published API definitions: hm-land-registry-submit-application-to-change-the-register-v0.3-openapi.json, hm-land-registry-submit-application-to-change-the-register-v1.0-openapi.json. Each path carries the servers of the definition it was published in.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:14:16.000Z",
+    "updatedAt": "2026-10-21T20:14:17.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-bad54de4-ea1d-4925-af90-98fee3460e9f"
+  },
+  "item": [
+    {
+      "name": "v0",
+      "item": [
+        {
+          "name": "notifications",
+          "item": [
+            {
+              "name": "acknowledge",
+              "item": [
+                {
+                  "name": "Acknowledge notifications API",
+                  "id": "bc55f8d3-3406-46da-b11b-3ecd01ed2129",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"data\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v0/notifications/acknowledge",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v0",
+                        "notifications",
+                        "acknowledge"
+                      ]
+                    },
+                    "description": "Acknowledge notifications API - Acknowledge notifications that have been processed, so they are no longer returned when fetching"
+                  },
+                  "response": [
+                    {
+                      "id": "2123243d-6caf-40a1-b775-23c90812b5ea",
+                      "name": "Notifications acknowledged successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"data\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v0/notifications/acknowledge",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v0",
+                            "notifications",
+                            "acknowledge"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": {\n    \"acknowledged\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ],\n    \"not_found\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ]\n  }\n}",
+                      "createdAt": "2026-10-21T20:14:17.000Z",
+                      "updatedAt": "2026-10-21T20:14:17.000Z",
+                      "uid": "35240-2123243d-6caf-40a1-b775-23c90812b5ea"
+                    },
+                    {
+                      "id": "c671a03b-dc77-4f3b-b30b-d0f927d9c447",
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/problem+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"data\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v0/notifications/acknowledge",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v0",
+                            "notifications",
+                            "acknowledge"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/problem+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<uri>\",\n  \"title\": \"<string,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null-uri>\",\n  \"status\": \"<integer,null>\",\n  \"errors\": \"<array,null>\"\n}",
+                      "createdAt": "2026-10-21T20:14:17.000Z",
+                      "updatedAt": "2026-10-21T20:14:17.000Z",
+                      "uid": "35240-c671a03b-dc77-4f3b-b30b-d0f927d9c447"
+                    },
+                    {
+                      "id": "973ec6e6-20df-4326-984e-5a481068fa7c",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/problem+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"data\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v0/notifications/acknowledge",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v0",
+                            "notifications",
+                            "acknowledge"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/problem+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<uri>\",\n  \"title\": \"<string,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null-uri>\",\n  \"status\": \"<integer,null>\",\n  \"errors\": \"<array,null>\"\n}",
+                      "createdAt": "2026-10-21T20:14:17.000Z",
+                      "updatedAt": "2026-10-21T20:14:17.000Z",
+                      "uid": "35240-973ec6e6-20df-4326-984e-5a481068fa7c"
+                    },
+                    {
+                      "id": "493ab9c3-94d3-443c-a817-5c3b71a4d592",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/problem+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"data\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v0/notifications/acknowledge",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v0",
+                            "notifications",
+                            "acknowledge"
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/problem+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<uri>\",\n  \"title\": \"<string,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null-uri>\",\n  \"status\": \"<integer,null>\",\n  \"errors\": \"<array,null>\"\n}",
+                      "createdAt": "2026-10-21T20:14:17.000Z",
+                      "updatedAt": "2026-10-21T20:14:17.000Z",
+                      "uid": "35240-493ab9c3-94d3-443c-a817-5c3b71a4d592"
+                    },
+                    {
+                      "id": "7c521400-6e3a-4a4d-b4dc-c48615228b26",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/problem+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"data\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v0/notifications/acknowledge",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v0",
+                            "notifications",
+                            "acknowledge"
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/problem+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<uri>\",\n  \"title\": \"<string,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null-uri>\",\n  \"status\": \"<integer,null>\",\n  \"errors\": \"<array,null>\"\n}",
+                      "createdAt": "2026-10-21T20:14:17.000Z",
+                      "updatedAt": "2026-10-21T20:14:17.000Z",
+                      "uid": "35240-7c521400-6e3a-4a4d-b4dc-c48615228b26"
+                    },
+                    {
+                      "id": "b4bd8b1e-e551-48cf-bfc5-d270dca4bcde",
+                      "name": "Server Error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/problem+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"data\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v0/notifications/acknowledge",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v0",
+                            "notifications",
+                            "acknowledge"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/problem+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<uri>\",\n  \"title\": \"<string,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null-uri>\",\n  \"status\": \"<integer,null>\",\n  \"errors\": \"<array,null>\"\n}",
+                      "createdAt": "2026-10-21T20:14:17.000Z",
+                      "updatedAt": "2026-10-21T20:14:17.000Z",
+                      "uid": "35240-b4bd8b1e-e551-48cf-bfc5-d270dca4bcde"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:14:17.000Z",
+                  "updatedAt": "2026-10-21T20:14:17.000Z",
+                  "uid": "35240-bc55f8d3-3406-46da-b11b-3ecd01ed2129"
+                }
+              ],
+              "id": "709f0fb1-ec0c-4dee-9e1e-a2ecb07c2922",
+              "createdAt": "2026-10-21T20:14:17.000Z",
+              "updatedAt": "2026-10-21T20:14:17.000Z",
+              "uid": "35240-709f0fb1-ec0c-4dee-9e1e-a2ecb07c2922"
+            },
+            {
+              "name": "Receive notifications API",
+              "id": "8425c7a7-0ead-405f-a7af-39fb1ed398a8",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v0/notifications?created_before=<dateTime>&created_after=<dateTime>&status=NEW&occurred_before=<dateTime>&occurred_after=<dateTime>&notification_type=<string>&subject=<string>&additional_provider_filter=<string>&limit=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v0",
+                    "notifications"
+                  ],
+                  "query": [
+                    {
+                      "key": "created_before",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "created_after",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "NEW"
+                    },
+                    {
+                      "key": "occurred_before",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "occurred_after",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "notification_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "subject",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "additional_provider_filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ]
+                },
+                "description": "Receive notifications API - Get any unacknowledged notifications"
+              },
+              "response": [
+                {
+                  "id": "f4e1d994-a243-4df1-bfd3-f273a7c0b9ad",
+                  "name": "List of notifications",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v0/notifications?created_before=<dateTime>&created_after=<dateTime>&status=NEW&occurred_before=<dateTime>&occurred_after=<dateTime>&notification_type=<string>&subject=<string>&additional_provider_filter=<string>&limit=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v0",
+                        "notifications"
+                      ],
+                      "query": [
+                        {
+                          "key": "created_before",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "key": "created_after",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "key": "status",
+                          "value": "NEW"
+                        },
+                        {
+                          "key": "occurred_before",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "key": "occurred_after",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "key": "notification_type",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "subject",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "additional_provider_filter",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "limit",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": [\n    {\n      \"notification_id\": \"<uuid>\",\n      \"created_datetime\": \"<dateTime>\",\n      \"event_datetime\": \"<dateTime>\",\n      \"payload_schema\": \"<uri>\",\n      \"notification_type\": \"<string>\",\n      \"subject_type\": \"<string>\",\n      \"subject\": \"<string>\",\n      \"additional_provider_filter\": \"<string>\",\n      \"status\": \"NEW\",\n      \"payload\": {\n        \"labore8f\": true,\n        \"sed99\": false\n      }\n    },\n    {\n      \"notification_id\": \"<uuid>\",\n      \"created_datetime\": \"<dateTime>\",\n      \"event_datetime\": \"<dateTime>\",\n      \"payload_schema\": \"<uri>\",\n      \"notification_type\": \"<string>\",\n      \"subject_type\": \"<string>\",\n      \"subject\": \"<string>\",\n      \"additional_provider_filter\": \"<string>\",\n      \"status\": \"ACKNOWLEDGED\",\n      \"payload\": {\n        \"nostrud_8\": 97302299,\n        \"sint_3_8\": 60433918\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-10-21T20:14:17.000Z",
+                  "updatedAt": "2026-10-21T20:14:17.000Z",
+                  "uid": "35240-f4e1d994-a243-4df1-bfd3-f273a7c0b9ad"
+                },
+                {
+                  "id": "e4330d60-e89b-4e3e-93ab-3bb63d3e02a7",
+                  "name": "Bad Request",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/problem+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v0/notifications?created_before=<dateTime>&created_after=<dateTime>&status=NEW&occurred_before=<dateTime>&occurred_after=<dateTime>&notification_type=<string>&subject=<string>&additional_provider_filter=<string>&limit=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v0",
+                        "notifications"
+                      ],
+                      "query": [
+                        {
+                          "key": "created_before",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "key": "created_after",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "key": "status",
+                          "value": "NEW"
+                        },
+                        {
+                          "key": "occurred_before",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "key": "occurred_after",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "key": "notification_type",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "subject",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "additional_provider_filter",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "limit",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/problem+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"type\": \"<uri>\",\n  \"title\": \"<string,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null-uri>\",\n  \"status\": \"<integer,null>\",\n  \"errors\": \"<array,null>\"\n}",
+                  "createdAt": "2026-10-21T20:14:17.000Z",
+                  "updatedAt": "2026-10-21T20:14:17.000Z",
+                  "uid": "35240-e4330d60-e89b-4e3e-93ab-3bb63d3e02a7"
+                },
+                {
+                  "id": "c5279ed1-40d8-4dbd-beb9-4c7e97a9c7d2",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/problem+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v0/notifications?created_before=<dateTime>&created_after=<dateTime>&status=NEW&occurred_before=<dateTime>&occurred_after=<dateTime>&notification_type=<string>&subject=<string>&additional_provider_filter=<string>&limit=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v0",
+                        "notifications"
+                      ],
+                      "query": [
+                        {
+                          "key": "created_before",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "key": "created_after",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "key": "status",
+                          "value": "NEW"
+                        },
+                        {
+                          "key": "occurred_before",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "key": "occurred_after",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "key": "notification_type",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "subject",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "additional_provider_filter",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "limit",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/problem+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"type\": \"<uri>\",\n  \"title\": \"<string,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null-uri>\",\n  \"status\": \"<integer,null>\",\n  \"errors\": \"<array,null>\"\n}",
+                  "createdAt": "2026-10-21T20:14:17.000Z",
+                  "updatedAt": "2026-10-21T20:14:17.000Z",
+                  "uid": "35240-c5279ed1-40d8-4dbd-beb9-4c7e97a9c7d2"
+                },
+                {
+                  "id": "57e8e7fb-4445-45d4-969d-ee72be3a8b06",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/problem+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v0/notifications?created_before=<dateTime>&created_after=<dateTime>&status=NEW&occurred_before=<dateTime>&occurred_after=<dateTime>&notification_type=<string>&subject=<string>&additional_provider_filter=<string>&limit=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v0",
+                        "notifications"
+                      ],
+                      "query": [
+                        {
+                          "key": "created_before",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "key": "created_after",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "key": "status",
+                          "value": "NEW"
+                        },
+                        {
+                          "key": "occurred_before",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "key": "occurred_after",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "key": "notification_type",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "subject",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "additional_provider_filter",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "limit",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/problem+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"type\": \"<uri>\",\n  \"title\": \"<string,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null-uri>\",\n  \"status\": \"<integer,null>\",\n  \"errors\": \"<array,null>\"\n}",
+                  "createdAt": "2026-10-21T20:14:17.000Z",
+                  "updatedAt": "2026-10-21T20:14:17.000Z",
+                  "uid": "35240-57e8e7fb-4445-45d4-969d-ee72be3a8b06"
+                },
+                {
+                  "id": "23d97c37-57f8-4361-955a-3e9189e41bef",
+                  "name": "Not Found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/problem+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v0/notifications?created_before=<dateTime>&created_after=<dateTime>&status=NEW&occurred_before=<dateTime>&occurred_after=<dateTime>&notification_type=<string>&subject=<string>&additional_provider_filter=<string>&limit=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v0",
+                        "notifications"
+                      ],
+                      "query": [
+                        {
+                          "key": "created_before",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "key": "created_after",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "key": "status",
+                          "value": "NEW"
+                        },
+                        {
+                          "key": "occurred_before",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "key": "occurred_after",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "key": "notification_type",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "subject",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "additional_provider_filter",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "limit",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/problem+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"type\": \"<uri>\",\n  \"title\": \"<string,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null-uri>\",\n  \"status\": \"<integer,null>\",\n  \"errors\": \"<array,null>\"\n}",
+                  "createdAt": "2026-10-21T20:14:17.000Z",
+                  "updatedAt": "2026-10-21T20:14:17.000Z",
+                  "uid": "35240-23d97c37-57f8-4361-955a-3e9189e41bef"
+                },
+                {
+                  "id": "3cbb0999-a43e-4dff-a40c-12b716287854",
+                  "name": "Server Error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/problem+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v0/notifications?created_before=<dateTime>&created_after=<dateTime>&status=NEW&occurred_before=<dateTime>&occurred_after=<dateTime>&notification_type=<string>&subject=<string>&additional_provider_filter=<string>&limit=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v0",
+                        "notifications"
+                      ],
+                      "query": [
+                        {
+                          "key": "created_before",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "key": "created_after",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "key": "status",
+                          "value": "NEW"
+                        },
+                        {
+                          "key": "occurred_before",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "key": "occurred_after",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "key": "notification_type",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "subject",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "additional_provider_filter",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "limit",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/problem+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"type\": \"<uri>\",\n  \"title\": \"<string,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null-uri>\",\n  \"status\": \"<integer,null>\",\n  \"errors\": \"<array,null>\"\n}",
+                  "createdAt": "2026-10-21T20:14:17.000Z",
+                  "updatedAt": "2026-10-21T20:14:17.000Z",
+                  "uid": "35240-3cbb0999-a43e-4dff-a40c-12b716287854"
+                }
+              ],
+              "createdAt": "2026-10-21T20:14:17.000Z",
+              "updatedAt": "2026-10-21T20:14:17.000Z",
+              "uid": "35240-8425c7a7-0ead-405f-a7af-39fb1ed398a8"
+            }
+          ],
+          "id": "4cf8e09f-2a6d-40d0-aa17-171841a0eae6",
+          "createdAt": "2026-10-21T20:14:17.000Z",
+          "updatedAt": "2026-10-21T20:14:17.000Z",
+          "uid": "35240-4cf8e09f-2a6d-40d0-aa17-171841a0eae6"
+        }
+      ],
+      "id": "8cabdd61-cc28-49de-bb01-0b32db224fc4",
+      "createdAt": "2026-10-21T20:14:17.000Z",
+      "updatedAt": "2026-10-21T20:14:17.000Z",
+      "uid": "35240-8cabdd61-cc28-49de-bb01-0b32db224fc4"
+    },
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "notifications",
+          "item": [
+            {
+              "name": "acknowledge",
+              "item": [
+                {
+                  "name": "Acknowledge notifications v1",
+                  "id": "11d3755a-2171-4f75-9f24-f06912f3f850",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"data\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/notifications/acknowledge",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "notifications",
+                        "acknowledge"
+                      ]
+                    },
+                    "description": "Acknowledge notifications API - Acknowledge notifications that have been processed, so they are no longer returned when fetching"
+                  },
+                  "response": [
+                    {
+                      "id": "5d366908-4ca2-4781-bba1-71866c116d7c",
+                      "name": "Notifications acknowledged successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"data\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/notifications/acknowledge",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "notifications",
+                            "acknowledge"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": {\n    \"acknowledged\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ],\n    \"not_found\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ]\n  }\n}",
+                      "createdAt": "2026-10-21T20:14:17.000Z",
+                      "updatedAt": "2026-10-21T20:14:17.000Z",
+                      "uid": "35240-5d366908-4ca2-4781-bba1-71866c116d7c"
+                    },
+                    {
+                      "id": "f5cc5638-8ddb-4f7d-92f1-f868d55ea7c8",
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/problem+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"data\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/notifications/acknowledge",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "notifications",
+                            "acknowledge"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/problem+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<uri>\",\n  \"title\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"instance\": \"<uri>\",\n  \"status\": \"<integer>\",\n  \"errors\": [\n    {\n      \"detail\": \"<string>\",\n      \"pointer\": \"<string>\",\n      \"header\": \"<string>\",\n      \"parameter\": \"<string>\"\n    },\n    {\n      \"detail\": \"<string>\",\n      \"pointer\": \"<string>\",\n      \"header\": \"<string>\",\n      \"parameter\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-21T20:14:17.000Z",
+                      "updatedAt": "2026-10-21T20:14:17.000Z",
+                      "uid": "35240-f5cc5638-8ddb-4f7d-92f1-f868d55ea7c8"
+                    },
+                    {
+                      "id": "8d8ea927-dbca-4986-ad1a-9c191b7a1956",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/problem+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"data\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/notifications/acknowledge",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "notifications",
+                            "acknowledge"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/problem+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<uri>\",\n  \"title\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"instance\": \"<uri>\",\n  \"status\": \"<integer>\",\n  \"errors\": [\n    {\n      \"detail\": \"<string>\",\n      \"pointer\": \"<string>\",\n      \"header\": \"<string>\",\n      \"parameter\": \"<string>\"\n    },\n    {\n      \"detail\": \"<string>\",\n      \"pointer\": \"<string>\",\n      \"header\": \"<string>\",\n      \"parameter\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-21T20:14:17.000Z",
+                      "updatedAt": "2026-10-21T20:14:17.000Z",
+                      "uid": "35240-8d8ea927-dbca-4986-ad1a-9c191b7a1956"
+                    },
+                    {
+                      "id": "6c6fdaf8-26a1-405d-8c8b-c2de86a30fd6",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/problem+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"data\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/notifications/acknowledge",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "notifications",
+                            "acknowledge"
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/problem+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<uri>\",\n  \"title\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"instance\": \"<uri>\",\n  \"status\": \"<integer>\",\n  \"errors\": [\n    {\n      \"detail\": \"<string>\",\n      \"pointer\": \"<string>\",\n      \"header\": \"<string>\",\n      \"parameter\": \"<string>\"\n    },\n    {\n      \"detail\": \"<string>\",\n      \"pointer\": \"<string>\",\n      \"header\": \"<string>\",\n      \"parameter\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-21T20:14:17.000Z",
+                      "updatedAt": "2026-10-21T20:14:17.000Z",
+                      "uid": "35240-6c6fdaf8-26a1-405d-8c8b-c2de86a30fd6"
+                    },
+                    {
+                      "id": "ccebd195-b7f8-4533-92fc-234164a6b4c3",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/problem+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"data\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/notifications/acknowledge",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "notifications",
+                            "acknowledge"
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/problem+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<uri>\",\n  \"title\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"instance\": \"<uri>\",\n  \"status\": \"<integer>\",\n  \"errors\": [\n    {\n      \"detail\": \"<string>\",\n      \"pointer\": \"<string>\",\n      \"header\": \"<string>\",\n      \"parameter\": \"<string>\"\n    },\n    {\n      \"detail\": \"<string>\",\n      \"pointer\": \"<string>\",\n      \"header\": \"<string>\",\n      \"parameter\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-21T20:14:17.000Z",
+                      "updatedAt": "2026-10-21T20:14:17.000Z",
+                      "uid": "35240-ccebd195-b7f8-4533-92fc-234164a6b4c3"
+                    },
+                    {
+                      "id": "8b6f259e-0030-4696-9416-91cbe49b5e8a",
+                      "name": "Server Error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/problem+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"data\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/notifications/acknowledge",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "notifications",
+                            "acknowledge"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/problem+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<uri>\",\n  \"title\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"instance\": \"<uri>\",\n  \"status\": \"<integer>\",\n  \"errors\": [\n    {\n      \"detail\": \"<string>\",\n      \"pointer\": \"<string>\",\n      \"header\": \"<string>\",\n      \"parameter\": \"<string>\"\n    },\n    {\n      \"detail\": \"<string>\",\n      \"pointer\": \"<string>\",\n      \"header\": \"<string>\",\n      \"parameter\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-21T20:14:17.000Z",
+                      "updatedAt": "2026-10-21T20:14:17.000Z",
+                      "uid": "35240-8b6f259e-0030-4696-9416-91cbe49b5e8a"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:14:17.000Z",
+                  "updatedAt": "2026-10-21T20:14:17.000Z",
+                  "uid": "35240-11d3755a-2171-4f75-9f24-f06912f3f850"
+                }
+              ],
+              "id": "11cd3381-f220-4356-9dad-ef868ceb5c36",
+              "createdAt": "2026-10-21T20:14:17.000Z",
+              "updatedAt": "2026-10-21T20:14:17.000Z",
+              "uid": "35240-11cd3381-f220-4356-9dad-ef868ceb5c36"
+            },
+            {
+              "name": "Get notifications v1",
+              "id": "89e70c6d-64bc-42d1-99a8-24453558b88f",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/notifications?created_before=<dateTime>&created_after=<dateTime>&status=NEW&occurred_before=<dateTime>&occurred_after=<dateTime>&notification_type=JKBag_TTAD&subject=&additional_provider_filter=<string>&limit=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "notifications"
+                  ],
+                  "query": [
+                    {
+                      "key": "created_before",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "created_after",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "NEW"
+                    },
+                    {
+                      "key": "occurred_before",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "occurred_after",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "notification_type",
+                      "value": "JKBag_TTAD"
+                    },
+                    {
+                      "key": "subject",
+                      "value": ""
+                    },
+                    {
+                      "key": "additional_provider_filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ]
+                },
+                "description": "Receive notifications API - Get any unacknowledged notifications"
+              },
+              "response": [
+                {
+                  "id": "369f15ad-8c82-44d3-a7a1-6735fb335a35",
+                  "name": "List of notifications",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/notifications?created_before=<dateTime>&created_after=<dateTime>&status=NEW&occurred_before=<dateTime>&occurred_after=<dateTime>&notification_type=JKBag_TTAD&subject=&additional_provider_filter=<string>&limit=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "notifications"
+                      ],
+                      "query": [
+                        {
+                          "key": "created_before",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "key": "created_after",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "key": "status",
+                          "value": "NEW"
+                        },
+                        {
+                          "key": "occurred_before",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "key": "occurred_after",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "key": "notification_type",
+                          "value": "JKBag_TTAD"
+                        },
+                        {
+                          "key": "subject",
+                          "value": ""
+                        },
+                        {
+                          "key": "additional_provider_filter",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "limit",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": [\n    {\n      \"notification_id\": \"<uuid>\",\n      \"created_datetime\": \"<dateTime>\",\n      \"event_datetime\": \"<dateTime>\",\n      \"payload_schema\": \"<uri>\",\n      \"notification_type\": \"<string>\",\n      \"subject_type\": \"<string>\",\n      \"subject\": \"<string>\",\n      \"additional_provider_filter\": \"<string>\",\n      \"status\": \"NEW\",\n      \"payload\": {\n        \"labore8f\": true,\n        \"sed99\": false\n      }\n    },\n    {\n      \"notification_id\": \"<uuid>\",\n      \"created_datetime\": \"<dateTime>\",\n      \"event_datetime\": \"<dateTime>\",\n      \"payload_schema\": \"<uri>\",\n      \"notification_type\": \"<string>\",\n      \"subject_type\": \"<string>\",\n      \"subject\": \"<string>\",\n      \"additional_provider_filter\": \"<string>\",\n      \"status\": \"ACKNOWLEDGED\",\n      \"payload\": {\n        \"nostrud_8\": 97302299,\n        \"sint_3_8\": 60433918\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-10-21T20:14:17.000Z",
+                  "updatedAt": "2026-10-21T20:14:17.000Z",
+                  "uid": "35240-369f15ad-8c82-44d3-a7a1-6735fb335a35"
+                },
+                {
+                  "id": "9b8d9286-1a1a-4add-a8fa-dac20399048a",
+                  "name": "Bad Request",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/problem+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/notifications?created_before=<dateTime>&created_after=<dateTime>&status=NEW&occurred_before=<dateTime>&occurred_after=<dateTime>&notification_type=JKBag_TTAD&subject=&additional_provider_filter=<string>&limit=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "notifications"
+                      ],
+                      "query": [
+                        {
+                          "key": "created_before",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "key": "created_after",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "key": "status",
+                          "value": "NEW"
+                        },
+                        {
+                          "key": "occurred_before",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "key": "occurred_after",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "key": "notification_type",
+                          "value": "JKBag_TTAD"
+                        },
+                        {
+                          "key": "subject",
+                          "value": ""
+                        },
+                        {
+                          "key": "additional_provider_filter",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "limit",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/problem+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"type\": \"<uri>\",\n  \"title\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"instance\": \"<uri>\",\n  \"status\": \"<integer>\",\n  \"errors\": [\n    {\n      \"detail\": \"<string>\",\n      \"pointer\": \"<string>\",\n      \"header\": \"<string>\",\n      \"parameter\": \"<string>\"\n    },\n    {\n      \"detail\": \"<string>\",\n      \"pointer\": \"<string>\",\n      \"header\": \"<string>\",\n      \"parameter\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-10-21T20:14:17.000Z",
+                  "updatedAt": "2026-10-21T20:14:17.000Z",
+                  "uid": "35240-9b8d9286-1a1a-4add-a8fa-dac20399048a"
+                },
+                {
+                  "id": "802e5890-ed7d-48fd-802a-5b8a91793b84",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/problem+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/notifications?created_before=<dateTime>&created_after=<dateTime>&status=NEW&occurred_before=<dateTime>&occurred_after=<dateTime>&notification_type=JKBag_TTAD&subject=&additional_provider_filter=<string>&limit=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "notifications"
+                      ],
+                      "query": [
+                        {
+                          "key": "created_before",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "key": "created_after",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "key": "status",
+                          "value": "NEW"
+                        },
+                        {
+                          "key": "occurred_before",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "key": "occurred_after",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "key": "notification_type",
+                          "value": "JKBag_TTAD"
+                        },
+                        {
+                          "key": "subject",
+                          "value": ""
+                        },
+                        {
+                          "key": "additional_provider_filter",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "limit",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/problem+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"type\": \"<uri>\",\n  \"title\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"instance\": \"<uri>\",\n  \"status\": \"<integer>\",\n  \"errors\": [\n    {\n      \"detail\": \"<string>\",\n      \"pointer\": \"<string>\",\n      \"header\": \"<string>\",\n      \"parameter\": \"<string>\"\n    },\n    {\n      \"detail\": \"<string>\",\n      \"pointer\": \"<string>\",\n      \"header\": \"<string>\",\n      \"parameter\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-10-21T20:14:17.000Z",
+                  "updatedAt": "2026-10-21T20:14:17.000Z",
+                  "uid": "35240-802e5890-ed7d-48fd-802a-5b8a91793b84"
+                },
+                {
+                  "id": "92f108ba-341e-4115-87c8-81d5561fc0cd",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/problem+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/notifications?created_before=<dateTime>&created_after=<dateTime>&status=NEW&occurred_before=<dateTime>&occurred_after=<dateTime>&notification_type=JKBag_TTAD&subject=&additional_provider_filter=<string>&limit=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "notifications"
+                      ],
+                      "query": [
+                        {
+                          "key": "created_before",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "key": "created_after",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "key": "status",
+                          "value": "NEW"
+                        },
+                        {
+                          "key": "occurred_before",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "key": "occurred_after",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "key": "notification_type",
+                          "value": "JKBag_TTAD"
+                        },
+                        {
+                          "key": "subject",
+                          "value": ""
+                        },
+                        {
+                          "key": "additional_provider_filter",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "limit",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/problem+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"type\": \"<uri>\",\n  \"title\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"instance\": \"<uri>\",\n  \"status\": \"<integer>\",\n  \"errors\": [\n    {\n      \"detail\": \"<string>\",\n      \"pointer\": \"<string>\",\n      \"header\": \"<string>\",\n      \"parameter\": \"<string>\"\n    },\n    {\n      \"detail\": \"<string>\",\n      \"pointer\": \"<string>\",\n      \"header\": \"<string>\",\n      \"parameter\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-10-21T20:14:17.000Z",
+                  "updatedAt": "2026-10-21T20:14:17.000Z",
+                  "uid": "35240-92f108ba-341e-4115-87c8-81d5561fc0cd"
+                },
+                {
+                  "id": "c65e4c17-ddb4-4927-a5bd-62a9a11d63e5",
+                  "name": "Not Found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/problem+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/notifications?created_before=<dateTime>&created_after=<dateTime>&status=NEW&occurred_before=<dateTime>&occurred_after=<dateTime>&notification_type=JKBag_TTAD&subject=&additional_provider_filter=<string>&limit=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "notifications"
+                      ],
+                      "query": [
+                        {
+                          "key": "created_before",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "key": "created_after",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "key": "status",
+                          "value": "NEW"
+                        },
+                        {
+                          "key": "occurred_before",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "key": "occurred_after",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "key": "notification_type",
+                          "value": "JKBag_TTAD"
+                        },
+                        {
+                          "key": "subject",
+                          "value": ""
+                        },
+                        {
+                          "key": "additional_provider_filter",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "limit",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/problem+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"type\": \"<uri>\",\n  \"title\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"instance\": \"<uri>\",\n  \"status\": \"<integer>\",\n  \"errors\": [\n    {\n      \"detail\": \"<string>\",\n      \"pointer\": \"<string>\",\n      \"header\": \"<string>\",\n      \"parameter\": \"<string>\"\n    },\n    {\n      \"detail\": \"<string>\",\n      \"pointer\": \"<string>\",\n      \"header\": \"<string>\",\n      \"parameter\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-10-21T20:14:17.000Z",
+                  "updatedAt": "2026-10-21T20:14:17.000Z",
+                  "uid": "35240-c65e4c17-ddb4-4927-a5bd-62a9a11d63e5"
+                },
+                {
+                  "id": "38d75964-2bb5-4e86-bbfd-78b49e0a5940",
+                  "name": "Server Error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/problem+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/notifications?created_before=<dateTime>&created_after=<dateTime>&status=NEW&occurred_before=<dateTime>&occurred_after=<dateTime>&notification_type=JKBag_TTAD&subject=&additional_provider_filter=<string>&limit=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "notifications"
+                      ],
+                      "query": [
+                        {
+                          "key": "created_before",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "key": "created_after",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "key": "status",
+                          "value": "NEW"
+                        },
+                        {
+                          "key": "occurred_before",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "key": "occurred_after",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "key": "notification_type",
+                          "value": "JKBag_TTAD"
+                        },
+                        {
+                          "key": "subject",
+                          "value": ""
+                        },
+                        {
+                          "key": "additional_provider_filter",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "limit",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/problem+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"type\": \"<uri>\",\n  \"title\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"instance\": \"<uri>\",\n  \"status\": \"<integer>\",\n  \"errors\": [\n    {\n      \"detail\": \"<string>\",\n      \"pointer\": \"<string>\",\n      \"header\": \"<string>\",\n      \"parameter\": \"<string>\"\n    },\n    {\n      \"detail\": \"<string>\",\n      \"pointer\": \"<string>\",\n      \"header\": \"<string>\",\n      \"parameter\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-10-21T20:14:17.000Z",
+                  "updatedAt": "2026-10-21T20:14:17.000Z",
+                  "uid": "35240-38d75964-2bb5-4e86-bbfd-78b49e0a5940"
+                }
+              ],
+              "createdAt": "2026-10-21T20:14:17.000Z",
+              "updatedAt": "2026-10-21T20:14:17.000Z",
+              "uid": "35240-89e70c6d-64bc-42d1-99a8-24453558b88f"
+            }
+          ],
+          "id": "0d68330e-0e72-4ccc-bb1a-897c86ffaadd",
+          "createdAt": "2026-10-21T20:14:17.000Z",
+          "updatedAt": "2026-10-21T20:14:17.000Z",
+          "uid": "35240-0d68330e-0e72-4ccc-bb1a-897c86ffaadd"
+        }
+      ],
+      "id": "c7dca96c-a9f8-4425-9545-fb20a1120b43",
+      "createdAt": "2026-10-21T20:14:17.000Z",
+      "updatedAt": "2026-10-21T20:14:17.000Z",
+      "uid": "35240-c7dca96c-a9f8-4425-9545-fb20a1120b43"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://businessgateway.landregistry.gov.uk/bg2/api"
+    }
+  ]
+}
